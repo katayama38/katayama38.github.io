@@ -2,16 +2,24 @@
 
 const hamburger = document.getElementById('hamburger');
 const menu = document.getElementById('menu');
+const closeMenu = document.getElementById('close-menu');
 
 hamburger.addEventListener('click', () => {
     menu.classList.toggle('active');
 });
 
+// メニュー外をクリックしたときにメニューを閉じる処理
 document.addEventListener('click', (e) => {
     if (!menu.contains(e.target) && !hamburger.contains(e.target) && menu.classList.contains('active')) {
         menu.classList.remove('active');
     }
 });
+
+// クローズボタンの機能
+closeMenu.addEventListener('click', () => {
+    menu.classList.remove('active');
+});
+
 
 // スクロールで背景変更
 const section = [
@@ -22,18 +30,16 @@ const section = [
 ];
 
 function changeBackgroundColorOnScroll(entries) {
-    // console.log('Observer called'); //test用
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // console.log(`Visible section: ${entry.target.id}`); //test用
-            
             document.body.style.backgroundColor = entry.target.dataset.color;
         }
     });
 }
+
 const thresholdValue = window.innerWidth <= 768 ? [0] : [0.5];
 
-const observer = new IntersectionObserver(changeBackgroundColorOnScroll, { threshold: thresholdValue});
+const observer = new IntersectionObserver(changeBackgroundColorOnScroll, { threshold: thresholdValue });
 
 section.forEach(item => {
     item.element.dataset.color = item.color;
@@ -41,10 +47,11 @@ section.forEach(item => {
 });
 
 const boxes = [
-        { element: document.querySelector('#about')},
-        { element: document.querySelector('#portfolio')},
-        { element: document.querySelector('#contact')}
-    ];
+    { element: document.querySelector('#about')},
+    { element: document.querySelector('#portfolio')},
+    { element: document.querySelector('#contact')}
+];
+
 function animateBoxes() {
     const scrollPosition = window.scrollY + window.innerHeight;
     boxes.forEach(box => {
@@ -58,17 +65,16 @@ function animateBoxes() {
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
         clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
+        timeout = setTimeout(() => {
+            func(...args);
+        }, wait);
     };
 }
 
 window.addEventListener('scroll', debounce(animateBoxes, 80));
 
+// アクセシビリティの設定
 document.querySelector('.hamburger').setAttribute('role', 'button');
 document.querySelector('.hamburger').setAttribute('aria-label', 'Open Menu');
 document.querySelector('.menu').setAttribute('role', 'menubar');
