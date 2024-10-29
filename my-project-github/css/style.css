@@ -283,15 +283,19 @@ footer {
         font-size: 16px;
         width: 100%;
     }
+    .container {
+        margin: 0 ;
+        padding: 0;
+    }
     .text {
-        padding: 10px 20px;
-        font-size: 24px;
+        padding: 20px;
+        font-size: 18px;
+        text-align: end;
     }
     .warp {
-        flex-direction: column;
         align-items: center;
-        width: 80%;
-        margin: 20px auto;
+        width: 90%;
+        margin: 0 auto;
     }
     .image_program ul,
     .image_pf ul{
