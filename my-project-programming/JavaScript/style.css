@@ -147,12 +147,12 @@ body {
     text-decoration: none;
 }
 
-@media (max-width: 798px) {
+@media (max-width: 768px) {
     .boxes_inner {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 2列に設定 */
+        grid-template-columns: repeat(2, 1fr); /* 2列に設定 */
         gap: 10px; /* ボックス間のスペース */
-        max-width: 90%;
+        max-width: 100%;
     }
 
     .box {
