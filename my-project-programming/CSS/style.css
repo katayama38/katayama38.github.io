@@ -152,7 +152,7 @@ body {
         display: grid;
         grid-template-columns: repeat(2, 1fr); /* 2列に設定 */
         gap: 10px; /* ボックス間のスペース */
-        max-width: 90%;
+        max-width: 100%;
     }
 
     .box {
