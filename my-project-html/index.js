@@ -1,13 +1,29 @@
+const breadcrumbs = document.getElementById('breadcrumbs');
+const sections = document.querySelectorAll('main h2');
 
-function copyToClipboard(codeId) {
+function copyToClipboard(codeId, alertId) {
     const codeElement = document.getElementById(codeId);
+    const alertElement = document.getElementById(alertId); // アラート要素を取得
+
+    if (!codeElement) {
+        console.error(`ID '${codeId}' に対応する要素が見つかりません。`);
+        return; // 何もせずに戻る
+    }
+
     const codeText = codeElement.innerText || codeElement.textContent;
     navigator.clipboard.writeText(codeText).then(() => {
-        alert('コードをコピーしました！')
+        alertElement.textContent = 'コピーしました！'; // メッセージを設定
+        alertElement.style.color = 'green'; // メッセージの色を設定（任意）
+        
+        // 一定時間後にメッセージを消す
+        setTimeout(() => {
+            alertElement.textContent = ''; // メッセージをクリア
+        }, 2000); // 2秒後に消す
     }).catch(err => {
         console.error('コピーに失敗しました。: ', err);
     });
 }
+
 
 // 現在のページに基づいて足跡を更新する関数
 function updateBreadcrumbs(currentPage) {
@@ -27,9 +43,8 @@ function updateBreadcrumbs(currentPage) {
         breadcrumbs.appendChild(li);
     });
 }
+
 document.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('main h2');
-    const breadcrumbs = document.getElementById('breadcrumbs');
     const currentSection = Array.from(sections).find(section => {
         const rect = section.getBoundingClientRect();
         return rect.top >= 0 && rect.top < window.innerHeight;
@@ -47,6 +62,7 @@ document.addEventListener('scroll', () => {
         });
     }
 });
+
 const nextButton = document.querySelector('footer a');
 
 nextButton.addEventListener('click', (event) => {
@@ -59,7 +75,6 @@ nextButton.addEventListener('click', (event) => {
         }
     }
 });
-
 
 // 現在のページを指定して呼び出す
 updateBreadcrumbs('現在のページ');
