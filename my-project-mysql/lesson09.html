@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MySQLのトランザクション管理について説明します。">
+    <meta name="keywords" content="MySQL, トランザクション, データベース, プログラミング">
+    <title>MySQL トランザクションの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>MySQL トランザクションの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">トランザクションの概要</h2>
+            <p>トランザクションは、データベースにおける一連の操作をひとまとめにしたもので、原子性を持ちます。</p>
+            <pre id="code1">
+/* トランザクションの概要 */
+- 一連の操作をまとめて実行
+- 成功した場合は全て適用、失敗した場合は全て取り消し
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">トランザクションのACID特性</h2>
+            <p>トランザクションは以下のACID特性を持ちます。</p>
+            <pre id="code2">
+/* トランザクションのACID特性 */
+- 原子性 (Atomicity): 完全に成功するか、完全に失敗する
+- 一貫性 (Consistency): データの整合性が保たれる
+- 独立性 (Isolation): 他のトランザクションから影響を受けない
+- 耐久性 (Durability): 成功したトランザクションは永続的に記録される
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">トランザクションの開始と終了</h2>
+            <p>トランザクションを開始する方法と終了する方法について説明します。</p>
+            <pre id="code3">
+/* トランザクションの開始と終了 */
+START TRANSACTION;  -- トランザクションの開始
+-- SQL操作
+COMMIT;             -- 成功した場合は変更を確定
+ROLLBACK;          -- 失敗した場合は変更を取り消し
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">トランザクションの使用例</h2>
+            <p>実際のトランザクションの使用例を見てみましょう。</p>
+            <pre id="code4">
+/* トランザクションの使用例 */
+START TRANSACTION;
+UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+COMMIT;  -- すべての操作が成功した場合
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">トランザクションの制御</h2>
+            <p>トランザクションの制御方法について説明します。</p>
+            <pre id="code5">
+/* トランザクションの制御 */
+SET AUTOCOMMIT = 0;  -- 自動コミットを無効にする
+-- SQL操作
+SET AUTOCOMMIT = 1;  -- 自動コミットを有効に戻す
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">トランザクションの競合とロック</h2>
+            <p>トランザクション間の競合とロックの管理について説明します。</p>
+            <pre id="code6">
+/* トランザクションの競合とロック */
+- 複数のトランザクションが同時に実行される場合の競合を管理
+- 必要に応じてロックを使用してデータの整合性を確保
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">トランザクションの注意点</h2>
+            <p>トランザクションを使用する際の注意点について説明します。</p>
+            <pre id="code7">
+/* トランザクションの注意点 */
+- 長時間のトランザクションはロックを保持するため、他のトランザクションに影響
+- 適切な隔離レベルを選択してパフォーマンスを最適化
+- エラー処理を行い、ROLLBACKを適切に利用
+            </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
+
+            <h2 id="section8">まとめ</h2>
+            <p>トランザクションを適切に管理することで、データベースの整合性と一貫性を保つことができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">トランザクションの概要</a></li>
+                    <li><a href="#section2">トランザクションのACID特性</a></li>
+                    <li><a href="#section3">トランザクションの開始と終了</a></li>
+                    <li><a href="#section4">トランザクションの使用例</a></li>
+                    <li><a href="#section5">トランザクションの制御</a></li>
+                    <li><a href="#section6">トランザクションの競合とロック</a></li>
+                    <li><a href="#section7">トランザクションの注意点</a></li>
+                    <li><a href="#section8">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson10.html">次のページへ</a></li>
+                    <li><a href="lesson08.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

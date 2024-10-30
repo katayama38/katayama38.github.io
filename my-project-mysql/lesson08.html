@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MySQLのサブクエリの利用について説明します。">
+    <meta name="keywords" content="MySQL, サブクエリ, データベース, プログラミング">
+    <title>MySQL サブクエリの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>MySQL サブクエリの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">サブクエリの概要</h2>
+            <p>サブクエリは、別のクエリ内に含まれるクエリのことを指します。</p>
+            <pre id="code1">
+/* サブクエリの概要 */
+- 複雑なクエリを簡潔に表現
+- 結果を別のクエリで使用可能
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">サブクエリの種類</h2>
+            <p>主なサブクエリの種類には、以下があります。</p>
+            <pre id="code2">
+/* サブクエリの種類 */
+- スカラーサブクエリ: 単一の値を返す
+- インラインビュー: 一時的なテーブルとして使用
+- EXISTSサブクエリ: 条件を満たす行が存在するか確認
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">スカラーサブクエリの使用例</h2>
+            <p>スカラーサブクエリは、単一の値を返します。</p>
+            <pre id="code3">
+/* スカラーサブクエリの使用例 */
+SELECT name
+FROM users
+WHERE age = (SELECT MAX(age) FROM users);
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">インラインビューの使用例</h2>
+            <p>インラインビューを使用して、サブクエリの結果を一時的なテーブルとして扱います。</p>
+            <pre id="code4">
+/* インラインビューの使用例 */
+SELECT avg_age
+FROM (SELECT AVG(age) AS avg_age FROM users) AS subquery;
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">EXISTSサブクエリの使用例</h2>
+            <p>EXISTSサブクエリを使用して、条件を満たす行が存在するか確認します。</p>
+            <pre id="code5">
+/* EXISTSサブクエリの使用例 */
+SELECT name
+FROM users
+WHERE EXISTS (SELECT * FROM orders WHERE users.id = orders.user_id);
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">サブクエリのパフォーマンス</h2>
+            <p>サブクエリを使用する際のパフォーマンスに関する考慮事項です。</p>
+            <pre id="code6">
+/* サブクエリのパフォーマンス */
+- 複雑なサブクエリは実行時間が長くなる可能性
+- JOINとの比較でパフォーマンスが劣る場合がある
+- インデックスを活用して最適化を図る
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">サブクエリの注意点</h2>
+            <p>サブクエリを使用する際の注意点について説明します。</p>
+            <pre id="code7">
+/* サブクエリの注意点 */
+- スカラーサブクエリが複数の値を返すとエラー
+- インラインビューの使用時にエイリアスが必要
+- ネストが深くなると可読性が低下
+            </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
+
+            <h2 id="section8">まとめ</h2>
+            <p>サブクエリを適切に利用することで、データベースのクエリを効率的に管理できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">サブクエリの概要</a></li>
+                    <li><a href="#section2">サブクエリの種類</a></li>
+                    <li><a href="#section3">スカラーサブクエリの使用例</a></li>
+                    <li><a href="#section4">インラインビューの使用例</a></li>
+                    <li><a href="#section5">EXISTSサブクエリの使用例</a></li>
+                    <li><a href="#section6">サブクエリのパフォーマンス</a></li>
+                    <li><a href="#section7">サブクエリの注意点</a></li>
+                    <li><a href="#section8">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson09.html">次のページへ</a></li>
+                    <li><a href="lesson07.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

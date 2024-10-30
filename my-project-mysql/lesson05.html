@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MySQLのデータ型と制約について説明します。">
+    <meta name="keywords" content="MySQL, データ型, 制約, データベース, プログラミング">
+    <title>MySQLデータ型と制約の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>MySQLデータ型と制約の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">基本データ型</h2>
+            <p>MySQLにはいくつかの基本的なデータ型があります。</p>
+            <pre id="code1">
+/* 基本データ型 */
+- INT: 整数値
+- VARCHAR(n): 可変長文字列
+- DATE: 日付
+- FLOAT: 浮動小数点数
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">制約の種類</h2>
+            <p>制約は、テーブルのデータの整合性を確保するために使用されます。</p>
+            <pre id="code2">
+/* 制約の種類 */
+- PRIMARY KEY: 一意の識別子
+- FOREIGN KEY: 他のテーブルとの関係を示す
+- NOT NULL: NULL値を許可しない
+- UNIQUE: 一意の値を要求する
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">VARCHARの使用例</h2>
+            <p>VARCHAR型は、文字列データを格納するためのデータ型です。</p>
+            <pre id="code3">
+/* VARCHARの使用例 */
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE
+);
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">INTの使用例</h2>
+            <p>INT型は、整数値を格納するためのデータ型です。</p>
+            <pre id="code4">
+/* INTの使用例 */
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    amount FLOAT
+);
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">DATE型の使用例</h2>
+            <p>DATE型は、日付を格納するためのデータ型です。</p>
+            <pre id="code5">
+/* DATE型の使用例 */
+CREATE TABLE events (
+    event_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_date DATE NOT NULL
+);
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">FOREIGN KEYの使用例</h2>
+            <p>FOREIGN KEY制約を使用して、他のテーブルとの関係を定義します。</p>
+            <pre id="code6">
+/* FOREIGN KEYの使用例 */
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>データ型と制約を理解することで、データベース設計がより効果的になります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">基本データ型</a></li>
+                    <li><a href="#section2">制約の種類</a></li>
+                    <li><a href="#section3">VARCHARの使用例</a></li>
+                    <li><a href="#section4">INTの使用例</a></li>
+                    <li><a href="#section5">DATE型の使用例</a></li>
+                    <li><a href="#section6">FOREIGN KEYの使用例</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson06.html">次のページへ</a></li>
+                    <li><a href="lesson04.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

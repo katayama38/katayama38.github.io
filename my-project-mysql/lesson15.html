@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MySQLのバージョン管理について説明します。">
+    <meta name="keywords" content="MySQL, バージョン管理, データベース, プログラミング, 開発">
+    <title>MySQLのバージョン管理の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>MySQLのバージョン管理の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">MySQLバージョン管理の概要</h2>
+            <p>MySQLのバージョン管理は、データベースのアップグレードやメンテナンスを効率的に行うための重要な手法です。</p>
+            <pre id="code1">
+/* MySQLバージョン管理の概要 */
+- アップデートの計画
+- バージョンの確認
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">バージョンの確認方法</h2>
+            <p>現在のMySQLのバージョンを確認する方法について説明します。</p>
+            <pre id="code2">
+/* バージョンの確認 */
+SELECT VERSION();
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">アップデートの手順</h2>
+            <p>MySQLのアップデート手順について説明します。</p>
+            <pre id="code3">
+/* アップデートの手順 */
+1. 最新バージョンを公式サイトからダウンロード
+2. インストーラを実行し、指示に従ってアップデート
+3. アップデート後、バージョンを再確認
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">バージョンの互換性</h2>
+            <p>異なるバージョン間の互換性について説明します。</p>
+            <pre id="code4">
+/* バージョンの互換性 */
+- 主要バージョンの変更に注意
+- データフォーマットの互換性を確認
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">古いバージョンのサポート</h2>
+            <p>古いバージョンのサポート状況について説明します。</p>
+            <pre id="code5">
+/* 古いバージョンのサポート */
+- サポートが終了したバージョンの使用は推奨されない
+- セキュリティリスクが伴う可能性
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">バージョン管理のベストプラクティス</h2>
+            <p>バージョン管理におけるベストプラクティスについて説明します。</p>
+            <pre id="code6">
+/* バージョン管理のベストプラクティス */
+- 定期的なアップデート
+- バックアップの実施
+- ドキュメントの保持
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">バージョン管理ツールの活用</h2>
+            <p>バージョン管理に役立つツールについて説明します。</p>
+            <pre id="code7">
+/* バージョン管理ツールの活用 */
+- MySQL Workbench
+- Git
+- Docker
+            </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
+
+            <h2 id="section8">トラブルシューティング</h2>
+            <p>バージョンアップ後のトラブルシューティング方法について説明します。</p>
+            <pre id="code8">
+/* トラブルシューティング */
+- エラーログの確認
+- バックアップからの復元
+            </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
+
+            <h2 id="section9">新機能の活用</h2>
+            <p>新しいバージョンで追加された機能の活用方法について説明します。</p>
+            <pre id="code9">
+/* 新機能の活用 */
+- JSONサポート
+- GIS機能の強化
+            </pre>
+            <button onclick="copyToClipboard('code9', 'alert9', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert9"></span>
+
+            <h2 id="section10">まとめ</h2>
+            <p>MySQLのバージョン管理を適切に行うことで、データベースのパフォーマンスとセキュリティを向上させることができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">MySQLバージョン管理の概要</a></li>
+                    <li><a href="#section2">バージョンの確認方法</a></li>
+                    <li><a href="#section3">アップデートの手順</a></li>
+                    <li><a href="#section4">バージョンの互換性</a></li>
+                    <li><a href="#section5">古いバージョンのサポート</a></li>
+                    <li><a href="#section6">バージョン管理のベストプラクティス</a></li>
+                    <li><a href="#section7">バージョン管理ツールの活用</a></li>
+                    <li><a href="#section8">トラブルシューティング</a></li>
+                    <li><a href="#section9">新機能の活用</a></li>
+                    <li><a href="#section10">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson01.html">次のページへ</a></li>
+                    <li><a href="lesson14.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

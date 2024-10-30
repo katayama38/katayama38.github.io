@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MySQLのインストール手順について説明します。">
+    <meta name="keywords" content="MySQL, インストール, データベース, SQL, プログラミング">
+    <title>MySQLインストールの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>MySQLインストールの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">MySQLの概要</h2>
+            <p>MySQLは、人気のあるオープンソースのリレーショナルデータベース管理システムです。</p>
+
+            <h2 id="section2">インストール前の準備</h2>
+            <p>MySQLをインストールする前に、必要なシステム要件を確認しましょう。</p>
+            <pre id="code1">
+/* システム要件の確認 */
+- オペレーティングシステム: Windows, macOS, Linux
+- RAM: 512MB以上
+- ディスク容量: 1GB以上
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">インストール手順（Windows）</h2>
+            <p>Windows環境でのMySQLインストール手順です。</p>
+            <pre id="code2">
+/* Windowsでのインストール */
+1. MySQLの公式サイトからインストーラーをダウンロードします。
+2. インストーラーを実行し、指示に従います。
+3. MySQL Serverの構成を行います。
+4. rootユーザーのパスワードを設定します。
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">インストール手順（macOS）</h2>
+            <p>macOS環境でのMySQLインストール手順です。</p>
+            <pre id="code3">
+/* macOSでのインストール */
+1. Homebrewを使用してMySQLをインストールします。
+   brew install mysql
+2. インストール後、MySQLサーバーを起動します。
+   brew services start mysql
+3. rootユーザーのパスワードを設定します。
+   mysql_secure_installation
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">インストール手順（Linux）</h2>
+            <p>Linux環境でのMySQLインストール手順です。</p>
+            <pre id="code4">
+/* Linuxでのインストール */
+1. パッケージマネージャーを使用してMySQLをインストールします。
+   sudo apt update
+   sudo apt install mysql-server
+2. MySQLサービスを起動します。
+   sudo systemctl start mysql
+3. rootユーザーのパスワードを設定します。
+   sudo mysql_secure_installation
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section6">インストール後の確認</h2>
+            <p>インストールが成功したかを確認する方法です。</p>
+            <pre id="code5">
+/* インストール後の確認 */
+mysql -u root -p
+SHOW DATABASES;
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>MySQLのインストールを理解することで、データベースの構築が容易になります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">MySQLの概要</a></li>
+                    <li><a href="#section2">インストール前の準備</a></li>
+                    <li><a href="#section3">インストール手順（Windows）</a></li>
+                    <li><a href="#section4">インストール手順（macOS）</a></li>
+                    <li><a href="#section5">インストール手順（Linux）</a></li>
+                    <li><a href="#section6">インストール後の確認</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson03.html">次のページへ</a></li>
+                    <li><a href="lesson01.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

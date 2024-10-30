@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MySQLのバックアップとリストアについて説明します。">
+    <meta name="keywords" content="MySQL, バックアップ, リストア, データベース, プログラミング">
+    <title>MySQL バックアップとリストアの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>MySQL バックアップとリストアの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">バックアップの概要</h2>
+            <p>バックアップは、データの損失を防ぐための重要な手段です。</p>
+            <pre id="code1">
+/* バックアップの概要 */
+- データベースの状態を保存する
+- 定期的なバックアップが推奨される
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">mysqldumpを使ったバックアップ</h2>
+            <p>mysqldumpコマンドを使用してデータベースをバックアップする方法について説明します。</p>
+            <pre id="code2">
+/* mysqldumpを使ったバックアップ */
+mysqldump -u username -p database_name > backup_file.sql
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">圧縮バックアップの作成</h2>
+            <p>バックアップファイルを圧縮して保存する方法について説明します。</p>
+            <pre id="code3">
+/* 圧縮バックアップの作成 */
+mysqldump -u username -p database_name | gzip > backup_file.sql.gz
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">バックアップのスケジューリング</h2>
+            <p>cronを使用して定期的にバックアップを実行する方法について説明します。</p>
+            <pre id="code4">
+/* バックアップのスケジューリング */
+0 2 * * * /usr/bin/mysqldump -u username -p database_name > /path/to/backup_file.sql
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">バックアップファイルの検証</h2>
+            <p>バックアップファイルが正しく作成されたか確認する方法について説明します。</p>
+            <pre id="code5">
+/* バックアップファイルの検証 */
+mysql -u username -p -e "SHOW DATABASES;" < backup_file.sql
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">リストアの概要</h2>
+            <p>リストアは、バックアップを用いてデータを復元するプロセスです。</p>
+            <pre id="code6">
+/* リストアの概要 */
+- バックアップからデータを復元する
+- 正確な手順が必要
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">バックアップからのリストア</h2>
+            <p>バックアップファイルからデータベースを復元する方法について説明します。</p>
+            <pre id="code7">
+/* バックアップからのリストア */
+mysql -u username -p database_name < backup_file.sql
+            </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
+
+            <h2 id="section8">圧縮バックアップのリストア</h2>
+            <p>圧縮されたバックアップファイルからデータを復元する方法について説明します。</p>
+            <pre id="code8">
+/* 圧縮バックアップのリストア */
+gunzip < backup_file.sql.gz | mysql -u username -p database_name
+            </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
+
+            <h2 id="section9">リストア後の確認</h2>
+            <p>リストアが成功したかを確認する方法について説明します。</p>
+            <pre id="code9">
+/* リストア後の確認 */
+mysql -u username -p -e "SELECT * FROM users LIMIT 10;" database_name
+            </pre>
+            <button onclick="copyToClipboard('code9', 'alert9', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert9"></span>
+
+            <h2 id="section10">まとめ</h2>
+            <p>MySQLのバックアップとリストアを適切に行うことで、データの損失を防ぐことができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">バックアップの概要</a></li>
+                    <li><a href="#section2">mysqldumpを使ったバックアップ</a></li>
+                    <li><a href="#section3">圧縮バックアップの作成</a></li>
+                    <li><a href="#section4">バックアップのスケジューリング</a></li>
+                    <li><a href="#section5">バックアップファイルの検証</a></li>
+                    <li><a href="#section6">リストアの概要</a></li>
+                    <li><a href="#section7">バックアップからのリストア</a></li>
+                    <li><a href="#section8">圧縮バックアップのリストア</a></li>
+                    <li><a href="#section9">リストア後の確認</a></li>
+                    <li><a href="#section10">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson13.html">次のページへ</a></li>
+                    <li><a href="lesson11.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

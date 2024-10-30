@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MySQLのセキュリティ対策について説明します。">
+    <meta name="keywords" content="MySQL, セキュリティ, データベース, プログラミング, SQLインジェクション">
+    <title>MySQL セキュリティ対策の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>MySQL セキュリティ対策の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">MySQLセキュリティの概要</h2>
+            <p>MySQLセキュリティは、データベースを保護するための重要な要素です。</p>
+            <pre id="code1">
+/* MySQLセキュリティの概要 */
+- データの保護と不正アクセス防止
+- ユーザー認証と権限管理
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">ユーザー管理と権限設定</h2>
+            <p>適切なユーザー管理と権限設定の重要性について説明します。</p>
+            <pre id="code2">
+/* ユーザー管理と権限設定 */
+CREATE USER 'new_user'@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT, INSERT ON database_name.* TO 'new_user'@'localhost';
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">データ暗号化</h2>
+            <p>データの暗号化に関する方法を説明します。</p>
+            <pre id="code3">
+/* データ暗号化 */
+SET SESSION sql_mode = 'STRICT_TRANS_TABLES';
+ALTER TABLE users MODIFY COLUMN sensitive_data VARBINARY(255) 
+  AS (AES_ENCRYPT(data, 'encryption_key'));
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">SQLインジェクション対策</h2>
+            <p>SQLインジェクション攻撃を防ぐための方法について説明します。</p>
+            <pre id="code4">
+/* SQLインジェクション対策 */
+PREPARE stmt FROM 'SELECT * FROM users WHERE username = ?';
+SET @username = 'input_username';
+EXECUTE stmt USING @username;
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">ネットワークセキュリティ</h2>
+            <p>ネットワークセキュリティの重要性と設定方法について説明します。</p>
+            <pre id="code5">
+/* ネットワークセキュリティ */
+- SSL/TLSを使用してデータの暗号化を実施
+- 不要なポートを閉じる
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">監査ログの活用</h2>
+            <p>監査ログを使用してセキュリティを強化する方法について説明します。</p>
+            <pre id="code6">
+/* 監査ログの活用 */
+SET GLOBAL log_output = 'TABLE';
+SET GLOBAL general_log = 'ON';
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">セキュリティのベストプラクティス</h2>
+            <p>MySQLセキュリティにおけるベストプラクティスを紹介します。</p>
+            <pre id="code7">
+/* セキュリティのベストプラクティス */
+- 常に最新のMySQLバージョンを使用
+- パスワードポリシーを強化
+- 定期的なバックアップを実施
+            </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
+
+            <h2 id="section8">セキュリティの監視と評価</h2>
+            <p>セキュリティを監視し、評価する方法について説明します。</p>
+            <pre id="code8">
+/* セキュリティの監視と評価 */
+- 定期的にログを分析
+- セキュリティスキャンを実施
+            </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
+
+            <h2 id="section9">まとめ</h2>
+            <p>MySQLのセキュリティ対策を実施することで、データベースの安全性を高めることができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">MySQLセキュリティの概要</a></li>
+                    <li><a href="#section2">ユーザー管理と権限設定</a></li>
+                    <li><a href="#section3">データ暗号化</a></li>
+                    <li><a href="#section4">SQLインジェクション対策</a></li>
+                    <li><a href="#section5">ネットワークセキュリティ</a></li>
+                    <li><a href="#section6">監査ログの活用</a></li>
+                    <li><a href="#section7">セキュリティのベストプラクティス</a></li>
+                    <li><a href="#section8">セキュリティの監視と評価</a></li>
+                    <li><a href="#section9">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson12.html">次のページへ</a></li>
+                    <li><a href="lesson10.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
