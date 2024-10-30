@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSSのフレックスボックスについて説明します。">
+    <meta name="keywords" content="CSS, フレックスボックス, レイアウト">
+    <title>CSSフレックスボックスの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CSSフレックスボックスの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">フレックスボックスとは</h2>
+            <p>フレックスボックスは、要素を効率的に配置するためのCSSのレイアウトモデルです。親要素にフレックスコンテナを設定し、子要素をフレックスアイテムとして配置します。</p>
+            <pre id="code1">
+/* フレックスボックスの基本設定 */
+.container {
+    display: flex;
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">フレックスコンテナ</h2>
+            <p>フレックスコンテナは、`display: flex;`を使って設定される要素です。これにより、子要素がフレックスアイテムとして配置されます。</p>
+            <pre id="code2">
+/* フレックスコンテナの例 */
+.flex-container {
+    display: flex;
+    justify-content: center; /* 水平方向の配置 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">フレックスアイテムの配置</h2>
+            <p>フレックスアイテムは、フレックスコンテナ内で配置される要素です。`flex-direction`プロパティを使って、配置の方向を指定できます。</p>
+            <pre id="code3">
+/* フレックスアイテムの配置方向 */
+.flex-container {
+    flex-direction: row; /* 水平方向に配置 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">要素のサイズ調整</h2>
+            <p>フレックスアイテムのサイズは、`flex-grow`、`flex-shrink`、`flex-basis`プロパティを使って調整できます。</p>
+            <pre id="code4">
+/* 要素のサイズ調整 */
+.flex-item {
+    flex-grow: 1; /* 利用可能なスペースを占有 */
+    flex-basis: 100px; /* 基本サイズを100pxに設定 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">フレックスアイテムの整列</h2>
+            <p>フレックスアイテムの整列は、`align-items`や`justify-content`を使って指定します。これにより、要素の配置を制御できます。</p>
+            <pre id="code5">
+/* フレックスアイテムの整列 */
+.flex-container {
+    align-items: center; /* 縦方向の中央揃え */
+    justify-content: space-between; /* 要素間のスペースを均等に */
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">フレックスラップ</h2>
+            <p>フレックスアイテムがコンテナの幅を超える場合、`flex-wrap`プロパティを使って折り返しを制御できます。</p>
+            <pre id="code6">
+/* フレックスラップの例 */
+.flex-container {
+    flex-wrap: wrap; /* 要素を折り返す */
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>フレックスボックスを理解することで、要素の配置やサイズ調整が容易になり、レスポンシブなデザインを実現できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">フレックスボックスとは</a></li>
+                    <li><a href="#section2">フレックスコンテナ</a></li>
+                    <li><a href="#section3">フレックスアイテムの配置</a></li>
+                    <li><a href="#section4">要素のサイズ調整</a></li>
+                    <li><a href="#section5">フレックスアイテムの整列</a></li>
+                    <li><a href="#section6">フレックスラップ</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson05.html">次のページへ</a></li>
+                    <li><a href="lesson03.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

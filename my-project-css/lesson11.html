@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSSのフォントとタイポグラフィについて説明します。">
+    <meta name="keywords" content="CSS, フォント, タイポグラフィ">
+    <title>CSSフォントとタイポグラフィの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CSSフォントとタイポグラフィの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">フォントとは</h2>
+            <p>フォントは、テキストの見た目を決定する重要な要素です。</p>
+            <pre id="code1">
+/* フォントの基本例 */
+body {
+    font-family: 'Arial', sans-serif; /* フォントファミリーを指定 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">タイポグラフィの重要性</h2>
+            <p>タイポグラフィは、情報の伝達において視覚的な効果を高める役割を果たします。</p>
+            <pre id="code2">
+/* タイポグラフィの例 */
+h1 {
+    font-size: 2.5em; /* 見出しのサイズを指定 */
+    font-weight: bold; /* フォントの太さを指定 */
+}
+
+p {
+    line-height: 1.6; /* 行間を設定 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">フォントサイズの調整</h2>
+            <p>フォントサイズを調整することで、テキストの可読性を向上させることができます。</p>
+            <pre id="code3">
+/* フォントサイズの設定 */
+:root {
+    --base-font-size: 16px; /* 基本フォントサイズ */
+}
+
+body {
+    font-size: var(--base-font-size); /* 基本フォントサイズを使用 */
+}
+
+h2 {
+    font-size: calc(var(--base-font-size) * 1.5); /* h2のフォントサイズを計算 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">フォントのスタイル</h2>
+            <p>フォントのスタイルを変更することで、デザインに変化を与えられます。</p>
+            <pre id="code4">
+/* フォントスタイルの例 */
+.italic {
+    font-style: italic; /* イタリック体 */
+}
+
+.underline {
+    text-decoration: underline; /* 下線を引く */
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">フォントの色と背景</h2>
+            <p>フォントの色と背景色を組み合わせることで、視覚的なコントラストを高めることができます。</p>
+            <pre id="code5">
+/* フォントの色と背景色 */
+.text-highlight {
+    color: white; /* テキストの色 */
+    background-color: #3498db; /* 背景色 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">レスポンシブタイポグラフィ</h2>
+            <p>レスポンシブデザインでは、画面サイズに応じてフォントサイズを変更することが重要です。</p>
+            <pre id="code6">
+/* レスポンシブフォントサイズの例 */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px; /* 小さい画面用のフォントサイズ */
+    }
+}
+
+@media (min-width: 601px) {
+    body {
+        font-size: 16px; /* 大きい画面用のフォントサイズ */
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>フォントとタイポグラフィを適切に使用することで、ユーザーにとって読みやすく、魅力的なウェブデザインを作成できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">フォントとは</a></li>
+                    <li><a href="#section2">タイポグラフィの重要性</a></li>
+                    <li><a href="#section3">フォントサイズの調整</a></li>
+                    <li><a href="#section4">フォントのスタイル</a></li>
+                    <li><a href="#section5">フォントの色と背景</a></li>
+                    <li><a href="#section6">レスポンシブタイポグラフィ</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson12.html">次のページへ</a></li>
+                    <li><a href="lesson10.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

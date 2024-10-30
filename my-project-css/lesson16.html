@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="グラデーションと影について説明します。">
+    <meta name="keywords" content="CSS, グラデーション, 影">
+    <title>グラデーションと影の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>グラデーションと影の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">グラデーションとは</h2>
+            <p>グラデーションは、色が滑らかに変化する背景や要素を作成するためのCSS機能です。</p>
+            <pre id="code1">
+/* 線形グラデーションの例 */
+background: linear-gradient(to right, #ff7e5f, #feb47b); /* 左から右へのグラデーション */
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">放射状グラデーション</h2>
+            <p>放射状グラデーションは、中心から外側に向かって色が変化します。</p>
+            <pre id="code2">
+/* 放射状グラデーションの例 */
+background: radial-gradient(circle, #ff7e5f, #feb47b); /* 中心から外側へのグラデーション */
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">グラデーションの応用</h2>
+            <p>グラデーションをボタンやカードに使用して、視覚的に魅力的なデザインを作成できます。</p>
+            <pre id="code3">
+/* グラデーションを使ったボタン */
+button {
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* ボタンのグラデーション */
+    color: white; /* テキスト色 */
+    padding: 10px 20px; /* 内側の余白 */
+    border: none; /* 枠線をなしに */
+    border-radius: 5px; /* 角を丸くする */
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">影の基本</h2>
+            <p>影は要素に立体感を与えるためのスタイルで、視覚的に深みを持たせることができます。</p>
+            <pre id="code4">
+/* 影の基本 */
+.box {
+    width: 300px; /* 幅 */
+    height: 200px; /* 高さ */
+    background-color: white; /* 背景色 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 影のスタイル */
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">影の応用例</h2>
+            <p>影を使って、カードやボタンのデザインを引き立てることができます。</p>
+            <pre id="code5">
+/* 影を使ったカードデザイン */
+.card {
+    background-color: white; /* カードの背景色 */
+    border-radius: 5px; /* 角を丸くする */
+    padding: 15px; /* 内側の余白 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 影 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">複数の影の効果</h2>
+            <p>複数の影を組み合わせることで、より複雑なデザインを作成できます。</p>
+            <pre id="code6">
+/* 複数の影の効果 */
+.box {
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.1), /* 軽い影 */
+        0 10px 20px rgba(0, 0, 0, 0.2); /* 濃い影 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>グラデーションと影を活用することで、より魅力的で立体感のあるデザインを作成できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">グラデーションとは</a></li>
+                    <li><a href="#section2">放射状グラデーション</a></li>
+                    <li><a href="#section3">グラデーションの応用</a></li>
+                    <li><a href="#section4">影の基本</a></li>
+                    <li><a href="#section5">影の応用例</a></li>
+                    <li><a href="#section6">複数の影の効果</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson17.html">次のページへ</a></li>
+                    <li><a href="lesson15.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

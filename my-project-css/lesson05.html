@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSSのグリッドレイアウトについて説明します。">
+    <meta name="keywords" content="CSS, グリッドレイアウト, レイアウト">
+    <title>CSSグリッドレイアウトの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CSSグリッドレイアウトの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">グリッドレイアウトとは</h2>
+            <p>グリッドレイアウトは、要素を行と列で整然と配置するためのCSSのレイアウトモデルです。親要素にグリッドコンテナを設定し、子要素をグリッドアイテムとして配置します。</p>
+            <pre id="code1">
+/* グリッドレイアウトの基本設定 */
+.container {
+    display: grid;
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">グリッドコンテナ</h2>
+            <p>グリッドコンテナは、`display: grid;`を使って設定される要素です。これにより、子要素がグリッドアイテムとして配置されます。</p>
+            <pre id="code2">
+/* グリッドコンテナの例 */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3列のグリッドを作成 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">グリッドアイテムの配置</h2>
+            <p>グリッドアイテムは、グリッドコンテナ内で配置される要素です。`grid-column`や`grid-row`プロパティを使って、アイテムの位置を指定できます。</p>
+            <pre id="code3">
+/* グリッドアイテムの配置 */
+.grid-item {
+    grid-column: 1 / 3; /* 1列目から2列目にまたがる */
+    grid-row: 1; /* 1行目に配置 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">グリッドのサイズ調整</h2>
+            <p>グリッドのサイズは、`grid-template-columns`や`grid-template-rows`を使って調整できます。</p>
+            <pre id="code4">
+/* グリッドのサイズ調整 */
+.grid-container {
+    grid-template-columns: 100px 200px auto; /* 各列の幅を指定 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">グリッドの間隔</h2>
+            <p>グリッドアイテム間の間隔は、`gap`プロパティを使って指定できます。</p>
+            <pre id="code5">
+/* グリッドアイテム間の間隔 */
+.grid-container {
+    gap: 10px; /* アイテム間の間隔を10pxに設定 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">グリッドの応答性</h2>
+            <p>グリッドレイアウトは、メディアクエリを使用して異なる画面サイズに応じたレイアウトを簡単に作成できます。</p>
+            <pre id="code6">
+/* グリッドの応答性 */
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 1列のグリッドに変更 */
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>グリッドレイアウトを理解することで、要素の配置やサイズ調整が容易になり、レスポンシブなデザインを実現できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">グリッドレイアウトとは</a></li>
+                    <li><a href="#section2">グリッドコンテナ</a></li>
+                    <li><a href="#section3">グリッドアイテムの配置</a></li>
+                    <li><a href="#section4">グリッドのサイズ調整</a></li>
+                    <li><a href="#section5">グリッドの間隔</a></li>
+                    <li><a href="#section6">グリッドの応答性</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson06.html">次のページへ</a></li>
+                    <li><a href="lesson04.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

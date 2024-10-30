@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSSのカスタムプロパティ（CSS変数）について説明します。">
+    <meta name="keywords" content="CSS, カスタムプロパティ, CSS変数">
+    <title>CSSカスタムプロパティの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CSSカスタムプロパティの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">カスタムプロパティとは</h2>
+            <p>カスタムプロパティは、CSSで定義した変数で、スタイルの再利用を可能にします。</p>
+            <pre id="code1">
+/* カスタムプロパティの基本例 */
+:root {
+    --main-color: blue; /* カスタムプロパティを定義 */
+}
+
+.box {
+    background-color: var(--main-color); /* カスタムプロパティを使用 */
+    width: 100px;
+    height: 100px;
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">カスタムプロパティのスコープ</h2>
+            <p>カスタムプロパティは、定義されたスコープ内でのみ有効です。</p>
+            <pre id="code2">
+/* スコープの例 */
+:root {
+    --primary-bg: lightgray;
+}
+
+.container {
+    background-color: var(--primary-bg); /* ルートから変数を使用 */
+}
+
+.box {
+    --box-color: red; /* ボックス固有のカスタムプロパティを定義 */
+    background-color: var(--box-color); /* ボックス内で使用 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">カスタムプロパティの継承</h2>
+            <p>カスタムプロパティは、親要素から子要素へ継承されます。</p>
+            <pre id="code3">
+/* 継承の例 */
+:root {
+    --text-color: black;
+}
+
+.parent {
+    color: var(--text-color); /* 親から色を継承 */
+}
+
+.child {
+    color: inherit; /* 親の色を引き継ぐ */
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">カスタムプロパティの計算</h2>
+            <p>カスタムプロパティを使って、計算を行うこともできます。</p>
+            <pre id="code4">
+/* 計算の例 */
+:root {
+    --base-size: 16px;
+    --large-size: calc(var(--base-size) * 2); /* 大きさの計算 */
+}
+
+.box {
+    font-size: var(--large-size); /* 計算結果を使用 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">カスタムプロパティのテーマ切替</h2>
+            <p>カスタムプロパティを利用して、テーマの切替を簡単に行うことができます。</p>
+            <pre id="code5">
+/* テーマ切替の例 */
+:root {
+    --bg-color: white;
+    --text-color: black;
+}
+
+.dark-theme {
+    --bg-color: black;
+    --text-color: white;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">カスタムプロパティのアニメーション</h2>
+            <p>カスタムプロパティは、アニメーションの中でも使用できます。</p>
+            <pre id="code6">
+/* アニメーションにおけるカスタムプロパティ */
+@keyframes colorChange {
+    0% { --box-color: blue; }
+    100% { --box-color: green; }
+}
+
+.box {
+    animation: colorChange 2s infinite alternate;
+    background-color: var(--box-color); /* アニメーション中のカスタムプロパティを使用 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>カスタムプロパティを使うことで、スタイルの再利用やテーマの切替が簡単になり、CSSの管理がしやすくなります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">カスタムプロパティとは</a></li>
+                    <li><a href="#section2">カスタムプロパティのスコープ</a></li>
+                    <li><a href="#section3">カスタムプロパティの継承</a></li>
+                    <li><a href="#section4">カスタムプロパティの計算</a></li>
+                    <li><a href="#section5">カスタムプロパティのテーマ切替</a></li>
+                    <li><a href="#section6">カスタムプロパティのアニメーション</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson10.html">次のページへ</a></li>
+                    <li><a href="lesson08.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

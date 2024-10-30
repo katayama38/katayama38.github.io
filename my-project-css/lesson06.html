@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSSのレスポンシブデザインについて説明します。">
+    <meta name="keywords" content="CSS, レスポンシブデザイン, レイアウト">
+    <title>CSSレスポンシブデザインの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CSSレスポンシブデザインの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">レスポンシブデザインとは</h2>
+            <p>レスポンシブデザインは、異なるデバイスや画面サイズに応じてウェブサイトのレイアウトを調整する手法です。これにより、ユーザーに最適な体験を提供します。</p>
+            <pre id="code1">
+/* レスポンシブデザインの基本設定 */
+body {
+    max-width: 1200px;
+    margin: auto;
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">メディアクエリの使用</h2>
+            <p>メディアクエリを使用して、異なるデバイスサイズに応じたスタイルを適用します。</p>
+            <pre id="code2">
+/* メディアクエリの例 */
+@media (max-width: 600px) {
+    body {
+        background-color: lightblue; /* 小さい画面で背景色を変更 */
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">流動的なレイアウト</h2>
+            <p>流動的なレイアウトを使用して、要素の幅をパーセンテージで指定することで、画面サイズに応じた適応が可能です。</p>
+            <pre id="code3">
+/* 流動的なレイアウトの例 */
+.container {
+    width: 100%; /* コンテナの幅を100%に設定 */
+    padding: 10px; /* パディングを追加 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">フレックスボックスを使ったレイアウト</h2>
+            <p>フレックスボックスを使うことで、要素の配置やサイズを柔軟に調整できます。</p>
+            <pre id="code4">
+/* フレックスボックスの例 */
+.flex-container {
+    display: flex;
+    flex-direction: row; /* 水平方向に配置 */
+    flex-wrap: wrap; /* 要素を折り返す */
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">グリッドレイアウトの活用</h2>
+            <p>CSSグリッドを利用することで、複雑なレスポンシブデザインを簡単に実現できます。</p>
+            <pre id="code5">
+/* グリッドレイアウトの例 */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 自動で列を生成 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">視覚的なヒント</h2>
+            <p>レスポンシブデザインには、視覚的なヒントを提供するために、画像やテキストのサイズを調整することも重要です。</p>
+            <pre id="code6">
+/* 画像やテキストのサイズ調整 */
+img {
+    max-width: 100%; /* 画像の幅を100%に設定 */
+    height: auto; /* 高さを自動で調整 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>レスポンシブデザインを理解することで、さまざまなデバイスでのユーザーエクスペリエンスを向上させることができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">レスポンシブデザインとは</a></li>
+                    <li><a href="#section2">メディアクエリの使用</a></li>
+                    <li><a href="#section3">流動的なレイアウト</a></li>
+                    <li><a href="#section4">フレックスボックスを使ったレイアウト</a></li>
+                    <li><a href="#section5">グリッドレイアウトの活用</a></li>
+                    <li><a href="#section6">視覚的なヒント</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson07.html">次のページへ</a></li>
+                    <li><a href="lesson05.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

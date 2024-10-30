@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSSの基本と応用について説明します。">
+    <meta name="keywords" content="CSS, スタイル, セレクタ, レスポンシブデザイン">
+    <title>CSSの基礎の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CSSの基礎の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">CSSの基本構造</h2>
+            <p>CSS（Cascading Style Sheets）は、HTML文書の見た目を制御するためのスタイルシート言語です。スタイルは、外部スタイルシートや内部スタイルシート、インラインスタイルとして適用できます。</p>
+            <pre id="code1">
+/* 外部スタイルシートの例 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">CSSセレクタの種類</h2>
+            <p>CSSセレクタは、スタイルを適用する要素を選択するために使用します。セレクタには、要素セレクタ、クラスセレクタ、IDセレクタ、属性セレクタなどがあります。</p>
+            <pre id="code2">
+/* クラスセレクタの例 */
+.highlight {
+    color: red;
+}
+
+/* IDセレクタの例 */
+#main-title {
+    font-size: 24px;
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">ボックスモデル</h2>
+            <p>ボックスモデルは、すべてのHTML要素がボックスとして扱われることを説明します。ボックスは、マージン、ボーダー、パディング、コンテンツで構成されています。</p>
+            <pre id="code3">
+.box {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: 5px solid black;
+    margin: 20px;
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">レスポンシブデザイン</h2>
+            <p>レスポンシブデザインは、異なるデバイスや画面サイズに適応するウェブデザインの手法です。CSSメディアクエリを使用して、スタイルを変更できます。</p>
+            <pre id="code4">
+@media (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">CSSフレームワーク</h2>
+            <p>CSSフレームワークは、スタイルの迅速な開発を支援するためのライブラリです。BootstrapやTailwind CSSなど、さまざまなフレームワークがあります。</p>
+            
+            <h2 id="section6">まとめ</h2>
+            <p>CSSを理解することで、ウェブページの見た目を向上させ、ユーザーにより良い体験を提供できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">CSSの基本構造</a></li>
+                    <li><a href="#section2">CSSセレクタの種類</a></li>
+                    <li><a href="#section3">ボックスモデル</a></li>
+                    <li><a href="#section4">レスポンシブデザイン</a></li>
+                    <li><a href="#section5">CSSフレームワーク</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson02.html">次のページへ</a></li>
+                    <li><a href="lesson18.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSSのセレクタの種類について説明します。">
+    <meta name="keywords" content="CSS, セレクタ, スタイル">
+    <title>CSSセレクタの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CSSセレクタの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">CSSの基本構造</h2>
+            <p>CSS（Cascading Style Sheets）は、HTML文書の見た目を制御するためのスタイルシート言語です。スタイルは、外部スタイルシートや内部スタイルシート、インラインスタイルとして適用できます。</p>
+            <pre id="code1">
+/* 外部スタイルシートの例 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">要素セレクタ</h2>
+            <p>要素セレクタは、HTMLの特定の要素を選択します。例えば、全ての`<p>`タグにスタイルを適用することができます。</p>
+            <pre id="code2">
+/* 要素セレクタの例 */
+p {
+    color: blue;
+    font-size: 16px;
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">クラスセレクタ</h2>
+            <p>クラスセレクタは、特定のクラス名を持つ要素にスタイルを適用します。クラスは複数の要素に使い回すことができます。</p>
+            <pre id="code3">
+/* クラスセレクタの例 */
+.highlight {
+    color: red;
+    background-color: yellow;
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">IDセレクタ</h2>
+            <p>IDセレクタは、特定のIDを持つ要素にのみスタイルを適用します。IDは文書内で一意でなければなりません。</p>
+            <pre id="code4">
+/* IDセレクタの例 */
+#main-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">属性セレクタ</h2>
+            <p>属性セレクタは、特定の属性を持つ要素を選択します。例えば、特定の`type`属性を持つ`<input>`タグを選ぶことができます。</p>
+            <pre id="code5">
+/* 属性セレクタの例 */
+input[type="text"] {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">擬似クラス</h2>
+            <p>擬似クラスは、要素の特定の状態に基づいてスタイルを適用します。例えば、マウスオーバー時のスタイルなどがあります。</p>
+            <pre id="code6">
+/* 擬似クラスの例 */
+a:hover {
+    color: green;
+    text-decoration: underline;
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>CSSセレクタを理解することで、スタイルを効率的に適用し、ウェブページのデザインを向上させることができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">CSSの基本構造</a></li>
+                    <li><a href="#section2">要素セレクタ</a></li>
+                    <li><a href="#section3">クラスセレクタ</a></li>
+                    <li><a href="#section4">IDセレクタ</a></li>
+                    <li><a href="#section5">属性セレクタ</a></li>
+                    <li><a href="#section6">擬似クラス</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson03.html">次のページへ</a></li>
+                    <li><a href="lesson01.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

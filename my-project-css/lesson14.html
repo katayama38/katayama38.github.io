@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSSのスタイル継承について説明します。">
+    <meta name="keywords" content="CSS, スタイル, 継承">
+    <title>CSSスタイルの継承の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CSSスタイルの継承の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">スタイル継承とは</h2>
+            <p>スタイル継承は、親要素のスタイルが子要素に引き継がれるCSSの機能です。</p>
+            <pre id="code1">
+/* 基本的な継承の例 */
+body {
+    font-family: Arial, sans-serif; /* 親要素でフォントを設定 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">継承されるプロパティ</h2>
+            <p>特定のプロパティは継承され、他のプロパティは継承されません。例：colorやfont-familyは継承されます。</p>
+            <pre id="code2">
+/* 継承されるプロパティの例 */
+h1 {
+    color: blue; /* 親要素の色を継承 */
+}
+
+p {
+    margin: 0; /* 親要素のマージンは継承されない */
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">継承を使ったスタイルの最適化</h2>
+            <p>継承を利用することで、スタイルの重複を減らし、CSSを簡素化できます。</p>
+            <pre id="code3">
+/* スタイルの最適化例 */
+.container {
+    font-size: 16px; /* 親要素のフォントサイズ */
+}
+
+.container p {
+    line-height: 1.5; /* 子要素に適用 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">継承のオーバーライド</h2>
+            <p>特定の要素で親のスタイルをオーバーライドすることもできます。</p>
+            <pre id="code4">
+/* 継承のオーバーライド例 */
+p {
+    color: black; /* 親要素の色をオーバーライド */
+}
+
+.special {
+    color: red; /* 特定の要素だけ赤にする */
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">継承とデフォルトスタイル</h2>
+            <p>ブラウザは、特定の要素に対してデフォルトのスタイルを持っています。これらも継承されます。</p>
+            <pre id="code5">
+/* デフォルトスタイルの例 */
+h1 {
+    margin: 0; /* デフォルトのマージンをリセット */
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">継承とCSS変数</h2>
+            <p>CSS変数を使用して、継承された値を簡単に変更できます。</p>
+            <pre id="code6">
+/* CSS変数を使った継承の例 */
+:root {
+    --main-color: green; /* グローバルなカラーバリアブル */
+}
+
+body {
+    color: var(--main-color); /* 親要素に変数を適用 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>スタイル継承を活用することで、より効率的で一貫性のあるCSSを作成できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">スタイル継承とは</a></li>
+                    <li><a href="#section2">継承されるプロパティ</a></li>
+                    <li><a href="#section3">継承を使ったスタイルの最適化</a></li>
+                    <li><a href="#section4">継承のオーバーライド</a></li>
+                    <li><a href="#section5">継承とデフォルトスタイル</a></li>
+                    <li><a href="#section6">継承とCSS変数</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson15.html">次のページへ</a></li>
+                    <li><a href="lesson13.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

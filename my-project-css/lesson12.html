@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSSのレイアウト技術について説明します。">
+    <meta name="keywords" content="CSS, レイアウト, Flexbox, Grid">
+    <title>CSSレイアウト技術の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CSSレイアウト技術の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">レイアウトとは</h2>
+            <p>レイアウトは、ウェブページ上の要素の配置や構造を決定する重要な要素です。</p>
+            <pre id="code1">
+/* レイアウトの基本例 */
+.container {
+    display: flex; /* フレックスボックスを使用 */
+    flex-direction: row; /* 横並びに配置 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">Flexboxの使い方</h2>
+            <p>Flexboxは、要素を柔軟に配置できるレイアウト手法です。</p>
+            <pre id="code2">
+/* Flexboxの例 */
+.flex-item {
+    flex: 1; /* 各アイテムが均等にスペースを占有 */
+    margin: 10px; /* アイテム間のマージン */
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">Gridレイアウト</h2>
+            <p>CSS Gridは、複雑なレイアウトを簡単に作成できる強力な手法です。</p>
+            <pre id="code3">
+/* Gridレイアウトの例 */
+.grid-container {
+    display: grid; /* グリッドレイアウトを使用 */
+    grid-template-columns: repeat(3, 1fr); /* 3カラムのグリッド */
+    gap: 10px; /* グリッドアイテム間の隙間 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">レスポンシブデザイン</h2>
+            <p>レスポンシブデザインでは、画面サイズに応じてレイアウトを調整します。</p>
+            <pre id="code4">
+/* レスポンシブレイアウトの例 */
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 小さい画面では1カラムに変更 */
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">マージンとパディング</h2>
+            <p>マージンとパディングを使い分けることで、要素間のスペースを調整できます。</p>
+            <pre id="code5">
+/* マージンとパディングの例 */
+.box {
+    margin: 20px; /* 外側のスペース */
+    padding: 10px; /* 内側のスペース */
+    border: 1px solid #ccc; /* ボーダーを追加 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">オーバーフローの制御</h2>
+            <p>オーバーフローを適切に管理することで、コンテンツがはみ出すのを防げます。</p>
+            <pre id="code6">
+/* オーバーフローの制御 */
+.overflow-container {
+    overflow: auto; /* コンテンツがはみ出す場合にスクロールを表示 */
+    max-height: 300px; /* 最大高さを設定 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>適切なレイアウト技術を使用することで、ユーザーにとって使いやすく魅力的なウェブデザインを作成できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">レイアウトとは</a></li>
+                    <li><a href="#section2">Flexboxの使い方</a></li>
+                    <li><a href="#section3">Gridレイアウト</a></li>
+                    <li><a href="#section4">レスポンシブデザイン</a></li>
+                    <li><a href="#section5">マージンとパディング</a></li>
+                    <li><a href="#section6">オーバーフローの制御</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson13.html">次のページへ</a></li>
+                    <li><a href="lesson11.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

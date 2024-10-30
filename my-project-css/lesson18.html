@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSSのデバッグについて説明します。">
+    <meta name="keywords" content="CSS, デバッグ, 開発">
+    <title>CSSデバッグの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CSSデバッグの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">CSSデバッグの重要性</h2>
+            <p>CSSのデバッグは、スタイルの問題を解決し、ウェブサイトの見た目を改善するために不可欠です。</p>
+            <pre id="code1">
+/* デバッグの基本 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* フォントの指定 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">ブラウザの開発者ツールの活用</h2>
+            <p>ブラウザの開発者ツールを使用して、リアルタイムでCSSを編集し、問題を特定できます。</p>
+            <pre id="code2">
+/* 開発者ツールを使ったスタイルの確認 */
+.element {
+    border: 1px solid red; /* 問題の要素を特定するために一時的に枠線を追加 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">具体的なCSSの問題を特定する</h2>
+            <p>特定の要素が期待通りに表示されない場合、CSSの優先順位や継承を確認します。</p>
+            <pre id="code3">
+/* 優先順位を確認するための例 */
+.parent .child {
+    color: blue; /* 親要素からの影響を確認 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">CSSリセットの使用</h2>
+            <p>CSSリセットを使用することで、異なるブラウザ間のスタイルの差異を減らします。</p>
+            <pre id="code4">
+/* CSSリセットの例 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* ボックスモデルの一貫性を保つ */
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">メディアクエリのデバッグ</h2>
+            <p>メディアクエリが正しく機能しているか確認し、レスポンシブデザインを調整します。</p>
+            <pre id="code5">
+/* メディアクエリのデバッグ */
+@media (max-width: 600px) {
+    .container {
+        background-color: lightblue; /* レスポンシブデザインの確認 */
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">スタイルの競合を解決する</h2>
+            <p>複数のスタイルが競合している場合、特定のセレクタを見直し、優先順位を管理します。</p>
+            <pre id="code6">
+/* スタイル競合の解決 */
+.button {
+    background-color: blue; /* 競合するスタイルを上書き */
+}
+.button.active {
+    background-color: green; /* 状態に応じたスタイル */
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>CSSデバッグを行うことで、スタイルの問題を解決し、ウェブサイトの見た目を改善できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">CSSデバッグの重要性</a></li>
+                    <li><a href="#section2">ブラウザの開発者ツールの活用</a></li>
+                    <li><a href="#section3">具体的なCSSの問題を特定する</a></li>
+                    <li><a href="#section4">CSSリセットの使用</a></li>
+                    <li><a href="#section5">メディアクエリのデバッグ</a></li>
+                    <li><a href="#section6">スタイルの競合を解決する</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson01.html">次のページへ</a></li>
+                    <li><a href="lesson17.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSSの擬似クラスと擬似要素について説明します。">
+    <meta name="keywords" content="CSS, 擬似クラス, 擬似要素">
+    <title>CSS擬似クラスと擬似要素の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CSS擬似クラスと擬似要素の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">擬似クラスとは</h2>
+            <p>擬似クラスは、特定の状態や条件に基づいて要素のスタイルを適用するためのCSSの機能です。</p>
+            <pre id="code1">
+/* 擬似クラスの基本例 */
+a:hover {
+    color: red; /* マウスオーバー時にリンクの色を変更 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">擬似要素とは</h2>
+            <p>擬似要素は、要素の特定の部分にスタイルを適用するためのCSSの機能です。例として、要素の最初の行や最初の文字にスタイルを適用できます。</p>
+            <pre id="code2">
+/* 擬似要素の基本例 */
+p::first-line {
+    font-weight: bold; /* 段落の最初の行を太字にする */
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">:nth-child()擬似クラスの使用</h2>
+            <p>:nth-child()擬似クラスを使用することで、特定の子要素にスタイルを適用できます。</p>
+            <pre id="code3">
+/* nth-child()の例 */
+li:nth-child(2n) {
+    background-color: lightgray; /* 偶数のリストアイテムに背景色を適用 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">:focus擬似クラスの使用</h2>
+            <p>:focus擬似クラスを使用することで、フォーカスされた要素にスタイルを適用できます。</p>
+            <pre id="code4">
+/* focus擬似クラスの例 */
+input:focus {
+    border: 2px solid blue; /* フォーカス時に青いボーダーを適用 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">::beforeおよび::after擬似要素の使用</h2>
+            <p>::beforeおよび::after擬似要素を使用すると、要素の前または後にコンテンツを挿入できます。</p>
+            <pre id="code5">
+/* beforeおよびafterの例 */
+h2::before {
+    content: "★ "; /* h2要素の前に星マークを追加 */
+}
+h2::after {
+    content: " ★"; /* h2要素の後に星マークを追加 */
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">::selection擬似要素の使用</h2>
+            <p>::selection擬似要素を使うと、選択されたテキストのスタイルを変更できます。</p>
+            <pre id="code6">
+/* selection擬似要素の例 */
+::selection {
+    background-color: yellow; /* 選択されたテキストの背景色を黄色にする */
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>擬似クラスと擬似要素を理解することで、CSSのスタイリングをより柔軟に行うことができ、ユーザー体験を向上させることができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">擬似クラスとは</a></li>
+                    <li><a href="#section2">擬似要素とは</a></li>
+                    <li><a href="#section3">:nth-child()擬似クラスの使用</a></li>
+                    <li><a href="#section4">:focus擬似クラスの使用</a></li>
+                    <li><a href="#section5">::beforeおよび::after擬似要素の使用</a></li>
+                    <li><a href="#section6">::selection擬似要素の使用</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson08.html">次のページへ</a></li>
+                    <li><a href="lesson06.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

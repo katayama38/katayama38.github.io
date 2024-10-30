@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSSのボックスモデルについて説明します。">
+    <meta name="keywords" content="CSS, ボックスモデル, レイアウト">
+    <title>CSSボックスモデルの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>CSSボックスモデルの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">ボックスモデルとは</h2>
+            <p>ボックスモデルは、すべてのHTML要素がボックスとして扱われることを説明します。各ボックスは、コンテンツ、パディング、ボーダー、マージンで構成されています。</p>
+            <pre id="code1">
+/* ボックスモデルの例 */
+.box {
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    border: 5px solid black;
+    margin: 20px;
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">コンテンツ領域</h2>
+            <p>ボックスモデルのコンテンツ領域は、実際の内容が表示される部分です。幅と高さは`width`と`height`プロパティで指定します。</p>
+            <pre id="code2">
+/* コンテンツの例 */
+.content {
+    width: 100px;
+    height: 50px;
+    background-color: lightblue;
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">パディング</h2>
+            <p>パディングは、ボックスのコンテンツとボーダーの間のスペースを指定します。内側の余白として機能し、`padding`プロパティで設定します。</p>
+            <pre id="code3">
+/* パディングの例 */
+.padding-example {
+    padding: 15px;
+    background-color: lightgreen;
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">ボーダー</h2>
+            <p>ボーダーは、ボックスの周囲を囲む線のことです。ボーダーの幅、スタイル、色を指定することができます。</p>
+            <pre id="code4">
+/* ボーダーの例 */
+.border-example {
+    border: 2px dashed red;
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">マージン</h2>
+            <p>マージンは、ボックスの外側のスペースを指定します。異なるボックス間の距離を調整するために使用され、`margin`プロパティで設定します。</p>
+            <pre id="code5">
+/* マージンの例 */
+.margin-example {
+    margin: 20px;
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">ボックスモデルの合計サイズ</h2>
+            <p>ボックスモデルの合計サイズは、コンテンツのサイズにパディング、ボーダー、マージンを加えたものです。これを理解することで、要素のレイアウトがより明確になります。</p>
+            <pre id="code6">
+/* ボックスモデルの合計サイズを計算 */
+.total-box {
+    width: 220px; /* 幅: 200px + 左右のパディング: 10px + 10px + ボーダー: 2px + 2px */
+    height: 120px; /* 高さ: 100px + 上下のパディング: 10px + 10px + ボーダー: 2px + 2px */
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>ボックスモデルを理解することで、レイアウトやスタイルの適用をより正確に行うことができ、ウェブページのデザインが向上します。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">ボックスモデルとは</a></li>
+                    <li><a href="#section2">コンテンツ領域</a></li>
+                    <li><a href="#section3">パディング</a></li>
+                    <li><a href="#section4">ボーダー</a></li>
+                    <li><a href="#section5">マージン</a></li>
+                    <li><a href="#section6">ボックスモデルの合計サイズ</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson04.html">次のページへ</a></li>
+                    <li><a href="lesson02.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>
