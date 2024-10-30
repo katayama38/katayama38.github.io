@@ -134,6 +134,7 @@ button:hover {
     }
     
     button {
+        max-width: 45%;
         background-color: #4CAF50; /* 緑色 */
         color: white;
         border: none;
