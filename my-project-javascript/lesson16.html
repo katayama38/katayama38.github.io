@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScriptのJSONについて説明します。">
+    <meta name="keywords" content="JavaScript, JSON, プログラミング, データ形式">
+    <title>JavaScriptのJSONの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScriptのJSONの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">JSONの定義</h2>
+            <p>JSON（JavaScript Object Notation）は、データを軽量で簡潔に表現するためのフォーマットです。</p>
+            <pre id="code1">
+/* JSONの定義の例 */
+const person = {
+    "name": "太郎",
+    "age": 25,
+    "isStudent": false
+};
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">JSONの文字列化</h2>
+            <p>JavaScriptオブジェクトをJSON文字列に変換するには、`JSON.stringify`メソッドを使用します。</p>
+            <pre id="code2">
+/* JSONの文字列化の例 */
+const jsonString = JSON.stringify(person);
+console.log(jsonString); // {"name":"太郎","age":25,"isStudent":false}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">JSONの解析</h2>
+            <p>JSON文字列をJavaScriptオブジェクトに変換するには、`JSON.parse`メソッドを使用します。</p>
+            <pre id="code3">
+/* JSONの解析の例 */
+const parsedPerson = JSON.parse(jsonString);
+console.log(parsedPerson.name); // 太郎
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">JSONの配列</h2>
+            <p>JSONでは配列も定義できます。複数のオブジェクトを格納することが可能です。</p>
+            <pre id="code4">
+/* JSONの配列の例 */
+const people = [
+    { "name": "太郎", "age": 25 },
+    { "name": "次郎", "age": 30 }
+];
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">JSONとAJAX</h2>
+            <p>AJAXを使用してサーバーからJSONデータを取得することができます。</p>
+            <pre id="code5">
+/* AJAXでJSONを取得する例 */
+fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => console.log(data));
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">JSONの注意点</h2>
+            <p>JSONではプロパティ名はダブルクォーテーションで囲む必要があります。また、関数やundefinedはサポートされていません。</p>
+            <pre id="code6">
+/* JSONの注意点 */
+const invalidJson = {
+    name: "太郎",
+    age: undefined // これは無効
+};
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>JavaScriptのJSONを理解することで、データの送受信や保存が容易になり、効率的なプログラミングが可能になります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">JSONの定義</a></li>
+                    <li><a href="#section2">JSONの文字列化</a></li>
+                    <li><a href="#section3">JSONの解析</a></li>
+                    <li><a href="#section4">JSONの配列</a></li>
+                    <li><a href="#section5">JSONとAJAX</a></li>
+                    <li><a href="#section6">JSONの注意点</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson17.html">次のページへ</a></li>
+                    <li><a href="lesson15.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

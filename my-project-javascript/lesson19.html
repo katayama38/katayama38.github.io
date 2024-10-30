@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScriptのテストとデバッグについて説明します。">
+    <meta name="keywords" content="JavaScript, テスト, デバッグ, プログラミング">
+    <title>JavaScriptのテストとデバッグの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScriptのテストとデバッグの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">テストの定義</h2>
+            <p>テストは、プログラムが期待通りに動作することを確認するためのプロセスです。</p>
+            <pre id="code1">
+/* 簡単なテストの例 */
+function add(a, b) {
+    return a + b;
+}
+console.assert(add(2, 3) === 5, 'テスト失敗: 2 + 3 は 5 でなければなりません。');
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">ユニットテスト</h2>
+            <p>ユニットテストは、個々の関数やモジュールを単体でテストする手法です。</p>
+            <pre id="code2">
+/* Jestを使ったユニットテストの例 */
+test('2 + 3 は 5 である', () => {
+    expect(add(2, 3)).toBe(5);
+});
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">デバッグの定義</h2>
+            <p>デバッグは、プログラム内のバグを特定し修正するプロセスです。</p>
+            <pre id="code3">
+/* デバッグの例 */
+const numbers = [1, 2, 3];
+numbers.forEach(num => {
+    console.log(num); // 各数値を表示
+});
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">コンソールの使用</h2>
+            <p>ブラウザのコンソールを使用して、変数の値やエラーメッセージを確認できます。</p>
+            <pre id="code4">
+/* コンソールの使用例 */
+console.log('デバッグ情報');
+console.error('エラーが発生しました！');
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">ブレークポイントの設定</h2>
+            <p>開発者ツールを使って、特定の行でコードの実行を一時停止し、状態を確認できます。</p>
+            <pre id="code5">
+/* ブレークポイントの設定はコード内ではなく、ブラウザの開発者ツールで行います。 */
+function multiply(a, b) {
+    return a * b; // この行にブレークポイントを設定
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">エラーハンドリング</h2>
+            <p>try-catch文を使用して、エラーが発生する可能性のあるコードを安全に実行できます。</p>
+            <pre id="code6">
+/* エラーハンドリングの例 */
+try {
+    const result = riskyFunction();
+} catch (error) {
+    console.error('エラー:', error);
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>JavaScriptのテストとデバッグを理解することで、より信頼性の高いコードを作成することができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">テストの定義</a></li>
+                    <li><a href="#section2">ユニットテスト</a></li>
+                    <li><a href="#section3">デバッグの定義</a></li>
+                    <li><a href="#section4">コンソールの使用</a></li>
+                    <li><a href="#section5">ブレークポイントの設定</a></li>
+                    <li><a href="#section6">エラーハンドリング</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson01.html">次のページへ</a></li>
+                    <li><a href="lesson18.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScriptの制御フローについて説明します。">
+    <meta name="keywords" content="JavaScript, 制御フロー, プログラミング, 文法">
+    <title>JavaScriptの制御フローの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScriptの制御フローの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">条件分岐</h2>
+            <p>条件分岐は、特定の条件に基づいて異なるコードを実行するために使用されます。</p>
+            <pre id="code1">
+/* if文の例 */
+let score = 85;
+if (score >= 60) {
+    console.log("合格");
+} else {
+    console.log("不合格");
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">switch文</h2>
+            <p>switch文は、変数の値に応じて異なる処理を行うための構文です。</p>
+            <pre id="code2">
+/* switch文の例 */
+let fruit = "りんご";
+switch (fruit) {
+    case "バナナ":
+        console.log("バナナが好きです");
+        break;
+    case "りんご":
+        console.log("りんごが好きです");
+        break;
+    default:
+        console.log("他の果物が好きです");
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">ループ処理</h2>
+            <p>ループは、指定した回数または条件が満たされるまで繰り返し処理を行うための構文です。</p>
+            <pre id="code3">
+/* for文の例 */
+for (let i = 0; i < 5; i++) {
+    console.log("カウント: " + i);
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">while文</h2>
+            <p>while文は、指定した条件が真である限り、処理を繰り返すために使用されます。</p>
+            <pre id="code4">
+/* while文の例 */
+let count = 0;
+while (count < 5) {
+    console.log("カウント: " + count);
+    count++;
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">do...while文</h2>
+            <p>do...while文は、少なくとも一度は処理を実行した後に条件を確認します。</p>
+            <pre id="code5">
+/* do...while文の例 */
+let number = 0;
+do {
+    console.log("カウント: " + number);
+    number++;
+} while (number < 5);
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">breakとcontinue</h2>
+            <p>breakはループを終了し、continueは次のイテレーションにスキップします。</p>
+            <pre id="code6">
+/* breakとcontinueの例 */
+for (let i = 0; i < 10; i++) {
+    if (i === 5) {
+        break; // 5に達したらループを終了
+    }
+    console.log(i);
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>JavaScriptの制御フローを理解することで、プログラムの動作を柔軟に制御することができ、より複雑なロジックを実装できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">条件分岐</a></li>
+                    <li><a href="#section2">switch文</a></li>
+                    <li><a href="#section3">ループ処理</a></li>
+                    <li><a href="#section4">while文</a></li>
+                    <li><a href="#section5">do...while文</a></li>
+                    <li><a href="#section6">breakとcontinue</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson04.html">次のページへ</a></li>
+                    <li><a href="lesson02.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

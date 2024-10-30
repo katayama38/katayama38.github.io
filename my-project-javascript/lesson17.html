@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScriptのDOMイベントについて説明します。">
+    <meta name="keywords" content="JavaScript, DOM, イベント, プログラミング">
+    <title>JavaScriptのDOMイベントの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScriptのDOMイベントの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">DOMイベントの定義</h2>
+            <p>DOMイベントは、ユーザーがブラウザで行ったアクションに応じて発生するものです。</p>
+            <pre id="code1">
+/* DOMイベントの定義の例 */
+document.addEventListener('click', function() {
+    console.log('クリックされました！');
+});
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">イベントリスナーの追加</h2>
+            <p>特定の要素にイベントリスナーを追加することで、イベントを監視することができます。</p>
+            <pre id="code2">
+/* 要素にイベントリスナーを追加する例 */
+const button = document.getElementById('myButton');
+button.addEventListener('click', function() {
+    alert('ボタンがクリックされました！');
+});
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">イベントオブジェクトの利用</h2>
+            <p>イベントハンドラーの引数には、イベントオブジェクトが渡されます。</p>
+            <pre id="code3">
+/* イベントオブジェクトの利用の例 */
+button.addEventListener('click', function(event) {
+    console.log(event); // イベントオブジェクトを表示
+});
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">イベントの伝播</h2>
+            <p>イベントは親要素に向かって伝播します（バブリング）。これを利用して、親要素でイベントを処理することができます。</p>
+            <pre id="code4">
+/* イベントの伝播の例 */
+const parentDiv = document.getElementById('parent');
+parentDiv.addEventListener('click', function() {
+    alert('親要素がクリックされました！');
+});
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">デフォルトの動作の防止</h2>
+            <p>特定のイベントのデフォルトの動作を防ぐには、`event.preventDefault()`を使用します。</p>
+            <pre id="code5">
+/* デフォルトの動作を防ぐ例 */
+const link = document.getElementById('myLink');
+link.addEventListener('click', function(event) {
+    event.preventDefault();
+    console.log('リンクのデフォルト動作を防ぎました。');
+});
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">複数のイベントリスナー</h2>
+            <p>同じ要素に複数のイベントリスナーを追加することも可能です。</p>
+            <pre id="code6">
+/* 複数のイベントリスナーの例 */
+button.addEventListener('click', function() {
+    console.log('最初のリスナー');
+});
+button.addEventListener('click', function() {
+    console.log('次のリスナー');
+});
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>JavaScriptのDOMイベントを理解することで、ユーザーインターフェースをよりインタラクティブにすることができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">DOMイベントの定義</a></li>
+                    <li><a href="#section2">イベントリスナーの追加</a></li>
+                    <li><a href="#section3">イベントオブジェクトの利用</a></li>
+                    <li><a href="#section4">イベントの伝播</a></li>
+                    <li><a href="#section5">デフォルトの動作の防止</a></li>
+                    <li><a href="#section6">複数のイベントリスナー</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson18.html">次のページへ</a></li>
+                    <li><a href="lesson16.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

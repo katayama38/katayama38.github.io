@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScriptのWeb APIについて説明します。">
+    <meta name="keywords" content="JavaScript, Web API, プログラミング">
+    <title>JavaScriptのWeb APIの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScriptのWeb APIの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">Web APIの定義</h2>
+            <p>Web APIは、ウェブアプリケーションが外部のサービスとやり取りするためのインターフェースです。</p>
+            <pre id="code1">
+/* Web APIの使用例 */
+fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => console.log(data));
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">Fetch API</h2>
+            <p>Fetch APIは、ネットワークリクエストを簡単に行うためのインターフェースです。</p>
+            <pre id="code2">
+/* Fetch APIの基本的な使い方 */
+fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => console.log(data));
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">Geolocation API</h2>
+            <p>Geolocation APIを使用すると、ユーザーの地理的位置を取得できます。</p>
+            <pre id="code3">
+/* Geolocation APIの使用例 */
+navigator.geolocation.getCurrentPosition(position => {
+    console.log(position.coords.latitude, position.coords.longitude);
+});
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">Local Storage API</h2>
+            <p>Local Storageを使用すると、ブラウザにデータを永続的に保存できます。</p>
+            <pre id="code4">
+/* Local Storage APIの使用例 */
+localStorage.setItem('key', 'value');
+const value = localStorage.getItem('key');
+console.log(value); // 'value'
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">WebSockets API</h2>
+            <p>WebSocketsを使用すると、サーバーとクライアント間で双方向通信が可能になります。</p>
+            <pre id="code5">
+/* WebSockets APIの使用例 */
+const socket = new WebSocket('wss://example.com/socket');
+socket.onmessage = function(event) {
+    console.log(event.data);
+};
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">Notification API</h2>
+            <p>Notification APIを使用すると、ウェブアプリからデスクトップ通知を表示できます。</p>
+            <pre id="code6">
+/* Notification APIの使用例 */
+if (Notification.permission === 'granted') {
+    new Notification('タイトル', { body: '通知の内容' });
+} else {
+    Notification.requestPermission();
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>JavaScriptのWeb APIを理解することで、よりリッチなウェブアプリケーションを構築することができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">Web APIの定義</a></li>
+                    <li><a href="#section2">Fetch API</a></li>
+                    <li><a href="#section3">Geolocation API</a></li>
+                    <li><a href="#section4">Local Storage API</a></li>
+                    <li><a href="#section5">WebSockets API</a></li>
+                    <li><a href="#section6">Notification API</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson19.html">次のページへ</a></li>
+                    <li><a href="lesson17.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

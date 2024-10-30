@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScriptのコールバックについて説明します。">
+    <meta name="keywords" content="JavaScript, コールバック, プログラミング, 文法">
+    <title>JavaScriptのコールバックの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScriptのコールバックの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">コールバックの定義</h2>
+            <p>コールバックとは、他の関数に引数として渡される関数のことです。特定の処理が完了した際に呼び出されます。</p>
+            <pre id="code1">
+/* コールバックの定義の例 */
+function greeting(name, callback) {
+    console.log(`こんにちは、${name}さん！`);
+    callback();
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">コールバックの使用例</h2>
+            <p>コールバックを利用することで、非同期処理を行うことができます。</p>
+            <pre id="code2">
+/* 非同期処理におけるコールバックの例 */
+function fetchData(callback) {
+    setTimeout(() => {
+        const data = { message: "データを取得しました！" };
+        callback(data);
+    }, 2000);
+}
+
+fetchData(data => {
+    console.log(data.message); // データを取得しました！
+});
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">コールバックの利点</h2>
+            <p>コールバックを使うことで、非同期処理が可能になり、ユーザーの操作に応じた柔軟な処理が実現できます。</p>
+            <pre id="code3">
+/* コールバックの利点の例 */
+console.log("コールバックを利用する利点: 非同期処理による効率的なリソース管理");
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">コールバック関数の例</h2>
+            <p>コールバック関数は、他の関数に渡され、特定の条件で実行されます。</p>
+            <pre id="code4">
+/* コールバック関数の例 */
+function processArray(arr, callback) {
+    return arr.map(callback);
+}
+
+const result = processArray([1, 2, 3], x => x * 2);
+console.log(result); // [2, 4, 6]
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">コールバックの課題</h2>
+            <p>コールバック地獄と呼ばれる状態に陥ることがあり、コードが複雑になりがちです。</p>
+            <pre id="code5">
+/* コールバック地獄の例 */
+function first(callback) {
+    setTimeout(() => {
+        console.log("最初の処理");
+        callback();
+    }, 1000);
+}
+
+function second(callback) {
+    setTimeout(() => {
+        console.log("二番目の処理");
+        callback();
+    }, 1000);
+}
+
+function third() {
+    console.log("最後の処理");
+}
+
+// コールバック地獄の例
+first(() => {
+    second(() => {
+        third();
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">コールバックの改善策</h2>
+            <p>コールバック地獄を避けるために、Promisesやasync/awaitを利用することができます。</p>
+            <pre id="code6">
+/* Promisesを利用した例 */
+function fetchData() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("データを取得しました！");
+        }, 2000);
+    });
+}
+
+fetchData().then(data => {
+    console.log(data); // データを取得しました！
+});
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>JavaScriptのコールバックを理解することで、非同期処理や柔軟なコードを書くことができます。また、コールバック地獄を避けるためのテクニックも知っておくことが重要です。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">コールバックの定義</a></li>
+                    <li><a href="#section2">コールバックの使用例</a></li>
+                    <li><a href="#section3">コールバックの利点</a></li>
+                    <li><a href="#section4">コールバック関数の例</a></li>
+                    <li><a href="#section5">コールバックの課題</a></li>
+                    <li><a href="#section6">コールバックの改善策</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson14.html">次のページへ</a></li>
+                    <li><a href="lesson12.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScriptの関数について説明します。">
+    <meta name="keywords" content="JavaScript, 関数, プログラミング, 文法">
+    <title>JavaScriptの関数の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScriptの関数の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">関数の定義</h2>
+            <p>関数は、一連の処理をまとめたもので、再利用可能なコードのブロックです。</p>
+            <pre id="code1">
+/* 関数の定義の例 */
+function greet() {
+    console.log("こんにちは！");
+}
+greet(); // "こんにちは！"と表示される
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">引数を持つ関数</h2>
+            <p>関数は引数を受け取り、処理に利用することができます。</p>
+            <pre id="code2">
+/* 引数を持つ関数の例 */
+function add(a, b) {
+    return a + b;
+}
+let sum = add(3, 4); // sumは7になる
+console.log(sum);
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">戻り値のある関数</h2>
+            <p>関数は、処理の結果を戻り値として返すことができます。</p>
+            <pre id="code3">
+/* 戻り値のある関数の例 */
+function square(x) {
+    return x * x;
+}
+console.log(square(5)); // 25と表示される
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">無名関数</h2>
+            <p>無名関数は名前を持たない関数で、変数に代入して使用されます。</p>
+            <pre id="code4">
+/* 無名関数の例 */
+const multiply = function(a, b) {
+    return a * b;
+};
+console.log(multiply(2, 3)); // 6と表示される
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">アロー関数</h2>
+            <p>アロー関数は、より短い構文で関数を定義する方法です。</p>
+            <pre id="code5">
+/* アロー関数の例 */
+const divide = (a, b) => a / b;
+console.log(divide(10, 2)); // 5と表示される
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">関数のスコープ</h2>
+            <p>関数内で定義された変数は、その関数のスコープ内でのみ有効です。</p>
+            <pre id="code6">
+/* 関数のスコープの例 */
+function scopeTest() {
+    let localVar = "私はローカル変数です";
+    console.log(localVar);
+}
+scopeTest(); // "私はローカル変数です"と表示される
+// console.log(localVar); // エラー：localVarは定義されていません
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>JavaScriptの関数を理解することで、再利用可能なコードを作成し、プログラムの構造をより整理できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">関数の定義</a></li>
+                    <li><a href="#section2">引数を持つ関数</a></li>
+                    <li><a href="#section3">戻り値のある関数</a></li>
+                    <li><a href="#section4">無名関数</a></li>
+                    <li><a href="#section5">アロー関数</a></li>
+                    <li><a href="#section6">関数のスコープ</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson05.html">次のページへ</a></li>
+                    <li><a href="lesson03.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

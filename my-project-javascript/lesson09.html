@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScriptのエラーハンドリングについて説明します。">
+    <meta name="keywords" content="JavaScript, エラーハンドリング, プログラミング, 文法">
+    <title>JavaScriptのエラーハンドリングの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScriptのエラーハンドリングの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">エラーハンドリングの定義</h2>
+            <p>エラーハンドリングとは、プログラムの実行中に発生するエラーを処理する方法です。</p>
+            <pre id="code1">
+/* エラーハンドリングの定義の例 */
+try {
+    // エラーが発生する可能性のあるコード
+    let result = riskyFunction();
+} catch (error) {
+    console.error("エラーが発生しました:", error);
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">try-catch文の基本</h2>
+            <p>try-catch文を使うことで、エラーを捕捉し、適切に処理できます。</p>
+            <pre id="code2">
+/* try-catch文の例 */
+function riskyFunction() {
+    throw new Error("何かがうまくいかなかった");
+}
+
+try {
+    riskyFunction();
+} catch (error) {
+    console.error("キャッチしたエラー:", error.message);
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">finallyブロックの使用</h2>
+            <p>finallyブロックを使用すると、エラーの有無にかかわらず、特定の処理を実行できます。</p>
+            <pre id="code3">
+/* finallyブロックの例 */
+try {
+    console.log("処理中...");
+    throw new Error("エラー発生");
+} catch (error) {
+    console.error("エラー:", error.message);
+} finally {
+    console.log("finallyブロックが実行されました");
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">カスタムエラーの作成</h2>
+            <p>独自のエラーを作成して、特定の状況でエラーをスローできます。</p>
+            <pre id="code4">
+/* カスタムエラーの例 */
+class CustomError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "CustomError";
+    }
+}
+
+function testCustomError() {
+    throw new CustomError("カスタムエラーが発生しました");
+}
+
+try {
+    testCustomError();
+} catch (error) {
+    console.error(error.name + ": " + error.message);
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">Promiseにおけるエラーハンドリング</h2>
+            <p>Promiseの中でもエラー処理が可能です。</p>
+            <pre id="code5">
+/* Promiseにおけるエラーハンドリングの例 */
+let myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        reject("Promiseが拒否されました");
+    }, 1000);
+});
+
+myPromise
+    .then(result => {
+        console.log(result);
+    })
+    .catch(error => {
+        console.error("エラー:", error);
+    });
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">まとめ</h2>
+            <p>JavaScriptのエラーハンドリングを理解することで、堅牢なアプリケーションを作成できるようになります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">エラーハンドリングの定義</a></li>
+                    <li><a href="#section2">try-catch文の基本</a></li>
+                    <li><a href="#section3">finallyブロックの使用</a></li>
+                    <li><a href="#section4">カスタムエラーの作成</a></li>
+                    <li><a href="#section5">Promiseにおけるエラーハンドリング</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson10.html">次のページへ</a></li>
+                    <li><a href="lesson08.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

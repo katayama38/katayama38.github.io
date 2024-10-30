@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScriptのthisの使い方について説明します。">
+    <meta name="keywords" content="JavaScript, this, プログラミング, 文法">
+    <title>JavaScriptのthisの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScriptのthisの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">thisの定義</h2>
+            <p>JavaScriptにおける`this`は、現在の実行コンテキストを指す特別なキーワードです。関数が呼び出される方法によって、その値が変わります。</p>
+            <pre id="code1">
+/* thisの定義の例 */
+function showThis() {
+    console.log(this);
+}
+showThis(); // グローバルオブジェクト（ブラウザではwindow）
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">メソッド内のthis</h2>
+            <p>オブジェクトのメソッド内での`this`は、そのメソッドが属するオブジェクトを指します。</p>
+            <pre id="code2">
+/* メソッド内のthisの例 */
+const person = {
+    name: "太郎",
+    greet: function() {
+        console.log(`こんにちは、${this.name}さん！`);
+    }
+};
+
+person.greet(); // こんにちは、太郎さん！
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">コンストラクタ内のthis</h2>
+            <p>コンストラクタ関数内の`this`は、新しく作成されるインスタンスを指します。</p>
+            <pre id="code3">
+/* コンストラクタ内のthisの例 */
+function Person(name) {
+    this.name = name;
+}
+
+const taro = new Person("太郎");
+console.log(taro.name); // 太郎
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">グローバルとstrictモードのthis</h2>
+            <p>グローバルコンテキストでは`this`はグローバルオブジェクトを指しますが、strictモードでは`undefined`になります。</p>
+            <pre id="code4">
+/* strictモードでのthisの例 */
+"use strict";
+
+function showThisStrict() {
+    console.log(this);
+}
+showThisStrict(); // undefined
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">コールバックとthis</h2>
+            <p>コールバック関数内の`this`は、通常の関数呼び出しと同様に、呼び出し元によって決まります。</p>
+            <pre id="code5">
+/* コールバック内のthisの例 */
+const obj = {
+    name: "太郎",
+    greet: function() {
+        setTimeout(function() {
+            console.log(`こんにちは、${this.name}さん！`);
+        }, 1000);
+    }
+};
+
+obj.greet(); // こんにちは、undefinedさん！
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">thisのバインディング</h2>
+            <p>`this`の値を明示的に設定するために、`call`や`apply`、`bind`メソッドを使用できます。</p>
+            <pre id="code6">
+/* thisのバインディングの例 */
+function greet() {
+    console.log(`こんにちは、${this.name}さん！`);
+}
+
+const obj2 = { name: "次郎" };
+greet.call(obj2); // こんにちは、次郎さん！
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>JavaScriptの`this`を理解することで、コードの実行コンテキストを適切に扱えるようになり、柔軟なプログラミングが可能になります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">thisの定義</a></li>
+                    <li><a href="#section2">メソッド内のthis</a></li>
+                    <li><a href="#section3">コンストラクタ内のthis</a></li>
+                    <li><a href="#section4">グローバルとstrictモードのthis</a></li>
+                    <li><a href="#section5">コールバックとthis</a></li>
+                    <li><a href="#section6">thisのバインディング</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson15.html">次のページへ</a></li>
+                    <li><a href="lesson13.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

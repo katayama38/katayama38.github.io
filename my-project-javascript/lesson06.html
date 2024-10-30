@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScriptのオブジェクトについて説明します。">
+    <meta name="keywords" content="JavaScript, オブジェクト, プログラミング, 文法">
+    <title>JavaScriptのオブジェクトの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScriptのオブジェクトの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">オブジェクトの定義</h2>
+            <p>オブジェクトは、プロパティとメソッドを持つデータ構造です。</p>
+            <pre id="code1">
+/* オブジェクトの定義の例 */
+let car = {
+    brand: "トヨタ",
+    model: "カムリ",
+    year: 2021
+};
+console.log(car); // {brand: "トヨタ", model: "カムリ", year: 2021}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">プロパティへのアクセス</h2>
+            <p>オブジェクトのプロパティにはドット記法またはブラケット記法でアクセスできます。</p>
+            <pre id="code2">
+/* プロパティへのアクセスの例 */
+let carBrand = car.brand; // "トヨタ"
+let carModel = car["model"]; // "カムリ"
+console.log(carBrand, carModel);
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">プロパティの追加と削除</h2>
+            <p>新しいプロパティを追加したり、既存のプロパティを削除できます。</p>
+            <pre id="code3">
+/* プロパティの追加と削除の例 */
+car.color = "赤"; // 新しいプロパティを追加
+delete car.year; // プロパティを削除
+console.log(car); // {brand: "トヨタ", model: "カムリ", color: "赤"}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">メソッドの定義</h2>
+            <p>オブジェクト内に関数を定義して、メソッドとして使用できます。</p>
+            <pre id="code4">
+/* メソッドの定義の例 */
+car.getDetails = function() {
+    return `${this.brand} ${this.model} (${this.color})`;
+};
+console.log(car.getDetails()); // "トヨタ カムリ (赤)"
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">オブジェクトのループ処理</h2>
+            <p>for...in文を使ってオブジェクトのプロパティをループ処理できます。</p>
+            <pre id="code5">
+/* オブジェクトのループ処理の例 */
+for (let key in car) {
+    console.log(key + ": " + car[key]);
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">ネストされたオブジェクト</h2>
+            <p>オブジェクトの中に他のオブジェクトを含めることができます。</p>
+            <pre id="code6">
+/* ネストされたオブジェクトの例 */
+let person = {
+    name: "山田太郎",
+    address: {
+        city: "東京",
+        zip: "100-0001"
+    }
+};
+console.log(person.address.city); // "東京"
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>JavaScriptのオブジェクトを理解することで、データをより構造化して管理できるようになります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">オブジェクトの定義</a></li>
+                    <li><a href="#section2">プロパティへのアクセス</a></li>
+                    <li><a href="#section3">プロパティの追加と削除</a></li>
+                    <li><a href="#section4">メソッドの定義</a></li>
+                    <li><a href="#section5">オブジェクトのループ処理</a></li>
+                    <li><a href="#section6">ネストされたオブジェクト</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson07.html">次のページへ</a></li>
+                    <li><a href="lesson05.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

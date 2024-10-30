@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScriptの高階関数について説明します。">
+    <meta name="keywords" content="JavaScript, 高階関数, プログラミング, 文法">
+    <title>JavaScriptの高階関数の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScriptの高階関数の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">高階関数の定義</h2>
+            <p>高階関数とは、他の関数を引数に取ったり、関数を返したりする関数のことです。</p>
+            <pre id="code1">
+/* 高階関数の定義の例 */
+function highOrderFunction(fn) {
+    return function(x) {
+        return fn(x);
+    };
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">関数を引数に取る高階関数</h2>
+            <p>高階関数に関数を渡すことで、動的に処理を変更できます。</p>
+            <pre id="code2">
+/* 関数を引数に取る高階関数の例 */
+function greet(name) {
+    return `こんにちは、${name}さん！`;
+}
+
+function processGreeting(fn, name) {
+    return fn(name);
+}
+
+console.log(processGreeting(greet, "田中")); // こんにちは、田中さん！
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">関数を返す高階関数</h2>
+            <p>関数を返す高階関数を使って、カスタム関数を作成できます。</p>
+            <pre id="code3">
+/* 関数を返す高階関数の例 */
+function createMultiplier(multiplier) {
+    return function(x) {
+        return x * multiplier;
+    };
+}
+
+const double = createMultiplier(2);
+console.log(double(5)); // 10
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">Arrayメソッドと高階関数</h2>
+            <p>map、filter、reduceなどの配列メソッドは高階関数です。</p>
+            <pre id="code4">
+/* Arrayメソッドと高階関数の例 */
+const numbers = [1, 2, 3, 4, 5];
+
+const squares = numbers.map(x => x * x);
+console.log(squares); // [1, 4, 9, 16, 25]
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">コールバック関数としての高階関数</h2>
+            <p>高階関数はコールバック関数を受け取ることができます。</p>
+            <pre id="code5">
+/* コールバック関数としての高階関数の例 */
+function processArray(arr, callback) {
+    return arr.map(callback);
+}
+
+const doubled = processArray([1, 2, 3], x => x * 2);
+console.log(doubled); // [2, 4, 6]
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">高階関数の利点</h2>
+            <p>高階関数を使用することで、コードの再利用性や抽象化が向上します。</p>
+            <pre id="code6">
+/* 高階関数の利点の例 */
+console.log("高階関数を利用した再利用性の向上");
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>JavaScriptの高階関数を理解することで、柔軟で保守性の高いコードを作成できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">高階関数の定義</a></li>
+                    <li><a href="#section2">関数を引数に取る高階関数</a></li>
+                    <li><a href="#section3">関数を返す高階関数</a></li>
+                    <li><a href="#section4">Arrayメソッドと高階関数</a></li>
+                    <li><a href="#section5">コールバック関数としての高階関数</a></li>
+                    <li><a href="#section6">高階関数の利点</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson12.html">次のページへ</a></li>
+                    <li><a href="lesson10.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

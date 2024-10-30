@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScriptの非同期処理について説明します。">
+    <meta name="keywords" content="JavaScript, 非同期処理, プログラミング, 文法">
+    <title>JavaScriptの非同期処理の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScriptの非同期処理の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">非同期処理の定義</h2>
+            <p>非同期処理とは、処理が完了するのを待たずに次の処理を実行できるプログラミングの手法です。</p>
+            <pre id="code1">
+/* 非同期処理の定義の例 */
+console.log("開始");
+setTimeout(() => {
+    console.log("非同期処理完了");
+}, 2000);
+console.log("終了");
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">コールバック関数</h2>
+            <p>非同期処理が完了したときに実行される関数をコールバック関数と呼びます。</p>
+            <pre id="code2">
+/* コールバック関数の例 */
+function fetchData(callback) {
+    setTimeout(() => {
+        callback("データを取得しました");
+    }, 1000);
+}
+
+fetchData(data => {
+    console.log(data);
+});
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">Promiseの基本</h2>
+            <p>Promiseは、非同期処理の結果を表すオブジェクトです。</p>
+            <pre id="code3">
+/* Promiseの基本の例 */
+let myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("Promiseが解決されました");
+    }, 1500);
+});
+
+myPromise.then(result => {
+    console.log(result);
+});
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">非同期関数とawait</h2>
+            <p>非同期関数を使うことで、Promiseの結果を簡潔に処理できます。</p>
+            <pre id="code4">
+/* 非同期関数とawaitの例 */
+async function asyncFunction() {
+    let result = await myPromise;
+    console.log(result);
+}
+
+asyncFunction();
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">複数の非同期処理の実行</h2>
+            <p>Promise.allを使うことで、複数の非同期処理を同時に待つことができます。</p>
+            <pre id="code5">
+/* 複数の非同期処理の実行の例 */
+let promise1 = new Promise(resolve => setTimeout(() => resolve("結果1"), 1000));
+let promise2 = new Promise(resolve => setTimeout(() => resolve("結果2"), 2000));
+
+Promise.all([promise1, promise2]).then(results => {
+    console.log(results); // ["結果1", "結果2"]
+});
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section6">まとめ</h2>
+            <p>JavaScriptの非同期処理を理解することで、効率的に時間のかかる処理を扱えるようになります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">非同期処理の定義</a></li>
+                    <li><a href="#section2">コールバック関数</a></li>
+                    <li><a href="#section3">Promiseの基本</a></li>
+                    <li><a href="#section4">非同期関数とawait</a></li>
+                    <li><a href="#section5">複数の非同期処理の実行</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson09.html">次のページへ</a></li>
+                    <li><a href="lesson07.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>
