@@ -22,24 +22,24 @@
     </header>
 <div class="container">
      <main>
-        <h2 id="section1">初級者っぽい書き方</h2>
+        <h2 id="section1">基本の形</h2>
         <p>基本の形を覚えます。</p>
         <h1>始まりはこれだ！</h1>
         <h2>基本を抑えたコード:</h2>
-        <pre id="code1">
-            &lt;!DOCTYPE html&gt;
-            &lt;html lang="ja"&gt;
-            &lt;head&gt;
-            &lt;meta charset="UTF-8"&gt;
-            &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-            &lt;title&gt;Document Title&lt;/title&gt;
-            &lt;/head&gt;
-            &lt;body&gt;
-            &lt;h1&gt;見出し1&lt;/h1&gt;
-            &lt;p&gt;これは段落です。&lt;/p&gt;
-            &lt;/body&gt;
-            &lt;/html&gt;
-        </pre>
+    <pre id="code1">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Document Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;見出し1&lt;/h1&gt;
+&lt;p&gt;これは段落です。&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
         <button onclick="copyToClipboard('code1')">コードをコピー</button><br><br>
             <p id="section1-1">
                 1, &lt;!DOCTYPE html&gt;: <br>・HTML5の文書である宣言をします。<br>
@@ -57,70 +57,71 @@
             
         <h2 id="section2">中級者っぽい書き方</h2>
         <p>簡易的な実装コード</p>
-        <pre id="code2">
-        &lt;!DOCTYPE html&gt;
-        &lt;html lang="ja"&gt;
-        &lt;head&gt;
-        &lt;meta charset="UTF-8"&gt;
-        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-        &lt;title&gt;中級くらい&lt;/title&gt;
-        &lt;style&gt;
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        &lt;/style&gt;
-        &lt;/head&gt;
-        &lt;body&gt;
-        &lt;h1&gt;中級&lt;/h1&gt;
-        &lt;h2&gt;リスト&lt;/h2&gt;
-        &lt;p&gt;以下はフルーツのリストです。&lt;/p&gt;
-        &lt;ul&gt;
-            &lt;li&gt;りんご&lt;/li&gt;
-            &lt;li&gt;バナナ&lt;/li&gt;
-            &lt;li&gt;オレンジ&lt;/li&gt;
-        &lt;/ul&gt;
+    <pre id="code2">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;中級くらい&lt;/title&gt;
+&lt;style&gt;
+body {
+font-family: Arial, sans-serif;
+margin: 20px;
+}
+table {
+border-collapse: collapse;
+width: 100%;
+}
+th, td {
+border: 1px solid #ddd;
+padding: 8px;
+}
+th {
+background-color: #f2f2f2;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;中級&lt;/h1&gt;
+&lt;h2&gt;リスト&lt;/h2&gt;
+&lt;p&gt;以下はフルーツのリストです。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;りんご&lt;/li&gt;
+&lt;li&gt;バナナ&lt;/li&gt;
+&lt;li&gt;オレンジ&lt;/li&gt;
+&lt;/ul&gt;
 
-        &lt;h2&gt;テーブル&lt;/h2&gt;
-        &lt;table&gt;
-            &lt;tr&gt;
-                &lt;th&gt;名前&lt;/th&gt;
-                &lt;th&gt;年齢&lt;/th&gt;
-                &lt;th&gt;職業&lt;/th&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;th&gt;佐藤太郎&lt;/th&gt;
-                &lt;th&gt;30&lt;/th&gt;
-                &lt;th&gt;エンジニア&lt;/th&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;th&gt;鈴木花子&lt;/th&gt;
-                &lt;th&gt;25&lt;/th&gt;
-                &lt;th&gt;デザイナー&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/table&gt;
+&lt;h2&gt;テーブル&lt;/h2&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;th&gt;名前&lt;/th&gt;
+&lt;th&gt;年齢&lt;/th&gt;
+&lt;th&gt;職業&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;佐藤太郎&lt;/th&gt;
+&lt;th&gt;30&lt;/th&gt;
+&lt;th&gt;エンジニア&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;鈴木花子&lt;/th&gt;
+&lt;th&gt;25&lt;/th&gt;
+&lt;th&gt;デザイナー&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
 
-        &lt;h2&gt;リンクと画像&lt;/h2&gt;
-        &lt;p&gt;詳しい情報は&lt;a href="https://www.example.com" target="_blank"&gt;こちら&lt;/a&gt;をクリックしてください。&lt;/p&gt;
-        &lt;img src="https://via.placeholder.com/150" alt="サンプル画像" /&gt;
+&lt;h2&gt;リンクと画像&lt;/h2&gt;
+&lt;p&gt;詳しい情報は&lt;a href="https://www.example.com" target="_blank"&gt;こちら&lt;/a&gt;をクリックしてください。&lt;/p&gt;
+&lt;img src="https://via.placeholder.com/150" alt="サンプル画像" /&gt;
 
-        &lt;h2&gt;引用&lt;/h2&gt;
-        &lt;blockquote&gt;
-            「知識は力である。」- フランシス・ベーコン
-        &lt;/blockquote&gt;
-        &lt;/html&gt;
-        </pre>
+&lt;h2&gt;引用&lt;/h2&gt;
+&lt;blockquote&gt;
+「知識は力である。」- フランシス・ベーコン
+&lt;/blockquote&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
         <button onclick="copyToClipboard('code2')">コードをコピー</button><br><br>
         <p id="section2-1">
             1, <b>リスト</b>: <br>・&lt;ul&gt;(順不同リスト)を使用して、フルーツのリストを作成しました。<br>
@@ -131,103 +132,103 @@
         </p><br><br>
         <p>
             このコードは中級者向けの要素を含んでおり、基本的なHTMLの使い方に加えて、構造的な要素の使用方法を示しています。<br>
-            正直、&lt;blockquote&gt;2024/10月。初見でした。もっと未知なことがあるな。
+            正直&lt;blockquote&gt;2024/10月。初見でした。もっと未知なことがあるな。
         </p>
         
         <h2 id="section3">上級者っぽい書き方</h2>
         <p>フレームワーク、JavaScriptで動的に見せる書き方。</p>
-        <pre id="code3">
-        &lt;!DOCTYPE html&gt;
-        &lt;html lang="ja"&gt;
-        &lt;head&gt;
-        &lt;meta charset="UTF-8"&gt;
-        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-        &lt;meta name="description" content="上級者っぽい書き方"&gt;
-        &lt;meta name="keywords" content="HTML, CSS, JavaScript, Bootstrap"&gt;
-        &lt;title&gt;上級者っぽい書き方&lt;/title&gt;
-        &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"&gt;
-        &lt;link rel="stylesheet" href="css/style.css"&gt;
-        &lt;style&gt;
-            body {
-                padding-top: 56px;
-            }
-            .footer {
-                background-color: #f8f9fa;
-                padding: 20px;
-                text-align: center;
-            }
-        &lt;/style&gt;
-        &lt;/head&gt;
-        &lt;body&gt;
-        &lt;nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"&gt;
-            &lt;a class="navbar-brand" href="#"&gt;サイトのタイトル&lt;/a&gt;
-                &lt;button class="navbar-toggler" type="button" data-toggle="collapse" 
-                    data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
-                    aria-label="Toggler navigation"&gt;
-                    &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
-                &lt;/button&gt;
-            &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
-                &lt;ul class="navbar-nav"&gt;
-                    &lt;li class="nav-item active"&gt;
-                        &lt;a class="nav-link" href="#"&gt;ホーム&lt;/a&gt;
-                    &lt;/li&gt;
-                    &lt;li class="nav-item"&gt;
-                        &lt;a class="nav-link" href="#about"&gt;私たちについて&lt;/a&gt;
-                    &lt;/li&gt;
-                    &lt;li class="nav-item"&gt;
-                        &lt;a class="nav-link" href="#contact"&gt;お問い合わせ&lt;/a&gt;
-                    &lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/div&gt;
-        &lt;/nav&gt;
+    <pre id="code3">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;meta name="description" content="上級者っぽい書き方"&gt;
+&lt;meta name="keywords" content="HTML, CSS, JavaScript, Bootstrap"&gt;
+&lt;title&gt;上級者っぽい書き方&lt;/title&gt;
+&lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"&gt;
+&lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;style&gt;
+body {
+padding-top: 56px;
+}
+.footer {
+background-color: #f8f9fa;
+padding: 20px;
+text-align: center;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"&gt;
+&lt;a class="navbar-brand" href="#"&gt;サイトのタイトル&lt;/a&gt;
+&lt;button class="navbar-toggler" type="button" data-toggle="collapse" 
+data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+aria-label="Toggler navigation"&gt;
+&lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+&lt;/button&gt;
+&lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+&lt;ul class="navbar-nav"&gt;
+&lt;li class="nav-item active"&gt;
+&lt;a class="nav-link" href="#"&gt;ホーム&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class="nav-item"&gt;
+&lt;a class="nav-link" href="#about"&gt;私たちについて&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class="nav-item"&gt;
+&lt;a class="nav-link" href="#contact"&gt;お問い合わせ&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/nav&gt;
 
-        &lt;div class="container"&gt;
-            &lt;header class="my-5"&gt;
-                &lt;h1 class="display-4"&gt;上級者っぽい書き方&lt;/h1&gt;
-                &lt;p class="lead"&gt;このページは上級者向けな構造を示しています。&lt;/p&gt;
-            &lt;/header&gt;
+&lt;div class="container"&gt;
+&lt;header class="my-5"&gt;
+&lt;h1 class="display-4"&gt;上級者っぽい書き方&lt;/h1&gt;
+&lt;p class="lead"&gt;このページは上級者向けな構造を示しています。&lt;/p&gt;
+&lt;/header&gt;
 
-            &lt;section id="about" class="my-5"&gt;
-                &lt;h2&gt;私たちについて&lt;/h2&gt;
-                &lt;p&gt;ここでは、会社やプロジェクトについての詳細を記載します。&lt;/p&gt;
-                &lt;img src="https://via.placeholder.com/600x400" class="img-fluid" alt="サンプル画像"&gt;
-            &lt;/section&gt;
+&lt;section id="about" class="my-5"&gt;
+&lt;h2&gt;私たちについて&lt;/h2&gt;
+&lt;p&gt;ここでは、会社やプロジェクトについての詳細を記載します。&lt;/p&gt;
+&lt;img src="https://via.placeholder.com/600x400" class="img-fluid" alt="サンプル画像"&gt;
+&lt;/section&gt;
 
-            &lt;section id="contact" class="my-5"&gt;
-                &lt;h2&gt;お問い合わせ&lt;/h2&gt;
-                &lt;form id="contactForm" action="送信先のURL" method="POST"&gt;
-                    &lt;div class="form-group"&gt;
-                        &lt;label for="name"&gt;名前&lt;/label&gt;
-                        &lt;input type="text" class="form-control" id="name" required&gt;
-                    &lt;/div&gt;
-                    &lt;div class="form-group"&gt;
-                        &lt;label for="email"&gt;メールアドレス&lt;/label&gt;
-                        &lt;input type="email" class="form-control" id="email" required&gt;
-                    &lt;/div&gt;
-                    &lt;div class="form-group"&gt;
-                        &lt;label for="message"&gt;メッセージ&lt;/label&gt;
-                        &lt;textarea class="form-control" id="message" rows="4" required&gt;&lt;/textarea&gt;
-                    &lt;/div&gt;
-                    &lt;button type="submit" class="btn btn-primary"&gt;送信&lt;/button&gt;
-                &lt;/form&gt;
-            &lt;/section&gt;
-        &lt;/div&gt;
+&lt;section id="contact" class="my-5"&gt;
+&lt;h2&gt;お問い合わせ&lt;/h2&gt;
+&lt;form id="contactForm" action="送信先のURL" method="POST"&gt;
+&lt;div class="form-group"&gt;
+&lt;label for="name"&gt;名前&lt;/label&gt;
+&lt;input type="text" class="form-control" id="name" required&gt;
+&lt;/div&gt;
+&lt;div class="form-group"&gt;
+&lt;label for="email"&gt;メールアドレス&lt;/label&gt;
+&lt;input type="email" class="form-control" id="email" required&gt;
+&lt;/div&gt;
+&lt;div class="form-group"&gt;
+&lt;label for="message"&gt;メッセージ&lt;/label&gt;
+&lt;textarea class="form-control" id="message" rows="4" required&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;button type="submit" class="btn btn-primary"&gt;送信&lt;/button&gt;
+&lt;/form&gt;
+&lt;/section&gt;
+&lt;/div&gt;
 
-        &lt;footer class="footer"&gt;
-            &lt;p&gt;©️ サイト名. All rights reserved.&lt;/p&gt;
-        &lt;/footer&gt;
+&lt;footer class="footer"&gt;
+&lt;p&gt;©️ サイト名. All rights reserved.&lt;/p&gt;
+&lt;/footer&gt;
 
-        &lt;script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"&gt;&lt;/script&gt;
-        &lt;script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"&gt;&lt;/script&gt;
-        &lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"&gt;&lt;/script&gt;
-        &lt;script&gt;
-            document.getElementById('contactForm').addEventListener('submit', function(event) {
-                alert('フォームが送信されました！')
-            });
-        &lt;/script&gt;
-        &lt;/body&gt;
-        &lt;/html&gt;
-        </pre>
+&lt;script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+alert('フォームが送信されました！')
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
         <button onclick="copyToClipboard('code3')">コードをコピー</button><br><br>
         <p id="section3-1">
             1, <b>Bootstrapの使用</b>: <br>
@@ -273,9 +274,10 @@
             外部スタイルシートをリンクさせるのが一般的。&lt;link rel="stylesheet" href="style.css&gt;/, や ./, や ../なども後々理解。<br><br>
             ・<b>フォーム</b>: <br>
             ・ユーザーからの情報を収集するためのインタラクティブな要素を追加。インタラクティブ？<br><b>（双方向で）（対話式）とか、一方通行ではなく、やり取りできること</b> <br>
-            <b>イメージ</b>今起きた！おはよ！！<br>
+            ------<b>イメージ</b>------<br>
+            今起きた！おはよ！！<br>
             ↓　↑<br>
-            え？今もうこんばんは！だよ？<br>こんな感じ。<br>
+            え？今もうこんばんは！だよ？<br>------こんな感じ------<br>
             インタラクティブ：例えば&lt;form&gt;, &lt;input&gt;, &lt;textarea&gt;など。
         </p><br>
         <h4 id="section4-3">3, 上級まとめ: インタラクティブな要素とフレームワークの活用</h4>
