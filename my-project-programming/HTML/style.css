@@ -43,7 +43,7 @@ body {
     border: 1px solid #333;
 }
 .mainView{
-    height: calc(100vh - 50px);
+    height: calc(100vh - 100px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -100,7 +100,8 @@ body {
     align-items: center;
     width: 100%;
     max-width: 100%;
-    width: 100%;
+    height: 100%;
+    max-height: fit-content;
 }
 .box{
     display: flex;
@@ -148,6 +149,11 @@ body {
 }
 
 @media (max-width: 798px) {
+
+    .mainView {
+        height: 60vh;
+    }
+
     .boxes_inner {
         display: grid;
         grid-template-columns: repeat(2, 1fr); /* 2列に設定 */
@@ -162,7 +168,7 @@ body {
         align-items: center; 
         padding: 10px; 
         box-sizing: border-box; 
-        height: 310px;
+        height: 34vh;
         max-width: 100%;
         border: 1px solid #ccc;
         background-color: #dedede;
@@ -181,7 +187,7 @@ body {
     }
 
     .box img {
-        width: 30%;
+        width: 70%;
     }
 
     .box p{
