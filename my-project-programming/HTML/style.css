@@ -19,7 +19,6 @@ body {
     left: 0;
     top: 0;
     z-index: 100;
-    justify-content: apace-between;
 }
 .header_inner{
     padding: 0 20px;
