@@ -152,16 +152,18 @@ body {
         display: grid;
         grid-template-columns: repeat(2, 1fr); /* 2列に設定 */
         gap: 10px; /* ボックス間のスペース */
-        max-width: 100%;
+        max-width: 90%;
     }
 
     .box {
         display: flex; 
-        flex-direction: column; 
+        flex-direction: column;
         justify-content: center;
         align-items: center; 
         padding: 10px; 
         box-sizing: border-box; 
+        height: 310px;
+        max-width: 100%;
         border: 1px solid #ccc;
         background-color: #dedede;
         overflow: hidden;
@@ -178,18 +180,14 @@ body {
         white-space: normal; /* 改行を許可する */
     }
 
-    .box img{
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        border-radius: 10px;
-        margin: 0 auto;
+    .box img {
+        width: 80%;
     }
-    .box h2{
-        font-size: 1.5em;
-        margin: 0;
-    }
+
     .box p{
         display: none;
+        margin-top: 5px;
+        font-size: 1em;
     }
 }
+
