@@ -19,9 +19,9 @@ body {
     left: 0;
     top: 0;
     z-index: 100;
+    justify-content: apace-between;
 }
 .header_inner{
-    justify-content: apace-between;
     padding: 0 20px;
 }
 .header_logo{
