@@ -156,7 +156,7 @@ body {
 
     .boxes_inner {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2列に設定 */
+        grid-template-columns: 1fr;
         gap: 10px; /* ボックス間のスペース */
         max-width: 90%;
     }
@@ -168,11 +168,15 @@ body {
         align-items: center; 
         padding: 10px; 
         box-sizing: border-box; 
-        height: 300px;
+        height: 47vh;
         max-width: 100%;
         border: 1px solid #ccc;
         background-color: #dedede;
         overflow: hidden;
+    }
+
+    .box img {
+        margin-top: 20px;
     }
 
     .text_box {
@@ -185,11 +189,6 @@ body {
         text-overflow: ellipsis; /* テキストが溢れたときに省略記号を表示 */
         white-space: normal; /* 改行を許可する */
     }
-
-    .box img {
-        width: 70%;
-    }
-
     .box p{
         display: none;
         margin-top: 5px;
