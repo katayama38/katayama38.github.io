@@ -147,7 +147,7 @@ body {
     text-decoration: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 798px) {
     .boxes_inner {
         display: grid;
         grid-template-columns: repeat(2, 1fr); /* 2列に設定 */
@@ -162,7 +162,7 @@ body {
         align-items: center; 
         padding: 10px; 
         box-sizing: border-box; 
-        height: 340px;
+        height: auto;
         border: 1px solid #ccc;
         background-color: #dedede;
         overflow: hidden;
