@@ -162,7 +162,7 @@ body {
         align-items: center; 
         padding: 10px; 
         box-sizing: border-box; 
-        height: 340px;
+        height: auto;
         border: 1px solid #ccc;
         background-color: #dedede;
         overflow: hidden;
