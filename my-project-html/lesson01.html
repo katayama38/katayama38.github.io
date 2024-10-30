@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="このサイトは、就職活動を通し自身の制作意欲、意識改善を元に制作致しました。初心者のため、現役プロの方からの制作工夫や「もっとこうした方がいい」というご意見をいただけると幸いです。">
-    <meta name="keywords" content="">
-    <title>HTML5文書構造</title>
+    <meta name="description" content="HTML文書の構造と要素について説明します。">
+    <meta name="keywords" content="HTML, 文書構造, 要素">
+    <title>HTML文書構造の理解</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <h1 id="top">HTML5文書構造</h1>
+        <h1>HTML文書構造の理解</h1>
         <nav>
             <ul id="breadcrumbs">
                 <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
@@ -20,322 +20,90 @@
             </ul>
         </nav>
     </header>
-<div class="container">
-     <main>
-        <h2 id="section1">基本の形</h2>
-        <p>基本の形を覚えます。</p>
-        <h1>始まりはこれだ！</h1>
-        <h2>基本を抑えたコード:</h2>
-    <pre id="code1">
+
+    <div class="container">
+        <main>
+            <h2 id="section1">基本構造</h2>
+            <p>HTML文書は、必ず&lt;!DOCTYPE&gt;宣言から始まり、その後に&lt;html&gt;タグが続きます。&lt;head&gt;タグには文書のメタ情報が含まれ、&lt;body&gt;タグには実際のコンテンツが含まれます。</p>
+            <pre id="code1">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="ja"&gt;
-&lt;head&gt;
-&lt;meta charset="UTF-8"&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-&lt;title&gt;Document Title&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;h1&gt;見出し1&lt;/h1&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;タイトル&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;!-- コンテンツ --&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">要素の役割</h2>
+            <p>HTML要素は、テキスト、画像、リンクなどのコンテンツを構成する基本的な部分です。各要素には役割があり、正しい要素を使うことで文書の意味が明確になります。</p>
+            <pre id="code2">
 &lt;p&gt;これは段落です。&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-    </pre>
-        <button onclick="copyToClipboard('code1')">コードをコピー</button><br><br>
-            <p id="section1-1">
-                1, &lt;!DOCTYPE html&gt;: <br>・HTML5の文書である宣言をします。<br>
-                2, &lt;html lang="ja"&gt;: <br>・HTML文書の開始を示し、言語の属性を指定します。（ここでは日本語）。<br>
-                3, &lt;head&gt;: <br>・文書に関するメタ情報を含む部分です。スタイルやスクリプト、タイトルなどがここに入ります。<br>
-                4, &lt;meta charset="UTF-8"&gt;: <br>・文書に関するメタ情報を含む部分です。スタイルやスクリプト、タイトルなどがここに含まれます。<br>
-                5, &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;: <br>・レスポンシブデザインのための設定です。モバイル端末での表示に適します。<br>
-                6, &lt;title&gt;: <br>・ブラウザのタブに表示される文書のタイトルです。<br>
-                7, &lt;body&gt;: <br>・実際に表示されるコンテンツを含む部分です。<br>
-                8, &lt;h1&gt;や&lt;p&gt;: <br>・見出しや段落などのコンテンツを表すタグです。
-            </p><br><br>
-            <p>
-                私が現在使用しているのは、「Visual Studio Code」です。<br>「!」エクスクラメーションマークで上記のものは表示できます。使っちゃうよねぇ。。。<br>
-            </p>
-            
-        <h2 id="section2">中級者っぽい書き方</h2>
-        <p>簡易的な実装コード</p>
-    <pre id="code2">
-&lt;!DOCTYPE html&gt;
-&lt;html lang="ja"&gt;
-&lt;head&gt;
-&lt;meta charset="UTF-8"&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-&lt;title&gt;中級くらい&lt;/title&gt;
-&lt;style&gt;
-body {
-font-family: Arial, sans-serif;
-margin: 20px;
-}
-table {
-border-collapse: collapse;
-width: 100%;
-}
-th, td {
-border: 1px solid #ddd;
-padding: 8px;
-}
-th {
-background-color: #f2f2f2;
-}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;h1&gt;中級&lt;/h1&gt;
-&lt;h2&gt;リスト&lt;/h2&gt;
-&lt;p&gt;以下はフルーツのリストです。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;りんご&lt;/li&gt;
-&lt;li&gt;バナナ&lt;/li&gt;
-&lt;li&gt;オレンジ&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a href="https://example.com"&gt;リンク&lt;/a&gt;
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
 
-&lt;h2&gt;テーブル&lt;/h2&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;th&gt;名前&lt;/th&gt;
-&lt;th&gt;年齢&lt;/th&gt;
-&lt;th&gt;職業&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;佐藤太郎&lt;/th&gt;
-&lt;th&gt;30&lt;/th&gt;
-&lt;th&gt;エンジニア&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;鈴木花子&lt;/th&gt;
-&lt;th&gt;25&lt;/th&gt;
-&lt;th&gt;デザイナー&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;h2&gt;リンクと画像&lt;/h2&gt;
-&lt;p&gt;詳しい情報は&lt;a href="https://www.example.com" target="_blank"&gt;こちら&lt;/a&gt;をクリックしてください。&lt;/p&gt;
-&lt;img src="https://via.placeholder.com/150" alt="サンプル画像" /&gt;
-
-&lt;h2&gt;引用&lt;/h2&gt;
-&lt;blockquote&gt;
-「知識は力である。」- フランシス・ベーコン
-&lt;/blockquote&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-    </pre>
-        <button onclick="copyToClipboard('code2')">コードをコピー</button><br><br>
-        <p id="section2-1">
-            1, <b>リスト</b>: <br>・&lt;ul&gt;(順不同リスト)を使用して、フルーツのリストを作成しました。<br>
-            2, <b>テーブル</b>: <br>・&lt;table&gt;を使用して、名前、年齢、職業の情報を表形式で表示しました。<br>
-            3, <b>リンク</b>: <br>・&lt;a&gt;タグを使用して外部リンクを作成しました。target="_blank"を指定することで新しいタブを開く様になります。<br>
-            4, <b>画像</b>: <br>・&lt;img&gt;タグを使って、プレースホルダー画像を表示しています。<br>
-            5, <b>引用</b>: <br>・&lt;blockquote&gt;を引用文を表示しています。
-        </p><br><br>
-        <p>
-            このコードは中級者向けの要素を含んでおり、基本的なHTMLの使い方に加えて、構造的な要素の使用方法を示しています。<br>
-            正直&lt;blockquote&gt;2024/10月。初見でした。もっと未知なことがあるな。
-        </p>
-        
-        <h2 id="section3">上級者っぽい書き方</h2>
-        <p>フレームワーク、JavaScriptで動的に見せる書き方。</p>
-    <pre id="code3">
-&lt;!DOCTYPE html&gt;
-&lt;html lang="ja"&gt;
-&lt;head&gt;
-&lt;meta charset="UTF-8"&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-&lt;meta name="description" content="上級者っぽい書き方"&gt;
-&lt;meta name="keywords" content="HTML, CSS, JavaScript, Bootstrap"&gt;
-&lt;title&gt;上級者っぽい書き方&lt;/title&gt;
-&lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"&gt;
-&lt;link rel="stylesheet" href="css/style.css"&gt;
-&lt;style&gt;
-body {
-padding-top: 56px;
-}
-.footer {
-background-color: #f8f9fa;
-padding: 20px;
-text-align: center;
-}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"&gt;
-&lt;a class="navbar-brand" href="#"&gt;サイトのタイトル&lt;/a&gt;
-&lt;button class="navbar-toggler" type="button" data-toggle="collapse" 
-data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
-aria-label="Toggler navigation"&gt;
-&lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
-&lt;/button&gt;
-&lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
-&lt;ul class="navbar-nav"&gt;
-&lt;li class="nav-item active"&gt;
-&lt;a class="nav-link" href="#"&gt;ホーム&lt;/a&gt;
-&lt;/li&gt;
-&lt;li class="nav-item"&gt;
-&lt;a class="nav-link" href="#about"&gt;私たちについて&lt;/a&gt;
-&lt;/li&gt;
-&lt;li class="nav-item"&gt;
-&lt;a class="nav-link" href="#contact"&gt;お問い合わせ&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/nav&gt;
-
-&lt;div class="container"&gt;
-&lt;header class="my-5"&gt;
-&lt;h1 class="display-4"&gt;上級者っぽい書き方&lt;/h1&gt;
-&lt;p class="lead"&gt;このページは上級者向けな構造を示しています。&lt;/p&gt;
+            <h2 id="section3">セクション要素</h2>
+            <p>セクション要素を使用することで、文書を論理的に構造化できます。&lt;header&gt;、&lt;footer&gt;、&lt;nav&gt;、&lt;section&gt;などの要素があります。</p>
+            <pre id="code3">
+&lt;header&gt;
+    &lt;h1&gt;ウェブサイトのタイトル&lt;/h1&gt;
 &lt;/header&gt;
 
-&lt;section id="about" class="my-5"&gt;
-&lt;h2&gt;私たちについて&lt;/h2&gt;
-&lt;p&gt;ここでは、会社やプロジェクトについての詳細を記載します。&lt;/p&gt;
-&lt;img src="https://via.placeholder.com/600x400" class="img-fluid" alt="サンプル画像"&gt;
+&lt;nav&gt;
+    &lt;a href="#section1"&gt;セクション1&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;section&gt;
+    &lt;h2&gt;セクション見出し&lt;/h2&gt;
+    &lt;p&gt;セクションの内容です。&lt;/p&gt;
 &lt;/section&gt;
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
 
-&lt;section id="contact" class="my-5"&gt;
-&lt;h2&gt;お問い合わせ&lt;/h2&gt;
-&lt;form id="contactForm" action="送信先のURL" method="POST"&gt;
-&lt;div class="form-group"&gt;
-&lt;label for="name"&gt;名前&lt;/label&gt;
-&lt;input type="text" class="form-control" id="name" required&gt;
-&lt;/div&gt;
-&lt;div class="form-group"&gt;
-&lt;label for="email"&gt;メールアドレス&lt;/label&gt;
-&lt;input type="email" class="form-control" id="email" required&gt;
-&lt;/div&gt;
-&lt;div class="form-group"&gt;
-&lt;label for="message"&gt;メッセージ&lt;/label&gt;
-&lt;textarea class="form-control" id="message" rows="4" required&gt;&lt;/textarea&gt;
-&lt;/div&gt;
-&lt;button type="submit" class="btn btn-primary"&gt;送信&lt;/button&gt;
-&lt;/form&gt;
-&lt;/section&gt;
-&lt;/div&gt;
+            <h2 id="section4">メタ情報の重要性</h2>
+            <p>メタ情報は、文書のSEOやアクセシビリティに影響を与えます。例えば、&lt;meta&gt;タグを使用して、文字エンコーディングやページの説明を指定します。</p>
+            <pre id="code4">
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="description" content="ページの説明"&gt;
+    &lt;meta name="keywords" content="キーワード1, キーワード2"&gt;
+&lt;/head&gt;
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
 
-&lt;footer class="footer"&gt;
-&lt;p&gt;©️ サイト名. All rights reserved.&lt;/p&gt;
-&lt;/footer&gt;
+            <h2 id="section5">まとめ</h2>
+            <p>HTML文書の構造を理解することで、より意味のあるウェブページを作成することができます。</p>
+        </main>
 
-&lt;script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-alert('フォームが送信されました！')
-});
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-    </pre>
-        <button onclick="copyToClipboard('code3')">コードをコピー</button><br><br>
-        <p id="section3-1">
-            1, <b>Bootstrapの使用</b>: <br>
-            ・CSSフレームワークを利用することで、レスポンシブデザインを簡単に実現しています。<br>
-            2, <b>ナビゲーションバー</b>: <br>
-            ・固定型のナビゲーションバーを実装し、ページ内リンクを設定しています。<br>
-            3, <b>セクションの分割</b>: <br>
-            ・ページのセクションごとに分けて、内容を明確にしています。<br>
-            4, <b>フォーム</b>: <br>
-            ・ユーザーからの情報を取得するためのフォームを作成し、JavaScriptで送信イベントを処理しています。<br>
-            5, <b>スタイルのカスタマイズ</b>: <br>
-            ・CSSで簡単なスタイルを追加し、ページの見た目を整えています。<br><br>
-        </p>
-        <p>
-            この様に、上級者向けのHTMLでは、実用的な要素やフレームワークを組み合わせて、より機能的で視覚的に魅力的なページを作成しています。<br>
-            フレームワーク。新たな学習の始まり。。
-        </p>
+        <aside>
+            <h2>目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">基本構造</a></li>
+                    <li><a href="#section2">要素の役割</a></li>
+                    <li><a href="#section3">セクション要素</a></li>
+                    <li><a href="#section4">メタ情報の重要性</a></li>
+                    <li><a href="lesson02.html">次のページへ</a></li>
+                    <li><a href="lesson15.html">前のページへ</a></li>
+                    <li><a href="#">ページのトップへ</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
 
-        <h2 id="section4">まとめ</h2>
-        <h3>HTMLの基本構造と要素</h3>
-        <p>HTML(HyperText Markup Language)は、ウェブページを構築するための基本的な言語です。HTML文書は、主に以下の部分から構成されています。</p>
-        <h4 id="section4-1">1, 初級まとめ: 基本的な構造</h4>
-        <p>
-            &lt;!DOCTYPE html&gt;: <br>
-            ・HTML5の文書である宣言。これは骨組み、骨格です!みたいなこと。<br><br>
-            &lt;html lang="ja"&gt; <br>
-            ・文書の言語を指定。"en"は英語のWebサイトですよ。とは"ja"はJapanの略である。<br><br>
-            &lt;head&gt;<b>部分</b> <br>
-            ・ページのメタ情報。<br>
-            ・例えば&lt;title&gt;ページのタイトル&lt;/title&gt;&lt;meta charset="UTF-8"&gt;など。<br>
-            ・<b>重要なポイント</b>: この内容は通常時ユーザーには表示されない。右クリック「検証」で見ることができたりする。<br><br>
-            &lt;body&gt;<b>部分</b>: <br>
-            ・実際に表示されるコンテンツが含まれる。<br>
-            ・例えば: &lt;h1&gt;(見出し) &lt;p&gt;(段落) &lt;img&gt;(画像) などがある。
-        </p><br>
-        <h4 id="section4-2">2, 中級まとめ: セマンティック要素とスタイリング</h4>
-        <p>
-            ・<b>セマンティック要素</b>: <br>
-            &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;footer&gt;などの要素を使って文書を理論的に構造化。現実的にすると「机の上」とか「テーブル上の配置」とか。<br>
-            これにより、検索エンジンや支援技術にとって情報が理解しやすくなると。「ねぇねぇ！あれとって！」ができやすくなるイメージ。<br><br>
-            ・<b>スタイルの適用</b>: <br>
-            CSSを使用して、ウェブページの見た目を整える。CSS。これが奥が深いのと、まるで2000ピースパズルをやっているみたいで、楽しい。<br>
-            外部スタイルシートをリンクさせるのが一般的。&lt;link rel="stylesheet" href="style.css&gt;/, や ./, や ../なども後々理解。<br><br>
-            ・<b>フォーム</b>: <br>
-            ・ユーザーからの情報を収集するためのインタラクティブな要素を追加。インタラクティブ？<br><b>（双方向で）（対話式）とか、一方通行ではなく、やり取りできること</b> <br>
-            ------<b>イメージ</b>------<br>
-            今起きた！おはよ！！<br>
-            ↓　↑<br>
-            え？今もうこんばんは！だよ？<br>------こんな感じ------<br>
-            インタラクティブ：例えば&lt;form&gt;, &lt;input&gt;, &lt;textarea&gt;など。
-        </p><br>
-        <h4 id="section4-3">3, 上級まとめ: インタラクティブな要素とフレームワークの活用</h4>
-        <p>
-            ・<b>JavaScriptの統合</b>: <br>
-            ・ページの動的な要素を作成するためにJavaScriptを使用します。フォームの送信やユーザーインタラクションに応じた処理を行います。<br>
-            <b>ユーザーインタラクション</b>？？簡潔に言うと、使用感、直感的な操作、利用ユーザーがどれだけスムーズに目的を達成できるか。<br>
-            例えると<br><br>
-            <b>検索</b>: ユーザーは探している映画、見たい映画がある。タイトルも知っているので検索バーを見つける。行動をとる。ここの行動は目線とか指。<br>
-            <b>タイトルの記入</b>: 簡単に入力できるインターフェースですぐにタイトルを入力できる。（ここでのインターフェースとは？簡潔に。パッと見て分かりやすい。使いやすさ：簡単に見つかる。すぐ使える設計。）<br>
-            <b>検索結果を表示</b>: 映画がすぐに表示され、関連情報（サムネイル、評価、ジャンルなど）簡単に確認できる。気になる気になる様にすると。<br>
-            <b>タップ、またはクリック</b>: 映画をクリックすると、詳細情報や視聴ボタンが表示される。内容とかあらすじね？<br>
-            <b>視聴</b>:すぐに視聴が開始できる。よくあるのが、ここで広告ね？はいはい。分かります。<br>
-            以上、<b>ユーザーインタラクションとは？</b>でした。<br><br>
-            <b>例えば</b>: document.getElementById('formId').addEventListener('submit', function(event) {<br>
-                ...処理内容...<br>
-            });<br>
-            <b>CSSフレームワークの利用</b>: BootstrapやTailwind CSSなどのフレームワークを使用して、レスポンシブデザインを簡単に実現します。<br>
-            <b>例えば</b>クラスを用いたスタイリング 例: class="btn btn-primary"。btn = Bootstrapのクラス名でBootstrapのbuttonって意味。<br>
-            <b>アクセシビリティの考慮</b>: alt属性やaria属性を使用して、全てのユーザーがアクセス可能なページを作成する。
-        </p><br>
-        <p>HTMLの基本構造を理解し、初級から上級向けの要素を取り入れる事で、ウェブ開発の幅が広がります。初心者は基本を抑え、中級者はセマンティックな構造とスタイリングを意識し、上級者はインタラクティブな要素やフレームワークを活用して、より魅力的なウェブページを作成していきます。</p>
-    </main>
-    <aside>
-        <h2>目次</h2>
-        <nav>
-            <ul id="breadcrumbs">
-                <li><a href="#section1">初心者編</a></li>
-                <li><a href="#section1-1">初心の８コード</a></li>
-            </ul>
-            <ul id="breadcrumbs">
-                <li><a href="#section2">中級者編</a></li>
-                <li><a href="#section2-1">追加の5コード</a></li>
-            </ul>
-            <ul id="breadcrumbs">
-                <li><a href="#section3">上級者編</a></li>
-                <li><a href="#section3-1">実用的な要素とフレームワーク</a></li>
-            </ul>
-            <h3>基礎構造 <br>まとめ</h3>
-            <ul id="breadcrumbs">
-                <li><a href="#section4">基礎構造まとめ</a></li>
-                <li><a href="#section4-1">1, 初級まとめ</a></li>
-                <li><a href="#section4-2">2, 中級まとめ</a></li>
-                <li><a href="#section4-3">3, 上級まとめ</a></li>
-            </ul>
-            <h3>次のページ</h3>
-            <ul id="breadcrumbs">
-                <li><a href="">基本タグページへ</a></li>
-            </ul>
-        </nav>
-    </aside>
-</div>
     <footer>
-        <ul class="footer-list">
-            <li><a href="#top">ページトップへ</a></li>
-            <li><a href="">基本タグページへ</a></li>
-        </ul>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
     </footer>
-<script src="index.js"></script>    
+    
+    <script src="index.js"></script>
 </body>
 </html>
