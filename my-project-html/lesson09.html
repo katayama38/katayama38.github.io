@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTML内でのコメントの書き方をまとめて紹介します。">
+    <meta name="keywords" content="HTML, コメント, 書き方">
+    <title>HTML内でのコメントの書き方</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>HTML内でのコメントの書き方</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">基本的なコメント</h2>
+            <p>HTMLでは、コメントを作成するには、<code>&lt;!-- コメント内容 --&gt;</code>という形式を使用します。</p>
+            <pre id="code1">
+&lt;!-- これはコメントです --&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">コメントの用途</h2>
+            <p>コメントは、コードの説明やメモを残すために使用します。これにより、他の開発者が理解しやすくなります。</p>
+            <pre id="code2">
+&lt;!-- この部分はレイアウトに関する情報です --&gt;
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">コメントの注意点</h2>
+            <p>コメントはブラウザに表示されませんが、ソースコードを確認することで誰でも見えるため、機密情報を含めないように注意が必要です。</p>
+            <pre id="code3">
+&lt;!-- 注意: 機密情報はここに書かないでください --&gt;
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">まとめ</h2>
+            <p>HTML内でのコメントを活用することで、コードの可読性が向上し、チームでの開発が円滑になります。</p>
+        </main>
+
+        <aside>
+            <h2>目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">基本的なコメント</a></li>
+                    <li><a href="#section2">コメントの用途</a></li>
+                    <li><a href="#section3">コメントの注意点</a></li>
+                    <li><a href="#section4">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson10.html">次のページへ</a></li>
+                    <li><a href="lesson08.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="セマンティックHTMLの重要性をまとめて紹介します。">
+    <meta name="keywords" content="HTML, セマンティック, header, footer, article, section">
+    <title>セマンティックHTMLの重要性</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>セマンティックHTMLの重要性</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">セマンティックHTMLとは</h2>
+            <p>セマンティックHTMLは、HTML要素を使用してコンテンツの意味を明確にする方法です。これにより、検索エンジンやアクセシビリティツールがコンテンツを理解しやすくなります。</p>
+            <pre id="code1">&lt;article&gt;...&lt;/article&gt;</pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+            
+            <h2 id="section2">主要な要素</h2>
+            <p>セマンティックHTMLには、以下のような主要な要素があります:</p>
+            <ul>
+                <li><code>&lt;header&gt;</code>: ページやセクションのヘッダーを定義します。</li>
+                <li><code>&lt;footer&gt;</code>: ページやセクションのフッターを定義します。</li>
+                <li><code>&lt;article&gt;</code>: 自立したコンテンツの単位を定義します。</li>
+                <li><code>&lt;section&gt;</code>: 文書のセクションを定義します。</li>
+            </ul>
+            <pre id="code2">&lt;section&gt;<br>    &lt;header&gt;セクションタイトル&lt;/header&gt;<br>    &lt;p&gt;このセクションの内容です。&lt;/p&gt;<br>&lt;/section&gt;</pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">SEOへの影響</h2>
+            <p>セマンティックHTMLを使用することで、SEO（検索エンジン最適化）が向上します。検索エンジンは、セマンティックな要素を理解することで、コンテンツの重要性を判断しやすくなります。</p>
+            <pre id="code3">&lt;footer&gt;著作権情報などを含むフッター内容&lt;/footer&gt;</pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">まとめ</h2>
+            <p>セマンティックHTMLを使用することで、コードの可読性が向上し、SEOやアクセシビリティに良い影響を与えます。</p>
+        </main>
+
+        <aside>
+            <h2>目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">セマンティックHTMLとは</a></li>
+                    <li><a href="#section2">主要な要素</a></li>
+                    <li><a href="#section3">SEOへの影響</a></li>
+                    <li><a href="#section4">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson11.html">次のページへ</a></li>
+                    <li><a href="lesson09.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

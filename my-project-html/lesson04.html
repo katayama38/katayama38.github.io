@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTMLのリストの作成方法をまとめて紹介します。">
+    <meta name="keywords" content="HTML, リスト, 作成方法">
+    <title>HTMLリストの作成方法</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>HTMLリストの作成方法</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">順不同リスト</h2>
+            <p>順不同リストは、<code>&lt;ul&gt;</code>タグを使用して作成します。各項目は<code>&lt;li&gt;</code>タグで囲みます。</p>
+            <pre id="code1">
+&lt;ul&gt;
+    &lt;li&gt;りんご&lt;/li&gt;
+    &lt;li&gt;バナナ&lt;/li&gt;
+    &lt;li&gt;オレンジ&lt;/li&gt;
+&lt;/ul&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">順序付きリスト</h2>
+            <p>順序付きリストは、<code>&lt;ol&gt;</code>タグを使用して作成します。こちらも項目は<code>&lt;li&gt;</code>タグで囲みます。</p>
+            <pre id="code2">
+&lt;ol&gt;
+    &lt;li&gt;第一位&lt;/li&gt;
+    &lt;li&gt;第二位&lt;/li&gt;
+    &lt;li&gt;第三位&lt;/li&gt;
+&lt;/ol&gt;
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">入れ子リスト</h2>
+            <p>リストは入れ子にすることもできます。<code>&lt;ul&gt;</code>や<code>&lt;ol&gt;</code>の中に別のリストを含めることができます。</p>
+            <pre id="code3">
+&lt;ul&gt;
+    &lt;li&gt;果物
+        &lt;ul&gt;
+            &lt;li&gt;りんご&lt;/li&gt;
+            &lt;li&gt;バナナ&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;野菜
+        &lt;ol&gt;
+            &lt;li&gt;人参&lt;/li&gt;
+            &lt;li&gt;トマト&lt;/li&gt;
+        &lt;/ol&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">まとめ</h2>
+            <p>リストを正しく使うことで、情報を整理して視覚的にわかりやすく表示できます。</p>
+        </main>
+
+        <aside>
+            <h2>目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">順不同リスト</a></li>
+                    <li><a href="#section2">順序付きリスト</a></li>
+                    <li><a href="#section3">入れ子リスト</a></li>
+                    <li><a href="#section4">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson05.html">次のページへ</a></li>
+                    <li><a href="lesson03.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>
