@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="アクセシビリティにおけるARIA属性やaltテキストの重要性について説明します。">
+    <meta name="keywords" content="HTML, アクセシビリティ, ARIA, altテキスト, ウェブ">
+    <title>アクセシビリティの考慮: ARIA属性とaltテキストの重要性</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>アクセシビリティの考慮: ARIA属性とaltテキストの重要性</h1>
+        <nav>
+            <ul id="breadcrumbs">
+                <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                <li>現在のページ</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">ARIA属性とは</h2>
+            <p>ARIA（Accessible Rich Internet Applications）属性は、特に視覚障害者向けにウェブコンテンツのアクセシビリティを向上させるための属性です。これにより、スクリーンリーダーなどの支援技術がコンテンツを正しく理解できるようになります。</p>
+            <pre id="code1">
+&lt;div role="alert"&gt;これは警告メッセージです。&lt;/div&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">altテキストの重要性</h2>
+            <p>画像に対しては、<code>alt</code>属性を使用することで、視覚障害者が画像の内容を理解できるようにすることが重要です。適切なaltテキストは、画像の情報を正確に伝えます。</p>
+            <pre id="code2">
+&lt;img src="image.jpg" alt="説明文"&gt;
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">実装例と注意点</h2>
+            <p>ARIA属性やaltテキストを適切に実装することで、ウェブサイトのアクセシビリティが向上します。特に、重要な情報を持つ画像やインターフェース要素には、これらの属性を忘れずに追加しましょう。</p>
+            <pre id="code3">
+&lt;img src="logo.png" alt="会社のロゴ"&gt;
+&lt;button aria-label="閉じる"&gt;×&lt;/button&gt;
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">まとめ</h2>
+            <p>ARIA属性やaltテキストの使用は、すべてのユーザーがウェブコンテンツを利用できるようにするために非常に重要です。アクセシビリティを考慮することで、より良いウェブ体験を提供できます。</p>
+        </main>
+
+        <aside>
+            <h2>目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">ARIA属性とは</a></li>
+                    <li><a href="#section2">altテキストの重要性</a></li>
+                    <li><a href="#section3">実装例と注意点</a></li>
+                    <li><a href="lesson15.html">次のページへ</a></li>
+                    <li><a href="lesson13.html">前のページへ</a></li>
+                    <li><a href="#">ページのトップへ</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

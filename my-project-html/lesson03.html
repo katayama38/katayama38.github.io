@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTMLの属性の使い方をまとめて紹介します。">
+    <meta name="keywords" content="HTML, 属性, 使い方">
+    <title>HTML属性の使い方</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>HTML属性の使い方</h1>
+        <nav>
+            <ul id="breadcrumbs">
+                <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                <li>現在のページ</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">基本属性</h2>
+            <p>HTMLの要素には、さまざまな属性を追加することができます。一般的な属性には、<code>id</code>、<code>class</code>、<code>style</code>があります。</p>
+            <pre id="code1">
+&lt;div id="unique"&gt;この要素はユニークなIDを持っています。&lt;/div&gt;
+&lt;p class="highlight"&gt;この段落は特定のクラスを持っています。&lt;/p&gt;
+&lt;p style="color: red;"&gt;この段落は赤色で表示されます。&lt;/p&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">リンク属性</h2>
+            <p>リンクを作成するためには、<code>&lt;a&gt;</code>タグを使用します。<code>href</code>属性を使ってリンク先を指定します。</p>
+            <pre id="code2">
+&lt;a href="https://www.example.com" target="_blank"&gt;こちらをクリック&lt;/a&gt;で新しいタブで開きます。
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">画像属性</h2>
+            <p>画像を表示するためには、<code>&lt;img&gt;</code>タグを使用します。<code>src</code>属性で画像のURLを、<code>alt</code>属性で代替テキストを指定します。</p>
+            <pre id="code3">
+&lt;img src="https://via.placeholder.com/150" alt="サンプル画像"&gt;
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">フォーム属性</h2>
+            <p>フォーム要素には、さまざまな属性を設定できます。例えば、<code>action</code>や<code>method</code>などがあります。</p>
+            <pre id="code4">
+&lt;form action="submit.php" method="post"&gt;
+    &lt;input type="text" name="username" required&gt;
+    &lt;input type="submit" value="送信"&gt;
+&lt;/form&gt;
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">まとめ</h2>
+            <p>HTMLの属性を正しく使用することで、要素の動作やスタイルを制御し、ウェブページの機能性を向上させることができます。</p>
+        </main>
+
+        <aside>
+            <h2>目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">基本属性</a></li>
+                    <li><a href="#section2">リンク属性</a></li>
+                    <li><a href="#section3">画像属性</a></li>
+                    <li><a href="#section4">フォーム属性</a></li>
+                    <li><a href="lesson04.html">次のページへ</a></li>
+                    <li><a href="lesson02.html">前のページへ</a></li>
+                    <li><a href="#">ページのトップへ</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

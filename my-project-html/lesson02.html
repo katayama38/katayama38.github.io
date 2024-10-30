@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTMLの基本タグの使い方をまとめて紹介します。">
+    <meta name="keywords" content="HTML, 基本タグ, 使い方">
+    <title>HTML基本タグの使い方</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>HTML基本タグの使い方</h1>
+        <nav>
+            <ul id="breadcrumbs">
+                <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                <li>現在のページ</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">見出しタグ</h2>
+            <p>HTMLでは、見出しを表すために&lt;h1&gt;から&lt;h6&gt;までのタグを使用します。&lt;h1&gt;が最も重要で、&lt;h6&gt;が最も低い重要度を示します。</p>
+            <pre id="code1">
+&lt;h1&gt;主見出し&lt;/h1&gt;
+&lt;h2&gt;副見出し&lt;/h2&gt;
+&lt;h3&gt;小見出し&lt;/h3&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">段落タグ</h2>
+            <p>段落は&lt;p&gt;タグで囲むことで作成します。このタグは、テキストを段落ごとに区切るために使用します。</p>
+            <pre id="code2">
+&lt;p&gt;これは1つ目の段落です。&lt;/p&gt;
+&lt;p&gt;これは2つ目の段落です。&lt;/p&gt;
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">リストタグ</h2>
+            <p>リストは順序付きリスト（&lt;ol&gt;）と順不同リスト（&lt;ul&gt;）を使って作成します。リスト項目は&lt;li&gt;タグで囲みます。</p>
+            <pre id="code3">
+&lt;ul&gt;
+    &lt;li&gt;りんご&lt;/li&gt;
+    &lt;li&gt;バナナ&lt;/li&gt;
+    &lt;li&gt;オレンジ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;第一位&lt;/li&gt;
+    &lt;li&gt;第二位&lt;/li&gt;
+    &lt;li&gt;第三位&lt;/li&gt;
+&lt;/ol&gt;
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">テーブルタグ</h2>
+            <p>テーブルは&lt;table&gt;タグを使用して作成し、行は&lt;tr&gt;、ヘッダーは&lt;th&gt;、データは&lt;td&gt;タグで定義します。</p>
+            <pre id="code4">
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;名前&lt;/th&gt;
+        &lt;th&gt;年齢&lt;/th&gt;
+        &lt;th&gt;職業&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;佐藤太郎&lt;/td&gt;
+        &lt;td&gt;30&lt;/td&gt;
+        &lt;td&gt;エンジニア&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;鈴木花子&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+        &lt;td&gt;デザイナー&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section5">まとめ</h2>
+            <p>これらの基本的なHTMLタグを理解することで、ウェブページの構築がスムーズになります。</p>
+        </main>
+
+        <aside>
+            <h2>目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">見出しタグ</a></li>
+                    <li><a href="#section2">段落タグ</a></li>
+                    <li><a href="#section3">リストタグ</a></li>
+                    <li><a href="#section4">テーブルタグ</a></li>
+                    <li><a href="lesson03.html">次のページへ</a></li>
+                    <li><a href="lesson01.html">前のページへ</a></li>
+                    <li><a href="#">ページのトップへ</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTML5の新機能canvas、video、audioについて説明します。">
+    <meta name="keywords" content="HTML5, canvas, video, audio, 新機能">
+    <title>HTML5の新機能: canvas、video、audioの使い方</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>HTML5の新機能: canvas、video、audioの使い方</h1>
+        <nav>
+            <ul id="breadcrumbs">
+                <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                <li>現在のページ</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">canvas要素とは</h2>
+            <p>canvas要素は、動的なグラフィックスを描画するためのHTML5の要素です。JavaScriptを使用して、図形や画像を描画できます。</p>
+            <pre id="code1">
+&lt;canvas id="myCanvas" width="200" height="100"&gt;&lt;/canvas&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1')">コードをコピー</button>
+            <p>JavaScriptを使って、canvasに図形を描画する例:</p>
+            <pre id="code4">
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
+ctx.fillStyle = 'red';
+ctx.fillRect(0, 0, 200, 100);
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section2">video要素の使い方</h2>
+            <p>video要素を使用すると、ウェブページに動画を埋め込むことができます。複数のソース形式を指定することで、互換性を持たせることが可能です。</p>
+            <pre id="code2">
+&lt;video width="320" height="240" controls&gt;
+    &lt;source src="movie.mp4" type="video/mp4"&gt;
+    &lt;source src="movie.ogg" type="video/ogg"&gt;
+    このブラウザは動画に対応していません。
+&lt;/video&gt;
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section3">audio要素の使い方</h2>
+            <p>audio要素を使用すると、音声ファイルをウェブページに埋め込むことができます。これも複数のソース形式を指定することで、さまざまなブラウザでの互換性が向上します。</p>
+            <pre id="code3">
+&lt;audio controls&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+    &lt;source src="audio.ogg" type="audio/ogg"&gt;
+    このブラウザは音声に対応していません。
+&lt;/audio&gt;
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section4">まとめ</h2>
+            <p>HTML5のcanvas、video、audio要素を使用することで、よりリッチなインタラクティブコンテンツをウェブページに組み込むことが可能です。</p>
+        </main>
+
+        <aside>
+            <h2>目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">canvas要素とは</a></li>
+                    <li><a href="#section2">video要素の使い方</a></li>
+                    <li><a href="#section3">audio要素の使い方</a></li>
+                    <li><a href="lesson01.html">次のページへ</a></li>
+                    <li><a href="lesson14.html">前のページへ</a></li>
+                    <li><a href="#">ページのトップへ</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>
