@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="エラーハンドリングについて説明します。">
+    <meta name="keywords" content="Java, エラーハンドリング, 例外処理, Web, プログラミング, 基礎">
+    <title>エラーハンドリングの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>エラーハンドリングの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">エラーハンドリングの概要</h2>
+            <p>エラーハンドリングは、プログラムの実行中に発生するエラーを処理するための手法です。</p>
+
+            <h2 id="section2">例外とは</h2>
+            <p>例外は、プログラムの実行中に発生する異常な状況を表します。Javaでは、<code>Throwable</code> クラスから派生するオブジェクトとして表現されます。</p>
+
+            <h2 id="section3">例外の捕捉</h2>
+            <p>例外を捕捉するには、<code>try-catch</code> 文を使用します。</p>
+            <pre id="code1">
+try {
+    // 例外が発生する可能性のあるコード
+} catch (Exception e) {
+    // 例外が発生した場合の処理
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section4">複数の例外の捕捉</h2>
+            <p>異なる種類の例外を捕捉するには、複数の <code>catch</code> ブロックを使用します。</p>
+            <pre id="code2">
+try {
+    // コード
+} catch (IOException e) {
+    // IO例外の処理
+} catch (SQLException e) {
+    // SQL例外の処理
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section5">例外の再スロー</h2>
+            <p>捕捉した例外を再スローするには、<code>throw</code> 文を使用します。</p>
+            <pre id="code3">
+catch (Exception e) {
+    throw e; // 再スロー
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section6">カスタム例外の作成</h2>
+            <p>独自の例外クラスを作成するには、<code>Exception</code> クラスを継承します。</p>
+            <pre id="code4">
+public class MyException extends Exception {
+    public MyException(String message) {
+        super(message);
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section7">finallyブロックの使用</h2>
+            <p>例外の有無にかかわらず、必ず実行したいコードは <code>finally</code> ブロックに書きます。</p>
+            <pre id="code5">
+try {
+    // コード
+} catch (Exception e) {
+    // 例外処理
+} finally {
+    // 常に実行されるコード
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section8">まとめ</h2>
+            <p>エラーハンドリングを適切に行うことで、プログラムの信頼性が向上し、予期しない状況に対処できるようになります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">エラーハンドリングの概要</a></li>
+                    <li><a href="#section2">例外とは</a></li>
+                    <li><a href="#section3">例外の捕捉</a></li>
+                    <li><a href="#section4">複数の例外の捕捉</a></li>
+                    <li><a href="#section5">例外の再スロー</a></li>
+                    <li><a href="#section6">カスタム例外の作成</a></li>
+                    <li><a href="#section7">finallyブロックの使用</a></li>
+                    <li><a href="#section8">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson11.html">次のページへ</a></li>
+                    <li><a href="lesson09.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

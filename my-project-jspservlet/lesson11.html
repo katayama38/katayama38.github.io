@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="フィルターの利用について説明します。">
+    <meta name="keywords" content="Java, フィルター, Servlet, Web, プログラミング, 基礎">
+    <title>フィルターの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>フィルターの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">フィルターの概要</h2>
+            <p>フィルターは、リクエストやレスポンスを処理するためのオブジェクトです。主にログ記録、認証、圧縮などに利用されます。</p>
+
+            <h2 id="section2">フィルターの実装</h2>
+            <p>フィルターを実装するには、<code>javax.servlet.Filter</code> インターフェースを実装します。</p>
+            <pre id="code1">
+import javax.servlet.*;
+import java.io.IOException;
+
+public class MyFilter implements Filter {
+    public void init(FilterConfig filterConfig) throws ServletException {}
+
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        // フィルタリング処理
+        chain.doFilter(request, response); // 次のフィルターまたはリソースへ
+    }
+
+    public void destroy() {}
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">フィルターの登録</h2>
+            <p>フィルターをWebアプリケーションに登録するには、<code>web.xml</code> に設定を追加します。</p>
+            <pre id="code2">
+&lt;filter>
+    &lt;filter-name&gt;MyFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;com.example.MyFilter&lt;/filter-class&gt;
+&lt;/filter&gt;
+&lt;filter-mapping&gt;
+    &lt;filter-name>MyFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">リクエストの前処理</h2>
+            <p>フィルターでリクエストを処理する際には、<code>doFilter</code> メソッド内で適切な処理を行います。</p>
+            <pre id="code3">
+public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+        throws IOException, ServletException {
+    HttpServletRequest httpRequest = (HttpServletRequest) request;
+    System.out.println("リクエストURI: " + httpRequest.getRequestURI());
+    chain.doFilter(request, response);
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">レスポンスの後処理</h2>
+            <p>レスポンスを変更するためにも、<code>doFilter</code> メソッドを利用できます。</p>
+            <pre id="code4">
+public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+        throws IOException, ServletException {
+    chain.doFilter(request, response);
+    HttpServletResponse httpResponse = (HttpServletResponse) response;
+    httpResponse.setHeader("X-Filtered-By", "MyFilter");
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section6">フィルターのチェーン</h2>
+            <p>複数のフィルターを連携させることで、リクエストやレスポンスを段階的に処理できます。</p>
+            <pre id="code5">
+chain.doFilter(request, response); // 次のフィルターを呼び出す
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section7">フィルターのライフサイクル</h2>
+            <p>フィルターは、<code>init()</code> メソッドで初期化され、リクエストごとに <code>doFilter()</code> が呼び出され、<code>destroy()</code> メソッドで終了処理が行われます。</p>
+
+            <h2 id="section8">まとめ</h2>
+            <p>フィルターを適切に利用することで、リクエストとレスポンスの処理を柔軟にカスタマイズできます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">フィルターの概要</a></li>
+                    <li><a href="#section2">フィルターの実装</a></li>
+                    <li><a href="#section3">フィルターの登録</a></li>
+                    <li><a href="#section4">リクエストの前処理</a></li>
+                    <li><a href="#section5">レスポンスの後処理</a></li>
+                    <li><a href="#section6">フィルターのチェーン</a></li>
+                    <li><a href="#section7">フィルターのライフサイクル</a></li>
+                    <li><a href="#section8">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson12.html">次のページへ</a></li>
+                    <li><a href="lesson10.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaServer Pages (JSP) の基本について説明します。">
+    <meta name="keywords" content="Java, JSP, Web, プログラミング, 基礎">
+    <title>JavaServer Pages (JSP) の基本の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaServer Pages (JSP) の基本の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">JSPの概要</h2>
+            <p>JavaServer Pages (JSP) は、サーバーサイドで実行されるWeb技術で、動的なWebページを作成するために使用されます。</p>
+
+            <h2 id="section2">JSPの基本構文</h2>
+            <p>JSPはHTMLにJavaコードを埋め込む形で記述され、<code>jsp</code>ファイルとして保存されます。</p>
+            <pre id="code1">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+&lt;html&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to JSP!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">リクエスト処理</h2>
+            <p>JSPは、クライアントからのリクエストを処理するための簡単な方法を提供します。リクエストパラメータの取得などが可能です。</p>
+            <pre id="code2">
+&lt;%
+    String name = request.getParameter("name");
+    out.println("Hello, " + name + "!");
+%&gt;
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">スクリプトレットの使用</h2>
+            <p>JSPでは、<code>&lt;% %&gt;</code>内にJavaコードを記述することで、動的なコンテンツを生成できます。</p>
+            <pre id="code3">
+&lt;%
+    int count = 10;
+    for (int i = 0; i < count; i++) {
+        out.println("&lt;p&gt;カウント: " + i + "&lt;/p&gt;");
+    }
+%&gt;
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">JSTL（JSP Standard Tag Library）</h2>
+            <p>JSTLを使用することで、JSP内でタグを使って簡潔に処理を行うことができます。</p>
+            <pre id="code4">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+&lt;c:if test="${not empty param.name}"&gt;
+    &lt;p&gt;, ${param.name}!&lt;/p&gt;
+&lt;/c:if&gt;
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section6">JSPのライフサイクル</h2>
+            <p>JSPは、リクエストの受信、スクリプトの実行、レスポンスの生成というライフサイクルを持っています。</p>
+            <img src="jsp_lifecycle.png" alt="JSPのライフサイクル図" />
+
+            <h2 id="section7">まとめ</h2>
+            <p>JSPを理解することで、動的なWebアプリケーションの開発が可能になります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">JSPの概要</a></li>
+                    <li><a href="#section2">JSPの基本構文</a></li>
+                    <li><a href="#section3">リクエスト処理</a></li>
+                    <li><a href="#section4">スクリプトレットの使用</a></li>
+                    <li><a href="#section5">JSTL（JSP Standard Tag Library）</a></li>
+                    <li><a href="#section6">JSPのライフサイクル</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson05.html">次のページへ</a></li>
+                    <li><a href="lesson03.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JSPとServletの連携について説明します。">
+    <meta name="keywords" content="Java, JSP, Servlet, Web, プログラミング, 基礎">
+    <title>JSPとServletの連携の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JSPとServletの連携の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">JSPとServletの役割</h2>
+            <p>Servletはサーバーサイドでビジネスロジックを処理し、JSPはユーザーインターフェースを生成します。これにより、役割を分離し、メンテナンス性を向上させます。</p>
+
+            <h2 id="section2">リクエストの流れ</h2>
+            <p>クライアントからのリクエストはServletに届き、処理された結果がJSPに渡されてレスポンスが生成されます。</p>
+            <pre id="code1">
+// Servletの例
+@WebServlet("/process")
+public class MyServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String name = request.getParameter("name");
+        request.setAttribute("name", name);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
+        dispatcher.forward(request, response);
+    }
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">データの受け渡し</h2>
+            <p>ServletからJSPにデータを渡すには、リクエストスコープを使用します。<code>setAttribute()</code>メソッドでデータを設定し、JSPで<code>getAttribute()</code>メソッドで取得します。</p>
+            <pre id="code2">
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+&lt;html&gt;
+&lt;body&gt;
+    &lt;h1&gt;こんにちは、 ${requestScope.name}さん！&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">エラーハンドリング</h2>
+            <p>Servlet内でエラーが発生した場合、エラーページをJSPとして指定できます。<code>web.xml</code>で設定を行います。</p>
+            <pre id="code3">
+&lt;error-page&gt;
+    &lt;exception-type>java.lang.Exception&lt;/exception-type&gt;
+    &lt;location&gt;/error.jsp&lt;/location&gt;
+&lt;/error-page&gt;
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">フォームデータの処理</h2>
+            <p>JSPはHTMLフォームからのデータを受け取り、Servletに送信することができます。フォームの<code>action</code>属性にServletのURLを指定します。</p>
+            <pre id="code4">
+&lt;form action="process" method="post"&gt;
+    名前: &lt;input type="text" name="name" /&gt;
+    &lt;input type="submit" value="送信" /&gt;
+&lt;/form&gt;
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section6">まとめ</h2>
+            <p>JSPとServletの連携を理解することで、動的なWebアプリケーションを効率的に開発できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">JSPとServletの役割</a></li>
+                    <li><a href="#section2">リクエストの流れ</a></li>
+                    <li><a href="#section3">データの受け渡し</a></li>
+                    <li><a href="#section4">エラーハンドリング</a></li>
+                    <li><a href="#section5">フォームデータの処理</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson06.html">次のページへ</a></li>
+                    <li><a href="lesson04.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

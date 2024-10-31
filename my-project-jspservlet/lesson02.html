@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Java Servletのライフサイクルについて説明します。">
+    <meta name="keywords" content="Java, Servlet, ライフサイクル, プログラミング, 基礎">
+    <title>Java Servletのライフサイクルの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Java Servletのライフサイクルの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">Servletのライフサイクルの概要</h2>
+            <p>Servletのライフサイクルは、初期化、リクエスト処理、破棄の3つの主要なフェーズで構成されています。</p>
+
+            <h2 id="section2">初期化フェーズ</h2>
+            <p>Servletが最初に呼び出されるとき、<code>init()</code>メソッドが呼び出され、リソースの初期化を行います。</p>
+            <pre id="code1">
+/* 初期化メソッドの例 */
+public class InitExampleServlet extends HttpServlet {
+    public void init() throws ServletException {
+        // リソースの初期化処理
+        System.out.println("Servletが初期化されました。");
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">リクエスト処理フェーズ</h2>
+            <p>クライアントからのリクエストを受け取ると、<code>doGet()</code>または<code>doPost()</code>メソッドが呼び出されます。</p>
+            <pre id="code2">
+/* リクエスト処理メソッドの例 */
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    response.setContentType("text/html");
+    PrintWriter out = response.getWriter();
+    out.println("&lt;h1&gt;リクエストが処理されました。&lt;/h1&gt;");
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">破棄フェーズ</h2>
+            <p>Servletが破棄される前に、<code>destroy()</code>メソッドが呼ばれ、リソースの解放などの後処理を行います。</p>
+            <pre id="code3">
+/* 破棄メソッドの例 */
+public class DestroyExampleServlet extends HttpServlet {
+    public void destroy() {
+        // リソースの解放処理
+        System.out.println("Servletが破棄されました。");
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">ライフサイクルの図解</h2>
+            <p>Servletのライフサイクルを視覚的に理解するために、以下の図を参照してください。</p>
+            <img src="lifecycle_diagram.png" alt="Servletライフサイクル図" />
+
+            <h2 id="section6">初期化時の設定</h2>
+            <p>初期化時に設定する必要があるパラメータは、<code>web.xml</code>で指定できます。</p>
+            <pre id="code4">
+<!-- web.xmlの例 -->
+&lt;servlet>
+    &lt;servlet-name&gt;ExampleServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.example.ExampleServlet&lt;/servlet-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;paramName&lt;/param-name&gt;
+        &lt;param-value&gt;paramValue&lt;/param-value&gt;
+    &lt;/init-param&gt;
+&lt;/servlet&gt;
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>Servletのライフサイクルを理解することで、効率的なWebアプリケーションの開発が可能になります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">Servletのライフサイクルの概要</a></li>
+                    <li><a href="#section2">初期化フェーズ</a></li>
+                    <li><a href="#section3">リクエスト処理フェーズ</a></li>
+                    <li><a href="#section4">破棄フェーズ</a></li>
+                    <li><a href="#section5">ライフサイクルの図解</a></li>
+                    <li><a href="#section6">初期化時の設定</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson03.html">次のページへ</a></li>
+                    <li><a href="lesson01.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

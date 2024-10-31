@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="データベースとの接続について説明します。">
+    <meta name="keywords" content="Java, JDBC, データベース, Web, プログラミング, 基礎">
+    <title>データベースとの接続の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>データベースとの接続の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">データベース接続の概要</h2>
+            <p>JDBC（Java Database Connectivity）は、Javaアプリケーションからデータベースに接続するためのAPIです。</p>
+
+            <h2 id="section2">JDBCドライバの読み込み</h2>
+            <p>JDBCドライバを読み込むには、<code>Class.forName()</code> メソッドを使用します。</p>
+            <pre id="code1">
+Class.forName("com.mysql.cj.jdbc.Driver");
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">データベースへの接続</h2>
+            <p>データベースに接続するには、<code>DriverManager.getConnection()</code> メソッドを使用します。</p>
+            <pre id="code2">
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbname", "username", "password");
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">SQLクエリの実行</h2>
+            <p>SQLクエリを実行するには、<code>Statement</code> オブジェクトを使用します。</p>
+            <pre id="code3">
+Statement stmt = conn.createStatement();
+ResultSet rs = stmt.executeQuery("SELECT * FROM users");
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">データの取得</h2>
+            <p>結果セットからデータを取得するには、<code>ResultSet</code> オブジェクトを使用します。</p>
+            <pre id="code4">
+while (rs.next()) {
+    String name = rs.getString("name");
+    System.out.println("名前: " + name);
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section6">エラーハンドリング</h2>
+            <p>接続やクエリの実行時に例外が発生する可能性があります。例外処理を行いましょう。</p>
+            <pre id="code5">
+try {
+    // DB接続やクエリの実行
+} catch (SQLException e) {
+    e.printStackTrace();
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section7">接続のクローズ</h2>
+            <p>使用が終わったら、接続を閉じることを忘れずに。</p>
+            <pre id="code6">
+if (conn != null) {
+    conn.close();
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section8">まとめ</h2>
+            <p>JDBCを使ってデータベースに接続することで、データの操作が可能になります。適切なエラーハンドリングを行いましょう。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">データベース接続の概要</a></li>
+                    <li><a href="#section2">JDBCドライバの読み込み</a></li>
+                    <li><a href="#section3">データベースへの接続</a></li>
+                    <li><a href="#section4">SQLクエリの実行</a></li>
+                    <li><a href="#section5">データの取得</a></li>
+                    <li><a href="#section6">エラーハンドリング</a></li>
+                    <li><a href="#section7">接続のクローズ</a></li>
+                    <li><a href="#section8">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson09.html">次のページへ</a></li>
+                    <li><a href="lesson07.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

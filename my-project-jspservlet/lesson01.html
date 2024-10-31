@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Java Servletについて説明します。">
+    <meta name="keywords" content="Java, Servlet, プログラミング, 基礎">
+    <title>Java Servletの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Java Servletの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">Servletの定義</h2>
+            <p>Servletは、Javaで作られたサーバーサイドのプログラムです。Webアプリケーションのリクエストを処理するために使用されます。</p>
+
+            <h2 id="section2">Servletの構成</h2>
+            <p>Servletは主に次の2つのインターフェースを実装します：<code>javax.servlet.Servlet</code>と<code>javax.servlet.http.HttpServlet</code>。</p>
+            <pre id="code1">
+/* 基本的なServletの構成 */
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+
+public class HelloServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("&lt;h1&gt;Hello, Servlet!&lt;/h1&gt;");
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">Servletのライフサイクル</h2>
+            <p>Servletは、初期化、リクエスト処理、破棄の3つのフェーズでライフサイクルが管理されます。</p>
+            <pre id="code2">
+/* Servletのライフサイクルメソッド */
+public class LifecycleServlet extends HttpServlet {
+    public void init() throws ServletException {
+        // 初期化処理
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // リクエスト処理
+    }
+
+    public void destroy() {
+        // 後処理
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">リクエストとレスポンス</h2>
+            <p>Servletは、クライアントからのリクエストを受け取り、適切なレスポンスを返します。</p>
+            <pre id="code3">
+/* リクエストとレスポンスの処理 */
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    String name = request.getParameter("name");
+    response.setContentType("text/html");
+    PrintWriter out = response.getWriter();
+    out.println("&lt;h1&gt;Hello, " + name + "!&lt;/h1&gt;");
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">Web.xmlによる設定</h2>
+            <p>Servletの設定は、<code>web.xml</code>ファイルで行います。</p>
+            <pre id="code4">
+<!-- web.xmlの例 -->
+&lt;servlet&gt;
+    &lt;servlet-name&gt;HelloServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;HelloServlet&lt;/servlet-class&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;HelloServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/hello&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section6">エラーハンドリング</h2>
+            <p>Servletでは、エラーを適切に処理するためのメカニズムが必要です。</p>
+            <pre id="code5">
+/* エラーハンドリング */
+public class ErrorHandlingServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            // エラーを発生させる処理
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>Java Servletを理解することで、Webアプリケーションの開発がより効果的になります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">Servletの定義</a></li>
+                    <li><a href="#section2">Servletの構成</a></li>
+                    <li><a href="#section3">Servletのライフサイクル</a></li>
+                    <li><a href="#section4">リクエストとレスポンス</a></li>
+                    <li><a href="#section5">Web.xmlによる設定</a></li>
+                    <li><a href="#section6">エラーハンドリング</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson02.html">次のページへ</a></li>
+                    <li><a href="lesson15.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Webアプリケーションのデプロイについて説明します。">
+    <meta name="keywords" content="Java, デプロイ, Servlet, Web, プログラミング, 基礎">
+    <title>Webアプリケーションのデプロイ</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Webアプリケーションのデプロイ</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">デプロイの概要</h2>
+            <p>デプロイとは、開発したWebアプリケーションをサーバーに配置し、実行可能な状態にするプロセスです。</p>
+
+            <h2 id="section2">デプロイメントの種類</h2>
+            <p>デプロイには、次のような方法があります。</p>
+            <ul>
+                <li>手動デプロイ</li>
+                <li>自動デプロイ</li>
+                <li>クラウドデプロイ</li>
+            </ul>
+
+            <h2 id="section3">手動デプロイの手順</h2>
+            <p>手動デプロイでは、次の手順でアプリケーションをサーバーに配置します。</p>
+            <pre id="code1">
+1. WARファイルの生成
+2. アプリケーションサーバーにWARファイルをアップロード
+3. サーバーを再起動またはアプリケーションを再展開
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section4">自動デプロイの設定</h2>
+            <p>自動デプロイは、CI/CDツールを使用して行います。代表的なツールには、JenkinsやGitLab CIがあります。</p>
+            <pre id="code2">
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'scp target/myapp.war user@server:/path/to/deploy'
+            }
+        }
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section5">クラウドへのデプロイ</h2>
+            <p>クラウドプロバイダー（AWS、Azure、GCPなど）を利用したデプロイ方法もあります。ここではAWSの例を紹介します。</p>
+            <pre id="code3">
+1. AWS Management Consoleにログイン
+2. Elastic Beanstalkを選択
+3. 新しいアプリケーションを作成
+4. WARファイルをアップロードしてデプロイ
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section6">デプロイ後の確認</h2>
+            <p>デプロイ後は、アプリケーションが正しく動作しているかを確認します。主なチェックポイントは次の通りです。</p>
+            <ul>
+                <li>ログファイルの確認</li>
+                <li>エンドポイントの動作確認</li>
+                <li>パフォーマンステスト</li>
+            </ul>
+
+            <h2 id="section7">まとめ</h2>
+            <p>適切なデプロイ手法を選択することで、アプリケーションの信頼性や可用性を高めることができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">デプロイの概要</a></li>
+                    <li><a href="#section2">デプロイメントの種類</a></li>
+                    <li><a href="#section3">手動デプロイの手順</a></li>
+                    <li><a href="#section4">自動デプロイの設定</a></li>
+                    <li><a href="#section5">クラウドへのデプロイ</a></li>
+                    <li><a href="#section6">デプロイ後の確認</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson14.html">次のページへ</a></li>
+                    <li><a href="lesson12.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

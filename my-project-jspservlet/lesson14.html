@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Webアプリケーションのセキュリティ対策について説明します。">
+    <meta name="keywords" content="Java, セキュリティ, Servlet, Web, プログラミング, 基礎">
+    <title>Webアプリケーションのセキュリティ対策</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Webアプリケーションのセキュリティ対策</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">セキュリティの概要</h2>
+            <p>Webアプリケーションのセキュリティとは、アプリケーションを外部の脅威から守るための技術や手法を指します。</p>
+
+            <h2 id="section2">一般的な脅威</h2>
+            <p>Webアプリケーションにおける主な脅威には、次のようなものがあります。</p>
+            <ul>
+                <li>SQLインジェクション</li>
+                <li>クロスサイトスクリプティング (XSS)</li>
+                <li>セッションハイジャック</li>
+                <li>CSRF（クロスサイトリクエストフォージェリ）</li>
+            </ul>
+
+            <h2 id="section3">セキュリティ対策の基本</h2>
+            <p>基本的なセキュリティ対策には、以下の項目が含まれます。</p>
+            <ul>
+                <li>入力データの検証</li>
+                <li>適切なエラーメッセージの表示</li>
+                <li>アクセス制御の実装</li>
+                <li>HTTPSの使用</li>
+            </ul>
+
+            <h2 id="section4">SQLインジェクション対策</h2>
+            <p>SQLインジェクションを防ぐためには、プレースホルダを使用したプリペアードステートメントを活用します。</p>
+            <pre id="code1">
+String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+PreparedStatement pstmt = connection.prepareStatement(sql);
+pstmt.setString(1, username);
+pstmt.setString(2, password);
+ResultSet rs = pstmt.executeQuery();
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section5">クロスサイトスクリプティング (XSS) 対策</h2>
+            <p>XSSを防ぐためには、出力時にHTMLエスケープを行います。</p>
+            <pre id="code2">
+String safeOutput = StringEscapeUtils.escapeHtml4(userInput);
+response.getWriter().write(safeOutput);
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section6">CSRF対策</h2>
+            <p>CSRF対策には、トークンを用いる方法が有効です。リクエストにCSRFトークンを含め、サーバー側で検証します。</p>
+            <pre id="code3">
+String csrfToken = request.getParameter("csrfToken");
+if (!isValidCsrfToken(csrfToken)) {
+    throw new ServletException("Invalid CSRF token");
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section7">セッション管理</h2>
+            <p>セッション管理を適切に行うことで、セッションハイジャックを防ぎます。セッションIDを適切に更新することが重要です。</p>
+            <pre id="code4">
+request.getSession().invalidate();
+HttpSession newSession = request.getSession(true);
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section8">まとめ</h2>
+            <p>Webアプリケーションのセキュリティは多層的な対策が必要です。脅威を理解し、適切な対策を講じることが重要です。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">セキュリティの概要</a></li>
+                    <li><a href="#section2">一般的な脅威</a></li>
+                    <li><a href="#section3">セキュリティ対策の基本</a></li>
+                    <li><a href="#section4">SQLインジェクション対策</a></li>
+                    <li><a href="#section5">クロスサイトスクリプティング (XSS) 対策</a></li>
+                    <li><a href="#section6">CSRF対策</a></li>
+                    <li><a href="#section7">セッション管理</a></li>
+                    <li><a href="#section8">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson15.html">次のページへ</a></li>
+                    <li><a href="lesson13.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

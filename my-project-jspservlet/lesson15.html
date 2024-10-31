@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RESTfulサービスの実装について説明します。">
+    <meta name="keywords" content="Java, REST, Webサービス, Servlet, プログラミング, 基礎">
+    <title>RESTfulサービスの実装</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>RESTfulサービスの実装</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">RESTの概要</h2>
+            <p>REST（Representational State Transfer）は、Webサービスを設計するためのアーキテクチャスタイルです。HTTPを使用してリソースを操作します。</p>
+
+            <h2 id="section2">RESTの原則</h2>
+            <p>RESTにはいくつかの基本的な原則があります。</p>
+            <ul>
+                <li>ステートレスな通信</li>
+                <li>リソース指向</li>
+                <li>HTTPメソッドの使用</li>
+                <li>自己記述的メッセージ</li>
+            </ul>
+
+            <h2 id="section3">HTTPメソッドの使用</h2>
+            <p>RESTfulサービスでは、主に以下のHTTPメソッドを使用します。</p>
+            <ul>
+                <li>GET：リソースの取得</li>
+                <li>POST：リソースの作成</li>
+                <li>PUT：リソースの更新</li>
+                <li>DELETE：リソースの削除</li>
+            </ul>
+
+            <h2 id="section4">RESTfulサービスの実装例</h2>
+            <p>以下は、簡単なRESTfulサービスの実装例です。</p>
+            <pre id="code1">
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+
+@Path("/users")
+public class UserService {
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> getUsers() {
+        // ユーザーのリストを返す処理
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createUser(User user) {
+        // ユーザーを作成する処理
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section5">リソースの表現</h2>
+            <p>リソースの表現は、通常JSONやXML形式で提供されます。以下はJSON形式の例です。</p>
+            <pre id="code2">
+{
+    "id": 1,
+    "name": "John Doe",
+    "email": "john.doe@example.com"
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section6">エラーハンドリング</h2>
+            <p>エラーが発生した場合は、適切なHTTPステータスコードを返します。以下はエラーレスポンスの例です。</p>
+            <pre id="code3">
+@GET
+@Path("/{id}")
+public Response getUser(@PathParam("id") int id) {
+    User user = findUserById(id);
+    if (user == null) {
+        return Response.status(Response.Status.NOT_FOUND).entity("User not found").build();
+    }
+    return Response.ok(user).build();
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section7">セキュリティ対策</h2>
+            <p>RESTfulサービスでもセキュリティは重要です。APIキーやOAuth2を使用して認証を行うことが一般的です。</p>
+
+            <h2 id="section8">まとめ</h2>
+            <p>RESTfulサービスは、シンプルで拡張性のあるAPIを提供します。HTTPの特性を活かし、リソース指向で設計することが重要です。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">RESTの概要</a></li>
+                    <li><a href="#section2">RESTの原則</a></li>
+                    <li><a href="#section3">HTTPメソッドの使用</a></li>
+                    <li><a href="#section4">RESTfulサービスの実装例</a></li>
+                    <li><a href="#section5">リソースの表現</a></li>
+                    <li><a href="#section6">エラーハンドリング</a></li>
+                    <li><a href="#section7">セキュリティ対策</a></li>
+                    <li><a href="#section8">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson01.html">次のページへ</a></li>
+                    <li><a href="lesson14.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>
