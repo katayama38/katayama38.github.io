@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaのスレッドと並行処理について説明します。">
+    <meta name="keywords" content="Java, プログラミング, スレッド, 並行処理">
+    <title>Javaのスレッドと並行処理</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaのスレッドと並行処理</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">スレッドの概要</h2>
+            <p>スレッドは、プログラム内での実行の最小単位です。Javaでは、スレッドを使用することで、並行処理が可能になります。</p>
+
+            <h2 id="section2">スレッドの作成</h2>
+            <p>Javaでは、スレッドを作成する方法が2つあります。`Thread`クラスを継承する方法と、`Runnable`インターフェイスを実装する方法です。</p>
+            <pre id="code1">
+/* Threadクラスを継承する例 */
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("スレッドが実行されています: " + Thread.currentThread().getName());
+    }
+}
+
+public class ThreadExample {
+    public static void main(String[] args) {
+        MyThread thread = new MyThread();
+        thread.start(); // スレッドを開始
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">Runnableインターフェイスの例</h2>
+            <p>Runnableインターフェイスを実装することで、スレッドを作成できます。</p>
+            <pre id="code2">
+/* Runnableインターフェイスを実装する例 */
+class MyRunnable implements Runnable {
+    public void run() {
+        System.out.println("Runnableスレッドが実行されています: " + Thread.currentThread().getName());
+    }
+}
+
+public class RunnableExample {
+    public static void main(String[] args) {
+        Thread thread = new Thread(new MyRunnable());
+        thread.start(); // スレッドを開始
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">スレッドの同期</h2>
+            <p>スレッドが共有リソースにアクセスする際、データの整合性を保つために同期が必要です。</p>
+            <pre id="code3">
+/* スレッドの同期の例 */
+class Counter {
+    private int count = 0;
+
+    public synchronized void increment() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+
+public class SynchronizationExample {
+    public static void main(String[] args) throws InterruptedException {
+        Counter counter = new Counter();
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) counter.increment();
+        });
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) counter.increment();
+        });
+        
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+        
+        System.out.println("最終カウント: " + counter.getCount());
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">スレッドプールの利用</h2>
+            <p>スレッドプールを使用することで、スレッドの管理を効率化できます。</p>
+            <pre id="code4">
+/* スレッドプールの例 */
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ThreadPoolExample {
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        for (int i = 0; i < 5; i++) {
+            final int taskId = i;
+            executor.submit(() -> {
+                System.out.println("タスク " + taskId + " が実行されています: " + Thread.currentThread().getName());
+            });
+        }
+        executor.shutdown(); // スレッドプールをシャットダウン
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section6">まとめ</h2>
+            <p>Javaのスレッドと並行処理を理解することで、効率的で応答性の高いアプリケーションを作成できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">スレッドの概要</a></li>
+                    <li><a href="#section2">スレッドの作成</a></li>
+                    <li><a href="#section3">Runnableインターフェイスの例</a></li>
+                    <li><a href="#section4">スレッドの同期</a></li>
+                    <li><a href="#section5">スレッドプールの利用</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson16.html">次のページへ</a></li>
+                    <li><a href="lesson14.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

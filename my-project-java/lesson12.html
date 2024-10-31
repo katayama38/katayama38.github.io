@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaのインターフェイスと抽象クラスについて説明します。">
+    <meta name="keywords" content="Java, プログラミング, インターフェイス, 抽象クラス">
+    <title>Javaのインターフェイスと抽象クラス</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaのインターフェイスと抽象クラス</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">インターフェイスの概要</h2>
+            <p>インターフェイスは、クラスが実装すべきメソッドの集合を定義します。インターフェイスは多重継承が可能です。</p>
+
+            <h2 id="section2">インターフェイスの例</h2>
+            <p>インターフェイスの定義とその実装を示します。</p>
+            <pre id="code1">
+/* インターフェイスの例 */
+interface Animal {
+    void sound(); // メソッドの宣言
+}
+
+class Cat implements Animal {
+    @Override
+    public void sound() {
+        System.out.println("猫が鳴いています");
+    }
+}
+
+class Dog implements Animal {
+    @Override
+    public void sound() {
+        System.out.println("犬が吠えています");
+    }
+}
+
+// 使用例
+Animal myCat = new Cat();
+myCat.sound(); // 猫の鳴き声
+
+Animal myDog = new Dog();
+myDog.sound(); // 犬の吠え声
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">抽象クラスの概要</h2>
+            <p>抽象クラスは、他のクラスが拡張するための基盤を提供します。抽象メソッドを持ち、具体的な実装はサブクラスで行います。</p>
+
+            <h2 id="section4">抽象クラスの例</h2>
+            <p>抽象クラスとそのサブクラスの実装を示します。</p>
+            <pre id="code2">
+/* 抽象クラスの例 */
+abstract class Animal {
+    abstract void sound(); // 抽象メソッド
+}
+
+class Cat extends Animal {
+    @Override
+    void sound() {
+        System.out.println("猫が鳴いています");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("犬が吠えています");
+    }
+}
+
+// 使用例
+Animal myAnimal = new Cat();
+myAnimal.sound(); // 猫の鳴き声
+
+myAnimal = new Dog();
+myAnimal.sound(); // 犬の吠え声
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section5">インターフェイスと抽象クラスの違い</h2>
+            <p>インターフェイスは複数のクラスに実装可能で、抽象クラスは単一のクラスからのみ継承できます。インターフェイスはフィールドを持たず、抽象クラスはフィールドを持つことができます。</p>
+
+            <h2 id="section6">まとめ</h2>
+            <p>インターフェイスと抽象クラスを理解することで、柔軟で再利用性の高いコードを設計できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">インターフェイスの概要</a></li>
+                    <li><a href="#section2">インターフェイスの例</a></li>
+                    <li><a href="#section3">抽象クラスの概要</a></li>
+                    <li><a href="#section4">抽象クラスの例</a></li>
+                    <li><a href="#section5">インターフェイスと抽象クラスの違い</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson13.html">次のページへ</a></li>
+                    <li><a href="lesson11.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaの配列について説明します。">
+    <meta name="keywords" content="Java, プログラミング, 配列">
+    <title>Javaの配列</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaの配列</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">配列の概要</h2>
+            <p>配列は、同じデータ型の複数の値を格納するためのデータ構造です。</p>
+
+            <h2 id="section2">配列の定義</h2>
+            <p>配列を定義する基本的な方法です。</p>
+            <pre id="code1">
+/* 配列の定義 */
+int[] numbers = new int[5]; // 整数型の配列を定義
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">配列への値の代入</h2>
+            <p>配列の各要素に値を代入する方法です。</p>
+            <pre id="code2">
+/* 配列への値の代入 */
+numbers[0] = 10;
+numbers[1] = 20;
+numbers[2] = 30;
+numbers[3] = 40;
+numbers[4] = 50;
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">配列の値の取得</h2>
+            <p>配列の特定の要素の値を取得する方法です。</p>
+            <pre id="code3">
+/* 配列の値の取得 */
+int firstNumber = numbers[0]; // firstNumberには10が格納される
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">配列のループ処理</h2>
+            <p>配列の全要素に対してループ処理を行います。</p>
+            <pre id="code4">
+/* 配列のループ処理 */
+for (int i = 0; i < numbers.length; i++) {
+    System.out.println("配列の値: " + numbers[i]);
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section6">配列の初期化</h2>
+            <p>配列を定義と同時に初期化する方法です。</p>
+            <pre id="code5">
+/* 配列の初期化 */
+int[] numbers = {10, 20, 30, 40, 50}; // 初期化と定義を同時に行う
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section7">多次元配列</h2>
+            <p>配列の中に配列を持つ多次元配列についての説明です。</p>
+            <pre id="code6">
+/* 多次元配列の定義 */
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section8">多次元配列の要素の取得</h2>
+            <p>多次元配列から特定の要素を取得する方法です。</p>
+            <pre id="code7">
+/* 多次元配列の要素の取得 */
+int value = matrix[1][2]; // valueには6が格納される
+            </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
+
+            <h2 id="section9">配列の長さ</h2>
+            <p>配列の長さを取得する方法です。</p>
+            <pre id="code8">
+/* 配列の長さを取得 */
+int length = numbers.length; // lengthには配列の要素数が格納される
+            </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
+
+            <h2 id="section10">まとめ</h2>
+            <p>Javaの配列を理解することで、データの管理がより効率的になります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">配列の概要</a></li>
+                    <li><a href="#section2">配列の定義</a></li>
+                    <li><a href="#section3">配列への値の代入</a></li>
+                    <li><a href="#section4">配列の値の取得</a></li>
+                    <li><a href="#section5">配列のループ処理</a></li>
+                    <li><a href="#section6">配列の初期化</a></li>
+                    <li><a href="#section7">多次元配列</a></li>
+                    <li><a href="#section8">多次元配列の要素の取得</a></li>
+                    <li><a href="#section9">配列の長さ</a></li>
+                    <li><a href="#section10">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson05.html">次のページへ</a></li>
+                    <li><a href="lesson03.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

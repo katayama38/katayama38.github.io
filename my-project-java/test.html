@@ -1,0 +1,21 @@
+/* クラスとオブジェクトの例 */
+public class Dog {
+    private String name; // 名前
+    private int age; // 年齢
+
+    // コンストラクタ
+    public Dog(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // メソッド
+    public void bark() {
+        System.out.println(name + "が吠えました!");
+    }
+}
+
+// オブジェクトの生成
+Dog myDog = new Dog("ポチ", 3);
+myDog.bark();
+            

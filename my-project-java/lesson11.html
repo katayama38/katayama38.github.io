@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaの継承とポリモーフィズムについて説明します。">
+    <meta name="keywords" content="Java, プログラミング, 継承, ポリモーフィズム">
+    <title>Javaの継承とポリモーフィズム</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaの継承とポリモーフィズム</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">継承の概要</h2>
+            <p>継承は、既存のクラスを基に新しいクラスを作成するためのメカニズムです。親クラスの特性を子クラスが受け継ぐことができます。</p>
+
+            <h2 id="section2">基本的な継承の例</h2>
+            <p>親クラスから子クラスを作成する方法を示します。</p>
+            <pre id="code1">
+/* 継承の基本例 */
+public class Animal {
+    public void eat() {
+        System.out.println("動物が食べています");
+    }
+}
+
+public class Dog extends Animal {
+    public void bark() {
+        System.out.println("犬が吠えました!");
+    }
+}
+
+// 使用例
+Dog myDog = new Dog();
+myDog.eat(); // 親クラスのメソッドを使用
+myDog.bark(); // 子クラスのメソッド
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">ポリモーフィズムの概要</h2>
+            <p>ポリモーフィズムとは、同じメソッド名で異なる動作を持つことができる能力です。</p>
+
+            <h2 id="section4">ポリモーフィズムの例</h2>
+            <p>異なるクラスが同じメソッドをオーバーライドする例です。</p>
+            <pre id="code2">
+/* ポリモーフィズムの例 */
+public class Vehicle {
+    public void start() {
+        System.out.println("車がスタートします");
+    }
+}
+
+public class Car extends Vehicle {
+    @Override
+    public void start() {
+        System.out.println("自動車がスタートします");
+    }
+}
+
+public class Bike extends Vehicle {
+    @Override
+    public void start() {
+        System.out.println("バイクがスタートします");
+    }
+}
+
+// 使用例
+Vehicle myVehicle = new Car();
+myVehicle.start(); // 自動車のスタートメソッドが呼び出される
+
+myVehicle = new Bike();
+myVehicle.start(); // バイクのスタートメソッドが呼び出される
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section5">抽象クラスとインターフェース</h2>
+            <p>ポリモーフィズムを実現するために抽象クラスやインターフェースを使用します。</p>
+            <pre id="code3">
+/* 抽象クラスとインターフェースの例 */
+abstract class Animal {
+    abstract void sound(); // 抽象メソッド
+}
+
+class Cat extends Animal {
+    void sound() {
+        System.out.println("猫が鳴いています");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("犬が吠えています");
+    }
+}
+
+// 使用例
+Animal myAnimal = new Cat();
+myAnimal.sound(); // 猫の鳴き声
+
+myAnimal = new Dog();
+myAnimal.sound(); // 犬の吠え声
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section6">まとめ</h2>
+            <p>継承とポリモーフィズムを理解することで、コードの再利用性と柔軟性が向上します。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">継承の概要</a></li>
+                    <li><a href="#section2">基本的な継承の例</a></li>
+                    <li><a href="#section3">ポリモーフィズムの概要</a></li>
+                    <li><a href="#section4">ポリモーフィズムの例</a></li>
+                    <li><a href="#section5">抽象クラスとインターフェース</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson12.html">次のページへ</a></li>
+                    <li><a href="lesson10.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

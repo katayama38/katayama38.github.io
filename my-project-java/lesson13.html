@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaの例外処理について説明します。">
+    <meta name="keywords" content="Java, プログラミング, 例外処理, try-catch">
+    <title>Javaの例外処理</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaの例外処理</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">例外処理の概要</h2>
+            <p>例外処理は、プログラムの実行中に発生するエラーを管理するためのメカニズムです。これにより、プログラムがクラッシュせずに適切にエラーを処理できます。</p>
+
+            <h2 id="section2">基本的な例外処理の構文</h2>
+            <p>Javaでは、例外処理を行うために`try`、`catch`、`finally`ブロックを使用します。</p>
+            <pre id="code1">
+/* 例外処理の基本例 */
+public class ExceptionExample {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0; // ゼロ除算を試みる
+        } catch (ArithmeticException e) {
+            System.out.println("エラー: " + e.getMessage());
+        } finally {
+            System.out.println("このメッセージは必ず表示されます。");
+        }
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">例外の種類</h2>
+            <p>Javaには、チェック例外と非チェック例外の2種類の例外があります。チェック例外はコンパイル時に処理を強制され、非チェック例外はランタイム時に発生します。</p>
+
+            <h2 id="section4">カスタム例外の作成</h2>
+            <p>独自の例外を作成することも可能です。これは、特定のエラー条件を管理するのに役立ちます。</p>
+            <pre id="code2">
+/* カスタム例外の例 */
+class MyException extends Exception {
+    public MyException(String message) {
+        super(message);
+    }
+}
+
+public class CustomExceptionExample {
+    public static void main(String[] args) {
+        try {
+            throw new MyException("カスタム例外が発生しました");
+        } catch (MyException e) {
+            System.out.println("エラー: " + e.getMessage());
+        }
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section5">例外の再スロー</h2>
+            <p>キャッチした例外を再スローして、呼び出し元にエラーを伝えることもできます。</p>
+            <pre id="code3">
+/* 例外の再スローの例 */
+public class RethrowExample {
+    public static void main(String[] args) {
+        try {
+            methodThatThrows();
+        } catch (Exception e) {
+            System.out.println("例外をキャッチしました: " + e.getMessage());
+        }
+    }
+
+    static void methodThatThrows() throws Exception {
+        throw new Exception("何かのエラーが発生しました");
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section6">まとめ</h2>
+            <p>例外処理を正しく使うことで、プログラムの信頼性が向上し、エラー発生時の挙動を制御できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">例外処理の概要</a></li>
+                    <li><a href="#section2">基本的な例外処理の構文</a></li>
+                    <li><a href="#section3">例外の種類</a></li>
+                    <li><a href="#section4">カスタム例外の作成</a></li>
+                    <li><a href="#section5">例外の再スロー</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson14.html">次のページへ</a></li>
+                    <li><a href="lesson12.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaのストリームAPIについて説明します。">
+    <meta name="keywords" content="Java, プログラミング, ストリームAPI, コレクション">
+    <title>JavaのストリームAPI</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaのストリームAPI</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">ストリームAPIの概要</h2>
+            <p>ストリームAPIは、Java 8で導入された機能で、コレクションの操作を簡潔かつ効率的に行うための手段を提供します。</p>
+
+            <h2 id="section2">基本的な使い方</h2>
+            <p>ストリームは、コレクションの要素に対して連続的な操作を行うための抽象化です。</p>
+            <pre id="code1">
+/* ストリームの基本的な使い方 */
+import java.util.Arrays;
+import java.util.List;
+
+public class StreamBasicExample {
+    public static void main(String[] args) {
+        List<String> fruits = Arrays.asList("リンゴ", "バナナ", "オレンジ");
+        fruits.stream().forEach(System.out::println); // 各要素を出力
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">フィルタリングの例</h2>
+            <p>ストリームAPIを使用して、特定の条件に基づいて要素をフィルタリングできます。</p>
+            <pre id="code2">
+/* ストリームを用いたフィルタリング */
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class StreamFilterExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> evenNumbers = numbers.stream()
+                                            .filter(n -> n % 2 == 0)
+                                            .collect(Collectors.toList());
+        System.out.println("偶数: " + evenNumbers);
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">マッピングの例</h2>
+            <p>ストリームAPIを使用して、要素を別の形式に変換することができます。</p>
+            <pre id="code3">
+/* ストリームを用いたマッピング */
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class StreamMapExample {
+    public static void main(String[] args) {
+        List<String> fruits = Arrays.asList("リンゴ", "バナナ", "オレンジ");
+        List<String> upperFruits = fruits.stream()
+                                          .map(String::toUpperCase)
+                                          .collect(Collectors.toList());
+        System.out.println("大文字の果物: " + upperFruits);
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">集約操作の例</h2>
+            <p>ストリームAPIを使用して、コレクションの集約操作を行うことができます。</p>
+            <pre id="code4">
+/* ストリームを用いた集約操作 */
+import java.util.Arrays;
+import java.util.List;
+
+public class StreamReduceExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        int sum = numbers.stream()
+                         .reduce(0, Integer::sum);
+        System.out.println("合計: " + sum);
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section6">まとめ</h2>
+            <p>JavaのストリームAPIを活用することで、コレクションの操作を簡潔に行い、コードの可読性を向上させることができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">ストリームAPIの概要</a></li>
+                    <li><a href="#section2">基本的な使い方</a></li>
+                    <li><a href="#section3">フィルタリングの例</a></li>
+                    <li><a href="#section4">マッピングの例</a></li>
+                    <li><a href="#section5">集約操作の例</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson18.html">次のページへ</a></li>
+                    <li><a href="lesson16.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

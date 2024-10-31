@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaのgetter/setterについて説明します。">
+    <meta name="keywords" content="Java, プログラミング, getter, setter">
+    <title>Javaのgetter/setter</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaのgetter/setter</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">getter/setterの概要</h2>
+            <p>getter/setterは、オブジェクトのフィールドへのアクセスを制御するためのメソッドです。</p>
+
+            <h2 id="section2">getterの定義</h2>
+            <p>フィールドの値を取得するためのメソッドの定義方法です。</p>
+            <pre id="code1">
+/* getterの定義 */
+public class Dog {
+    private String name; // 名前
+    private int age; // 年齢
+
+    // getter
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">setterの定義</h2>
+            <p>フィールドの値を設定するためのメソッドの定義方法です。</p>
+            <pre id="code2">
+/* setterの定義 */
+public void setName(String name) {
+    this.name = name;
+}
+
+public void setAge(int age) {
+    this.age = age;
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">オブジェクトの生成</h2>
+            <p>オブジェクトを生成し、setterを使ってフィールドを設定する例です。</p>
+            <pre id="code3">
+/* オブジェクトの生成 */
+Dog myDog = new Dog();
+myDog.setName("ポチ"); // 名前を設定
+myDog.setAge(3); // 年齢を設定
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">getterの使用例</h2>
+            <p>getterを使ってフィールドの値を取得する例です。</p>
+            <pre id="code4">
+/* getterの使用例 */
+System.out.println("犬の名前: " + myDog.getName()); // 犬の名前: ポチと表示
+System.out.println("犬の年齢: " + myDog.getAge() + "歳"); // 犬の年齢: 3歳と表示
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section6">フィールドのカプセル化</h2>
+            <p>getter/setterを使うことでフィールドのカプセル化が実現されます。</p>
+            <pre id="code5">
+/* フィールドのカプセル化 */
+public class Cat {
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section7">まとめ</h2>
+            <p>getter/setterを理解することで、オブジェクト指向プログラミングの基本的な考え方が身につきます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">getter/setterの概要</a></li>
+                    <li><a href="#section2">getterの定義</a></li>
+                    <li><a href="#section3">setterの定義</a></li>
+                    <li><a href="#section4">オブジェクトの生成</a></li>
+                    <li><a href="#section5">getterの使用例</a></li>
+                    <li><a href="#section6">フィールドのカプセル化</a></li>
+                    <li><a href="#section7">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson08.html">次のページへ</a></li>
+                    <li><a href="lesson06.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

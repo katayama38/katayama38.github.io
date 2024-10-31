@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaの基本的な入出力について説明します。">
+    <meta name="keywords" content="Java, プログラミング, 入出力">
+    <title>Javaの基本的な入出力</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaの基本的な入出力</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">入出力の概要</h2>
+            <p>Javaの入出力は、データを読み込んだり、出力したりするための基本的な仕組みです。</p>
+
+            <h2 id="section2">標準入力の使用</h2>
+            <p>キーボードからデータを読み取る方法です。</p>
+            <pre id="code1">
+/* 標準入力の使用 */
+import java.util.Scanner;
+
+public class InputExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("名前を入力してください: ");
+        String name = scanner.nextLine();
+        System.out.println("こんにちは、" + name + "!");
+        scanner.close();
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">標準出力の使用</h2>
+            <p>コンソールにデータを出力する方法です。</p>
+            <pre id="code2">
+/* 標準出力の使用 */
+public class OutputExample {
+    public static void main(String[] args) {
+        System.out.println("こんにちは、世界!");
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">ファイルからの入出力</h2>
+            <p>ファイルからデータを読み込む方法と、ファイルに書き込む方法です。</p>
+            <pre id="code3">
+/* ファイルからの入出力 */
+import java.io.*;
+
+public class FileIOExample {
+    public static void main(String[] args) {
+        try {
+            // ファイルへの書き込み
+            FileWriter writer = new FileWriter("output.txt");
+            writer.write("Hello, File!");
+            writer.close();
+
+            // ファイルからの読み込み
+            BufferedReader reader = new BufferedReader(new FileReader("output.txt"));
+            String line = reader.readLine();
+            System.out.println(line);
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">例外処理の重要性</h2>
+            <p>入出力処理では、例外処理が重要です。IOExceptionを扱う方法です。</p>
+            <pre id="code4">
+/* 例外処理の重要性 */
+try {
+    // 入出力処理
+} catch (IOException e) {
+    System.out.println("エラーが発生しました: " + e.getMessage());
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section6">まとめ</h2>
+            <p>Javaの入出力を理解することで、データの読み書きが効率的に行えます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">入出力の概要</a></li>
+                    <li><a href="#section2">標準入力の使用</a></li>
+                    <li><a href="#section3">標準出力の使用</a></li>
+                    <li><a href="#section4">ファイルからの入出力</a></li>
+                    <li><a href="#section5">例外処理の重要性</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson10.html">次のページへ</a></li>
+                    <li><a href="lesson08.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

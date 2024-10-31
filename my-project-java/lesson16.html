@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaのラムダ式について説明します。">
+    <meta name="keywords" content="Java, プログラミング, ラムダ式, 関数型">
+    <title>Javaのラムダ式</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaのラムダ式</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">ラムダ式の概要</h2>
+            <p>ラムダ式は、Java 8から導入された新しい記法で、関数型プログラミングをサポートします。簡潔に記述できるため、コードの可読性が向上します。</p>
+
+            <h2 id="section2">基本的な構文</h2>
+            <p>ラムダ式は、引数リスト、矢印（->）、および式本体から構成されます。</p>
+            <pre id="code1">
+/* ラムダ式の基本的な構文 */
+(x, y) -> x + y
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h2 id="section3">リストの処理におけるラムダ式の利用</h2>
+            <p>リストの要素を操作する際に、ラムダ式を使用してコードを簡潔に記述できます。</p>
+            <pre id="code2">
+/* ラムダ式を用いたリストの処理 */
+import java.util.Arrays;
+import java.util.List;
+
+public class LambdaExample {
+    public static void main(String[] args) {
+        List<String> fruits = Arrays.asList("リンゴ", "バナナ", "オレンジ");
+        fruits.forEach(fruit -> System.out.println(fruit));
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section4">関数型インターフェイスの利用</h2>
+            <p>ラムダ式は関数型インターフェイスに対して使用されます。これにより、より抽象的なコードが書けます。</p>
+            <pre id="code3">
+/* 関数型インターフェイスの例 */
+@FunctionalInterface
+interface MyFunctionalInterface {
+    void execute();
+}
+
+public class FunctionalInterfaceExample {
+    public static void main(String[] args) {
+        MyFunctionalInterface myFunc = () -> System.out.println("関数型インターフェイスの実行");
+        myFunc.execute(); // ラムダ式の実行
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section5">ラムダ式を用いたコレクションのフィルタリング</h2>
+            <p>ストリームAPIと組み合わせることで、コレクションのフィルタリングが簡単に行えます。</p>
+            <pre id="code4">
+/* ストリームとラムダ式を用いたフィルタリング */
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class StreamLambdaExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> evenNumbers = numbers.stream()
+                                            .filter(n -> n % 2 == 0)
+                                            .collect(Collectors.toList());
+        System.out.println("偶数: " + evenNumbers);
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <h2 id="section6">まとめ</h2>
+            <p>Javaのラムダ式を利用することで、コードが簡潔になり、可読性が向上します。関数型プログラミングの考え方を取り入れることで、より柔軟なプログラムを作成できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">ラムダ式の概要</a></li>
+                    <li><a href="#section2">基本的な構文</a></li>
+                    <li><a href="#section3">リストの処理におけるラムダ式の利用</a></li>
+                    <li><a href="#section4">関数型インターフェイスの利用</a></li>
+                    <li><a href="#section5">ラムダ式を用いたコレクションのフィルタリング</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson17.html">次のページへ</a></li>
+                    <li><a href="lesson15.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/HTML/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>
