@@ -1,44 +1,44 @@
 const breadcrumbs = document.getElementById('breadcrumbs');
 const sections = document.querySelectorAll('main h2');
 
+// クリップボードにコピーする関数
 function copyToClipboard(codeId, alertId) {
     const codeElement = document.getElementById(codeId);
-    const alertElement = document.getElementById(alertId); // アラート要素を取得
+    const alertElement = document.getElementById(alertId);
 
     if (!codeElement) {
         console.error(`ID '${codeId}' に対応する要素が見つかりません。`);
-        return; // 何もせずに戻る
+        return;
     }
 
     const codeText = codeElement.innerText || codeElement.textContent;
     navigator.clipboard.writeText(codeText).then(() => {
-        alertElement.textContent = 'コピーしました！'; // メッセージを設定
-        alertElement.style.color = 'green'; // メッセージの色を設定（任意）
+        alertElement.textContent = 'コピーしました！';
+        alertElement.style.color = 'green';
         
         // 一定時間後にメッセージを消す
         setTimeout(() => {
-            alertElement.textContent = ''; // メッセージをクリア
-        }, 2000); // 2秒後に消す
+            alertElement.textContent = '';
+        }, 2000);
     }).catch(err => {
         console.error('コピーに失敗しました。: ', err);
     });
 }
 
-
-// 現在のページに基づいて足跡を更新する関数
+// パンくずリストを更新する関数
 function updateBreadcrumbs(currentPage) {
-    breadcrumbs.innerHTML = ''; // リストをクリア
+    breadcrumbs.innerHTML = '';
     const pages = ['ホーム', 'カテゴリ', currentPage];
 
     pages.forEach((page, index) => {
         const li = document.createElement('li');
         if (index < pages.length - 1) {
             const a = document.createElement('a');
-            a.href = index === 0 ? 'home.html' : 'category.html'; // 適切なURLに変更
+            a.href = index === 0 ? 'home.html' : 'category.html';
             a.textContent = page;
             li.appendChild(a);
         } else {
-            li.textContent = page; // 現在のページはリンクなし
+            li.textContent = page;
         }
         breadcrumbs.appendChild(li);
     });
@@ -49,8 +49,7 @@ document.addEventListener('scroll', () => {
         const rect = section.getBoundingClientRect();
         return rect.top >= 0 && rect.top < window.innerHeight;
     });
-
-    // 現在のセクションがあれば足跡を更新
+    // 現在表示されているセクションに基づいてパンくずリストを更新
     if (currentSection) {
         const sectionId = currentSection.id;
         const links = breadcrumbs.querySelectorAll('li a');
@@ -63,6 +62,7 @@ document.addEventListener('scroll', () => {
     }
 });
 
+// 次のセクションに移動するためのボタンのイベントリスナー
 const nextButton = document.querySelector('footer a');
 
 nextButton.addEventListener('click', (event) => {
@@ -75,6 +75,4 @@ nextButton.addEventListener('click', (event) => {
         }
     }
 });
-
-// 現在のページを指定して呼び出す
 updateBreadcrumbs('現在のページ');
