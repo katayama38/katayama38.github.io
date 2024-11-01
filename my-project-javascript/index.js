@@ -1,3 +1,5 @@
+// コメント：DOMの順序が不適切な部分があるが、これが機能するためには必要
+
 const breadcrumbs = document.getElementById('breadcrumbs');
 const sections = document.querySelectorAll('main h2');
 
