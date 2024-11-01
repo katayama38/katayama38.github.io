@@ -1,6 +1,7 @@
 const breadcrumbs = document.getElementById('breadcrumbs');
 const sections = document.querySelectorAll('main h2');
 
+// クリップボードにコピーする関数
 function copyToClipboard(codeId, alertId) {
     const codeElement = document.getElementById(codeId);
     const alertElement = document.getElementById(alertId);
@@ -24,6 +25,7 @@ function copyToClipboard(codeId, alertId) {
     });
 }
 
+// パンくずリストを更新する関数
 function updateBreadcrumbs(currentPage) {
     breadcrumbs.innerHTML = '';
     const pages = ['ホーム', 'カテゴリ', currentPage];
@@ -41,13 +43,13 @@ function updateBreadcrumbs(currentPage) {
         breadcrumbs.appendChild(li);
     });
 }
-// aside
+
 document.addEventListener('scroll', () => {
     const currentSection = Array.from(sections).find(section => {
         const rect = section.getBoundingClientRect();
         return rect.top >= 0 && rect.top < window.innerHeight;
     });
-    // セクション更新
+    // 現在表示されているセクションに基づいてパンくずリストを更新
     if (currentSection) {
         const sectionId = currentSection.id;
         const links = breadcrumbs.querySelectorAll('li a');
@@ -59,7 +61,8 @@ document.addEventListener('scroll', () => {
         });
     }
 });
-// ここ消すと、asideが崩れる
+
+// 次のセクションに移動するためのボタンのイベントリスナー
 const nextButton = document.querySelector('footer a');
 
 nextButton.addEventListener('click', (event) => {
