@@ -178,7 +178,13 @@ footer {
 #breadcrumbs li a:hover {
     text-decoration: underline;
 }
-
+/* lesson20 */
 .alert {
     color: #ff0000; /* エラーの色 */
+}
+
+#calcResult {
+    display: block; /* 表示状態を確認 */
+    margin-top: 10px;
+    color: blue; /* 結果の色 */
 }
