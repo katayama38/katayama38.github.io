@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="カウントダウンタイマーの使い方について説明します。">
+    <meta name="keywords" content="カウントダウン, JavaScript, HTML">
+    <title>カウントダウンタイマーの理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>カウントダウンタイマーの理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">カウントダウンタイマーの基本</h2>
+            <p>このカウントダウンタイマーは、指定した秒数からカウントダウンし、時間が切れるとメッセージを表示します。</p>
+            
+            <h2 id="section2">秒数の入力</h2>
+            <p>カウントダウンの秒数を入力してください:</p>
+            <input style="border: 1px solid #333;" type="number" id="seconds" placeholder="秒数を入力">
+            <button id="start">カウントダウンを開始</button>
+            <div id="timer"></div>
+
+            <h2 id="section3">カウントダウン結果の表示</h2>
+            <p>カウントダウンの結果はボタンをクリックした後、下部に表示されます。</p>
+
+            <h2 id="section4">エラーハンドリング</h2>
+            <p>無効な入力があった場合、エラーメッセージを表示します。正しい数値を入力しないとカウントダウンは始まりません。</p>
+
+            <h2 id="section5">JavaScript コードの説明</h2>
+            <p>以下のコードは、カウントダウンタイマーの機能を実現しています：</p>
+            <pre id="code5">
+document.getElementById('start').addEventListener('click', function() {
+    let seconds = parseInt(document.getElementById('seconds').value);
+    const timerDisplay = document.getElementById('timer');
+
+    const interval = setInterval(function() {
+        if (seconds <= 0) {
+            clearInterval(interval);
+            timerDisplay.innerText = '時間切れ！';
+        } else {
+            timerDisplay.innerText = seconds + '秒';
+            seconds--;
+        }
+    }, 1000);
+});
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+            <p>このコードの説明は以下の通りです：</p>
+            <ul>
+                <li><strong>イベントリスナーの設定</strong>: スタートボタンがクリックされたときに実行される関数を設定します。</li>
+                <li><strong>秒数の取得</strong>: ユーザーが入力した秒数を取得し、整数に変換します。</li>
+                <li><strong>カウントダウンの処理</strong>: setIntervalを使って1秒ごとに秒数を減らし、表示を更新します。</li>
+                <li><strong>時間切れの処理</strong>: 秒数が0以下になるとタイマーを停止し、「時間切れ！」というメッセージを表示します。</li>
+            </ul>
+
+            <h2 id="section6">まとめ</h2>
+            <p>このカウントダウンタイマーを使って、簡単に時間を管理することができます。正しい秒数を入力することで、正確なカウントダウンが行えます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">カウントダウンタイマーの基本</a></li>
+                    <li><a href="#section2">秒数の入力</a></li>
+                    <li><a href="#section3">カウントダウン結果の表示</a></li>
+                    <li><a href="#section4">エラーハンドリング</a></li>
+                    <li><a href="#section5">JavaScript コードの説明</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><a href="lesson01.html">次のページへ</a></li>
+                    <li><a href="lesson20.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/JavaScript/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

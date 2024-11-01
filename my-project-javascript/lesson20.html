@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="単純な計算機の使い方について説明します。">
+    <meta name="keywords" content="計算機, JavaScript, HTML">
+    <title>単純な計算機の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>単純な計算機の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">計算機の基本</h2>
+            <p>この計算機は、2つの数を入力し、その合計を計算します。ボタンをクリックすると、計算結果が表示されます。</p>
+            
+            <h2 id="section2">数値の入力</h2>
+            <p>数値を入力してください:</p>
+            <input style="border: 1px solid #333;" type="number" id="num1" placeholder="1つ目の数">
+            <input style="border: 1px solid #333;" type="number" id="num2" placeholder="2つ目の数">
+            <button id="calculate">合計を計算</button>
+            <div style="border: 1px solid #333;" id="calcResult"></div>
+
+            <h2 id="section3">計算結果の表示</h2>
+            <p>計算結果はボタンをクリックした後、下部に表示されます。</p>
+
+            <h2 id="section4">エラーハンドリング</h2>
+            <p>数値以外の入力があった場合、エラーメッセージを表示します。無効な入力がある場合は、計算が行われず、ユーザーに注意を促します。</p>
+
+            <h2 id="section5">JavaScript コードの説明</h2>
+            <p>以下のコードは、計算機の機能を実現しています：</p>
+            <pre id="code5">
+document.addEventListener('DOMContentLoaded', function() {
+    const calculateButton = document.getElementById('calculate');
+    if (calculateButton) {
+        calculateButton.addEventListener('click', function() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('calcResult').innerText = '有効な数を入力してください。';
+                return;
+            }
+
+            const sum = num1 + num2;
+            document.getElementById('calcResult').innerText = '合計: ' + sum;
+        });
+    } else {
+        console.error("ID 'calculate' の要素が見つかりません。");
+    }
+});
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+            <p>このコードの説明は以下の通りです：</p>
+            <ul>
+                <li><strong>DOMContentLoaded イベントリスナー</strong>: DOMが完全に読み込まれた後に実行される関数を設定します。</li>
+                <li><strong>ボタンの取得とイベントリスナーの設定</strong>: 計算ボタンを取得し、クリック時の処理を追加します。</li>
+                <li><strong>数値の取得と処理</strong>: ユーザーが入力した数値を取得し、数値型に変換します。</li>
+                <li><strong>エラーチェック</strong>: 入力が有効であるかを確認し、無効な場合はエラーメッセージを表示します。</li>
+                <li><strong>計算と結果の表示</strong>: 入力された2つの数値を加算し、結果を表示します。</li>
+            </ul>
+
+            <h2 id="section6">まとめ</h2>
+            <p>この計算機を使って、簡単な計算を行うことができます。正しい数値を入力することで、正確な結果が得られます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">計算機の基本</a></li>
+                    <li><a href="#section2">数値の入力</a></li>
+                    <li><a href="#section3">計算結果の表示</a></li>
+                    <li><a href="#section4">エラーハンドリング</a></li>
+                    <li><a href="#section5">JavaScript コードの説明</a></li>
+                    <li><a href="#section6">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><a href="lesson21.html">次のページへ</a></li>
+                    <li><a href="lesson19.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/JavaScript/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>
