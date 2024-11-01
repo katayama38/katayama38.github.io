@@ -24,6 +24,47 @@ function copyToClipboard(codeId, alertId) {
     });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    // 計算機のコーナー
+    const calculateButton = document.getElementById('calculate');
+    if (calculateButton) {
+        calculateButton.addEventListener('click', function() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('calcResult').innerText = '有効な数を入力してください。';
+                return;
+            }
+
+            const sum = num1 + num2;
+            document.getElementById('calcResult').innerText = '合計: ' + sum;
+        });
+    } else {
+        console.error("ID 'calculate' の要素が見つかりません。");
+    }
+
+    // カウントダウンのコーナー
+    document.getElementById('start').addEventListener('click', function() {
+        let seconds = parseInt(document.getElementById('seconds').value);
+        const timerDisplay = document.getElementById('timer');
+
+        if (isNaN(seconds) || seconds <= 0) {
+            timerDisplay.innerText = '正しい秒数を入力してください。';
+            return;
+        }
+
+        const interval = setInterval(function() {
+            if (seconds <= 0) {
+                clearInterval(interval);
+                timerDisplay.innerText = '時間切れ！';
+            } else {
+                timerDisplay.innerText = seconds + '秒';
+                seconds--;
+            }
+        }, 1000);
+    });
+});
 
 // 現在のページに基づいて足跡を更新する関数
 function updateBreadcrumbs(currentPage) {
