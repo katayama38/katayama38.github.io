@@ -18,39 +18,39 @@
         }
         #searchBar {
             padding: 0 0 0 39px;
-            border: none; /* ボーダーを消す */
+            border: none;
             border-radius: 30px;
             width: 79%;
-            height: 39px; /* 初期の高さ */
+            height: 39px;
             outline: none;
             margin: 0;
             box-sizing: border-box;
-            transition: height 0.3s ease; /* 高さのアニメーション */
+            transition: height 0.3s ease;
             z-index: 1;
         }
         #searchBar.expanded {
-            height: 50px; /* フォーカス時の高さ */
+            height: 50px;
         }
         #results {
-            display: none; /* 初期状態で非表示 */
+            display: none;
             background-color: #fff;
             max-height: 200px;
             overflow-y: auto;
             width: 100%;
-            max-width: 60%; /* 最大幅 */
+            max-width: 60%;
             z-index: 1000;
             position: absolute;
-            top: calc(100% + 20px); /* 検索バーの下に20pxの隙間を追加 */
-            left: 50%; /* 左端を中央に設定 */
-            transform: translateX(-50%); /* 要素を自身の幅の半分だけ左にずらす */
-            border-radius: 10px; /* 下部の角を丸くする */
+            top: calc(100% + 20px);
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
         }
         .item {
             padding: 10px;
             cursor: pointer;
         }
         .item:hover {
-            background-color: #f0f0f0; /* ホバー時の背景色 */
+            background-color: #f0f0f0;
         }
         .item a {
             text-decoration: none;
@@ -78,19 +78,19 @@
         const resultsDiv = document.getElementById('results');
 
         searchBar.addEventListener('focus', function() {
-            searchBar.classList.add('expanded'); // 検索バーを拡大
-            updateResults(); // フォーカス時に結果を更新
-            resultsDiv.style.display = 'block'; // リストを表示
+            searchBar.classList.add('expanded');
+            updateResults();
+            resultsDiv.style.display = 'block';
         });
 
         searchBar.addEventListener('input', function() {
-            updateResults(); // 入力に基づいて結果を更新
+            updateResults();
         });
 
         document.addEventListener('click', function(event) {
             if (!searchBar.contains(event.target) && !resultsDiv.contains(event.target)) {
-                searchBar.classList.remove('expanded'); // 検索バーを元に戻す
-                resultsDiv.style.display = 'none'; // クリックが外れたら非表示
+                searchBar.classList.remove('expanded');
+                resultsDiv.style.display = 'none';
             }
         });
 
@@ -110,14 +110,14 @@
                 link.textContent = item.title;
                 div.appendChild(link);
                 div.addEventListener('click', function() {
-                    searchBar.value = item.title; // 検索バーにタイトルを入力
-                    searchBar.classList.remove('expanded'); // 検索バーを元に戻す
-                    resultsDiv.style.display = 'none'; // 結果を非表示
+                    searchBar.value = item.title;
+                    searchBar.classList.remove('expanded');
+                    resultsDiv.style.display = 'none';
                 });
                 resultsDiv.appendChild(div);
             });
             
-            resultsDiv.style.display = filteredItems.length > 0 ? 'block' : 'none'; // 結果がある場合に表示
+            resultsDiv.style.display = filteredItems.length > 0 ? 'block' : 'none';
         }
     </script>
 </body>
