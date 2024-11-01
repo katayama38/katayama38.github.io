@@ -320,47 +320,46 @@ footer {
     }
     /* hamburgerrrrrrr */
     /* メニューを画面全体に表示するスタイル */
-.menu {
-    display: none;
-}
+    .menu {
+        display: none;
+    }
 
-.menu.active {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(51, 51, 51, 0.9);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    transition: opacity 0.3s ease;
-    opacity: 1;
-}
+    .menu.active {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(51, 51, 51, 0.9);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transition: opacity 0.3s ease;
+        opacity: 1;
+    }
 
-.menu li {
-    padding: 15px;
-    font-size: 24px;
-    color: #fff;
-    text-align: center;
-    transition: color 0.3s;
-}
+    .menu li {
+        padding: 15px;
+        font-size: 24px;
+        color: #fff;
+        text-align: center;
+        transition: color 0.3s;
+    }
 
-.menu li:hover {
-    color: #ffcc00;
-}
+    .menu li:hover {
+        color: #ffcc00;
+    }
 
-/* ハンバーガーメニュー */
-.hamburger {
-    font-size: 50px;
-    cursor: pointer;
-    margin: 10px;
-    padding: 20px;
-    background-color: #333;
-    color: #fff;
-    border-radius: 100%;
-}
-
+    /* ハンバーガーメニュー */
+    .hamburger {
+        font-size: 50px;
+        cursor: pointer;
+        margin: 10px;
+        padding: 20px;
+        background-color: #333;
+        color: #fff;
+        border-radius: 100%;
+    }
 }
