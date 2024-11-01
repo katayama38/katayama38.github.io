@@ -41,14 +41,13 @@ function updateBreadcrumbs(currentPage) {
         breadcrumbs.appendChild(li);
     });
 }
-
+// aside
 document.addEventListener('scroll', () => {
     const currentSection = Array.from(sections).find(section => {
         const rect = section.getBoundingClientRect();
         return rect.top >= 0 && rect.top < window.innerHeight;
     });
-
-    // 現在のセクションがあれば足跡を更新
+    // セクション更新
     if (currentSection) {
         const sectionId = currentSection.id;
         const links = breadcrumbs.querySelectorAll('li a');
@@ -60,7 +59,7 @@ document.addEventListener('scroll', () => {
         });
     }
 });
-
+// ここ消すと、asideが崩れる
 const nextButton = document.querySelector('footer a');
 
 nextButton.addEventListener('click', (event) => {
