@@ -44,12 +44,12 @@ p {
 
 pre {
     font-size: 16px;
-    background-color: #282c34; /* ダークテーマの背景 */
-    color: #f8f8f2; /* コードの文字色 */
+    background-color: #282c34;
+    color: #f8f8f2;
     padding: 15px;
     border-radius: 5px;
     overflow: auto;
-    white-space: pre-wrap; /* 自動で改行する */
+    white-space: pre-wrap;
 }
 
 #code1, #code2, #code3, #code4 {
@@ -57,7 +57,7 @@ pre {
 }
 
 button {
-    background-color: #4CAF50; /* 緑色 */
+    background-color: #4CAF50;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -67,7 +67,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049; /* ホバー時の色 */
+    background-color: #45a049;
 }
 
 .container {
@@ -180,5 +180,5 @@ footer {
 }
 
 .alert {
-    color: #ff0000; /* エラーの色 */
+    color: #ff0000;
 }
