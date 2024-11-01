@@ -73,6 +73,4 @@ nextButton.addEventListener('click', (event) => {
         }
     }
 });
-
-// 現在のページを指定して呼び出す
 updateBreadcrumbs('現在のページ');
