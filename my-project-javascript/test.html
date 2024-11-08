@@ -4,3 +4,37 @@ function greet() {
 }
 greet(); // "こんにちは！"と表示される
             
+
+
+/* イベント処理の例 */
+document.getElementById("myButton").addEventListener("click", function() {
+    alert("ボタンがクリックされました！");
+});
+            
+
+document.addEventListener('DOMContentLoaded', function() {
+    const calculateButton = document.getElementById('calculate');
+    if (calculateButton) {
+        calculateButton.addEventListener('click', function() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('calcResult').innerText = '有効な数を入力してください。';
+                return;
+            }
+
+            const sum = num1 + num2;
+            document.getElementById('calcResult').innerText = '合計: ' + sum;
+        });
+    } else {
+        console.error("ID 'calculate' の要素が見つかりません。");
+    }
+});
+            
+
+document.getElementById('showText').addEventListener('click', function() {
+    const textElement = document.getElementById('text');
+    textElement.classList.add('show'); // ふわっと表示のクラスを追加
+});
+            

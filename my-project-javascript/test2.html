@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スライドインデモ</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        #slidingElement {
+            position: absolute;
+            right: -200px; /* 初期位置は画面の外 */
+            top: 50%; /* 中央に配置 */
+            transform: translateY(-50%); /* 縦の中央揃え */
+            width: 200px;
+            height: 100px;
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.5s ease, top 0.5s ease; /* スライドのアニメーション */
+        }
+
+        /* 左にスライド */
+        .slide-left {
+            right: 100%; /* 左の外 */
+        }
+    </style>
+</head>
+<body>
+    <div id="slidingElement">こんにちは！</div>
+    <button id="slideRightButton">右にスライド</button>
+    <button id="slideLeftButton">左にスライド</button>
+    <script>
+        function slideIn(direction) {
+            const slidingElement = document.getElementById('slidingElement');
+            switch (direction) {
+                case 'right':
+                    slidingElement.style.right = (slidingElement.style.right === '0px') ? '-200px' : '0px';
+                    slidingElement.classList.remove('slide-up', 'slide-down', 'slide-left');
+                    break;
+                case 'left':
+                    slidingElement.style.right = (slidingElement.style.right === '0px') ? '100%' : '0px';
+                    slidingElement.classList.remove('slide-up', 'slide-down');
+                    break;
+            }
+        }
+
+        document.getElementById('slideRightButton').addEventListener('click', function() {
+            slideIn('right');
+        });
+
+        document.getElementById('slideLeftButton').addEventListener('click', function() {
+            slideIn('left');
+        });
+    </script>
+</body>
+</html>
