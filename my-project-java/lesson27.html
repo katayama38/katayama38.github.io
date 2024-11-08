@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaプログラミングの詳細な概念と技術について解説しています。">
+    <meta name="keywords" content="Java, プログラミング, ソフトウェアアーキテクチャ, カスタム例外, ファイル圧縮, IoT">
+    <title>Javaプログラミングの詳細解説</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaプログラミングの詳細解説</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Section 87: ソフトウェアアーキテクチャのパターン -->
+            <h2 id="section87">87. ソフトウェアアーキテクチャのパターン</h2>
+            <p>ソフトウェアアーキテクチャには、MVC（Model-View-Controller）、MVVM（Model-View-ViewModel）、マイクロサービスアーキテクチャなど、さまざまなパターンがあります。</p>
+            <p>これらのパターンは、アプリケーションの構造を整理し、開発や保守の効率を高めるために使用されます。</p>
+
+            <h3>MVC（Model-View-Controller）</h3>
+            <p>MVCパターンでは、アプリケーションを3つの部分に分けます:</p>
+            <ul>
+                <li><b>Model</b>: アプリケーションのデータやビジネスロジックを担当。</li>
+                <li><b>View</b>: ユーザーインターフェース（UI）を担当。</li>
+                <li><b>Controller</b>: ユーザー入力を処理し、モデルとビューを更新。</li>
+            </ul>
+            <pre>
+<code>
+public class UserController {
+    private UserModel userModel;
+    private UserView userView;
+
+    public UserController(UserModel model, UserView view) {
+        userModel = model;
+        userView = view;
+    }
+
+    public void updateView() {
+        userView.printUserDetails(userModel.getName(), userModel.getAge());
+    }
+}
+</code>
+            </pre>
+
+            <h3>マイクロサービスアーキテクチャ</h3>
+            <p>マイクロサービスアーキテクチャは、アプリケーションを独立した小さなサービス群に分けるアーキテクチャです。各サービスは独自に開発、デプロイ、スケールできます。</p>
+
+            <!-- Section 88: カスタム例外の作成 -->
+            <h2 id="section88">88. カスタム例外の作成</h2>
+            <p>Javaでは、`Exception`クラスを拡張して、アプリケーションに特化したカスタム例外を作成することができます。</p>
+            <pre>
+<code>
+// カスタム例外の作成例
+public class InvalidUserInputException extends Exception {
+    public InvalidUserInputException(String message) {
+        super(message);
+    }
+}
+
+public class UserValidator {
+    public void validate(String input) throws InvalidUserInputException {
+        if (input == null || input.isEmpty()) {
+            throw new InvalidUserInputException("ユーザー入力が無効です。");
+        }
+    }
+}
+</code>
+            </pre>
+            <p>この例では、`InvalidUserInputException`というカスタム例外を作成し、`validate`メソッド内で検証処理を行い、無効な入力に対してカスタム例外をスローします。</p>
+
+            <!-- Section 89: ファイルの圧縮と解凍 -->
+            <h2 id="section89">89. ファイルの圧縮と解凍</h2>
+            <p>Javaでは、`java.util.zip`パッケージを使ってファイルの圧縮や解凍を行うことができます。</p>
+            <h3>ファイルの圧縮例</h3>
+            <pre>
+<code>
+import java.io.*;
+import java.util.zip.*;
+
+public class FileCompression {
+    public static void compressFile(String inputFile, String outputFile) throws IOException {
+        try (FileInputStream fis = new FileInputStream(inputFile);
+             FileOutputStream fos = new FileOutputStream(outputFile);
+             GZIPOutputStream gzip = new GZIPOutputStream(fos)) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fis.read(buffer)) > 0) {
+                gzip.write(buffer, 0, length);
+            }
+        }
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、指定されたファイルをGZIP形式で圧縮する方法を示しています。</p>
+
+            <h3>ファイルの解凍例</h3>
+            <pre>
+<code>
+public class FileDecompression {
+    public static void decompressFile(String inputFile, String outputFile) throws IOException {
+        try (FileInputStream fis = new FileInputStream(inputFile);
+             GZIPInputStream gzip = new GZIPInputStream(fis);
+             FileOutputStream fos = new FileOutputStream(outputFile)) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = gzip.read(buffer)) > 0) {
+                fos.write(buffer, 0, length);
+            }
+        }
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、圧縮されたファイルを解凍して元の状態に戻す方法を示しています。</p>
+
+            <!-- Section 90: インターネットオブシングス（IoT）への応用 -->
+            <h2 id="section90">90. インターネットオブシングス（IoT）への応用</h2>
+            <p>Javaは、IoT（インターネットオブシングス）デバイスとの連携にも使用できます。JavaでのIoT開発には、センサーからのデータを収集し、ネットワーク経由でクラウドや他のデバイスに送信することが一般的です。</p>
+            <h3>IoTデバイスとJavaの基本的な連携</h3>
+            <p>例えば、Raspberry PiなどのIoTデバイスにJavaアプリケーションを組み込んで、温度センサーのデータを取得し、それをクラウドに送信することができます。</p>
+            <pre>
+<code>
+import com.pi4j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioFactory;
+import com.pi4j.io.gpio.Pin;
+import com.pi4j.io.gpio.PinState;
+import com.pi4j.io.gpio.RaspiPin;
+
+public class TemperatureSensor {
+    public static void main(String[] args) {
+        GpioController gpio = GpioFactory.getInstance();
+        Pin pin = RaspiPin.GPIO_01; // センサーが接続されているGPIOピン
+        gpio.provisionDigitalInputPin(pin);
+
+        while (true) {
+            PinState state = gpio.provisionDigitalInputPin(pin).getState();
+            System.out.println("センサーの状態: " + state);
+            // IoTクラウドへデータ送信処理など
+        }
+    }
+}
+</code>
+            </pre>
+            <p>このコードは、Raspberry Piに接続された温度センサーからデータを取得し、状態に応じたアクションを取る例です。実際のIoT開発では、センサーから得たデータをインターネットを通じてクラウドに送信することがよく行われます。</p>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section87">87. ソフトウェアアーキテクチャのパターン</a></li>
+                    <li><a href="#section88">88. カスタム例外の作成</a></li>
+                    <li><a href="#section89">89. ファイルの圧縮と解凍</a></li>
+                    <li><a href="#section90">90. インターネットオブシングス（IoT）への応用</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson01.html">次のページへ</a></li>
+                    <li><a href="lesson26.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/Java/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 Javaプログラミング学習サイト</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

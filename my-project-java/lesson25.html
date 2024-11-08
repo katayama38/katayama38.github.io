@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaプログラミングの詳細な概念と技術について解説しています。">
+    <meta name="keywords" content="Java, プログラミング, デバッグ, コンストラクタ, API設計, バリデーション, モバイルアプリ">
+    <title>Javaプログラミングの詳細解説</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaプログラミングの詳細解説</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Section 66: バイナリデータの処理 -->
+            <h2 id="section66">66. バイナリデータの処理</h2>
+            <p>Javaでは、バイナリファイルを読み書きするために`InputStream`や`OutputStream`を使用します。これらのクラスはバイト単位でデータを処理するため、大きなファイルや画像、音声ファイルなどの扱いに適しています。</p>
+            <pre>
+<code>
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class BinaryFileExample {
+    public static void main(String[] args) {
+        try (FileInputStream fis = new FileInputStream("input.bin");
+             FileOutputStream fos = new FileOutputStream("output.bin")) {
+            int byteData;
+            while ((byteData = fis.read()) != -1) {
+                fos.write(byteData);
+            }
+            System.out.println("バイナリファイルのコピーが完了しました");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code>
+            </pre>
+            <p>この例では、バイナリファイル`input.bin`を読み取り、別のファイル`output.bin`にコピーしています。バイナリデータはバイト単位で処理されるため、`FileInputStream`と`FileOutputStream`を使用します。</p>
+
+            <!-- Section 67: 非同期プログラミング -->
+            <h2 id="section67">67. 非同期プログラミング</h2>
+            <p>Javaでは、`CompletableFuture`を使用して非同期処理を実装できます。非同期処理は、特にI/O操作やネットワーク通信などの待機時間が長い処理に役立ちます。</p>
+            <pre>
+<code>
+import java.util.concurrent.CompletableFuture;
+
+public class AsyncExample {
+    public static void main(String[] args) {
+        CompletableFuture.supplyAsync(() -> {
+            return "非同期処理";
+        }).thenAccept(result -> {
+            System.out.println("結果: " + result);
+        });
+    }
+}
+</code>
+            </pre>
+            <p>このコードは非同期で"非同期処理"という文字列を取得し、その結果を受け取って表示する例です。`CompletableFuture`は非同期処理の結果を簡単に扱うためのAPIです。</p>
+
+            <!-- Section 68: スプリングブートの基礎 -->
+            <h2 id="section68">68. スプリングブートの基礎</h2>
+            <p>Spring Bootは、JavaでWebアプリケーションを簡単に作成するためのフレームワークです。最小限の設定で起動でき、開発の効率を大幅に向上させます。</p>
+            <pre>
+<code>
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+</code>
+            </pre>
+            <p>このコードは、Spring Bootの最小構成でWebアプリケーションを起動する例です。`@SpringBootApplication`アノテーションを使用することで、必要な設定が自動的に行われます。</p>
+
+            <!-- Section 69: セッション管理とクッキー -->
+            <h2 id="section69">69. セッション管理とクッキー</h2>
+            <p>Webアプリケーションでユーザーの状態を保持するために、セッションやクッキーを使用します。セッションはサーバー側でデータを保持し、クッキーはクライアント側で保持します。</p>
+            <pre>
+<code>
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class CookieExample {
+    public void setCookie(HttpServletResponse response) {
+        Cookie cookie = new Cookie("username", "Alice");
+        cookie.setMaxAge(60 * 60); // 1時間
+        response.addCookie(cookie);
+    }
+
+    public String getCookie(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("username".equals(cookie.getName())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
+    }
+}
+</code>
+            </pre>
+            <p>このコードは、ユーザー名をクッキーとして保存し、次回アクセス時にその値を取得する例です。`HttpServletRequest`と`HttpServletResponse`を使ってセッションやクッキーを管理します。</p>
+
+            <!-- Section 70: JavaFXのイベント処理 -->
+            <h2 id="section70">70. JavaFXのイベント処理</h2>
+            <p>JavaFXは、Javaでデスクトップアプリケーションを作成するためのフレームワークです。イベント駆動型のプログラムを書くためには、UI要素にイベントリスナーを追加します。</p>
+            <pre>
+<code>
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class JavaFXExample extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        Button btn = new Button("クリックして下さい");
+        btn.setOnAction(e -> System.out.println("ボタンがクリックされました"));
+
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+
+        Scene scene = new Scene(root, 300, 250);
+        primaryStage.setTitle("JavaFX Example");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、JavaFXを使用してボタンを作成し、ボタンがクリックされた時にメッセージを表示するシンプルな例を示しています。</p>
+
+            <!-- Section 71: XMLとJSONの変換 -->
+            <h2 id="section71">71. XMLとJSONの変換</h2>
+            <p>Javaでは、XMLとJSONのデータ形式を相互に変換するためのライブラリが提供されています。例えば、`JAXB`でXMLを、`Jackson`でJSONを操作できます。</p>
+            <pre>
+<code>
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JsonExample {
+    public static void main(String[] args) throws Exception {
+        String json = "{\"name\":\"Alice\",\"age\":30}";
+        ObjectMapper objectMapper = new ObjectMapper();
+        Person person = objectMapper.readValue(json, Person.class);
+        System.out.println(person.getName());
+    }
+
+    public static class Person {
+        private String name;
+        private int age;
+
+        // GetterとSetter
+        public String getName() { return name; }
+        public void setName(String name) { this.name = name; }
+        public int getAge() { return age; }
+        public void setAge(int age) { this.age = age; }
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、JSON文字列を`Jackson`ライブラリを使ってJavaオブジェクトに変換しています。</p>
+
+            <!-- Section 72: マルチモジュールプロジェクトの構築 -->
+            <h2 id="section72">72. マルチモジュールプロジェクトの構築</h2>
+            <p>複数のモジュールを持つJavaプロジェクトは、依存関係を管理しやすく、再利用性が高まります。`Maven`や`Gradle`を使ってモジュールを管理します。</p>
+            <pre>
+<code>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modules>
+        <module>module1</module>
+        <module>module2</module>
+    </modules>
+</project>
+</code>
+            </pre>
+            <p>この例では、Mavenを使って2つのモジュール`module1`と`module2`を定義しています。</p>
+
+            <!-- Section 73: Webアプリケーションセキュリティの基礎 -->
+            <h2 id="section73">73. Webアプリケーションセキュリティの基礎</h2>
+            <p>Webアプリケーションのセキュリティには、SQLインジェクションやクロスサイトスクリプティング（XSS）などの脅威があります。OWASP Top Tenは、これらの脆弱性に対する対策を提供します。</p>
+            <pre>
+<code>
+// SQLインジェクションの防止
+String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+PreparedStatement stmt = connection.prepareStatement(query);
+stmt.setString(1, username);
+stmt.setString(2, password);
+ResultSet rs = stmt.executeQuery();
+</code>
+            </pre>
+            <p>この例では、SQLインジェクションを防ぐためにプレースホルダーを使ってSQLクエリを実行しています。</p>
+
+            <!-- Section 74: データベーストランザクション -->
+            <h2 id="section74">74. データベーストランザクション</h2>
+            <p>トランザクションは、複数の操作を一つの単位としてまとめて処理するための機能です。ACID特性（Atomicity, Consistency, Isolation, Durability）を保持することで、データの一貫性と信頼性を確保できます。</p>
+            <pre>
+<code>
+connection.setAutoCommit(false);  // 自動コミットを無効にする
+try {
+    statement.executeUpdate("UPDATE accounts SET balance = balance - 100 WHERE user_id = 1");
+    statement.executeUpdate("UPDATE accounts SET balance = balance + 100 WHERE user_id = 2");
+    connection.commit();  // トランザクションをコミット
+} catch (SQLException e) {
+    connection.rollback();  // エラーが発生した場合はロールバック
+}
+</code>
+            </pre>
+            <p>このコードは、2つの銀行口座の残高を更新するトランザクションの例です。途中でエラーが発生した場合はロールバックして、データの整合性を保ちます。</p>
+
+            <!-- Section 75: RESTfulサービスのセキュリティ -->
+            <h2 id="section75">75. RESTfulサービスのセキュリティ</h2>
+            <p>RESTfulサービスでは、認証と認可が重要です。JWT（JSON Web Token）やOAuth2を使用して、ユーザー認証を行います。</p>
+            <pre>
+<code>
+// JWTトークンを使った認証の例（簡易版）
+public class JwtUtil {
+    public static String createToken(String username) {
+        return "token-for-" + username;
+    }
+}
+</code>
+            </pre>
+            <p>このコードは、JWTトークンを生成する簡単な例です。実際には、トークンの署名や検証が行われます。</p>
+
+            <!-- Section 76: クリーンアーキテクチャの概念 -->
+            <h2 id="section76">76. クリーンアーキテクチャの概念</h2>
+            <p>クリーンアーキテクチャは、ソフトウェアの設計において、依存関係の方向をコントロールし、コードの保守性と拡張性を高めるためのアーキテクチャです。ビジネスロジックとインフラストラクチャを分離します。</p>
+            <pre>
+<code>
+// ビジネスロジック（ユースケース）
+public class UserService {
+    private UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public User getUserById(int id) {
+        return userRepository.findById(id);
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、ビジネスロジック層（`UserService`）とデータアクセス層（`UserRepository`）を分けています。クリーンアーキテクチャでは、依存関係が内向きに保たれ、外部の詳細（データベースやWebフレームワーク）に依存しません。</p>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section66">66. バイナリデータの処理</a></li>
+                    <li><a href="#section67">67. 非同期プログラミング</a></li>
+                    <li><a href="#section68">68. スプリングブートの基礎</a></li>
+                    <li><a href="#section69">69. セッション管理とクッキー</a></li>
+                    <li><a href="#section70">70. JavaFXのイベント処理</a></li>
+                    <li><a href="#section71">71. XMLとJSONの変換</a></li>
+                    <li><a href="#section72">72. マルチモジュールプロジェクトの構築</a></li>
+                    <li><a href="#section73">73. Webアプリケーションセキュリティの基礎</a></li>
+                    <li><a href="#section74">74. データベーストランザクション</a></li>
+                    <li><a href="#section75">75. RESTfulサービスのセキュリティ</a></li>
+                    <li><a href="#section76">76. クリーンアーキテクチャの概念</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson26.html">次のページへ</a></li>
+                    <li><a href="lesson24.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/Java/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 Javaプログラミング学習サイト</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

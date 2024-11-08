@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="jQueryの基礎から応用までの解説。">
+    <meta name="keywords" content="jQuery, JavaScript, イベント, セレクタ, アニメーション">
+    <title>jQueryの基礎と応用</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>jQueryの基礎と応用</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- 53. 画像の遅延読み込み -->
+            <h2 id="section53">画像の遅延読み込み</h2>
+            <p>ウェブページのパフォーマンス向上のために、画像を必要な時に読み込む「遅延読み込み」を実装します。jQueryを使って、画像が表示される直前に読み込むようにします。</p>
+            <pre id="code53">
+$(document).ready(function() {
+    $("img.lazy").each(function() {
+        var img = $(this);
+        img.attr("src", img.data("src"));
+        img.removeClass("lazy");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code53', 'alert53', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert53"></span>
+
+            <!-- 54. カスタムアニメーションの作成 -->
+            <h2 id="section54">カスタムアニメーションの作成</h2>
+            <p>jQueryの`animate`メソッドを使って、独自のアニメーションを作成します。例えば、要素を移動させる、サイズを変更する、色を変更するなど、アニメーションの幅を広げます。</p>
+            <pre id="code54">
+$(document).ready(function() {
+    $("#animateBtn").click(function() {
+        $(".box").animate({
+            width: "300px",
+            height: "300px",
+            left: "200px"
+        }, 1000);
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code54', 'alert54', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert54"></span>
+
+            <!-- 55. 外部APIの利用 -->
+            <h2 id="section55">外部APIの利用</h2>
+            <p>jQueryで外部APIを呼び出し、そのデータをウェブページに表示します。以下の例では、JSON形式のデータを取得して表示しています。</p>
+            <pre id="code55">
+$(document).ready(function() {
+    $.ajax({
+        url: "https://jsonplaceholder.typicode.com/posts",
+        method: "GET",
+        dataType: "json",
+        success: function(response) {
+            $.each(response, function(index, post) {
+                $("#posts").append("<p>" + post.title + "</p>");
+            });
+        }
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code55', 'alert55', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert55"></span>
+
+            <!-- 56. テーマの切り替え -->
+            <h2 id="section56">テーマの切り替え</h2>
+            <p>ユーザーがテーマ（例：ダークモードとライトモード）を切り替えられる機能をjQueryで実装します。以下のコードでは、ボタンをクリックしてテーマを変更します。</p>
+            <pre id="code56">
+$(document).ready(function() {
+    $("#themeToggle").click(function() {
+        $("body").toggleClass("dark-theme");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code56', 'alert56', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert56"></span>
+
+            <!-- 57. 多言語対応の実装 -->
+            <h2 id="section57">多言語対応の実装</h2>
+            <p>jQueryを使って、簡易的な多言語対応機能を作成します。ユーザーが選択した言語に応じて、テキストを切り替える方法です。</p>
+            <pre id="code57">
+$(document).ready(function() {
+    $("#langSelect").change(function() {
+        var lang = $(this).val();
+        $(".lang").each(function() {
+            if ($(this).data("lang") === lang) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code57', 'alert57', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert57"></span>
+
+            <!-- 58. 印刷用スタイルの適用 -->
+            <h2 id="section58">印刷用スタイルの適用</h2>
+            <p>ページの印刷時に適用されるスタイルをjQueryで変更する方法です。印刷プレビューをカスタマイズして、不要な要素を非表示にできます。</p>
+            <pre id="code58">
+$(document).ready(function() {
+    $(window).on("beforeprint", function() {
+        $(".no-print").hide();
+    });
+    $(window).on("afterprint", function() {
+        $(".no-print").show();
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code58', 'alert58', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert58"></span>
+
+            <!-- 59. グラフの描画 -->
+            <h2 id="section59">グラフの描画</h2>
+            <p>jQueryと他のライブラリ（例えばChart.js）を使って、データをグラフとして視覚化します。以下は基本的なグラフの描画例です。</p>
+            <pre id="code59">
+$(document).ready(function() {
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: "My First Dataset",
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code59', 'alert59', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert59"></span>
+
+            <!-- 60. ユーザー入力のトラッキング -->
+            <h2 id="section60">ユーザー入力のトラッキング</h2>
+            <p>フォームや入力フィールドの変更をリアルタイムで監視し、ユーザーの入力内容をトラッキングする方法です。</p>
+            <pre id="code60">
+$(document).ready(function() {
+    $("input, textarea").on("input", function() {
+        var inputValue = $(this).val();
+        $("#trackOutput").text(inputValue);
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code60', 'alert60', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert60"></span>
+
+            <!-- 61. モバイルデバイス向けの最適化 -->
+            <h2 id="section61">モバイルデバイス向けの最適化</h2>
+            <p>モバイルデバイスに最適なUIを作成するために、画面サイズを動的に判断して、レイアウトや要素を変更します。</p>
+            <pre id="code61">
+$(document).ready(function() {
+    if ($(window).width() < 768) {
+        $(".menu").hide();
+    } else {
+        $(".menu").show();
+    }
+
+    $(window).resize(function() {
+        if ($(window).width() < 768) {
+            $(".menu").hide();
+        } else {
+            $(".menu").show();
+        }
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code61', 'alert61', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert61"></span>
+
+            <!-- 62. 動的コンテンツの生成 -->
+            <h2 id="section62">動的コンテンツの生成</h2>
+            <p>jQueryを使って、ユーザーの操作に応じて動的にコンテンツを生成する方法を紹介します。</p>
+            <pre id="code62">
+$(document).ready(function() {
+    $("#addItem").click(function() {
+        var newItem = $("<li>").text("新しいアイテム");
+        $("#itemList").append(newItem);
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code62', 'alert62', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert62"></span>
+
+            <!-- 63. 外部ライブラリとの統合 -->
+            <h2 id="section63">外部ライブラリとの統合</h2>
+            <p>jQueryと他のJavaScriptライブラリを連携させる方法です。例えば、`moment.js`を使って日付操作を簡単に行います。</p>
+            <pre id="code63">
+$(document).ready(function() {
+    var date = moment().format("YYYY-MM-DD");
+    $("#dateOutput").text(date);
+});
+            </pre>
+            <button onclick="copyToClipboard('code63', 'alert63', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert63"></span>
+
+            <!-- 64. SEOへの配慮 -->
+            <h2 id="section64">SEOへの配慮</h2>
+            <p>jQueryを使用する際に、SEOに配慮するためのポイントについて説明します。例えば、動的に読み込まれるコンテンツが検索エンジンに影響を与えないように工夫します。</p>
+            <pre id="code64">
+$(document).ready(function() {
+    if ($("#dynamicContent").length) {
+        console.log("SEO対応済み");
+    }
+});
+            </pre>
+            <button onclick="copyToClipboard('code64', 'alert64', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert64"></span>
+
+            <!-- 65. テストの自動化 -->
+            <h2 id="section65">テストの自動化</h2>
+            <p>jQueryを使った簡単なテストケースの自動化を行います。`QUnit`などのテスティングフレームワークと組み合わせて使用できます。</p>
+            <pre id="code65">
+$(document).ready(function() {
+    $("#testButton").click(function() {
+        var result = $("#inputField").val();
+        if (result === "expected") {
+            alert("テスト成功");
+        } else {
+            alert("テスト失敗");
+        }
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code65', 'alert65', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert65"></span>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section53">画像の遅延読み込み</a></li>
+                    <li><a href="#section54">カスタムアニメーションの作成</a></li>
+                    <li><a href="#section55">外部APIの利用</a></li>
+                    <li><a href="#section56">テーマの切り替え</a></li>
+                    <li><a href="#section57">多言語対応の実装</a></li>
+                    <li><a href="#section58">印刷用スタイルの適用</a></li>
+                    <li><a href="#section59">グラフの描画</a></li>
+                    <li><a href="#section60">ユーザー入力のトラッキング</a></li>
+                    <li><a href="#section61">モバイルデバイス向けの最適化</a></li>
+                    <li><a href="#section62">動的コンテンツの生成</a></li>
+                    <li><a href="#section63">外部ライブラリとの統合</a></li>
+                    <li><a href="#section64">SEOへの配慮</a></li>
+                    <li><a href="#section65">テストの自動化</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson01.html">次のページへ</a></li>
+                    <li><a href="lesson05.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/jquery/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="jQueryの基礎から応用までの解説。">
+    <meta name="keywords" content="jQuery, JavaScript, イベント, セレクタ, アニメーション">
+    <title>jQueryの基礎と応用</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>jQueryの基礎と応用</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- 1. jQueryとは何か -->
+            <h2 id="section1">jQueryとは何か</h2>
+            <p>jQueryは、JavaScriptのライブラリで、DOM操作（HTML要素の操作）、イベント処理、アニメーション、AJAX通信などを簡単に行えるツールです。JavaScriptよりも簡潔にコードを書くことができ、クロスブラウザ対応も考慮されています。</p>
+            <p>主な特徴は、以下の通りです：</p>
+            <ul>
+                <li>簡潔な構文でDOM要素を操作できる</li>
+                <li>アニメーションの実装が簡単</li>
+                <li>AJAX通信が容易に実装できる</li>
+                <li>複雑なイベント処理も簡単に設定できる</li>
+            </ul>
+
+            <!-- 2. jQueryの導入 -->
+            <h2 id="section2">jQueryの導入</h2>
+            <p>jQueryを使うには、まずライブラリをHTMLファイルに読み込む必要があります。以下はCDN（Content Delivery Network）を使った導入方法です。</p>
+            <pre id="code1">
+<!-- CDN経由でjQueryを読み込む例 -->
+&lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"&gt;&lt;/script&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <!-- 3. 基本的な構文 -->
+            <h2 id="section3">基本的な構文</h2>
+            <p>jQueryの基本構文は次のように、`$`で関数を呼び出し、対象の要素に対して操作を行います。</p>
+            <pre id="code2">
+$(document).ready(function() {
+    $("button").click(function() {
+        alert("ボタンがクリックされました！");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <!-- 4. セレクタの使い方 -->
+            <h2 id="section4">セレクタの使い方</h2>
+            <p>jQueryでは、CSSのセレクタを使って要素を選択できます。以下は、いくつかの例です。</p>
+            <pre id="code3">
+<!-- クラスセレクタ -->
+$(".example").css("color", "blue");
+
+<!-- IDセレクタ -->
+$("#main-title").css("font-size", "30px");
+
+<!-- 属性セレクタ -->
+$("a[href='#']").css("color", "red");
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <!-- 5. イベント処理 -->
+            <h2 id="section5">イベント処理</h2>
+            <p>jQueryでは、クリックやフォーム送信など、さまざまなイベントを簡単に扱うことができます。</p>
+            <pre id="code4">
+$(document).ready(function() {
+    $("#clickButton").click(function() {
+        alert("ボタンがクリックされました！");
+    });
+
+    $("form").submit(function(event) {
+        event.preventDefault(); // フォーム送信のデフォルト動作をキャンセル
+        alert("フォームが送信されました！");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <!-- 6. 要素の操作 -->
+            <h2 id="section6">要素の操作</h2>
+            <p>jQueryを使用すると、HTML要素のテキスト、HTML内容、CSSスタイルを簡単に操作できます。</p>
+            <pre id="code5">
+<!-- テキストの変更 -->
+$("#header").text("新しいタイトル");
+
+<!-- HTMLの変更 -->
+$("#content").html("<p>新しいコンテンツです。</p>");
+
+<!-- CSSの変更 -->
+$(".box").css("background-color", "yellow");
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <!-- 7. Ajax通信 -->
+            <h2 id="section7">Ajax通信</h2>
+            <p>AJAXを使うことで、ページをリロードすることなくサーバーと非同期に通信できます。以下は、サーバーからデータを取得する例です。</p>
+            <pre id="code6">
+$.ajax({
+    url: "data.json", // サーバー上のファイルまたはAPIのURL
+    method: "GET",     // リクエストメソッド（GETやPOSTなど）
+    success: function(response) {
+        console.log(response); // 成功した場合の処理
+    },
+    error: function(xhr, status, error) {
+        console.error("エラーが発生しました: " + error); // エラー処理
+    }
+});
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <!-- 8. アニメーションの実装 -->
+            <h2 id="section8">アニメーションの実装</h2>
+            <p>jQueryでは、簡単にアニメーションを追加できます。以下のコードは、要素をスライドさせるアニメーションです。</p>
+            <pre id="code7">
+$(document).ready(function() {
+    $("#slideButton").click(function() {
+        $("#box").slideUp(); // 要素を上にスライドして非表示にする
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
+
+            <!-- 9. リストのアイテム操作 -->
+            <h2 id="section9">リストのアイテム操作</h2>
+            <p>jQueryを使用して、リストアイテムを動的に追加したり削除したりすることができます。</p>
+            <pre id="code8">
+$(document).ready(function() {
+    $("#addButton").click(function() {
+        $("#itemList").append("<li>新しいアイテム</li>"); // リストに新しいアイテムを追加
+    });
+
+    $("#removeButton").click(function() {
+        $("#itemList li:last").remove(); // 最後のアイテムを削除
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
+
+            <!-- 10. ベストプラクティス -->
+            <h2 id="section10">ベストプラクティス</h2>
+            <p>jQueryを使う際のベストプラクティスとして、以下の点に注意しましょう：</p>
+            <ul>
+                <li>必要なときだけjQueryを読み込む（パフォーマンス最適化）</li>
+                <li>イベントの委任を活用して、動的に追加された要素にもイベントを適用</li>
+                <li>チェーンメソッドを使ってコードを簡潔にする</li>
+                <li>エラーハンドリングをしっかり行う（特にAJAX通信時）</li>
+            </ul>
+
+            <h2 id="section11">まとめ</h2>
+            <p>jQueryは非常に強力なライブラリで、ウェブ開発を効率化するために非常に役立ちます。基本的な操作を理解し、適切に活用することで、よりインタラクティブで使いやすいウェブサイトを作成できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">jQueryとは何か</a></li>
+                    <li><a href="#section2">jQueryの導入</a></li>
+                    <li><a href="#section3">基本的な構文</a></li>
+                    <li><a href="#section4">セレクタの使い方</a></li>
+                    <li><a href="#section5">イベント処理</a></li>
+                    <li><a href="#section6">要素の操作</a></li>
+                    <li><a href="#section7">Ajax通信</a></li>
+                    <li><a href="#section8">アニメーションの実装</a></li>
+                    <li><a href="#section9">リストのアイテム操作</a></li>
+                    <li><a href="#section10">ベストプラクティス</a></li>
+                    <li><a href="#section11">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson02.html">次のページへ</a></li>
+                    <li><a href="lesson06.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/jquery/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

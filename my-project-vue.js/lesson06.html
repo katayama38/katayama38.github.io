@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vue.jsの高度な機能を活用する方法について解説します。">
+    <meta name="keywords" content="Vue.js, ユーザー認証, API設計, E2Eテスト, Vuex, パフォーマンスモニタリング">
+    <title>Vue.jsの高度な機能</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Vue.jsの高度な機能の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Section 56: ユーザー認証とセッション管理 -->
+            <h2 id="section56">56. ユーザー認証とセッション管理</h2>
+            <p>Vue.jsでユーザー認証を実装するには、通常JWT（JSON Web Token）を使用します。認証後に得られるトークンを保存し、APIリクエストに付与してユーザーを認証します。</p>
+            <pre id="code56">
+&lt;!-- ユーザー認証の実装例 --&gt;
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;button @click="login"&gt;ログイン&lt;/button&gt;
+        &lt;p v-if="isAuthenticated"&gt;ログインしました&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            isAuthenticated: false,
+            token: ''
+        };
+    },
+    methods: {
+        async login() {
+            try {
+                const response = await axios.post('https://api.example.com/login', {
+                    username: 'user',
+                    password: 'password'
+                });
+                this.token = response.data.token;
+                this.isAuthenticated = true;
+                localStorage.setItem('authToken', this.token);
+            } catch (error) {
+                console.error('ログインエラー:', error);
+            }
+        }
+    }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 57: カスタムフィルタの作成 -->
+            <h2 id="section57">57. カスタムフィルタの作成</h2>
+            <p>Vue.jsでカスタムフィルタを作成することで、特定のデータの変換や整形を簡単に行えます。例えば、日付のフォーマットを変更するフィルタを作成できます。</p>
+            <pre id="code57">
+&lt;!-- カスタムフィルタの例 --&gt;
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;p&gt;{{ date | formatDate }}&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+    data() {
+        return {
+            date: '2024-11-05'
+        };
+    },
+    filters: {
+        formatDate(value) {
+            const date = new Date(value);
+            return date.toLocaleDateString();
+        }
+    }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 58: E2Eテストツールの導入 -->
+            <h2 id="section58">58. E2Eテストツールの導入</h2>
+            <p>CypressやNightwatch.jsを使用して、Vue.jsアプリケーションのエンドツーエンド（E2E）テストを行います。これにより、ユーザーインタラクションが期待通りに動作するか確認できます。</p>
+            <pre id="code58">
+&lt;!-- CypressでのE2Eテスト --&gt;
+describe('Login Page', () => {
+    it('ユーザーがログインできること', () => {
+        cy.visit('/login');
+        cy.get('input[name="username"]').type('user');
+        cy.get('input[name="password"]').type('password');
+        cy.get('button').click();
+        cy.contains('ログインしました');
+    });
+});
+            </pre>
+
+            <!-- Section 59: 状態管理の設計パターン -->
+            <h2 id="section59">59. 状態管理の設計パターン</h2>
+            <p>Vuexを使った状態管理では、アプリケーションの状態をグローバルに管理できます。Vuexストアの設計パターンと、状態管理のベストプラクティスについて説明します。</p>
+            <pre id="code59">
+&lt;!-- Vuexストアの設計パターン --&gt;
+import { createStore } from 'vuex';
+
+export default createStore({
+    state: {
+        user: null
+    },
+    mutations: {
+        setUser(state, user) {
+            state.user = user;
+        }
+    },
+    actions: {
+        fetchUser({ commit }) {
+            axios.get('/api/user').then(response => {
+                commit('setUser', response.data);
+            });
+        }
+    }
+});
+            </pre>
+
+            <!-- Section 60: アプリケーションのパフォーマンスモニタリング -->
+            <h2 id="section60">60. アプリケーションのパフォーマンスモニタリング</h2>
+            <p>Vue.jsアプリケーションのパフォーマンスを監視するために、ブラウザの開発者ツールやライブラリを使用します。`Vue Devtools`を活用することで、コンポーネントの状態やパフォーマンスを確認できます。</p>
+            <pre id="code60">
+&lt;!-- Vue Devtoolsの使用例 --&gt;
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;p&gt;アプリケーションのパフォーマンスをモニタリング中...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+    mounted() {
+        if (process.env.NODE_ENV === 'development') {
+            Vue.config.devtools = true;
+        }
+    }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 61: 多国籍対応アプリの構築 -->
+            <h2 id="section61">61. 多国籍対応アプリの構築</h2>
+            <p>Vue.jsで多国籍対応のアプリケーションを構築するには、`vue-i18n`を使用して、異なる言語で表示内容を切り替えることができます。</p>
+            <pre id="code61">
+&lt;!-- vue-i18nを使用した多国籍対応 --&gt;
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;p&gt;{{ $t("message.hello") }}&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { createI18n } from 'vue-i18n';
+
+const i18n = createI18n({
+    locale: 'en',
+    messages: {
+        en: {
+            message: {
+                hello: 'Hello, world!'
+            }
+        },
+        ja: {
+            message: {
+                hello: 'こんにちは、世界！'
+            }
+        }
+    }
+});
+
+export default {
+    i18n
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 62: カスタムレポジトリの構築 -->
+            <h2 id="section62">62. カスタムレポジトリの構築</h2>
+            <p>Vue.jsでカスタムAPIレポジトリを作成し、データ取得や送信を行います。`axios`を使ってAPIリクエストを処理することが一般的です。</p>
+            <pre id="code62">
+&lt;!-- カスタムAPIレポジトリの例 --&gt;
+import axios from 'axios';
+
+export const apiRepository = {
+    getPosts() {
+        return axios.get('https://api.example.com/posts');
+    },
+    createPost(post) {
+        return axios.post('https://api.example.com/posts', post);
+    }
+};
+            </pre>
+
+            <!-- Section 63: モーダルウィンドウの実装 -->
+            <h2 id="section63">63. モーダルウィンドウの実装</h2>
+            <p>Vue.jsでモーダルダイアログを作成することで、ユーザーインタラクションを効率よく管理できます。モーダルは状態管理を利用して表示/非表示を切り替えます。</p>
+            <pre id="code63">
+&lt;!-- モーダルウィンドウの実装例 --&gt;
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;button @click="showModal = true"&gt;モーダルを開く&lt;/button&gt;
+        &lt;div v-if="showModal" class="modal"&gt;
+            &lt;p&gt;モーダルコンテンツ&lt;/p&gt;
+            &lt;button @click="showModal = false"&gt;閉じる&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+    data() {
+        return {
+            showModal: false
+        };
+    }
+};
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+&lt;/style&gt;
+            </pre>
+
+            <!-- Section 64: ストアの分割管理 -->
+            <h2 id="section64">64. ストアの分割管理</h2>
+            <p>Vuexストアをモジュール化して管理することで、大規模なアプリケーションの状態を効率よく管理できます。モジュール化することで、各機能ごとに状態を管理できます。</p>
+            <pre id="code64">
+&lt;!-- Vuexストアのモジュール化 --&gt;
+import { createStore } from 'vuex';
+
+const store = createStore({
+    modules: {
+        user: {
+            state: () => ({ user: null }),
+            mutations: {
+                setUser(state, user) {
+                    state.user = user;
+                }
+            }
+        },
+        posts: {
+            state: () => ({ posts: [] }),
+            mutations: {
+                setPosts(state, posts) {
+                    state.posts = posts;
+                }
+            }
+        }
+    }
+});
+            </pre>
+
+            <!-- Section 65: レイアウトコンポーネントの作成 -->
+            <h2 id="section65">65. レイアウトコンポーネントの作成</h2>
+            <p>アプリケーションのレイアウトを管理するためのコンポーネントを作成し、再利用可能なレイアウトを実現します。これにより、コンポーネント間で一貫性のあるデザインを維持できます。</p>
+            <pre id="code65">
+&lt;!-- レイアウトコンポーネントの作成例 --&gt;
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;header&gt;
+            &lt;h1&gt;アプリケーションのタイトル&lt;/h1&gt;
+        &lt;/header&gt;
+        &lt;main&gt;
+            &lt;slot&gt;&lt;/slot&gt;
+        &lt;/main&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+    name: 'AppLayout'
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 66: アクセシビリティのテスト -->
+            <h2 id="section66">66. アクセシビリティのテスト</h2>
+            <p>Vue.jsアプリケーションのアクセシビリティをテストするために、`axe-core`や`vue-a11y`などのツールを使用します。これにより、障害を持つユーザーにも使いやすいアプリケーションが提供できます。</p>
+            <pre id="code66">
+&lt;!-- アクセシビリティテストの実装例 --&gt;
+import { mount } from '@vue/test-utils';
+import { toHaveNoViolations } from 'jest-axe';
+import MyComponent from '@/components/MyComponent.vue';
+
+expect.extend(toHaveNoViolations);
+
+test('アクセシビリティテスト', async () => {
+    const wrapper = mount(MyComponent);
+    const results = await axe(wrapper.element);
+    expect(results).toHaveNoViolations();
+});
+            </pre>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section56">ユーザー認証とセッション管理</a></li>
+                    <li><a href="#section57">カスタムフィルタの作成</a></li>
+                    <li><a href="#section58">E2Eテストツールの導入</a></li>
+                    <li><a href="#section59">状態管理の設計パターン</a></li>
+                    <li><a href="#section60">アプリケーションのパフォーマンスモニタリング</a></li>
+                    <li><a href="#section61">多国籍対応アプリの構築</a></li>
+                    <li><a href="#section62">カスタムレポジトリの構築</a></li>
+                    <li><a href="#section63">モーダルウィンドウの実装</a></li>
+                    <li><a href="#section64">ストアの分割管理</a></li>
+                    <li><a href="#section65">レイアウトコンポーネントの作成</a></li>
+                    <li><a href="#section66">アクセシビリティのテスト</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson07.html">次のページへ</a></li>
+                    <li><a href="lesson05.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/vue.js/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

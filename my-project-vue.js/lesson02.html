@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vue.jsの高度な機能を活用する方法について解説します。">
+    <meta name="keywords" content="Vue.js, ローカルストレージ, ダッシュボード, ユーザーインターフェーステスト, CSSアニメーション, 国際化, RESTful API, エラーハンドリング, 音声認識, PWA, OAuth 2.0, Docker, Firebase, Jest">
+    <title>Vue.jsの高度な機能</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Vue.jsの高度な機能の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Section 12: コンポーネント間の通信 -->
+            <h2 id="section12">12. コンポーネント間の通信</h2>
+            <p>Vue.jsでは、親子コンポーネント間でデータをやり取りする方法を理解することが重要です。親から子にデータを渡す方法、子から親にデータを送る方法について説明します。</p>
+            <pre id="code12">
+&lt;!-- 親から子へデータを渡す --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;ChildComponent :message="parentMessage"/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import ChildComponent from './ChildComponent.vue';
+
+export default {
+  data() {
+    return {
+      parentMessage: 'こんにちは、子コンポーネント！'
+    };
+  },
+  components: {
+    ChildComponent
+  }
+};
+&lt;/script&gt;
+
+&lt;!-- 子から親にデータを送る --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="sendMessageToParent"&gt;親にメッセージを送る&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  methods: {
+    sendMessageToParent() {
+      this.$emit('message-from-child', 'こんにちは、親コンポーネント！');
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 13: スロットの使用 -->
+            <h2 id="section13">13. スロットの使用</h2>
+            <p>Vue.jsのスロットを使うことで、コンポーネントの再利用性を高め、柔軟なコンテンツの埋め込みを実現できます。スロットの使い方とカスタマイズ方法について説明します。</p>
+            <pre id="code13">
+&lt;!-- 親コンポーネント --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;CustomSlot&gt;
+      &lt;p&gt;親から渡されたコンテンツ&lt;/p&gt;
+    &lt;/CustomSlot&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import CustomSlot from './CustomSlot.vue';
+
+export default {
+  components: {
+    CustomSlot
+  }
+};
+&lt;/script&gt;
+
+&lt;!-- 子コンポーネント --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;slot&gt;&lt;/slot&gt;  &lt;!-- スロットの内容がここに挿入される --&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 14: フィルタの活用 -->
+            <h2 id="section14">14. フィルタの活用</h2>
+            <p>Vue.jsでは、データを表示する際にフィルタを使って簡単に加工できます。数値のフォーマットや日付の変換など、フィルタを活用する方法を学びましょう。</p>
+            <pre id="code14">
+&lt;!-- フィルタの使用例 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;{{ price | currency }}&lt;/p&gt;
+    &lt;p&gt;{{ date | formatDate }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      price: 1000,
+      date: '2024-11-05'
+    };
+  },
+  filters: {
+    currency(value) {
+      return `¥${value.toLocaleString()}`;
+    },
+    formatDate(value) {
+      const date = new Date(value);
+      return date.toLocaleDateString();
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 15: Vue Routerの導入 -->
+            <h2 id="section15">15. Vue Routerの導入</h2>
+            <p>Vue.jsでシングルページアプリケーション（SPA）を作成するためには、Vue Routerを使用してページ間の遷移を管理します。基本的なルーティングの設定方法を学びましょう。</p>
+            <pre id="code15">
+&lt;!-- router/index.js --&gt;
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from '../views/Home.vue';
+import About from '../views/About.vue';
+
+const routes = [
+  { path: '/', component: Home },
+  { path: '/about', component: About }
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+});
+
+export default router;
+
+&lt;!-- App.vue --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;router-link to="/"&gt;Home&lt;/router-link&gt;
+    &lt;router-link to="/about"&gt;About&lt;/router-link&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;  &lt;!-- 遷移先のコンテンツがここに表示される --&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+            </pre>
+
+            <!-- Section 16: Vuexによる状態管理 -->
+            <h2 id="section16">16. Vuexによる状態管理</h2>
+            <p>Vuexは、Vue.jsのアプリケーションでグローバルな状態を管理するためのライブラリです。Vuexの基本的な概念と、状態の管理方法について学びます。</p>
+            <pre id="code16">
+&lt;!-- store/index.js --&gt;
+import { createStore } from 'vuex';
+
+export const store = createStore({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment(state) {
+      state.count++;
+    }
+  },
+  actions: {
+    incrementAsync({ commit }) {
+      setTimeout(() => {
+        commit('increment');
+      }, 1000);
+    }
+  }
+});
+
+&lt;!-- App.vue --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="increment"&gt;カウントアップ&lt;/button&gt;
+    &lt;p&gt;カウント: {{ count }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  computed: {
+    count() {
+      return this.$store.state.count;
+    }
+  },
+  methods: {
+    increment() {
+      this.$store.commit('increment');
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 17: ライフサイクルフック -->
+            <h2 id="section17">17. ライフサイクルフック</h2>
+            <p>Vue.jsのライフサイクルフックを使用して、コンポーネントの作成や削除時に特定の処理を実行することができます。主要なライフサイクルフックを紹介します。</p>
+            <pre id="code17">
+&lt;!-- ライフサイクルフックの使用例 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;コンポーネントがマウントされました&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  mounted() {
+    console.log('コンポーネントがマウントされました');
+  },
+  beforeUnmount() {
+    console.log('コンポーネントがアンウントされる前');
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 18: 外部APIとの連携 -->
+            <h2 id="section18">18. 外部APIとの連携</h2>
+            <p>Axiosを使用して外部APIからデータを取得し、Vue.jsアプリケーションに統合する方法を紹介します。</p>
+            <pre id="code18">
+&lt;!-- Axiosによる外部APIとの連携 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="fetchData"&gt;データを取得&lt;/button&gt;
+    &lt;p&gt;{{ message }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      message: ''
+    };
+  },
+  methods: {
+    fetchData() {
+      axios.get('https://api.example.com/data')
+        .then(response => {
+          this.message = response.data.message;
+        })
+        .catch(error => {
+          console.error('API取得エラー:', error);
+        });
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 19: カスタムディレクティブの作成 -->
+            <h2 id="section19">19. カスタムディレクティブの作成</h2>
+            <p>Vue.jsでは、独自のディレクティブを作成して、HTML要素に特定の動作を追加することができます。カスタムディレクティブの作り方を学びます。</p>
+            <pre id="code19">
+&lt;!-- カスタムディレクティブの作成例 --&gt;
+&lt;template&gt;
+  &lt;div v-color="'red'"&gt;色が変わります&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  directives: {
+    color: {
+      beforeMount(el, binding) {
+        el.style.color = binding.value;
+      }
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 20: デバッグとエラーハンドリング -->
+            <h2 id="section20">20. デバッグとエラーハンドリング</h2>
+            <p>Vue.jsの開発中にデバッグを行うためのツールや、エラーハンドリングのベストプラクティスについて説明します。</p>
+            <pre id="code20">
+&lt;!-- エラーハンドリング例 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="throwError"&gt;エラーを発生させる&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  methods: {
+    throwError() {
+      try {
+        throw new Error('予期しないエラー');
+      } catch (error) {
+        console.error('エラー発生:', error);
+        alert('エラーが発生しました');
+      }
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 21: コンポーネントのスタイル -->
+            <h2 id="section21">21. コンポーネントのスタイル</h2>
+            <p>Vue.jsでのスタイル管理方法について、スコープ付きスタイルとグローバルスタイルの使い分けを学びます。</p>
+            <pre id="code21">
+&lt;!-- スコープ付きスタイルの使用 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;スタイルが適用されたコンポーネント&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+p {
+  color: blue;
+}
+&lt;/style&gt;
+            </pre>
+
+            <!-- Section 22: アニメーションとトランジション -->
+            <h2 id="section22">22. アニメーションとトランジション</h2>
+            <p>Vue.jsでのアニメーションやトランジションを活用して、UIに動きを加える方法を学びます。</p>
+            <pre id="code22">
+&lt;!-- アニメーションとトランジション --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="toggle"&gt;トグル&lt;/button&gt;
+    &lt;transition name="fade"&gt;
+      &lt;p v-if="show"&gt;フェードインアウトするテキスト&lt;/p&gt;
+    &lt;/transition&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      show: false
+    };
+  },
+  methods: {
+    toggle() {
+      this.show = !this.show;
+    }
+  }
+};
+&lt;/script&gt;
+
+&lt;style&gt;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in &lt;2.1.8 */ {
+  opacity: 0;
+}
+&lt;/style&gt;
+            </pre>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section12">コンポーネント間の通信</a></li>
+                    <li><a href="#section13">スロットの使用</a></li>
+                    <li><a href="#section14">フィルタの活用</a></li>
+                    <li><a href="#section15">Vue Routerの導入</a></li>
+                    <li><a href="#section16">Vuexによる状態管理</a></li>
+                    <li><a href="#section17">ライフサイクルフック</a></li>
+                    <li><a href="#section18">外部APIとの連携</a></li>
+                    <li><a href="#section19">カスタムディレクティブの作成</a></li>
+                    <li><a href="#section20">デバッグとエラーハンドリング</a></li>
+                    <li><a href="#section21">コンポーネントのスタイル</a></li>
+                    <li><a href="#section22">アニメーションとトランジション</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson03.html">次のページへ</a></li>
+                    <li><a href="lesson01.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/vue.js/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

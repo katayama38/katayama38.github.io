@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="jQueryの基礎から応用までの解説。">
+    <meta name="keywords" content="jQuery, JavaScript, イベント, セレクタ, アニメーション">
+    <title>jQueryの基礎と応用</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>jQueryの基礎と応用</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- 11. jQueryのバージョン管理 -->
+            <h2 id="section11">jQueryのバージョン管理</h2>
+            <p>jQueryを使用する際、最新のバージョンを確認することが重要です。バージョン管理を行うことで、新しい機能の追加やバグ修正を活用できます。</p>
+            <p>以下のサイトで最新バージョンを確認できます:</p>
+            <ul>
+                <li><a href="https://jquery.com/" target="_blank">jQuery公式サイト</a></li>
+                <li><a href="https://code.jquery.com/" target="_blank">jQuery CDN</a></li>
+            </ul>
+            <p>互換性の問題が発生する場合は、古いバージョンを使用することもあります。</p>
+
+            <!-- 12. DOM操作の基本 -->
+            <h2 id="section12">DOM操作の基本</h2>
+            <p>DOMの操作には、要素の追加、削除、置換などが含まれます。以下の例では、リスト項目の追加・削除・置換を行っています。</p>
+            <pre id="code9">
+$(document).ready(function() {
+    // リスト項目の追加
+    $("#addItem").click(function() {
+        $("#list").append("<li>新しいアイテム</li>");
+    });
+
+    // リスト項目の削除
+    $("#removeItem").click(function() {
+        $("#list li:last").remove();
+    });
+
+    // リスト項目の置換
+    $("#replaceItem").click(function() {
+        $("#list li:first").replaceWith("<li>置き換えられたアイテム</li>");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code9', 'alert9', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert9"></span>
+
+            <!-- 13. 属性の操作 -->
+            <h2 id="section13">属性の操作</h2>
+            <p>HTML要素の属性を取得・設定する方法です。以下のコード例では、画像のソース（src）を変更する方法を示します。</p>
+            <pre id="code10">
+$(document).ready(function() {
+    $("#changeImage").click(function() {
+        $("img").attr("src", "new-image.jpg");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code10', 'alert10', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert10"></span>
+
+            <!-- 14. CSSの操作 -->
+            <h2 id="section14">CSSの操作</h2>
+            <p>jQueryでCSSスタイルを動的に変更することができます。以下のコードは、ボタンをクリックして背景色を変更する例です。</p>
+            <pre id="code11">
+$(document).ready(function() {
+    $("#changeColor").click(function() {
+        $("div").css("background-color", "lightblue");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code11', 'alert11', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert11"></span>
+
+            <!-- 15. データの操作 -->
+            <h2 id="section15">データの操作</h2>
+            <p>jQueryでは、HTML要素にデータをセットしたり取得したりすることができます。以下のコードでは、ボタンをクリックするとデータが表示されます。</p>
+            <pre id="code12">
+$(document).ready(function() {
+    $("#setData").click(function() {
+        $("div").data("info", "これは追加されたデータです");
+    });
+
+    $("#getData").click(function() {
+        alert($("div").data("info"));
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code12', 'alert12', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert12"></span>
+
+            <!-- 16. フォームの操作 -->
+            <h2 id="section16">フォームの操作</h2>
+            <p>フォームの入力値を取得したり、送信を管理したりすることができます。以下のコードは、フォームの入力値を取得して表示する方法です。</p>
+            <pre id="code13">
+$(document).ready(function() {
+    $("#submitForm").click(function(event) {
+        event.preventDefault();
+        var name = $("#name").val();
+        alert("入力された名前: " + name);
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code13', 'alert13', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert13"></span>
+
+            <!-- 17. イベントの連結 -->
+            <h2 id="section17">イベントの連結</h2>
+            <p>複数のイベントを連結して、同時に処理することができます。以下のコードでは、クリックとマウスオーバーの両方を処理します。</p>
+            <pre id="code14">
+$(document).ready(function() {
+    $("#button").click(function() {
+        alert("クリックされました");
+    }).mouseover(function() {
+        $(this).css("background-color", "yellow");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code14', 'alert14', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert14"></span>
+
+            <!-- 18. プラグインの活用 -->
+            <h2 id="section18">プラグインの活用</h2>
+            <p>jQueryプラグインを活用することで、簡単に機能を拡張できます。以下は、jQuery UIを利用した日付選択プラグインの例です。</p>
+            <pre id="code15">
+$(document).ready(function() {
+    $("#datepicker").datepicker(); // jQuery UIのdatepickerプラグインを使って日付選択を可能にする
+});
+            </pre>
+            <button onclick="copyToClipboard('code15', 'alert15', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert15"></span>
+
+            <!-- 19. jQuery UIの利用 -->
+            <h2 id="section19">jQuery UIの利用</h2>
+            <p>jQuery UIを使用すると、簡単にインタラクティブなUI要素を作成できます。以下は、ドラッグ可能な要素の例です。</p>
+            <pre id="code16">
+$(document).ready(function() {
+    $("#draggable").draggable(); // jQuery UIのdraggableプラグインで要素をドラッグ可能にする
+});
+            </pre>
+            <button onclick="copyToClipboard('code16', 'alert16', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert16"></span>
+
+            <!-- 20. jQueryとAjaxの高度な使い方 -->
+            <h2 id="section20">jQueryとAjaxの高度な使い方</h2>
+            <p>Ajax通信を使った高度なデータの取得方法です。非同期にデータをサーバーから取得して、ページに表示します。</p>
+            <pre id="code17">
+$.ajax({
+    url: "api/data", // APIのエンドポイント
+    type: "GET",
+    success: function(response) {
+        $("#content").html(response); // 取得したデータを表示
+    },
+    error: function(xhr, status, error) {
+        alert("データの取得に失敗しました");
+    }
+});
+            </pre>
+            <button onclick="copyToClipboard('code17', 'alert17', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert17"></span>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section11">jQueryのバージョン管理</a></li>
+                    <li><a href="#section12">DOM操作の基本</a></li>
+                    <li><a href="#section13">属性の操作</a></li>
+                    <li><a href="#section14">CSSの操作</a></li>
+                    <li><a href="#section15">データの操作</a></li>
+                    <li><a href="#section16">フォームの操作</a></li>
+                    <li><a href="#section17">イベントの連結</a></li>
+                    <li><a href="#section18">プラグインの活用</a></li>
+                    <li><a href="#section19">jQuery UIの利用</a></li>
+                    <li><a href="#section20">jQueryとAjaxの高度な使い方</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson03.html">次のページへ</a></li>
+                    <li><a href="lesson01.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/jquery/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

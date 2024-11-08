@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaプログラミングの詳細な概念と技術について解説しています。">
+    <meta name="keywords" content="Java, プログラミング, デバッグ, コンストラクタ, API設計, バリデーション, モバイルアプリ">
+    <title>Javaプログラミングの詳細解説</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaプログラミングの詳細解説</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Section 55: デバッグのテクニック -->
+            <h2 id="section55">55. デバッグのテクニック</h2>
+            <p>デバッグはプログラムの問題を特定し修正する重要な技術です。効率的なデバッグのためには、IDEのデバッガーやログ出力、ユニットテストを駆使することが有効です。</p>
+            <pre>
+<code>
+// デバッガーでブレークポイントを設定し、ステップ実行で問題箇所を確認
+public class DebugExample {
+    public static void main(String[] args) {
+        int result = add(2, 3);
+        System.out.println("結果: " + result);
+    }
+
+    public static int add(int a, int b) {
+        return a + b;
+    }
+}
+</code>
+            </pre>
+            <p>IDE（例えば、IntelliJ IDEAやEclipse）のデバッガー機能を使って、実行時に変数の値や処理の流れをステップ実行で確認することができます。</p>
+
+            <!-- Section 56: コンストラクタとファイナライザ -->
+            <h2 id="section56">56. コンストラクタとファイナライザ</h2>
+            <p>Javaでは、オブジェクトの初期化にコンストラクタ、クリーンアップにファイナライザ（`finalize`メソッド）を使用しますが、`finalize`メソッドは非推奨とされています。</p>
+            <pre>
+<code>
+public class ConstructorExample {
+    private String name;
+
+    // コンストラクタで初期化
+    public ConstructorExample(String name) {
+        this.name = name;
+    }
+
+    // クリーンアップ処理（ファイナライザ）
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("オブジェクトが破棄されました");
+        super.finalize();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public static void main(String[] args) {
+        ConstructorExample example = new ConstructorExample("Alice");
+        System.out.println("名前: " + example.getName());
+    }
+}
+</code>
+            </pre>
+            <p>この例では、コンストラクタでオブジェクトを初期化し、`finalize`メソッドを使ってオブジェクトが破棄されるときにメッセージを表示します。</p>
+
+            <!-- Section 57: API設計の原則 -->
+            <h2 id="section57">57. API設計の原則</h2>
+            <p>RESTful APIの設計では、リソース指向でURL設計を行い、HTTPメソッド（GET, POST, PUT, DELETE）を適切に使用します。</p>
+            <pre>
+<code>
+import java.util.HashMap;
+import java.util.Map;
+
+public class ApiDesignExample {
+    private static Map<Integer, String> users = new HashMap<>();
+
+    // GETメソッド: ユーザー情報の取得
+    public String getUser(int id) {
+        return users.getOrDefault(id, "ユーザーが見つかりません");
+    }
+
+    // POSTメソッド: ユーザー情報の作成
+    public String addUser(int id, String name) {
+        users.put(id, name);
+        return "ユーザー追加: " + name;
+    }
+
+    public static void main(String[] args) {
+        ApiDesignExample api = new ApiDesignExample();
+        api.addUser(1, "Alice");
+        System.out.println(api.getUser(1));
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、シンプルなREST APIのGETとPOSTメソッドを模倣し、ユーザー情報を管理しています。</p>
+
+            <!-- Section 58: パラメータのバリデーション -->
+            <h2 id="section58">58. パラメータのバリデーション</h2>
+            <p>入力データが正しいかを検証するバリデーションは、アプリケーションのセキュリティや信頼性を保つために不可欠です。</p>
+            <pre>
+<code>
+public class ValidationExample {
+    public static void main(String[] args) {
+        String email = "user@example.com";
+        
+        if (isValidEmail(email)) {
+            System.out.println("有効なメールアドレス");
+        } else {
+            System.out.println("無効なメールアドレス");
+        }
+    }
+
+    public static boolean isValidEmail(String email) {
+        return email != null && email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
+    }
+}
+</code>
+            </pre>
+            <p>この例では、メールアドレスのバリデーションを行っています。`matches`メソッドで正規表現を使って、形式を確認しています。</p>
+
+            <!-- Section 59: 依存性注入の理解 -->
+            <h2 id="section59">59. 依存性注入の理解</h2>
+            <p>依存性注入（DI）は、オブジェクト間の依存関係を外部から提供することで、クラス間の結合度を減らす設計パターンです。Spring Frameworkで広く使われています。</p>
+            <pre>
+<code>
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Car {
+    private Engine engine;
+
+    @Autowired
+    public Car(Engine engine) {
+        this.engine = engine;
+    }
+
+    public void start() {
+        engine.run();
+    }
+}
+
+@Component
+public class Engine {
+    public void run() {
+        System.out.println("エンジンが動いています");
+    }
+}
+
+public class DIExample {
+    public static void main(String[] args) {
+        ApplicationContext context = new AnnotationConfigApplicationContext(DIExample.class);
+        Car car = context.getBean(Car.class);
+        car.start();
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、Springの依存性注入を使用して、`Car`クラスが`Engine`クラスを外部から注入される形になっています。</p>
+
+            <!-- Section 60: モバイルアプリ開発の基礎 -->
+            <h2 id="section60">60. モバイルアプリ開発の基礎</h2>
+            <p>Javaを使ったモバイルアプリ開発の主なプラットフォームはAndroidです。Android Studioを使って、UIの作成やイベント処理を行います。</p>
+            <pre>
+<code>
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(v -> 
+            Toast.makeText(MainActivity.this, "ボタンがクリックされました", Toast.LENGTH_SHORT).show()
+        );
+    }
+}
+</code>
+            </pre>
+            <p>このコードは、Androidアプリでボタンをクリックしたときにトーストメッセージを表示するシンプルな例です。</p>
+
+            <!-- Section 61: クローンとシャロークローン・ディープクローン -->
+            <h2 id="section61">61. クローンとシャロークローン・ディープクローン</h2>
+            <p>Javaでは、オブジェクトをコピーするためにクローンを作成できます。シャロークローンはオブジェクトの参照をコピーしますが、ディープクローンはオブジェクト自体をコピーします。</p>
+            <pre>
+<code>
+public class CloneExample implements Cloneable {
+    private String name;
+
+    public CloneExample(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    public static void main(String[] args) throws CloneNotSupportedException {
+        CloneExample original = new CloneExample("Alice");
+        CloneExample clone = (CloneExample) original.clone();
+        System.out.println("オリジナル: " + original.name + ", クローン: " + clone.name);
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、シャロークローンの例を示しています。オブジェクトをコピーする際に、シャロークローンは参照型のデータをそのままコピーします。</p>
+
+            <!-- Section 62: JavaとデータベースのORM -->
+            <h2 id="section62">62. JavaとデータベースのORM</h2>
+            <p>ORM（Object-Relational Mapping）は、Javaのオブジェクトとデータベースのレコードを簡単にマッピングする技術です。HibernateやJPAを使うことで、データベース操作を簡単に行えます。</p>
+            <pre>
+<code>
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class User {
+    @Id
+    private int id;
+    private String name;
+
+    // GetterとSetter
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+}
+</code>
+            </pre>
+            <p>このコードは、JPAを使用したエンティティクラスの例です。データベースのテーブルとJavaオブジェクトをマッピングします。</p>
+
+            <!-- Section 63: ストリームAPIの活用 -->
+            <h2 id="section63">63. ストリームAPIの活用</h2>
+            <p>Java 8以降、ストリームAPIを使ってコレクションのデータを宣言的に処理できます。フィルタリングやマッピングなどが簡単に行えます。</p>
+            <pre>
+<code>
+import java.util.Arrays;
+import java.util.List;
+
+public class StreamExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        
+        // 偶数だけをフィルタリングして合計
+        int sum = numbers.stream()
+                         .filter(n -> n % 2 == 0)
+                         .mapToInt(Integer::intValue)
+                         .sum();
+        
+        System.out.println("偶数の合計: " + sum);
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、ストリームAPIを使用してリストから偶数の合計を計算しています。</p>
+
+            <!-- Section 64: コンパイルと実行の流れ -->
+            <h2 id="section64">64. コンパイルと実行の流れ</h2>
+            <p>Javaプログラムのコンパイルと実行は、`javac`でソースコードをコンパイルし、`java`コマンドで実行します。</p>
+            <pre>
+<code>
+javac HelloWorld.java  // ソースコードのコンパイル
+java HelloWorld        // プログラムの実行
+</code>
+            </pre>
+            <p>`javac`コマンドで`.java`ファイルをコンパイルし、`java`コマンドで実行します。</p>
+
+            <!-- Section 65: アプリケーションのパフォーマンス分析 -->
+            <h2 id="section65">65. アプリケーションのパフォーマンス分析</h2>
+            <p>Javaアプリケーションのパフォーマンスを分析するには、`JProfiler`や`VisualVM`などのツールを使用してメモリ使用量やCPU負荷を監視できます。</p>
+            <pre>
+<code>
+// VisualVMやJProfilerを使用してメモリやCPUの使用状況を監視
+public class PerformanceExample {
+    public static void main(String[] args) {
+        // メモリリークをテストするためのコード例
+        List<String> list = new ArrayList<>();
+        while (true) {
+            list.add("大量データ");
+        }
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、メモリリークのテストとして無限ループでメモリを消費し、ツールで監視することができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section55">55. デバッグのテクニック</a></li>
+                    <li><a href="#section56">56. コンストラクタとファイナライザ</a></li>
+                    <li><a href="#section57">57. API設計の原則</a></li>
+                    <li><a href="#section58">58. パラメータのバリデーション</a></li>
+                    <li><a href="#section59">59. 依存性注入の理解</a></li>
+                    <li><a href="#section60">60. モバイルアプリ開発の基礎</a></li>
+                    <li><a href="#section61">61. クローンとシャロークローン・ディープクローン</a></li>
+                    <li><a href="#section62">62. JavaとデータベースのORM</a></li>
+                    <li><a href="#section63">63. ストリームAPIの活用</a></li>
+                    <li><a href="#section64">64. コンパイルと実行の流れ</a></li>
+                    <li><a href="#section65">65. アプリケーションのパフォーマンス分析</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson25.html">次のページへ</a></li>
+                    <li><a href="lesson23.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/Java/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 Javaプログラミング学習サイト</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

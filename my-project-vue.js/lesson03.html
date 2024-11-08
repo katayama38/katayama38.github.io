@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vue.jsの高度な機能を活用する方法について解説します。">
+    <meta name="keywords" content="Vue.js, JavaScript, ウォッチャー, 非同期処理, バリデーション, ミックスイン">
+    <title>Vue.jsの高度な機能</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Vue.jsの高度な機能の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Section 23: プロパティのウォッチャー -->
+            <h2 id="section23">23. プロパティのウォッチャー</h2>
+            <p>Vue.jsでは、特定のデータの変更を監視するウォッチャーを使用できます。ウォッチャーは、データが変更されたときに何らかの処理を実行したい場合に便利です。</p>
+            <pre id="code23">
+&lt;!-- プロパティのウォッチャー --&gt;
+&lt;div id="app"&gt;
+    &lt;input v-model="message" placeholder="メッセージを入力"&gt;
+    &lt;p&gt;入力されたメッセージ: {{ message }}&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        },
+        watch: {
+            message(newValue, oldValue) {
+                console.log('メッセージが変更されました:', newValue);
+            }
+        }
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 24: 非同期処理の扱い -->
+            <h2 id="section24">24. 非同期処理の扱い</h2>
+            <p>Vue.jsでは、非同期処理をPromiseやasync/awaitで簡単に扱うことができます。これにより、外部APIからデータを取得したり、非同期のタスクを処理できます。</p>
+            <pre id="code24">
+&lt;!-- 非同期処理の例 --&gt;
+&lt;div id="app"&gt;
+    &lt;button @click="fetchData"&gt;データを取得&lt;/button&gt;
+    &lt;p&gt;{{ info }}&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    new Vue({
+        el: '#app',
+        data: {
+            info: 'データを取得中...'
+        },
+        methods: {
+            async fetchData() {
+                try {
+                    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+                    const data = await response.json();
+                    this.info = data.title;
+                } catch (error) {
+                    this.info = 'エラーが発生しました';
+                    console.error(error);
+                }
+            }
+        }
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 25: フォームバリデーション -->
+            <h2 id="section25">25. フォームバリデーション</h2>
+            <p>Vue.jsでは、フォームの入力を簡単にバリデーションできます。`v-model`を使用してフォームのデータをバインディングし、条件に応じてエラーメッセージを表示できます。</p>
+            <pre id="code25">
+&lt;!-- フォームバリデーションの例 --&gt;
+&lt;div id="app"&gt;
+    &lt;form @submit.prevent="submitForm"&gt;
+        &lt;label for="email"&gt;メールアドレス:&lt;/label&gt;
+        &lt;input type="email" v-model="email" required&gt;
+        &lt;span v-if="!isValidEmail"&gt;無効なメールアドレスです。&lt;/span&gt;
+        &lt;button type="submit"&gt;送信&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    new Vue({
+        el: '#app',
+        data: {
+            email: '',
+            isValidEmail: true
+        },
+        watch: {
+            email(value) {
+                this.isValidEmail = /\S+@\S+\.\S+/.test(value);
+            }
+        },
+        methods: {
+            submitForm() {
+                if (this.isValidEmail) {
+                    alert('フォームが送信されました');
+                } else {
+                    alert('無効な入力があります');
+                }
+            }
+        }
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 26: ミックスインの活用 -->
+            <h2 id="section26">26. ミックスインの活用</h2>
+            <p>Vue.jsのミックスインは、複数のコンポーネントで共通の機能を再利用するための手段です。ミックスインにメソッドやライフサイクルフックを定義することができます。</p>
+            <pre id="code26">
+&lt;!-- ミックスインの例 --&gt;
+&lt;div id="app"&gt;
+    &lt;button @click="increment"&gt;カウントアップ&lt;/button&gt;
+    &lt;p&gt;{{ count }}&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    const counterMixin = {
+        data() {
+            return {
+                count: 0
+            };
+        },
+        methods: {
+            increment() {
+                this.count++;
+            }
+        }
+    };
+
+    new Vue({
+        el: '#app',
+        mixins: [counterMixin]
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 27: カスタムイベントの利用 -->
+            <h2 id="section27">27. カスタムイベントの利用</h2>
+            <p>Vue.jsでは、子コンポーネントから親コンポーネントにデータを送るためにカスタムイベントを使用します。`$emit`メソッドを使ってイベントを親に伝えます。</p>
+            <pre id="code27">
+&lt;!-- カスタムイベントの例 --&gt;
+&lt;div id="app"&gt;
+    &lt;child-component @childEvent="handleChildEvent"&gt;&lt;/child-component&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    Vue.component('child-component', {
+        template: `&lt;button @click="$emit('childEvent', '子からのメッセージ')"&gt;親にメッセージを送る&lt;/button&gt;`
+    });
+
+    new Vue({
+        el: '#app',
+        methods: {
+            handleChildEvent(message) {
+                alert('親が受け取ったメッセージ: ' + message);
+            }
+        }
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 28: Vue CLIの使い方 -->
+            <h2 id="section28">28. Vue CLIの使い方</h2>
+            <p>Vue CLI（コマンドラインインターフェース）は、Vue.jsアプリケーションのプロジェクトセットアップやビルドを簡単に行うツールです。CLIを使うと、スキャフォールディングや開発環境の構築が迅速にできます。</p>
+            <pre id="code28">
+&lt;!-- Vue CLIで新しいプロジェクトを作成 --&gt;
+# 新しいプロジェクトを作成
+vue create my-project
+# プロジェクトを実行
+cd my-project
+npm run serve
+            </pre>
+
+            <!-- Section 29: プラグインの導入 -->
+            <h2 id="section29">29. プラグインの導入</h2>
+            <p>Vue.jsには、機能を拡張するためのプラグインが多数あります。Vue RouterやVuexのような公式プラグインもあれば、他の開発者が作成したサードパーティ製のプラグインもあります。</p>
+            <pre id="code29">
+&lt;!-- プラグインのインストール --&gt;
+# Vue Routerをインストール
+npm install vue-router
+# プラグインを使用
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+            </pre>
+
+            <!-- Section 30: SSR（サーバーサイドレンダリング） -->
+            <h2 id="section30">30. SSR（サーバーサイドレンダリング）</h2>
+            <p>サーバーサイドレンダリング（SSR）は、サーバーでVueコンポーネントをレンダリングし、HTMLを返すことで、初期表示を高速化します。Vue.jsは、Nuxt.jsというフレームワークを通じてSSRをサポートしています。</p>
+            <pre id="code30">
+&lt;!-- Nuxt.jsを使ったSSRの設定 --&gt;
+# Nuxt.jsのインストール
+npm install nuxt
+# Nuxtプロジェクトの開始
+npx create-nuxt-app my-app
+            </pre>
+
+            <!-- Section 31: TypeScriptとの統合 -->
+            <h2 id="section31">31. TypeScriptとの統合</h2>
+            <p>Vue.jsはTypeScriptと統合することができます。これにより、型安全なコードを書くことができ、エラーを早期に発見できます。</p>
+            <pre id="code31">
+&lt;!-- TypeScriptを使用したVueコンポーネント --&gt;
+&lt;template&gt;
+    &lt;div&gt;{{ count }}&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script lang="ts"&gt;
+import Vue from 'vue';
+
+export default Vue.extend({
+    data() {
+        return {
+            count: 0
+        };
+    }
+});
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 32: モバイルアプリの開発 -->
+            <h2 id="section32">32. モバイルアプリの開発</h2>
+            <p>Vue.jsは、モバイルアプリの開発にも使用できます。特に、Vue.jsを使ったハイブリッドアプリケーション開発には、Vue NativeやQuasar Frameworkが便利です。</p>
+            <pre id="code32">
+&lt;!-- Vue Nativeを使ったモバイルアプリ開発 --&gt;
+npm install -g vue-native-cli
+vue-native init myApp
+cd myApp
+npm run ios
+            </pre>
+
+            <!-- Section 33: テストの実施 -->
+            <h2 id="section33">33. テストの実施</h2>
+            <p>Vue.jsのコンポーネントはユニットテストやE2E（エンド・ツー・エンド）テストを通じて品質を保証することができます。Vue Test Utilsを使って、コンポーネントのテストを行います。</p>
+            <pre id="code33">
+&lt;!-- ユニットテストの例 --&gt;
+import { mount } from '@vue/test-utils';
+import MyComponent from '@/components/MyComponent.vue';
+
+describe('MyComponent', () => {
+    it('renders the correct message', () => {
+        const wrapper = mount(MyComponent);
+        expect(wrapper.text()).toContain('Hello Vue!');
+    });
+});
+            </pre>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section23">プロパティのウォッチャー</a></li>
+                    <li><a href="#section24">非同期処理の扱い</a></li>
+                    <li><a href="#section25">フォームバリデーション</a></li>
+                    <li><a href="#section26">ミックスインの活用</a></li>
+                    <li><a href="#section27">カスタムイベントの利用</a></li>
+                    <li><a href="#section28">Vue CLIの使い方</a></li>
+                    <li><a href="#section29">プラグインの導入</a></li>
+                    <li><a href="#section30">SSR（サーバーサイドレンダリング）</a></li>
+                    <li><a href="#section31">TypeScriptとの統合</a></li>
+                    <li><a href="#section32">モバイルアプリの開発</a></li>
+                    <li><a href="#section33">テストの実施</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson04.html">次のページへ</a></li>
+                    <li><a href="lesson02.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/vue.js/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

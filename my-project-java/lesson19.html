@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaの基本概念から開発環境、オブジェクト指向まで幅広く解説しています。">
+    <meta name="keywords" content="Java, プログラミング, 開発環境, オブジェクト指向, メソッド, インターフェース">
+    <title>Javaプログラミングの基礎</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaプログラミングの基礎</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">1. Javaとは？</h2>
+            <p>Javaは、1995年にサン・マイクロシステムズ（現在はオラクル）によって開発されたプログラミング言語です。主な特徴は、「オブジェクト指向」、「プラットフォーム非依存」、「セキュリティ重視」などが挙げられます。</p>
+            <ul>
+                <li><strong>オブジェクト指向</strong>: コードをオブジェクト単位で構築し、再利用性が高い。</li>
+                <li><strong>プラットフォーム非依存</strong>: Java仮想マシン（JVM）があれば、どのOSでも動作。</li>
+                <li><strong>セキュリティ</strong>: サンドボックス内でプログラムが動作し、安全性が確保されている。</li>
+            </ul>
+
+            <h2 id="section2">2. Javaの開発環境の構築</h2>
+            <p>Javaの開発環境を整えるには、まずJava Development Kit（JDK）をインストールします。これにより、コンパイラやライブラリ、JVMなどが使用可能になります。</p>
+            <p>IDE（統合開発環境）を使うと、コード補完やデバッグ機能が提供され、開発が効率化されます。代表的なIDEには、IntelliJ IDEAやEclipseがあります。</p>
+            <pre>
+<code>
+# JDKのインストール
+公式サイトからJDKをダウンロードし、インストールします。
+
+# Eclipseのインストール
+Eclipseをインストールし、プロジェクトを作成して、Javaプログラムを作成します。
+</code>
+            </pre>
+
+            <h2 id="section3">3. 基本的な文法</h2>
+            <p>Javaプログラムはクラスを定義してから実行します。クラスの中にメソッドを定義し、そのメソッドが実行されることになります。</p>
+            <pre>
+<code>
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+</code>
+            </pre>
+            <p>上記のコードでは、「Hello, World!」という文字列をコンソールに出力するプログラムです。</p>
+
+            <h2 id="section4">4. データ型と変数</h2>
+            <p>Javaでは、データの型を厳密に定義します。主に使われるデータ型は、整数型（int）、浮動小数点型（double）、文字型（char）、文字列型（String）、論理型（boolean）です。</p>
+            <pre>
+<code>
+int age = 30;
+double height = 175.5;
+char initial = 'A';
+boolean isJavaFun = true;
+</code>
+            </pre>
+
+            <h2 id="section5">5. 演算子</h2>
+            <p>演算子は、数値の演算や比較、論理演算に使用されます。以下のような演算子があります。</p>
+            <ul>
+                <li><strong>算術演算子</strong>: `+`, `-`, `*`, `/`, `%`</li>
+                <li><strong>比較演算子</strong>: `==`, `!=`, `<`, `>`, `<=`, `>=`</li>
+                <li><strong>論理演算子</strong>: `&&`, `||`, `!`</li>
+            </ul>
+            <pre>
+<code>
+int a = 5;
+int b = 10;
+boolean result = (a < b) && (b > 5);  // true
+</code>
+            </pre>
+
+            <h2 id="section6">6. 制御フロー</h2>
+            <p>条件分岐や繰り返し処理を制御フローを使って実現します。</p>
+            <ul>
+                <li><strong>if文</strong>: 条件に基づいて処理を分岐します。</li>
+                <li><strong>switch文</strong>: 複数の条件に基づいて処理を分岐します。</li>
+                <li><strong>ループ</strong>: 繰り返し処理を実行します。代表的なものに`for`, `while`, `do-while`があります。</li>
+            </ul>
+            <pre>
+<code>
+if (a > b) {
+    System.out.println("aはbより大きい");
+} else {
+    System.out.println("aはbより小さい");
+}
+</code>
+            </pre>
+
+            <h2 id="section7">7. 配列</h2>
+            <p>配列は同じ型のデータを複数格納するための構造です。配列は固定サイズで、一度宣言したサイズを変更することはできません。</p>
+            <pre>
+<code>
+int[] numbers = {1, 2, 3, 4, 5};
+System.out.println(numbers[0]); // 1番目の要素を出力
+</code>
+            </pre>
+
+            <h2 id="section8">8. メソッド</h2>
+            <p>メソッドは、特定の処理を実行するために定義された関数のようなものです。メソッドには引数や戻り値があります。</p>
+            <pre>
+<code>
+public static int add(int a, int b) {
+    return a + b;
+}
+</code>
+            </pre>
+            <p>上記の`add`メソッドは、2つの整数を受け取ってその合計を返します。</p>
+
+            <h2 id="section9">9. オブジェクト指向プログラミング</h2>
+            <p>Javaはオブジェクト指向プログラミング（OOP）を採用しており、データとその処理をまとめてクラスとして設計します。クラスから作成された実体をオブジェクトと呼びます。</p>
+            <pre>
+<code>
+class Person {
+    String name;
+    int age;
+    
+    public void greet() {
+        System.out.println("こんにちは、" + name + "です。");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person p = new Person();
+        p.name = "太郎";
+        p.age = 25;
+        p.greet();  // "こんにちは、太郎です。"と出力
+    }
+}
+</code>
+            </pre>
+
+            <h2 id="section10">10. 継承とポリモーフィズム</h2>
+            <p>継承を使うことで、既存のクラスを基に新しいクラスを作ることができます。ポリモーフィズムにより、同じメソッド名でも異なる動作をすることが可能です。</p>
+            <pre>
+<code>
+class Animal {
+    public void speak() {
+        System.out.println("動物が鳴きます");
+    }
+}
+
+class Dog extends Animal {
+    public void speak() {
+        System.out.println("犬が鳴きます");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal myDog = new Dog();
+        myDog.speak();  // "犬が鳴きます" と出力
+    }
+}
+</code>
+            </pre>
+
+            <h2 id="section11">11. インターフェース</h2>
+            <p>インターフェースは、クラスが実装すべきメソッドのシグネチャを定義したものです。インターフェースを使うことで、異なるクラス間で同じメソッド名を統一することができます。</p>
+            <pre>
+<code>
+interface Animal {
+    void speak();
+}
+
+class Dog implements Animal {
+    public void speak() {
+        System.out.println("犬が鳴きます");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal myDog = new Dog();
+        myDog.speak();  // "犬が鳴きます" と出力
+    }
+}
+</code>
+            </pre>
+            <p>インターフェースを使用することで、複数の異なるクラスが同じメソッドを持つことが保証され、コードの柔軟性と拡張性が向上します。</p>
+
+            <h2 id="section12">まとめ</h2>
+            <p>Javaは、オブジェクト指向に基づく堅牢なプログラミング言語であり、開発者が効率的にプログラムを作成できるツールと環境を提供しています。ここで紹介した基本的な文法や概念を理解し、さらに応用的な技術に進んでいくことで、より高度なアプリケーション開発が可能になります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">1. Javaとは？</a></li>
+                    <li><a href="#section2">2. Javaの開発環境の構築</a></li>
+                    <li><a href="#section3">3. 基本的な文法</a></li>
+                    <li><a href="#section4">4. データ型と変数</a></li>
+                    <li><a href="#section5">5. 演算子</a></li>
+                    <li><a href="#section6">6. 制御フロー</a></li>
+                    <li><a href="#section7">7. 配列</a></li>
+                    <li><a href="#section8">8. メソッド</a></li>
+                    <li><a href="#section9">9. オブジェクト指向プログラミング</a></li>
+                    <li><a href="#section10">10. 継承とポリモーフィズム</a></li>
+                    <li><a href="#section11">11. インターフェース</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson20.html">次のページへ</a></li>
+                    <li><a href="lesson18.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/Java/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 Javaプログラミング学習サイト</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>
+

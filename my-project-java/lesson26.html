@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaプログラミングの詳細な概念と技術について解説しています。">
+    <meta name="keywords" content="Java, プログラミング, デバッグ, コンストラクタ, API設計, バリデーション, モバイルアプリ">
+    <title>Javaプログラミングの詳細解説</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaプログラミングの詳細解説</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Section 77: Javaの国際化と地域化 -->
+            <h2 id="section77">77. Javaの国際化と地域化</h2>
+            <p>Javaアプリケーションを多言語対応させるには、`ResourceBundle`クラスを使用します。これにより、アプリケーション内の文字列リソースを地域ごとに管理できます。</p>
+            <pre>
+<code>
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+public class InternationalizationExample {
+    public static void main(String[] args) {
+        Locale locale = new Locale("ja", "JP"); // 日本語のロケール
+        ResourceBundle bundle = ResourceBundle.getBundle("Messages", locale);
+
+        System.out.println(bundle.getString("greeting"));
+    }
+}
+</code>
+            </pre>
+            <p>この例では、`Messages_ja_JP.properties`というファイルに日本語の文字列を格納し、`greeting`キーに対応するメッセージを表示します。</p>
+
+            <!-- Section 78: データ型のラッパークラス -->
+            <h2 id="section78">78. データ型のラッパークラス</h2>
+            <p>プリミティブ型（`int`や`double`など）をオブジェクトとして扱いたい場合は、ラッパークラスを使用します。これにより、`null`を使った値の管理や、ジェネリクスでの型制約に役立ちます。</p>
+            <pre>
+<code>
+public class WrapperClassExample {
+    public static void main(String[] args) {
+        Integer num = 10; // intのラッパークラス
+        System.out.println("ラッパークラスの値: " + num);
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、`Integer`クラスを使って`int`型の値をオブジェクトとして扱っています。</p>
+
+            <!-- Section 79: サーバーレスアーキテクチャの導入 -->
+            <h2 id="section79">79. サーバーレスアーキテクチャの導入</h2>
+            <p>サーバーレスアーキテクチャでは、インフラ管理をクラウドプロバイダーに任せ、関数単位でアプリケーションを実行します。AWS Lambdaを使用する例です。</p>
+            <pre>
+<code>
+// AWS LambdaでのJavaの関数
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+
+public class LambdaHandler implements RequestHandler<String, String> {
+    @Override
+    public String handleRequest(String input, Context context) {
+        return "Hello, " + input;
+    }
+}
+</code>
+            </pre>
+            <p>この例では、Lambda関数が引数として渡された文字列に対して「Hello, [入力]」というレスポンスを返します。</p>
+
+            <!-- Section 80: コンテナ技術の利用 -->
+            <h2 id="section80">80. コンテナ技術の利用</h2>
+            <p>Dockerを使用してJavaアプリケーションをコンテナ化することで、アプリケーションの環境に依存せず、どこでも同じように動作させることができます。</p>
+            <pre>
+<code>
+# Dockerfile例
+FROM openjdk:11-jdk
+COPY . /app
+WORKDIR /app
+RUN javac MyApp.java
+CMD ["java", "MyApp"]
+</code>
+            </pre>
+            <p>この`Dockerfile`は、`MyApp.java`をコンパイルし、実行するためのJavaアプリケーションをDockerコンテナ内で実行するための設定です。</p>
+
+            <!-- Section 81: リモートサービスの利用 -->
+            <h2 id="section81">81. リモートサービスの利用</h2>
+            <p>JavaのRMI（Remote Method Invocation）を使って、リモートにあるJavaオブジェクトを呼び出すことができます。これにより、異なるマシン間でメソッドの呼び出しを行えます。</p>
+            <pre>
+<code>
+import java.rmi.Naming;
+
+public class RmiClient {
+    public static void main(String[] args) {
+        try {
+            Calculator calc = (Calculator) Naming.lookup("//localhost/Calculator");
+            System.out.println(calc.add(10, 20));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+interface Calculator extends java.rmi.Remote {
+    int add(int a, int b) throws java.rmi.RemoteException;
+}
+</code>
+            </pre>
+            <p>このコードでは、RMIを使ってリモートオブジェクト`Calculator`の`add`メソッドを呼び出しています。</p>
+
+            <!-- Section 82: 外部ライブラリの管理 -->
+            <h2 id="section82">82. 外部ライブラリの管理</h2>
+            <p>MavenやGradleを使用することで、外部ライブラリの依存関係を簡単に管理できます。これにより、ライブラリのバージョン管理やプロジェクトの構成が容易になります。</p>
+            <pre>
+<code>
+<!-- Mavenでの依存関係の設定例 -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <version>2.5.4</version>
+</dependency>
+</code>
+            </pre>
+            <p>この例では、Spring BootのWebスターターライブラリをプロジェクトに追加しています。</p>
+
+            <!-- Section 83: キューイングシステムの実装 -->
+            <h2 id="section83">83. キューイングシステムの実装</h2>
+            <p>Javaでは、メッセージングシステムとして、JMS（Java Message Service）を利用することができます。これにより、非同期でメッセージの送受信を行えます。</p>
+            <pre>
+<code>
+import javax.jms.*;
+
+public class MessageQueueExample {
+    public static void main(String[] args) throws JMSException {
+        ConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+        try (JMSContext context = factory.createContext()) {
+            Queue queue = context.createQueue("sampleQueue");
+            context.createProducer().send(queue, "Hello, World!");
+            String message = context.createConsumer(queue).receiveBody(String.class);
+            System.out.println("受信したメッセージ: " + message);
+        }
+    }
+}
+</code>
+            </pre>
+            <p>この例では、ActiveMQを使ってJMSメッセージキューにメッセージを送信し、受信する基本的な流れを示しています。</p>
+
+            <!-- Section 84: オブジェクト指向設計原則（SOLID） -->
+            <h2 id="section84">84. オブジェクト指向設計原則（SOLID）</h2>
+            <p>SOLIDは、ソフトウェア設計の5つの基本原則を指します。これらの原則に従うことで、保守性や拡張性の高い設計を実現できます。</p>
+            <pre>
+<code>
+// 単一責任原則（SRP）の例
+public class UserService {
+    private UserRepository userRepository;
+
+    public void registerUser(User user) {
+        // ユーザー登録処理
+    }
+
+    public void notifyUser(User user) {
+        // ユーザーへの通知処理
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、`UserService`クラスが複数の責任を持っていますが、SOLIDの原則に従うことで、このような処理を分割するべきです。</p>
+
+            <!-- Section 85: リリース管理とデプロイの自動化 -->
+            <h2 id="section85">85. リリース管理とデプロイの自動化</h2>
+            <p>CI/CDツール（例えばJenkinsやGitLab CI）を使って、コードのビルド、テスト、デプロイを自動化します。これにより、開発プロセスがスムーズになり、エラーのリスクを減らします。</p>
+            <pre>
+<code>
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'scp target/app.war user@server:/path/to/deploy'
+            }
+        }
+    }
+}
+</code>
+            </pre>
+            <p>このJenkinsのパイプラインでは、Mavenを使ってビルドを行い、完成した`app.war`をサーバーにデプロイします。</p>
+
+            <!-- Section 86: ファンクショナルプログラミングの要素 -->
+            <h2 id="section86">86. ファンクショナルプログラミングの要素</h2>
+            <p>Java 8以降、関数型プログラミングの要素（ラムダ式、ストリームAPI）をサポートしています。これにより、より簡潔で可読性の高いコードを書くことができます。</p>
+            <pre>
+<code>
+import java.util.Arrays;
+import java.util.List;
+
+public class FunctionalProgrammingExample {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+
+        names.stream()
+             .filter(name -> name.startsWith("A"))
+             .forEach(System.out::println);
+    }
+}
+</code>
+            </pre>
+            <p>この例では、`stream()`メソッドとラムダ式を使って、名前のリストから「A」で始まる名前をフィルタリングして表示します。</p>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section77">77. Javaの国際化と地域化</a></li>
+                    <li><a href="#section78">78. データ型のラッパークラス</a></li>
+                    <li><a href="#section79">79. サーバーレスアーキテクチャの導入</a></li>
+                    <li><a href="#section80">80. コンテナ技術の利用</a></li>
+                    <li><a href="#section81">81. リモートサービスの利用</a></li>
+                    <li><a href="#section82">82. 外部ライブラリの管理</a></li>
+                    <li><a href="#section83">83. キューイングシステムの実装</a></li>
+                    <li><a href="#section84">84. オブジェクト指向設計原則（SOLID）</a></li>
+                    <li><a href="#section85">85. リリース管理とデプロイの自動化</a></li>
+                    <li><a href="#section86">86. ファンクショナルプログラミングの要素</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson27.html">次のページへ</a></li>
+                    <li><a href="lesson25.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/Java/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 Javaプログラミング学習サイト</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="jQueryの基礎から応用までの解説。">
+    <meta name="keywords" content="jQuery, JavaScript, イベント, セレクタ, アニメーション">
+    <title>jQueryの基礎と応用</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>jQueryの基礎と応用</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- 42. 外部リソースの読み込み -->
+            <h2 id="section42">外部リソースの読み込み</h2>
+            <p>Ajaxを使用して、他のHTMLファイルや画像を動的に読み込む方法を紹介します。これにより、ページ全体をリロードせずに新しいコンテンツを追加できます。</p>
+            <pre id="code39">
+$(document).ready(function() {
+    $("#loadContent").click(function() {
+        $("#content").load("external-content.html");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code39', 'alert39', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert39"></span>
+
+            <!-- 43. セレクタの最適化 -->
+            <h2 id="section43">セレクタの最適化</h2>
+            <p>効率的なセレクタの使い方について学び、パフォーマンスを向上させる方法を紹介します。過度に広範囲なセレクタは避け、特定のセレクタを使用しましょう。</p>
+            <pre id="code40">
+$(document).ready(function() {
+    // 効率的なセレクタ
+    $(".menu-item").each(function() {
+        $(this).css("color", "blue");
+    });
+
+    // 非効率的なセレクタ
+    $("div p").each(function() {
+        $(this).css("color", "red");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code40', 'alert40', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert40"></span>
+
+            <!-- 44. プラグインの作成 -->
+            <h2 id="section44">プラグインの作成</h2>
+            <p>自分だけのjQueryプラグインを作成する方法を学びます。カスタムな機能を提供するために、jQueryの拡張を行います。</p>
+            <pre id="code41">
+(function($) {
+    $.fn.extend({
+        highlight: function(color) {
+            this.css("background-color", color);
+            return this;
+        }
+    });
+})(jQuery);
+
+$(document).ready(function() {
+    $(".highlight").highlight("yellow");
+});
+            </pre>
+            <button onclick="copyToClipboard('code41', 'alert41', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert41"></span>
+
+            <!-- 45. jQueryのイベントモデル -->
+            <h2 id="section45">jQueryのイベントモデル</h2>
+            <p>jQueryにおけるイベントの仕組みと、イベントを効率的に管理する方法を紹介します。イベントのデリゲーションや名前空間を活用します。</p>
+            <pre id="code42">
+$(document).ready(function() {
+    $(".button").on("click", function() {
+        alert("ボタンがクリックされました");
+    });
+
+    // イベントのデリゲーション
+    $("#parent").on("click", ".child", function() {
+        alert("子要素がクリックされました");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code42', 'alert42', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert42"></span>
+
+            <!-- 46. フォームの自動入力 -->
+            <h2 id="section46">フォームの自動入力</h2>
+            <p>jQueryを使って、ユーザーがフォームに入力した内容を自動的に入力する方法を紹介します。</p>
+            <pre id="code43">
+$(document).ready(function() {
+    $("#autoFill").click(function() {
+        $("#name").val("山田 太郎");
+        $("#email").val("taro@example.com");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code43', 'alert43', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert43"></span>
+
+            <!-- 47. ユーザーインターフェースの改善 -->
+            <h2 id="section47">ユーザーインターフェースの改善</h2>
+            <p>ユーザー体験を向上させるために、jQueryでインタラクティブなUI要素を作成します。例えば、ダイアログやアニメーションを使用して、操作をより魅力的にします。</p>
+            <pre id="code44">
+$(document).ready(function() {
+    $(".open-dialog").click(function() {
+        $("#dialog").fadeIn();
+    });
+
+    $(".close-dialog").click(function() {
+        $("#dialog").fadeOut();
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code44', 'alert44', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert44"></span>
+
+            <!-- 48. スクロールイベントの活用 -->
+            <h2 id="section48">スクロールイベントの活用</h2>
+            <p>スクロール位置に応じて動作する機能を実装します。例えば、スクロールが一定位置を超えるとナビゲーションバーが固定されるなど。</p>
+            <pre id="code45">
+$(document).ready(function() {
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+            $(".fixed-nav").addClass("active");
+        } else {
+            $(".fixed-nav").removeClass("active");
+        }
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code45', 'alert45', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert45"></span>
+
+            <!-- 49. データのフィルタリング -->
+            <h2 id="section49">データのフィルタリング</h2>
+            <p>リストやテーブルのデータをフィルタリングする方法を学びます。ユーザーが入力した条件に基づいて動的にデータを絞り込みます。</p>
+            <pre id="code46">
+$(document).ready(function() {
+    $("#filterInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $(".data-list li").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code46', 'alert46', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert46"></span>
+
+            <!-- 50. クッキーの操作 -->
+            <h2 id="section50">クッキーの操作</h2>
+            <p>jQueryを使って、クッキーを読み書きする方法を紹介します。ユーザーの情報を保存し、次回訪問時に利用することができます。</p>
+            <pre id="code47">
+$(document).ready(function() {
+    $("#setCookie").click(function() {
+        document.cookie = "username=John Doe";
+    });
+
+    $("#getCookie").click(function() {
+        alert(document.cookie);
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code47', 'alert47', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert47"></span>
+
+            <!-- 51. 簡単なゲームの作成 -->
+            <h2 id="section51">簡単なゲームの作成</h2>
+            <p>jQueryを使用して、シンプルなゲームを作成する方法を学びます。ここでは、クリックイベントを使って簡単なゲームを実装します。</p>
+            <pre id="code48">
+$(document).ready(function() {
+    var score = 0;
+
+    $(".game-item").click(function() {
+        score++;
+        $("#score").text("スコア: " + score);
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code48', 'alert48', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert48"></span>
+
+            <!-- 52. 非同期処理の活用 -->
+            <h2 id="section52">非同期処理の活用</h2>
+            <p>jQueryの`$.ajax`を使用して非同期処理を行い、サーバーからデータを非同期で取得する方法を紹介します。</p>
+            <pre id="code49">
+$(document).ready(function() {
+    $("#fetchData").click(function() {
+        $.ajax({
+            url: "https://jsonplaceholder.typicode.com/posts",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                var output = "";
+                $.each(data, function(index, post) {
+                    output += "<p>" + post.title + "</p>";
+                });
+                $("#dataContainer").html(output);
+            }
+        });
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code49', 'alert49', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert49"></span>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section42">外部リソースの読み込み</a></li>
+                    <li><a href="#section43">セレクタの最適化</a></li>
+                    <li><a href="#section44">プラグインの作成</a></li>
+                    <li><a href="#section45">jQueryのイベントモデル</a></li>
+                    <li><a href="#section46">フォームの自動入力</a></li>
+                    <li><a href="#section47">ユーザーインターフェースの改善</a></li>
+                    <li><a href="#section48">スクロールイベントの活用</a></li>
+                    <li><a href="#section49">データのフィルタリング</a></li>
+                    <li><a href="#section50">クッキーの操作</a></li>
+                    <li><a href="#section51">簡単なゲームの作成</a></li>
+                    <li><a href="#section52">非同期処理の活用</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson06.html">次のページへ</a></li>
+                    <li><a href="lesson04.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/jquery/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
+

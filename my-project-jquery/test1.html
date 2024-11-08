@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロジェクト管理アプリ</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .board { display: flex; }
+        .column { margin: 10px; padding: 10px; border: 1px solid #ccc; width: 200px; }
+        .task { margin: 5px; padding: 5px; background: #f9f9f9; cursor: move; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>プロジェクト管理アプリ</h1>
+        <div class="board">
+            <div class="column" v-for="(column, index) in columns" :key="index">
+                <h2>{{ column.title }}</h2>
+                <input v-model="newTask" @keyup.enter="addTask(index)" placeholder="新しいタスクを入力">
+                <div class="task" v-for="(task, taskIndex) in column.tasks" :key="taskIndex">
+                    {{ task }}
+                    <button @click="removeTask(index, taskIndex)">削除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                newTask: '',
+                columns: [
+                    { title: 'TODO', tasks: [] },
+                    { title: '進行中', tasks: [] },
+                    { title: '完了', tasks: [] }
+                ]
+            },
+            methods: {
+                addTask(columnIndex) {
+                    if (this.newTask.trim() !== '') {
+                        this.columns[columnIndex].tasks.push(this.newTask);
+                        this.newTask = ''; // 入力フィールドをクリア
+                    }
+                },
+                removeTask(columnIndex, taskIndex) {
+                    this.columns[columnIndex].tasks.splice(taskIndex, 1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

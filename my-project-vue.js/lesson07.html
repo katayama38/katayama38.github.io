@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vue.jsの高度な機能を活用する方法について解説します。">
+    <meta name="keywords" content="Vue.js, ユーザー認証, API設計, E2Eテスト, Vuex, パフォーマンスモニタリング">
+    <title>Vue.jsの高度な機能</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Vue.jsの高度な機能の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Section 67: ユニバーサルアプリケーションの開発 -->
+            <h2 id="section67">67. ユニバーサルアプリケーションの開発</h2>
+            <p>Vue.jsを使ったユニバーサルアプリケーション（クライアントサイドおよびサーバーサイドの両方で動作するアプリケーション）を構築するには、VueのSSR（サーバーサイドレンダリング）機能を利用します。これにより、SEO対策やパフォーマンスの向上が期待できます。</p>
+            <pre id="code67">
+&lt;!-- サーバーサイドレンダリングを活用したVue.jsアプリケーション --&gt;
+import { createApp } from 'vue';
+import App from './App.vue';
+import { createSSRApp } from 'vue';
+
+export function createServerApp() {
+    return createSSRApp(App);
+}
+            </pre>
+
+            <!-- Section 68: WebAssemblyとの連携 -->
+            <h2 id="section68">68. WebAssemblyとの連携</h2>
+            <p>WebAssemblyはブラウザ内で高パフォーマンスの計算を実行できる技術です。Vue.jsアプリケーション内でWebAssemblyを使用することで、パフォーマンスを大幅に向上させることができます。</p>
+            <pre id="code68">
+&lt;!-- WebAssemblyをVue.jsで利用する例 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="runWasm"&gt;WASMコード実行&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      wasmInstance: null
+    };
+  },
+  async mounted() {
+    const wasmModule = await WebAssembly.instantiateStreaming(fetch('/path/to/wasm/file.wasm'));
+    this.wasmInstance = wasmModule.instance;
+  },
+  methods: {
+    runWasm() {
+      const result = this.wasmInstance.exports.someFunction();
+      console.log('WASM結果:', result);
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 69: マイクロフロントエンドの実装 -->
+            <h2 id="section69">69. マイクロフロントエンドの実装</h2>
+            <p>マイクロフロントエンドアーキテクチャを使うと、複数の小さなフロントエンドアプリケーションを独立して開発・展開できます。Vue.jsでこのアーキテクチャを実現するには、モジュールとして機能するコンポーネントを作成します。</p>
+            <pre id="code69">
+&lt;!-- マイクロフロントエンドアーキテクチャの例 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;ユーザー情報&lt;/h2&gt;
+    &lt;user-profile&gt;&lt;/user-profile&gt;  &lt;!-- 他のアプリケーションからインポート --&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import UserProfile from 'user-profile'; &lt;!-- 他のマイクロアプリケーション --&gt;
+export default {
+  components: {
+    UserProfile
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 70: デザインシステムの導入 -->
+            <h2 id="section70">70. デザインシステムの導入</h2>
+            <p>Vue.jsアプリケーションにデザインシステムを統合することで、一貫性のあるUIと効率的な開発が可能になります。VuetifyやElementなどのUIライブラリを使用する方法を紹介します。</p>
+            <pre id="code70">
+&lt;!-- Vuetifyを使用したデザインシステムの統合 --&gt;
+&lt;template&gt;
+  &lt;v-app&gt;
+    &lt;v-container&gt;
+      &lt;v-btn @click="alert('ボタンがクリックされました')"&gt;クリック&lt;/v-btn&gt;
+    &lt;/v-container&gt;
+  &lt;/v-app&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { createApp } from 'vue';
+import Vuetify from 'vuetify';
+import 'vuetify/styles';
+
+createApp(App).use(Vuetify).mount('#app');
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 71: リアルタイムチャットアプリの構築 -->
+            <h2 id="section71">71. リアルタイムチャットアプリの構築</h2>
+            <p>Vue.jsとWebSocketを使って、リアルタイムチャットアプリケーションを構築します。これにより、ユーザー間で即時のメッセージ送受信が可能になります。</p>
+            <pre id="code71">
+&lt;!-- WebSocketを利用したリアルタイムチャット --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;div v-for="message in messages" :key="message.id"&gt;
+      &lt;p&gt;{{ message.user }}: {{ message.text }}&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;input v-model="newMessage" @keyup.enter="sendMessage"&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+const socket = new WebSocket('wss://chat.example.com');
+
+export default {
+  data() {
+    return {
+      messages: [],
+      newMessage: ''
+    };
+  },
+  mounted() {
+    socket.onmessage = (event) => {
+      this.messages.push(JSON.parse(event.data));
+    };
+  },
+  methods: {
+    sendMessage() {
+      socket.send(JSON.stringify({ text: this.newMessage, user: 'ユーザー' }));
+      this.newMessage = '';
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 72: スケジューリングとカレンダー機能 -->
+            <h2 id="section72">72. スケジューリングとカレンダー機能</h2>
+            <p>Vue.jsでカレンダーやスケジュール機能を実装し、ユーザーがイベントを管理できるようにします。`vue-cal`や`fullcalendar`などのライブラリを使用して、視覚的にわかりやすいカレンダーUIを構築できます。</p>
+            <pre id="code72">
+&lt;!-- vue-calでカレンダーを表示 --&gt;
+&lt;template&gt;
+  &lt;vue-cal :events="events"&gt;&lt;/vue-cal&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import VueCal from 'vue-cal';
+import 'vue-cal/dist/vuecal.css';
+
+export default {
+  components: { VueCal },
+  data() {
+    return {
+      events: [
+        { start: '2024-11-01', end: '2024-11-02', title: 'イベントA' },
+        { start: '2024-11-05', end: '2024-11-06', title: 'イベントB' }
+      ]
+    };
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 73: カスタムダイアログの作成 -->
+            <h2 id="section73">73. カスタムダイアログの作成</h2>
+            <p>Vue.jsで再利用可能なカスタムダイアログコンポーネントを作成し、必要に応じて表示・非表示を制御します。</p>
+            <pre id="code73">
+&lt;!-- カスタムダイアログコンポーネント --&gt;
+&lt;template&gt;
+  &lt;div v-if="isVisible" class="dialog"&gt;
+    &lt;div class="dialog-content"&gt;
+      &lt;p&gt;{{ message }}&lt;/p&gt;
+      &lt;button @click="close"&gt;閉じる&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: {
+    isVisible: Boolean,
+    message: String
+  },
+  methods: {
+    close() {
+      this.$emit('close');
+    }
+  }
+};
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.dialog-content {
+  background: white;
+  padding: 20px;
+  margin: 100px auto;
+  max-width: 400px;
+}
+&lt;/style&gt;
+            </pre>
+
+            <!-- Section 74: パフォーマンス最適化の実践 -->
+            <h2 id="section74">74. パフォーマンス最適化の実践</h2>
+            <p>Vue.jsアプリケーションを最適化するためのテクニックには、遅延読み込み（Lazy Loading）、コンポーネントの非同期化、メモ化（Memoization）などがあります。</p>
+            <pre id="code74">
+&lt;!-- 遅延読み込みの例 --&gt;
+const MyComponent = () =&gt; import('./components/MyComponent.vue');
+
+export default {
+  components: {
+    MyComponent
+  }
+};
+            </pre>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section67">ユニバーサルアプリケーションの開発</a></li>
+                    <li><a href="#section68">WebAssemblyとの連携</a></li>
+                    <li><a href="#section69">マイクロフロントエンドの実装</a></li>
+                    <li><a href="#section70">デザインシステムの導入</a></li>
+                    <li><a href="#section71">リアルタイムチャットアプリの構築</a></li>
+                    <li><a href="#section72">スケジューリングとカレンダー機能</a></li>
+                    <li><a href="#section73">カスタムダイアログの作成</a></li>
+                    <li><a href="#section74">パフォーマンス最適化の実践</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson08.html">次のページへ</a></li>
+                    <li><a href="lesson06.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/vue.js/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

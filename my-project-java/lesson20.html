@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Javaプログラミングの詳細な概念と技術について解説しています。">
+    <meta name="keywords" content="Java, プログラミング, 例外処理, コレクション, ファイル操作, スレッド">
+    <title>Javaプログラミングの詳細解説</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Javaプログラミングの詳細解説</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Section 12: 例外処理 -->
+            <h2 id="section12">12. 例外処理</h2>
+            <p>例外処理は、プログラムの実行中に予期しない事態が発生したときに、その処理を安全に行うための方法です。`try-catch`文を使用して例外を処理します。</p>
+            <pre>
+<code>
+try {
+    int result = 10 / 0;
+} catch (ArithmeticException e) {
+    System.out.println("エラー: ゼロで割ることはできません");
+}
+</code>
+            </pre>
+            <p>上記のコードでは、ゼロで割る操作を試みて例外が発生した場合に、`catch`ブロックでエラーメッセージを表示します。</p>
+
+            <!-- Section 13: コレクションフレームワーク -->
+            <h2 id="section13">13. コレクションフレームワーク</h2>
+            <p>コレクションフレームワークは、データの集合を管理するためのインターフェースとクラスを提供します。代表的なコレクションには、`List`, `Set`, `Map`などがあります。</p>
+            <pre>
+<code>
+import java.util.*;
+
+List<String> list = new ArrayList<>();
+list.add("Java");
+list.add("Python");
+list.add("C++");
+
+for (String language : list) {
+    System.out.println(language);
+}
+</code>
+            </pre>
+            <p>このコードでは、`ArrayList`を使って文字列のリストを作成し、ループでその内容を出力しています。</p>
+
+            <!-- Section 14: Javaの標準ライブラリ -->
+            <h2 id="section14">14. Javaの標準ライブラリ</h2>
+            <p>Javaは多くの標準ライブラリを提供しており、これにより様々な機能を簡単に実装できます。たとえば、ファイル操作や文字列処理、日付の操作などです。</p>
+            <pre>
+<code>
+import java.util.Date;
+
+public class Main {
+    public static void main(String[] args) {
+        Date date = new Date();
+        System.out.println(date.toString());
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、`Date`クラスを使って現在の日付と時刻を表示しています。</p>
+
+            <!-- Section 15: ファイル入出力 -->
+            <h2 id="section15">15. ファイル入出力</h2>
+            <p>Javaでは、`java.io`パッケージを使ってファイルの読み書きができます。</p>
+            <pre>
+<code>
+import java.io.*;
+
+public class FileRead {
+    public static void main(String[] args) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("example.txt"));
+            String line = reader.readLine();
+            while (line != null) {
+                System.out.println(line);
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code>
+            </pre>
+            <p>上記のコードでは、`BufferedReader`を使用してファイルを読み込む方法を示しています。</p>
+
+            <!-- Section 16: スレッドと並行処理 -->
+            <h2 id="section16">16. スレッドと並行処理</h2>
+            <p>スレッドを使うことで、複数のタスクを同時に実行できます。Javaでは`Thread`クラスまたは`Runnable`インターフェースを使ってスレッドを作成します。</p>
+            <pre>
+<code>
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("スレッドが実行されています");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyThread thread = new MyThread();
+        thread.start();
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、新しいスレッドを作成し、`run`メソッド内で並行処理を行っています。</p>
+
+            <!-- Section 17: Java 8の新機能 -->
+            <h2 id="section17">17. Java 8の新機能</h2>
+            <p>Java 8では、ラムダ式やStream APIなどの新機能が追加され、より簡潔で効率的なコードが書けるようになりました。</p>
+            <pre>
+<code>
+import java.util.Arrays;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList("Java", "Python", "C++");
+        list.forEach(language -> System.out.println(language));
+    }
+}
+</code>
+            </pre>
+            <p>上記のコードでは、ラムダ式を使用してリスト内の要素を簡潔に出力しています。</p>
+
+            <!-- Section 18: デザインパターンの基本 -->
+            <h2 id="section18">18. デザインパターンの基本</h2>
+            <p>デザインパターンは、ソフトウェア開発における問題解決のベストプラクティスを提供します。代表的なパターンには、SingletonやFactoryパターンがあります。</p>
+            <pre>
+<code>
+public class Singleton {
+    private static Singleton instance;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、Singletonパターンを実装し、インスタンスを1つだけ作成しています。</p>
+
+            <!-- Section 19: JUnitによるテスト -->
+            <h2 id="section19">19. JUnitによるテスト</h2>
+            <p>JUnitは、Javaでユニットテストを行うためのフレームワークです。テストクラスを作成し、メソッドが期待通りに動作するかを検証します。</p>
+            <pre>
+<code>
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class MyTest {
+    @Test
+    public void testAddition() {
+        int result = 2 + 3;
+        assertEquals(5, result);
+    }
+}
+</code>
+            </pre>
+            <p>上記のコードは、簡単な加算のテストケースを示しています。JUnitを使うことで、コードの正確性を確認できます。</p>
+
+            <!-- Section 20: Javaのベストプラクティス -->
+            <h2 id="section20">20. Javaのベストプラクティス</h2>
+            <p>コードの可読性や保守性を高めるためのベストプラクティスには、命名規則や適切なコメント、冗長なコードを避けることなどがあります。</p>
+            <pre>
+<code>
+// 良い命名規則
+int userAge = 25;  // 年齢を格納
+</code>
+            </pre>
+            <p>良い命名規則を守ることで、他の開発者がコードを理解しやすくなります。</p>
+
+            <!-- Section 21: Javadocによるドキュメンテーション -->
+            <h2 id="section21">21. Javadocによるドキュメンテーション</h2>
+            <p>Javadocは、Javaコードにコメントを追加してドキュメントを生成するツールです。メソッドやクラスの説明を追加することで、コードの理解を助けます。</p>
+            <pre>
+<code>
+/**
+ * 2つの整数を加算するメソッド。
+ * @param a 加算する整数
+ * @param b 加算する整数
+ * @return aとbの合計
+ */
+public int add(int a, int b) {
+    return a + b;
+}
+</code>
+            </pre>
+            <p>このコードは、Javadocコメントを使ってメソッドの説明を付け加えています。</p>
+
+            <!-- Section 22: ネットワークプログラミング -->
+            <h2 id="section22">22. ネットワークプログラミング</h2>
+            <p>Javaでは、`java.net`パッケージを使用して、ソケット通信などのネットワークプログラミングを行うことができます。</p>
+            <pre>
+<code>
+import java.net.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        URL url = new URL("http://example.com");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+    }
+}
+</code>
+            </pre>
+            <p>このコードでは、指定したURLからデータを読み込み、コンソールに出力しています。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section12">12. 例外処理</a></li>
+                    <li><a href="#section13">13. コレクションフレームワーク</a></li>
+                    <li><a href="#section14">14. Javaの標準ライブラリ</a></li>
+                    <li><a href="#section15">15. ファイル入出力</a></li>
+                    <li><a href="#section16">16. スレッドと並行処理</a></li>
+                    <li><a href="#section17">17. Java 8の新機能</a></li>
+                    <li><a href="#section18">18. デザインパターンの基本</a></li>
+                    <li><a href="#section19">19. JUnitによるテスト</a></li>
+                    <li><a href="#section20">20. Javaのベストプラクティス</a></li>
+                    <li><a href="#section21">21. Javadocによるドキュメンテーション</a></li>
+                    <li><a href="#section22">22. ネットワークプログラミング</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson21.html">次のページへ</a></li>
+                    <li><a href="lesson19.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/Java/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 Javaプログラミング学習サイト</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

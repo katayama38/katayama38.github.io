@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vue.jsの高度な機能を活用する方法について解説します。">
+    <meta name="keywords" content="Vue.js, ローカルストレージ, ダッシュボード, ユーザーインターフェーステスト, CSSアニメーション, 国際化, RESTful API, エラーハンドリング, 音声認識, PWA, OAuth 2.0, Docker, Firebase, Jest">
+    <title>Vue.jsの高度な機能</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Vue.jsの高度な機能の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Section 93: システムの監視とロギング -->
+            <h2 id="section93">93. システムの監視とロギング</h2>
+            <p>Vue.jsアプリケーションの監視とログ管理について説明します。エラーログやパフォーマンスのメトリクスを収集して、アプリケーションの状態を追跡します。</p>
+            <pre id="code93">
+&lt;!-- ロギングの実装 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="triggerError"&gt;エラーをトリガー&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import axios from 'axios';
+
+export default {
+  methods: {
+    triggerError() {
+      try {
+        throw new Error('システムエラーが発生しました');
+      } catch (error) {
+        this.logError(error);
+      }
+    },
+    logError(error) {
+      // エラーログをサーバーに送信
+      axios.post('https://your-log-server.com/log', {
+        message: error.message,
+        stack: error.stack,
+        timestamp: new Date().toISOString()
+      }).then(response => {
+        console.log('ログが送信されました:', response);
+      }).catch(err => {
+        console.error('ログ送信失敗:', err);
+      });
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 94: Dockerを用いた開発環境の構築 -->
+            <h2 id="section94">94. Dockerを用いた開発環境の構築</h2>
+            <p>Vue.jsの開発環境をDockerで構築する方法を説明します。Dockerを使うことで、アプリケーションの依存関係を簡単に管理し、開発環境を一貫性のあるものに保つことができます。</p>
+            <pre id="code94">
+&lt;!-- Dockerfile --&gt;
+FROM node:16
+
+# 作業ディレクトリを作成
+WORKDIR /app
+
+# 依存関係ファイルをコピー
+COPY package.json package-lock.json /app/
+
+# 依存関係をインストール
+RUN npm install
+
+# ソースコードをコピー
+COPY . /app/
+
+# アプリケーションを起動
+CMD ["npm", "run", "serve"]
+
+&lt;!-- docker-compose.yml --&gt;
+version: '3'
+
+services:
+  vue-app:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    command: npm run serve
+            </pre>
+
+            <!-- Section 95: ストレージの統合 -->
+            <h2 id="section95">95. ストレージの統合</h2>
+            <p>FirebaseやAWSを使って、Vue.jsアプリケーションにクラウドストレージを統合する方法を紹介します。ユーザーがアップロードしたデータを安全に保存し、管理することができます。</p>
+            <pre id="code95">
+&lt;!-- Firebase Storageの統合 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;input type="file" @change="uploadFile" /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { initializeApp } from 'firebase/app';
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
+
+const firebaseConfig = {
+  apiKey: 'YOUR_API_KEY',
+  authDomain: 'YOUR_AUTH_DOMAIN',
+  projectId: 'YOUR_PROJECT_ID',
+  storageBucket: 'YOUR_STORAGE_BUCKET',
+  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
+  appId: 'YOUR_APP_ID'
+};
+
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+
+export default {
+  methods: {
+    uploadFile(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const storageRef = ref(storage, 'uploads/' + file.name);
+        uploadBytes(storageRef, file).then((snapshot) => {
+          console.log('ファイルがアップロードされました:', snapshot);
+        });
+      }
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 96: リーダブルなコードの書き方 -->
+            <h2 id="section96">96. リーダブルなコードの書き方</h2>
+            <p>Vue.jsでのコーディングスタイルとベストプラクティスについて説明します。可読性が高く、メンテナンス性の良いコードを書くための方法を学びます。</p>
+            <pre id="code96">
+&lt;!-- リーダブルなコード例 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="toggle"&gt;切り替え&lt;/button&gt;
+    &lt;p&gt;{{ message }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      isToggled: false,
+    };
+  },
+  computed: {
+    message() {
+      return this.isToggled ? 'オン' : 'オフ';
+    }
+  },
+  methods: {
+    toggle() {
+      this.isToggled = !this.isToggled;
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 97: 多段階認証の実装 -->
+            <h2 id="section97">97. 多段階認証の実装</h2>
+            <p>多段階認証（MFA）を実装する方法について説明します。ユーザーがログインする際に、二つ以上の認証手段を使ってセキュリティを強化します。</p>
+            <pre id="code97">
+&lt;!-- 多段階認証の実装 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="startAuthentication"&gt;ログイン&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  methods: {
+    async startAuthentication() {
+      try {
+        // 最初の認証手段（パスワード）
+        const email = 'user@example.com';
+        const password = 'securepassword';
+        const result = await this.authenticateWithPassword(email, password);
+        
+        // 次に、SMSやGoogle Authenticatorなどでコードを送信
+        if (result.success) {
+          const code = prompt('コードを入力してください:');
+          const finalResult = await this.verifyCode(code);
+          if (finalResult.success) {
+            console.log('認証成功');
+          } else {
+            alert('認証失敗');
+          }
+        } else {
+          alert('パスワード認証失敗');
+        }
+      } catch (error) {
+        console.error('認証エラー:', error);
+      }
+    },
+    authenticateWithPassword(email, password) {
+      // パスワード認証のモック
+      return Promise.resolve({ success: true });
+    },
+    verifyCode(code) {
+      // コード認証のモック
+      return Promise.resolve({ success: code === '123456' });
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 98: 状態管理の最適化 -->
+            <h2 id="section98">98. 状態管理の最適化</h2>
+            <p>Vuexを使用した状態管理の最適化方法を説明します。Vuexのストア設計を最適化して、アプリケーションのパフォーマンスと可読性を向上させます。</p>
+            <pre id="code98">
+&lt;!-- Vuexストアの最適化 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="increment"&gt;カウントアップ&lt;/button&gt;
+    &lt;p&gt;カウント: {{ count }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { createStore } from 'vuex';
+
+const store = createStore({
+  state() {
+    return {
+      count: 0
+    };
+  },
+  mutations: {
+    increment(state) {
+      state.count++;
+    }
+  }
+});
+
+export default {
+  computed: {
+    count() {
+      return store.state.count;
+    }
+  },
+  methods: {
+    increment() {
+      store.commit('increment');
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 99: フロントエンドテストのフレームワーク -->
+            <h2 id="section99">99. フロントエンドテストのフレームワーク</h2>
+            <p>JestやMochaなどのフレームワークを使用して、Vue.jsアプリケーションのテストを実施する方法を学びます。ユニットテストや統合テストを通じて、アプリケーションの信頼性を高めます。</p>
+            <pre id="code99">
+&lt;!-- Jestによるテスト例 --&gt;
+import { mount } from '@vue/test-utils';
+import MyComponent from '@/components/MyComponent.vue';
+
+describe('MyComponent.vue', () => {
+  it('カウントが増加することを確認', async () => {
+    const wrapper = mount(MyComponent);
+    await wrapper.find('button').trigger('click');
+    expect(wrapper.text()).toContain('カウント: 1');
+  });
+});
+            </pre>
+
+            <!-- Section 100: 環境設定のベストプラクティス -->
+            <h2 id="section100">100. 環境設定のベストプラクティス</h2>
+            <p>開発、ステージング、本番環境の設定を効果的に管理する方法について説明します。各環境に適した設定を行い、アプリケーションのデプロイや管理を効率化します。</p>
+            <pre id="code100">
+&lt;!-- .env ファイルの設定例 --&gt;
+VUE_APP_API_URL=https://api.example.com
+VUE_APP_DEBUG=true
+
+&lt;!-- vue.config.js で環境に応じた設定 --&gt;
+module.exports = {
+  devServer: {
+    proxy: process.env.VUE_APP_API_URL
+  }
+};
+            </pre>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section93">システムの監視とロギング</a></li>
+                    <li><a href="#section94">Dockerを用いた開発環境の構築</a></li>
+                    <li><a href="#section95">ストレージの統合</a></li>
+                    <li><a href="#section96">リーダブルなコードの書き方</a></li>
+                    <li><a href="#section97">多段階認証の実装</a></li>
+                    <li><a href="#section98">状態管理の最適化</a></li>
+                    <li><a href="#section99">フロントエンドテストのフレームワーク</a></li>
+                    <li><a href="#section100">環境設定のベストプラクティス</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson01.html">次のページへ</a></li>
+                    <li><a href="lesson09.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/vue.js/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

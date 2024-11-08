@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vue.jsの高度な機能を活用する方法について解説します。">
+    <meta name="keywords" content="Vue.js, ローカルストレージ, ダッシュボード, ユーザーインターフェーステスト, CSSアニメーション, 国際化, RESTful API, エラーハンドリング, 音声認識, PWA, OAuth 2.0">
+    <title>Vue.jsの高度な機能</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Vue.jsの高度な機能の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Section 84: エラーページのカスタマイズ -->
+            <h2 id="section84">84. エラーページのカスタマイズ</h2>
+            <p>Vue.jsアプリケーションで、エラー発生時にカスタマイズしたエラーページを表示する方法を紹介します。Vue Routerとエラーハンドリングを組み合わせて、ユーザーに適切なエラーメッセージを提供します。</p>
+            <pre id="code84">
+&lt;!-- エラーページのカスタマイズ --&gt;
+&lt;template&gt;
+  &lt;div v-if="errorOccurred"&gt;
+    &lt;h2&gt;エラーが発生しました！&lt;/h2&gt;
+    &lt;p&gt;{{ errorMessage }}&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div v-else&gt;
+    &lt;p&gt;正常に動作しています。&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      errorOccurred: false,
+      errorMessage: ''
+    };
+  },
+  mounted() {
+    try {
+      // ここにエラーが発生するコードを実装
+      throw new Error('ネットワークエラー');
+    } catch (error) {
+      this.errorOccurred = true;
+      this.errorMessage = error.message;
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 85: 音声認識機能の実装 -->
+            <h2 id="section85">85. 音声認識機能の実装</h2>
+            <p>Web Speech APIを使用して、音声認識機能をVue.jsに統合する方法を紹介します。ユーザーの音声をテキストに変換し、アプリケーションに反映させます。</p>
+            <pre id="code85">
+&lt;!-- 音声認識機能の実装 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="startRecognition"&gt;音声を認識する&lt;/button&gt;
+    &lt;p&gt;{{ recognizedText }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      recognizedText: ''
+    };
+  },
+  methods: {
+    startRecognition() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.onresult = (event) => {
+        this.recognizedText = event.results[0][0].transcript;
+      };
+      recognition.start();
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 86: カスタムフォームコンポーネントの作成 -->
+            <h2 id="section86">86. カスタムフォームコンポーネントの作成</h2>
+            <p>再利用可能なカスタムフォームコンポーネントを作成する方法を紹介します。Vue.jsを使って、柔軟なフォームコンポーネントを作成し、バリデーションなどを組み込んでいきます。</p>
+            <pre id="code86">
+&lt;!-- カスタムフォームコンポーネントの作成 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;label for="name"&gt;名前:&lt;/label&gt;
+    &lt;input type="text" v-model="name" id="name" placeholder="名前を入力"&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      name: ''
+    };
+  },
+  watch: {
+    name(newName) {
+      console.log(`名前が変更されました: ${newName}`);
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 87: リアクティブなデータグリッドの作成 -->
+            <h2 id="section87">87. リアクティブなデータグリッドの作成</h2>
+            <p>Vue.jsで動的なデータグリッドを作成する方法を紹介します。データが変更されると、自動的にグリッドの内容も更新されます。</p>
+            <pre id="code87">
+&lt;!-- リアクティブなデータグリッド --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;名前&lt;/th&gt;
+          &lt;th&gt;年齢&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr v-for="person in people" :key="person.id"&gt;
+          &lt;td&gt;{{ person.name }}&lt;/td&gt;
+          &lt;td&gt;{{ person.age }}&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      people: [
+        { id: 1, name: '山田太郎', age: 30 },
+        { id: 2, name: '佐藤花子', age: 25 }
+      ]
+    };
+  },
+  methods: {
+    addPerson() {
+      this.people.push({ id: 3, name: '鈴木一郎', age: 28 });
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 88: Webパフォーマンスの監視 -->
+            <h2 id="section88">88. Webパフォーマンスの監視</h2>
+            <p>Google Lighthouseを使用して、Vue.jsアプリケーションのパフォーマンスを測定し、最適化方法を学ぶことができます。</p>
+            <pre id="code88">
+&lt;!-- Google Lighthouseによるパフォーマンス測定 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="measurePerformance"&gt;パフォーマンス測定&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  methods: {
+    measurePerformance() {
+      if (window.Lighthouse) {
+        Lighthouse.measure({
+          performance: true,
+          accessibility: true
+        }).then(results => {
+          console.log('パフォーマンス結果:', results.performance);
+        });
+      } else {
+        console.log('Lighthouseが利用できません');
+      }
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 89: PWA（プログレッシブWebアプリ）の構築 -->
+            <h2 id="section89">89. PWA（プログレッシブWebアプリ）の構築</h2>
+            <p>Vue.jsを使って、PWA（プログレッシブWebアプリ）の作成方法を紹介します。オフラインでも動作するアプリケーションを構築することができます。</p>
+            <pre id="code89">
+&lt;!-- PWA（プログレッシブWebアプリ）の構築 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;プログレッシブWebアプリ&lt;/h2&gt;
+    &lt;button @click="installApp"&gt;アプリをインストール&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  methods: {
+    installApp() {
+      if (window.matchMedia('(display-mode: standalone)').matches) {
+        console.log('PWAがインストールされています');
+      } else {
+        console.log('PWAをインストールしてください');
+      }
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 90: OAuth 2.0による認証 -->
+            <h2 id="section90">90. OAuth 2.0による認証</h2>
+            <p>外部サービスとのOAuth 2.0認証を実装し、ユーザーがログインする際に外部の認証プロバイダ（Google、Facebookなど）を利用する方法を紹介します。</p>
+            <pre id="code90">
+&lt;!-- OAuth 2.0による認証 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click="loginWithGoogle"&gt;Googleでログイン&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  methods: {
+    loginWithGoogle() {
+      const authUrl = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=profile';
+      window.location.href = authUrl;
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 91: カスタムルーティングの実装 -->
+            <h2 id="section91">91. カスタムルーティングの実装</h2>
+            <p>複雑なルーティングシナリオを管理するための方法を紹介します。`vue-router`を使用して、動的なルートやガードを設定する方法を学びます。</p>
+            <pre id="code91">
+&lt;!-- カスタムルーティングの実装 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { createRouter, createWebHistory } from 'vue-router';
+
+const routes = [
+  { path: '/', component: () =&gt; import('./Home.vue') },
+  { path: '/profile', component: () =&gt; import('./Profile.vue') }
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+});
+
+export default {
+  router
+};
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 92: Analyticsの統合 -->
+            <h2 id="section92">92. Analyticsの統合</h2>
+            <p>Google Analyticsを使って、Vue.jsアプリケーションにトラッキング機能を組み込む方法を紹介します。ユーザーの行動を追跡し、アプリケーションの改善に役立てます。</p>
+            <pre id="code92">
+&lt;!-- Google Analyticsの統合 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;Google Analytics統合&lt;/h2&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  mounted() {
+    // Google Analyticsの設定
+    if (window.gtag) {
+      gtag('config', 'YOUR_TRACKING_ID', {
+        page_path: window.location.pathname
+      });
+    }
+  }
+};
+&lt;/script&gt;
+            </pre>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section84">エラーページのカスタマイズ</a></li>
+                    <li><a href="#section85">音声認識機能の実装</a></li>
+                    <li><a href="#section86">カスタムフォームコンポーネントの作成</a></li>
+                    <li><a href="#section87">リアクティブなデータグリッドの作成</a></li>
+                    <li><a href="#section88">Webパフォーマンスの監視</a></li>
+                    <li><a href="#section89">PWA（プログレッシブWebアプリ）の構築</a></li>
+                    <li><a href="#section90">OAuth 2.0による認証</a></li>
+                    <li><a href="#section91">カスタムルーティングの実装</a></li>
+                    <li><a href="#section92">Analyticsの統合</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson10.html">次のページへ</a></li>
+                    <li><a href="lesson08.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/vue.js/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

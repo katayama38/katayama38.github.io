@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="jQueryの基礎から応用までの解説。">
+    <meta name="keywords" content="jQuery, JavaScript, イベント, セレクタ, アニメーション">
+    <title>jQueryの基礎と応用</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>jQueryの基礎と応用</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- 21. デバッグのテクニック -->
+            <h2 id="section21">デバッグのテクニック</h2>
+            <p>jQueryのコードを効率的にデバッグするためのテクニックを紹介します。コンソールログを活用したデバッグ方法や、Chrome DevToolsを使ったデバッグの基本を学びます。</p>
+            <pre id="code18">
+$(document).ready(function() {
+    // コンソールに変数の値を出力
+    var message = "デバッグメッセージ";
+    console.log(message);
+});
+            </pre>
+            <button onclick="copyToClipboard('code18', 'alert18', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert18"></span>
+
+            <!-- 22. パフォーマンスの最適化 -->
+            <h2 id="section22">パフォーマンスの最適化</h2>
+            <p>jQueryを使ったアプリケーションのパフォーマンスを最適化する方法を学びます。DOM操作の回数を減らし、キャッシュを使用する方法を紹介します。</p>
+            <pre id="code19">
+$(document).ready(function() {
+    var $items = $(".item"); // セレクタをキャッシュ
+    $items.each(function() {
+        $(this).fadeIn(); // 各アイテムを表示
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code19', 'alert19', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert19"></span>
+
+            <!-- 23. セキュリティの考慮 -->
+            <h2 id="section23">セキュリティの考慮</h2>
+            <p>jQueryを使用する際のセキュリティリスクとその対策を紹介します。特に、XSS（クロスサイトスクリプティング）攻撃に対する対策を学びます。</p>
+            <pre id="code20">
+$(document).ready(function() {
+    var userInput = $("#userInput").val();
+    // XSS攻撃を防ぐため、エスケープ処理を行う
+    var safeInput = $("<div>").text(userInput).html();
+    $("#output").html(safeInput);
+});
+            </pre>
+            <button onclick="copyToClipboard('code20', 'alert20', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert20"></span>
+
+            <!-- 24. モバイル対応 -->
+            <h2 id="section24">モバイル対応</h2>
+            <p>jQueryを使用して、レスポンシブデザインを実現する方法を学びます。モバイルデバイス向けのレイアウト調整を行う方法を紹介します。</p>
+            <pre id="code21">
+$(document).ready(function() {
+    $(window).resize(function() {
+        if ($(window).width() < 768) {
+            $(".menu").hide(); // モバイルサイズでメニューを非表示
+        } else {
+            $(".menu").show(); // デスクトップサイズでメニューを表示
+        }
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code21', 'alert21', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert21"></span>
+
+            <!-- 25. jQueryと他のライブラリの併用 -->
+            <h2 id="section25">jQueryと他のライブラリの併用</h2>
+            <p>jQueryを他のJavaScriptライブラリと併用する方法を学びます。例えば、ReactやVue.jsとjQueryを組み合わせて使う場合の注意点と実装方法を紹介します。</p>
+            <pre id="code22">
+$(document).ready(function() {
+    // 他のライブラリとの併用
+    // jQueryでDOM操作を行い、Reactのコンポーネントと連携する場合
+    $("#toggleButton").click(function() {
+        $("#reactComponent").toggleClass("active");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code22', 'alert22', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert22"></span>
+
+            <!-- 26. アニメーションのカスタマイズ -->
+            <h2 id="section26">アニメーションのカスタマイズ</h2>
+            <p>jQueryでアニメーションの速度や効果をカスタマイズする方法を学びます。フェードイン、スライドアップなどの基本的なアニメーションをさらに詳細に調整します。</p>
+            <pre id="code23">
+$(document).ready(function() {
+    $("#animateButton").click(function() {
+        $(".box").animate({
+            left: "100px",
+            opacity: 0.5
+        }, 1000); // 1000msでアニメーション
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code23', 'alert23', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert23"></span>
+
+            <!-- 27. エラー処理 -->
+            <h2 id="section27">エラー処理</h2>
+            <p>jQueryを使用したAjaxリクエストやその他の非同期処理におけるエラー処理の方法を学びます。通信エラーやその他の例外に対する適切なエラーハンドリングを行います。</p>
+            <pre id="code24">
+$.ajax({
+    url: "api/data",
+    type: "GET",
+    success: function(response) {
+        console.log(response);
+    },
+    error: function(xhr, status, error) {
+        console.error("リクエストに失敗しました:", error);
+        alert("データの取得に失敗しました");
+    }
+});
+            </pre>
+            <button onclick="copyToClipboard('code24', 'alert24', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert24"></span>
+
+            <!-- 28. イベントデリゲーション -->
+            <h2 id="section28">イベントデリゲーション</h2>
+            <p>動的に追加された要素に対してもイベントを適用できる「イベントデリゲーション」の方法を紹介します。これにより、動的なコンテンツを効率的に管理できます。</p>
+            <pre id="code25">
+$(document).ready(function() {
+    $("ul").on("click", "li", function() {
+        alert("アイテムがクリックされました");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code25', 'alert25', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert25"></span>
+
+            <!-- 29. AJAXのPOSTリクエスト -->
+            <h2 id="section29">AJAXのPOSTリクエスト</h2>
+            <p>POSTリクエストを使用して、サーバーにデータを送信する方法を学びます。フォームデータを非同期で送信し、サーバーの応答を処理します。</p>
+            <pre id="code26">
+$(document).ready(function() {
+    $("#submitForm").click(function(event) {
+        event.preventDefault();
+        var formData = $("#myForm").serialize();
+        $.post("api/submit", formData, function(response) {
+            alert("送信完了: " + response);
+        });
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code26', 'alert26', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert26"></span>
+
+            <!-- 30. データ属性の利用 -->
+            <h2 id="section30">データ属性の利用</h2>
+            <p>HTML5のデータ属性を使用して、カスタムデータをDOM要素に関連付ける方法を学びます。これにより、JavaScriptコードで簡単にデータを操作できます。</p>
+            <pre id="code27">
+$(document).ready(function() {
+    $("button").click(function() {
+        var dataValue = $(this).data("info");
+        alert("データ属性の値: " + dataValue);
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code27', 'alert27', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert27"></span>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section21">デバッグのテクニック</a></li>
+                    <li><a href="#section22">パフォーマンスの最適化</a></li>
+                    <li><a href="#section23">セキュリティの考慮</a></li>
+                    <li><a href="#section24">モバイル対応</a></li>
+                    <li><a href="#section25">jQueryと他のライブラリの併用</a></li>
+                    <li><a href="#section26">アニメーションのカスタマイズ</a></li>
+                    <li><a href="#section27">エラー処理</a></li>
+                    <li><a href="#section28">イベントデリゲーション</a></li>
+                    <li><a href="#section29">AJAXのPOSTリクエスト</a></li>
+                    <li><a href="#section30">データ属性の利用</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson04.html">次のページへ</a></li>
+                    <li><a href="lesson02.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/jquery/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

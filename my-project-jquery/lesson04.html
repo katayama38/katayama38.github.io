@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="jQueryの基礎から応用までの解説。">
+    <meta name="keywords" content="jQuery, JavaScript, イベント, セレクタ, アニメーション">
+    <title>jQueryの基礎と応用</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>jQueryの基礎と応用</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- 31. jQuery Mobileの導入 -->
+            <h2 id="section31">jQuery Mobileの導入</h2>
+            <p>jQuery Mobileを使用して、モバイルフレンドリーなウェブアプリケーションを作成する方法を紹介します。簡単なUIコンポーネントやレスポンシブなレイアウトを実装します。</p>
+            <pre id="code28">
+$(document).ready(function() {
+    // jQuery Mobileの基本設定
+    $("button").click(function() {
+        $(this).addClass("ui-btn-active");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code28', 'alert28', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert28"></span>
+
+            <!-- 32. モーダルウィンドウの作成 -->
+            <h2 id="section32">モーダルウィンドウの作成</h2>
+            <p>jQueryを使って、モーダルダイアログを簡単に作成する方法を学びます。クリックイベントをトリガーにして、ダイアログを開閉します。</p>
+            <pre id="code29">
+$(document).ready(function() {
+    $("#openModal").click(function() {
+        $("#myModal").fadeIn();
+    });
+    $("#closeModal").click(function() {
+        $("#myModal").fadeOut();
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code29', 'alert29', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert29"></span>
+
+            <!-- 33. スライダーの実装 -->
+            <h2 id="section33">スライダーの実装</h2>
+            <p>画像やコンテンツをスライドさせるために、jQueryを使用したシンプルなスライダーの作成方法を紹介します。</p>
+            <pre id="code30">
+$(document).ready(function() {
+    var currentIndex = 0;
+    var images = $(".slider img");
+    
+    function showSlide(index) {
+        images.hide().eq(index).fadeIn();
+    }
+
+    $("#next").click(function() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showSlide(currentIndex);
+    });
+
+    $("#prev").click(function() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showSlide(currentIndex);
+    });
+
+    showSlide(currentIndex);
+});
+            </pre>
+            <button onclick="copyToClipboard('code30', 'alert30', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert30"></span>
+
+            <!-- 34. タブの実装 -->
+            <h2 id="section34">タブの実装</h2>
+            <p>jQueryを使ってタブ形式のコンテンツ切り替えを実装します。タブのクリックで異なるコンテンツを表示します。</p>
+            <pre id="code31">
+$(document).ready(function() {
+    $(".tabs li").click(function() {
+        var tab_id = $(this).attr("data-tab");
+        $(".tabs li").removeClass("active");
+        $(".tab-content").removeClass("active");
+        $(this).addClass("active");
+        $("#" + tab_id).addClass("active");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code31', 'alert31', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert31"></span>
+
+            <!-- 35. フォームのバリデーション -->
+            <h2 id="section35">フォームのバリデーション</h2>
+            <p>フォーム入力時にリアルタイムでバリデーションを行い、不正なデータの送信を防ぐ方法を紹介します。</p>
+            <pre id="code32">
+$(document).ready(function() {
+    $("#submit").click(function(event) {
+        var email = $("#email").val();
+        var regex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+        if (!regex.test(email)) {
+            alert("無効なメールアドレスです");
+            event.preventDefault();
+        }
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code32', 'alert32', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert32"></span>
+
+            <!-- 36. レスポンシブデザインのサポート -->
+            <h2 id="section36">レスポンシブデザインのサポート</h2>
+            <p>メディアクエリとjQueryを組み合わせて、画面サイズに応じたレイアウトの変更や要素の表示・非表示を実装します。</p>
+            <pre id="code33">
+$(document).ready(function() {
+    if ($(window).width() < 768) {
+        $(".menu").hide();
+    } else {
+        $(".menu").show();
+    }
+
+    $(window).resize(function() {
+        if ($(window).width() < 768) {
+            $(".menu").hide();
+        } else {
+            $(".menu").show();
+        }
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code33', 'alert33', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert33"></span>
+
+            <!-- 37. ホバー効果の実装 -->
+            <h2 id="section37">ホバー効果の実装</h2>
+            <p>マウスオーバー時にアニメーションやエフェクトを追加して、インタラクティブな体験を作成する方法を紹介します。</p>
+            <pre id="code34">
+$(document).ready(function() {
+    $(".hover-item").hover(function() {
+        $(this).fadeTo(200, 0.7);
+    }, function() {
+        $(this).fadeTo(200, 1);
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code34', 'alert34', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert34"></span>
+
+            <!-- 38. アコーディオンメニューの作成 -->
+            <h2 id="section38">アコーディオンメニューの作成</h2>
+            <p>クリックすることでコンテンツがスライドして表示されるアコーディオンスタイルのメニューをjQueryで実装します。</p>
+            <pre id="code35">
+$(document).ready(function() {
+    $(".accordion-header").click(function() {
+        $(this).next(".accordion-content").slideToggle();
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code35', 'alert35', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert35"></span>
+
+            <!-- 39. ページスムーススクロール -->
+            <h2 id="section39">ページスムーススクロール</h2>
+            <p>ページ内のリンクをクリックした際に、スムーズにスクロールする方法をjQueryで実装します。</p>
+            <pre id="code36">
+$(document).ready(function() {
+    $("a[href^='#']").click(function(event) {
+        var target = $($(this).attr("href"));
+        $("html, body").animate({ scrollTop: target.offset().top }, 1000);
+        event.preventDefault();
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code36', 'alert36', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert36"></span>
+
+            <!-- 40. カスタムイベントの作成 -->
+            <h2 id="section40">カスタムイベントの作成</h2>
+            <p>独自のカスタムイベントをjQueryで定義し、特定のタイミングでトリガーする方法を学びます。</p>
+            <pre id="code37">
+$(document).ready(function() {
+    $("#triggerEvent").click(function() {
+        $(document).trigger("customEvent");
+    });
+
+    $(document).on("customEvent", function() {
+        alert("カスタムイベントが発火しました！");
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code37', 'alert37', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert37"></span>
+
+            <!-- 41. Ajaxのデータ受信 -->
+            <h2 id="section41">Ajaxのデータ受信</h2>
+            <p>Ajaxを使ってサーバーからJSONデータを受信し、それをHTMLに表示する方法を学びます。</p>
+            <pre id="code38">
+$(document).ready(function() {
+    $.ajax({
+        url: "api/data.json",
+        method: "GET",
+        dataType: "json",
+        success: function(response) {
+            $("#result").html("受信データ: " + response.data);
+        }
+    });
+});
+            </pre>
+            <button onclick="copyToClipboard('code38', 'alert38', 'コードをコピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert38"></span>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section31">jQuery Mobileの導入</a></li>
+                    <li><a href="#section32">モーダルウィンドウの作成</a></li>
+                    <li><a href="#section33">スライダーの実装</a></li>
+                    <li><a href="#section34">タブの実装</a></li>
+                    <li><a href="#section35">フォームのバリデーション</a></li>
+                    <li><a href="#section36">レスポンシブデザインのサポート</a></li>
+                    <li><a href="#section37">ホバー効果の実装</a></li>
+                    <li><a href="#section38">アコーディオンメニューの作成</a></li>
+                    <li><a href="#section39">ページスムーススクロール</a></li>
+                    <li><a href="#section40">カスタムイベントの作成</a></li>
+                    <li><a href="#section41">Ajaxのデータ受信</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson05.html">次のページへ</a></li>
+                    <li><a href="lesson03.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/jquery/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

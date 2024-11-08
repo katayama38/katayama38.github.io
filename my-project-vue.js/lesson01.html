@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vue.jsの基本とその活用方法について詳しく解説します。">
+    <meta name="keywords" content="Vue.js, JavaScript, フレームワーク, コンポーネント, データバインディング">
+    <title>Vue.jsの基本の理解</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Vue.jsの基本の理解</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Section 1: Vue.jsとは？ -->
+            <h2 id="section1">1. Vue.jsとは？</h2>
+            <p>Vue.jsは、シンプルで柔軟なJavaScriptフレームワークで、単一ページアプリケーション（SPA）の開発を支援します。リアクティブなデータバインディングとコンポーネントベースの設計が特徴です。</p>
+            <p>Vue.jsは、他のフレームワーク（例：React、Angular）に比べて、学習曲線が緩やかで、非常に直感的に使用できます。</p>
+
+            <!-- Section 2: Vue.jsの環境設定 -->
+            <h2 id="section2">2. Vue.jsの環境設定</h2>
+            <p>Vue.jsを使用するためには、まず開発環境を設定する必要があります。最も簡単な方法は、CDNを使ってVue.jsを読み込む方法です。</p>
+            <pre id="code1">
+&lt;!-- CDNを使用したVue.jsの導入 --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"&gt;&lt;/script&gt;
+            </pre>
+            <p>また、より本格的に開発を行う場合は、Vue CLIを使用してプロジェクトをセットアップすることができます。</p>
+            <pre id="code2">
+&lt;!-- Vue CLIを使用したプロジェクト作成 --&gt;
+npm install -g @vue/cli
+vue create my-project
+            </pre>
+
+            <!-- Section 3: Vueインスタンスの作成 -->
+            <h2 id="section3">3. Vueインスタンスの作成</h2>
+            <p>Vue.jsアプリケーションは、Vueインスタンスを作成することで開始します。Vueインスタンスには、データ、メソッド、ライフサイクルフックなどを設定することができます。</p>
+            <pre id="code3">
+&lt;!-- Vueインスタンスの作成例 --&gt;
+&lt;div id="app"&gt;
+    {{ message }}
+&lt;/div&gt;
+
+&lt;script&gt;
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello, Vue!'
+        }
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 4: データバインディング -->
+            <h2 id="section4">4. データバインディング</h2>
+            <p>Vue.jsでは、データバインディングを使って、HTMLテンプレートとVueインスタンスのデータをリンクさせることができます。データが変更されると、ビューが自動的に更新されます。</p>
+            <pre id="code4">
+&lt;!-- データバインディングの例 --&gt;
+&lt;div id="app"&gt;
+&lt;p&gt;{{ message }}&lt;/p&gt;
+&lt;button v-on:click="reverseMessage"&gt;Reverse Message&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello, Vue!'
+        },
+        methods: {
+            reverseMessage: function() {
+                this.message = this.message.split('').reverse().join('');
+            }
+        }
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 5: テンプレート構文 -->
+            <h2 id="section5">5. テンプレート構文</h2>
+            <p>Vue.jsのテンプレート構文は、HTMLの拡張です。データの表示やイベントの処理などを直感的に行うことができます。</p>
+            <pre id="code5">
+&lt;!-- テンプレート構文の例 --&gt;
+&lt;div id="app"&gt;
+&lt;h1&gt;{{ title }}&lt;/h1&gt;
+    &lt;p v-if="showMessage"&gt;これは条件付きで表示されるメッセージです。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    new Vue({
+        el: '#app',
+        data: {
+            title: 'Vue.jsの基本',
+            showMessage: true
+        }
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 6: コンポーネントの理解 -->
+            <h2 id="section6">6. コンポーネントの理解</h2>
+            <p>Vue.jsでは、コンポーネントを使ってUIを再利用可能な部分に分けることができます。コンポーネントは、テンプレート、ロジック、スタイルが一緒になった単位です。</p>
+            <pre id="code6">
+&lt;!-- コンポーネントの作成例 --&gt;
+&lt;div id="app"&gt;
+&lt;user-profile&gt;&lt;/user-profile&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    Vue.component('user-profile', {
+        template: '&lt;div&gt;&lt;h2&gt;User Profile&lt;/h2&gt;&lt;p&gt;名前: {{ name }}&lt;/p&gt;&lt;/div&gt;',
+        data: function() {
+            return {
+                name: '山田太郎'
+            };
+        }
+    });
+
+    new Vue({
+        el: '#app'
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 7: プロパティとメソッド -->
+            <h2 id="section7">7. プロパティとメソッド</h2>
+            <p>コンポーネント内でデータを管理するためにプロパティを使用し、動的な操作を行うためにメソッドを定義します。</p>
+            <pre id="code7">
+&lt;!-- プロパティとメソッドの例 --&gt;
+&lt;div id="app"&gt;
+&lt;button v-on:click="increment"&gt;カウントアップ&lt;/button&gt;
+    &lt;p&gt;{{ count }}&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    new Vue({
+        el: '#app',
+        data: {
+            count: 0
+        },
+        methods: {
+            increment: function() {
+                this.count++;
+            }
+        }
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 8: イベント処理 -->
+            <h2 id="section8">8. イベント処理</h2>
+            <p>Vue.jsでは、`v-on`ディレクティブを使ってイベントハンドラを簡単に設定できます。</p>
+            <pre id="code8">
+&lt;!-- イベント処理の例 --&gt;
+&lt;div id="app"&gt;
+&lt;button v-on:click="showAlert"&gt;クリックして警告&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    new Vue({
+        el: '#app',
+        methods: {
+            showAlert: function() {
+                alert('ボタンがクリックされました！');
+            }
+        }
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 9: 条件付きレンダリング -->
+            <h2 id="section9">9. 条件付きレンダリング</h2>
+            <p>Vue.jsでは、`v-if`や`v-else`を使って条件に応じた要素の表示・非表示を制御できます。</p>
+            <pre id="code9">
+&lt;!-- 条件付きレンダリングの例 --&gt;
+&lt;div id="app"&gt;
+&lt;p v-if="isVisible"&gt;このメッセージは表示されます。&lt;/p&gt;
+    &lt;p v-else&gt;このメッセージは表示されません。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    new Vue({
+        el: '#app',
+        data: {
+            isVisible: true
+        }
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 10: リストのレンダリング -->
+            <h2 id="section10">10. リストのレンダリング</h2>
+            <p>`v-for`ディレクティブを使うことで、リストのアイテムを動的に表示することができます。</p>
+            <pre id="code10">
+&lt;!-- リストのレンダリングの例 --&gt;
+&lt;div id="app"&gt;
+    &lt;ul&gt;
+        &lt;li v-for="item in items" :key="item.id"&gt;{{ item.name }}&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    new Vue({
+        el: '#app',
+        data: {
+            items: [
+                { id: 1, name: 'りんご' },
+                { id: 2, name: 'バナナ' },
+                { id: 3, name: 'オレンジ' }
+            ]
+        }
+    });
+&lt;/script&gt;
+            </pre>
+
+            <!-- Section 11: フォーム入力のバインディング -->
+            <h2 id="section11">11. フォーム入力のバインディング</h2>
+            <p>フォームの入力要素とVueのデータをバインディングすることで、双方向のデータのやり取りが簡単に行えます。</p>
+            <pre id="code11">
+&lt;!-- フォーム入力のバインディングの例 --&gt;
+&lt;div id="app"&gt;
+    &lt;input v-model="message" placeholder="メッセージを入力"&gt;
+    &lt;p&gt;入力されたメッセージ: {{ message }}&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        }
+    });
+&lt;/script&gt;
+            </pre>
+
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">Vue.jsとは？</a></li>
+                    <li><a href="#section2">Vue.jsの環境設定</a></li>
+                    <li><a href="#section3">Vueインスタンスの作成</a></li>
+                    <li><a href="#section4">データバインディング</a></li>
+                    <li><a href="#section5">テンプレート構文</a></li>
+                    <li><a href="#section6">コンポーネントの理解</a></li>
+                    <li><a href="#section7">プロパティとメソッド</a></li>
+                    <li><a href="#section8">イベント処理</a></li>
+                    <li><a href="#section9">条件付きレンダリング</a></li>
+                    <li><a href="#section10">リストのレンダリング</a></li>
+                    <li><a href="#section11">フォーム入力のバインディング</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson02.html">次のページへ</a></li>
+                    <li><a href="lesson10.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/vue.js/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
