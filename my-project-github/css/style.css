@@ -129,11 +129,11 @@ img {
 }
     
 .image_program ul {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 0;
-    list-style-type: none;
+    display: grid; /* グリッドレイアウト */
+    grid-template-columns: repeat(3, 1fr); /* 横に3列 */
+    gap: 20px; /* 画像の間隔 */
+    padding: 0; /* デフォルトのパディングをリセット */
+    list-style-type: none; /* リストマーカーを消す */
     width: 80%;
     margin: 0 auto;
     margin-top: 50px;
@@ -141,31 +141,31 @@ img {
 
 .image_program .card {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    flex-direction: column; /* 縦に配置 */
+    align-items: center; /* 中央揃え */
+    text-decoration: none; /* 下線を消す */
+    color: inherit; /* テキストの色を親要素から継承 */
+    border: 1px solid #ddd; /* ボーダーを追加 */
+    border-radius: 10px; /* 角を丸く */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* シャドウを追加 */
+    padding: 10px; /* 内側の余白 */
     margin: 20px;
-    transition: transform 0.2s;
+    transition: transform 0.2s; /* ホバー時の変化にアニメーション */
 }
 
 .image_program .card:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* ホバー時に少し拡大 */
 }
 
 .image_program img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+    width: 100%; /* 幅を100%に設定 */
+    height: auto; /* 高さは自動調整 */
+    border-radius: 10px; /* 角を丸く */
 }
 
 .image_program p {
-    margin-top: 10px;
-    text-align: center;
+    margin-top: 10px; /* 画像とテキストの間にスペースを追加 */
+    text-align: center; /* テキストを中央揃え */
 }
 
 /* portfolio */
@@ -185,6 +185,7 @@ img {
     text-align: center;
     margin-bottom: 20px;
 }
+
 /* contact */
 .contact section {
     font-size: 18px;
@@ -289,45 +290,45 @@ footer {
     /* hamburgerrrrrrr */
     /* メニューを画面全体に表示するスタイル */
     .menu {
-        display: none;
+        display: none; /* 初期状態は非表示 */
     }
 
     .menu.active {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(51, 51, 51, 0.9);
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        transition: opacity 0.3s ease;
-        opacity: 1;
+        display: flex; /* アクティブ時は表示 */
+        flex-direction: column; /* 縦に配置 */
+        justify-content: center; /* 中央揃え */
+        align-items: center; /* 中央揃え */
+        width: 100vw; /* 画面全体の幅 */
+        height: 100vh; /* 画面全体の高さ */
+        background-color: rgba(51, 51, 51, 0.9); /* 半透明の黒 */
+        position: fixed; /* 固定位置 */
+        top: 0; /* 上から0 */
+        left: 0; /* 左から0 */
+        z-index: 1000; /* 最前面に */
+        transition: opacity 0.3s ease; /* アニメーション */
+        opacity: 1; /* 不透明度 */
     }
 
     .menu li {
-        padding: 15px;
-        font-size: 24px;
-        color: #fff;
-        text-align: center;
-        transition: color 0.3s;
+        padding: 15px; /* リストのパディング */
+        font-size: 24px; /* フォントサイズ */
+        color: #fff; /* テキスト色 */
+        text-align: center; /* 中央揃え */
+        transition: color 0.3s; /* ホバー時の色変更アニメーション */
     }
 
     .menu li:hover {
-        color: #ffcc00;
+        color: #ffcc00; /* ホバー時の色 */
     }
 
     /* ハンバーガーメニュー */
     .hamburger {
-        font-size: 50px;
-        cursor: pointer;
+        font-size: 50px; /* サイズ調整 */
+        cursor: pointer; /* カーソルをポインタに */
         margin: 10px;
         padding: 20px;
-        background-color: #333;
-        color: #fff;
-        border-radius: 100%;
+        background-color: #333; /* ハンバーガーの背景色 */
+        color: #fff; /* ハンバーガーの文字色 */
+        border-radius: 100%; /* 丸くする */
     }
 }
