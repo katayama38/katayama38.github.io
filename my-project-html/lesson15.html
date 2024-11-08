@@ -21,16 +21,16 @@
             <pre id="code1">
 &lt;canvas id="myCanvas" width="200" height="100"&gt;&lt;/canvas&gt;
             </pre>
-            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
-            <span class="copy-alert" id="alert1"></span>
-            <pre id="code1-1">
+            <button onclick="copyToClipboard('code1')">コードをコピー</button>
+            <p>JavaScriptを使って、canvasに図形を描画する例:</p>
+            <pre id="code4">
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 ctx.fillStyle = 'red';
 ctx.fillRect(0, 0, 200, 100);
             </pre>
-            <button onclick="copyToClipboard('code1-1', 'alert1-1', 'コピーしました！')">コードをコピー</button>
-            <span class="copy-alert" id="alert1-1"></span>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
 
             <h2 id="section2">video要素の使い方</h2>
             <p>video要素を使用すると、ウェブページに動画を埋め込むことができます。複数のソース形式を指定することで、互換性を持たせることが可能です。</p>
