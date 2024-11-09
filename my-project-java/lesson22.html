@@ -19,8 +19,7 @@
             <!-- Section 34: ジェネリクスの基本 -->
             <h2 id="section34">34. ジェネリクスの基本</h2>
             <p>ジェネリクスは、型安全なコレクションを作成するために使用されます。これにより、型を指定して不正なデータがコレクションに入るのを防げます。</p>
-            <pre>
-<code>
+            <pre id="code1">
 import java.util.ArrayList;
 
 public class GenericsExample {
@@ -37,31 +36,34 @@ public class GenericsExample {
         }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
             <p>上記の例では、`ArrayList<String>`を使用して、文字列だけがリストに追加されることを保証しています。</p>
 
             <!-- Section 35: ビルドツールの導入 -->
             <h2 id="section35">35. ビルドツールの導入</h2>
             <p>MavenやGradleは、Javaプロジェクトのビルドや依存関係の管理を簡素化するためのツールです。これらのツールを使うことで、プロジェクトを簡単に構成し、デプロイできるようになります。</p>
-            <pre>
-<code>
+            <pre id="code2">
 <!-- Mavenのpom.xml設定例 -->
-<dependencies>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-</dependencies>
-</code>
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;/code&gt;
             </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
             <p>上記は、MavenでSpring BootのWebモジュールを依存関係として追加する例です。これにより、`spring-boot-starter-web`を簡単にプロジェクトに取り込むことができます。</p>
 
             <!-- Section 36: JSONデータの扱い -->
             <h2 id="section36">36. JSONデータの扱い</h2>
             <p>JSON（JavaScript Object Notation）は、軽量で人間にも読みやすいデータフォーマットです。Javaでは、`Jackson`や`Gson`などのライブラリを使ってJSONを扱います。</p>
-            <pre>
-<code>
+            <pre id="code3">
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonExample {
@@ -86,15 +88,15 @@ class Person {
     public int getAge() { return age; }
     public void setAge(int age) { this.age = age; }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
             <p>このコードでは、`Jackson`ライブラリを使ってJSONデータをJavaオブジェクトに変換しています。</p>
 
             <!-- Section 37: ログ管理 -->
             <h2 id="section37">37. ログ管理</h2>
             <p>ログ管理は、アプリケーションの動作を監視したり、問題をトラブルシュートしたりするために重要です。`SLF4J`や`Log4j`などのライブラリを使用して、ログを記録することができます。</p>
-            <pre>
-<code>
+            <pre id="code4">
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -107,15 +109,16 @@ public class LogExample {
         logger.error("エラーログ: 例外が発生しました", new Exception("テスト例外"));
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
             <p>上記のコードでは、`SLF4J`を使って異なるレベルのログ（情報、警告、エラー）を出力しています。</p>
 
             <!-- Section 38: APIクライアントの実装 -->
             <h2 id="section38">38. APIクライアントの実装</h2>
             <p>Javaで外部APIを利用するには、`HttpURLConnection`や`HttpClient`を使用します。これを使うことで、APIと通信し、レスポンスを処理することができます。</p>
-            <pre>
-<code>
+            <pre id="code5">
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.BufferedReader;
@@ -140,15 +143,16 @@ public class ApiClientExample {
         System.out.println("APIレスポンス: " + response.toString());
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
             <p>このコードでは、`HttpURLConnection`を使って外部APIからデータを取得し、結果を表示しています。</p>
 
             <!-- Section 39: XMLの解析 -->
             <h2 id="section39">39. XMLの解析</h2>
             <p>Javaでは、`DOM`や`SAX`パーサを使用してXMLデータを解析することができます。ここでは、`DocumentBuilder`を使ってXMLを解析する方法を示します。</p>
-            <pre>
-<code>
+            <pre id="code6">
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -156,7 +160,7 @@ import org.w3c.dom.NodeList;
 
 public class XmlExample {
     public static void main(String[] args) throws Exception {
-        String xml = "<person><name>Alice</name><age>25</age></person>";
+        String xml = "&lt;person&gt;&lt;name&gt;Alice&lt;/name&gt;&lt;age&gt;25&lt;/age&gt;&lt;/person&gt;";
         
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -166,15 +170,15 @@ public class XmlExample {
         System.out.println("名前: " + nameNodes.item(0).getTextContent());
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
             <p>このコードでは、XMLデータを`DOM`パーサで解析し、`name`タグの内容を抽出しています。</p>
 
             <!-- Section 40: サーバーサイド開発の基礎 -->
             <h2 id="section40">40. サーバーサイド開発の基礎</h2>
             <p>サーバーサイド開発では、ServletやJSPを使ってWebアプリケーションを構築します。Servletはリクエストを受け取り、レスポンスを生成します。</p>
-            <pre>
-<code>
+            <pre id="code7">
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
@@ -185,15 +189,15 @@ public class HelloServlet extends HttpServlet {
         response.getWriter().println("Hello, World!");
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
             <p>このServletは、`/hello`エンドポイントにアクセスした際に"Hello, World!"を返します。</p>
 
             <!-- Section 41: Spring Frameworkの基本 -->
             <h2 id="section41">41. Spring Frameworkの基本</h2>
             <p>Springは、Javaでの企業向けアプリケーション開発を支援するフレームワークです。Spring Frameworkは、DI（依存性注入）やAOP（アスペクト指向プログラミング）などの機能を提供します。</p>
-            <pre>
-<code>
+            <pre id="code8">
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -218,15 +222,15 @@ class MyBean {
         System.out.println("こんにちは、Spring!");
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
             <p>このコードでは、SpringのDIを使って`MyBean`を管理し、依存関係を注入しています。</p>
 
             <!-- Section 42: マルチスレッドプログラミング -->
             <h2 id="section42">42. マルチスレッドプログラミング</h2>
             <p>Javaでのマルチスレッドプログラミングは、`Thread`クラスや`Runnable`インターフェースを使ってスレッドを作成し、並行処理を行います。スレッドの同期を取ることも重要です。</p>
-            <pre>
-<code>
+            <pre id="code9">
 public class ThreadExample {
     public static void main(String[] args) {
         Runnable task = () -> System.out.println("スレッド実行中...");
@@ -234,15 +238,15 @@ public class ThreadExample {
         thread.start();
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code9', 'alert9', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert9"></span>
             <p>このコードは、スレッドを作成して非同期でタスクを実行しています。</p>
 
             <!-- Section 43: 定数と列挙型 -->
             <h2 id="section43">43. 定数と列挙型</h2>
             <p>定数は`final`キーワードで定義し、変更不可能にすることができます。列挙型は、固定された値の集合を定義するために使用されます。</p>
-            <pre>
-<code>
+            <pre id="code10">
 public class EnumExample {
     enum Day {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
@@ -253,8 +257,9 @@ public class EnumExample {
         System.out.println("今日は: " + today);
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code10', 'alert10', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert10"></span>
             <p>このコードでは、`Day`という列挙型を使って曜日を定義し、`MONDAY`を表示しています。</p>
         </main>
 

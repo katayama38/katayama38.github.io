@@ -28,8 +28,7 @@
                 <li><b>View</b>: ユーザーインターフェース（UI）を担当。</li>
                 <li><b>Controller</b>: ユーザー入力を処理し、モデルとビューを更新。</li>
             </ul>
-            <pre>
-<code>
+            <pre id="code1">
 public class UserController {
     private UserModel userModel;
     private UserView userView;
@@ -43,17 +42,16 @@ public class UserController {
         userView.printUserDetails(userModel.getName(), userModel.getAge());
     }
 }
-</code>
             </pre>
-
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
             <h3>マイクロサービスアーキテクチャ</h3>
             <p>マイクロサービスアーキテクチャは、アプリケーションを独立した小さなサービス群に分けるアーキテクチャです。各サービスは独自に開発、デプロイ、スケールできます。</p>
 
             <!-- Section 88: カスタム例外の作成 -->
             <h2 id="section88">88. カスタム例外の作成</h2>
             <p>Javaでは、`Exception`クラスを拡張して、アプリケーションに特化したカスタム例外を作成することができます。</p>
-            <pre>
-<code>
+            <pre id="code2">
 // カスタム例外の作成例
 public class InvalidUserInputException extends Exception {
     public InvalidUserInputException(String message) {
@@ -68,16 +66,16 @@ public class UserValidator {
         }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
             <p>この例では、`InvalidUserInputException`というカスタム例外を作成し、`validate`メソッド内で検証処理を行い、無効な入力に対してカスタム例外をスローします。</p>
 
             <!-- Section 89: ファイルの圧縮と解凍 -->
             <h2 id="section89">89. ファイルの圧縮と解凍</h2>
             <p>Javaでは、`java.util.zip`パッケージを使ってファイルの圧縮や解凍を行うことができます。</p>
             <h3>ファイルの圧縮例</h3>
-            <pre>
-<code>
+            <pre id="code3">
 import java.io.*;
 import java.util.zip.*;
 
@@ -94,13 +92,13 @@ public class FileCompression {
         }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
             <p>このコードでは、指定されたファイルをGZIP形式で圧縮する方法を示しています。</p>
 
             <h3>ファイルの解凍例</h3>
-            <pre>
-<code>
+            <pre id="code4">
 public class FileDecompression {
     public static void decompressFile(String inputFile, String outputFile) throws IOException {
         try (FileInputStream fis = new FileInputStream(inputFile);
@@ -114,8 +112,9 @@ public class FileDecompression {
         }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
             <p>このコードでは、圧縮されたファイルを解凍して元の状態に戻す方法を示しています。</p>
 
             <!-- Section 90: インターネットオブシングス（IoT）への応用 -->
@@ -123,8 +122,7 @@ public class FileDecompression {
             <p>Javaは、IoT（インターネットオブシングス）デバイスとの連携にも使用できます。JavaでのIoT開発には、センサーからのデータを収集し、ネットワーク経由でクラウドや他のデバイスに送信することが一般的です。</p>
             <h3>IoTデバイスとJavaの基本的な連携</h3>
             <p>例えば、Raspberry PiなどのIoTデバイスにJavaアプリケーションを組み込んで、温度センサーのデータを取得し、それをクラウドに送信することができます。</p>
-            <pre>
-<code>
+            <pre id="code5">
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.Pin;
@@ -144,8 +142,9 @@ public class TemperatureSensor {
         }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
             <p>このコードは、Raspberry Piに接続された温度センサーからデータを取得し、状態に応じたアクションを取る例です。実際のIoT開発では、センサーから得たデータをインターネットを通じてクラウドに送信することがよく行われます。</p>
 
         </main>

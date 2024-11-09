@@ -19,8 +19,7 @@
             <!-- Section 77: Javaの国際化と地域化 -->
             <h2 id="section77">77. Javaの国際化と地域化</h2>
             <p>Javaアプリケーションを多言語対応させるには、`ResourceBundle`クラスを使用します。これにより、アプリケーション内の文字列リソースを地域ごとに管理できます。</p>
-            <pre>
-<code>
+            <pre id="code1">
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -32,64 +31,64 @@ public class InternationalizationExample {
         System.out.println(bundle.getString("greeting"));
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
             <p>この例では、`Messages_ja_JP.properties`というファイルに日本語の文字列を格納し、`greeting`キーに対応するメッセージを表示します。</p>
 
             <!-- Section 78: データ型のラッパークラス -->
             <h2 id="section78">78. データ型のラッパークラス</h2>
             <p>プリミティブ型（`int`や`double`など）をオブジェクトとして扱いたい場合は、ラッパークラスを使用します。これにより、`null`を使った値の管理や、ジェネリクスでの型制約に役立ちます。</p>
-            <pre>
-<code>
+            <pre id="code2">
 public class WrapperClassExample {
     public static void main(String[] args) {
         Integer num = 10; // intのラッパークラス
         System.out.println("ラッパークラスの値: " + num);
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
             <p>このコードでは、`Integer`クラスを使って`int`型の値をオブジェクトとして扱っています。</p>
 
             <!-- Section 79: サーバーレスアーキテクチャの導入 -->
             <h2 id="section79">79. サーバーレスアーキテクチャの導入</h2>
             <p>サーバーレスアーキテクチャでは、インフラ管理をクラウドプロバイダーに任せ、関数単位でアプリケーションを実行します。AWS Lambdaを使用する例です。</p>
-            <pre>
-<code>
+            <pre id="code3">
 // AWS LambdaでのJavaの関数
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-public class LambdaHandler implements RequestHandler<String, String> {
+public class LambdaHandler implements RequestHandler&lt;String, String&gt; {
     @Override
     public String handleRequest(String input, Context context) {
         return "Hello, " + input;
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
             <p>この例では、Lambda関数が引数として渡された文字列に対して「Hello, [入力]」というレスポンスを返します。</p>
 
             <!-- Section 80: コンテナ技術の利用 -->
             <h2 id="section80">80. コンテナ技術の利用</h2>
             <p>Dockerを使用してJavaアプリケーションをコンテナ化することで、アプリケーションの環境に依存せず、どこでも同じように動作させることができます。</p>
-            <pre>
-<code>
+            <pre id="code4">
 # Dockerfile例
 FROM openjdk:11-jdk
 COPY . /app
 WORKDIR /app
 RUN javac MyApp.java
 CMD ["java", "MyApp"]
-</code>
             </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
             <p>この`Dockerfile`は、`MyApp.java`をコンパイルし、実行するためのJavaアプリケーションをDockerコンテナ内で実行するための設定です。</p>
 
             <!-- Section 81: リモートサービスの利用 -->
             <h2 id="section81">81. リモートサービスの利用</h2>
             <p>JavaのRMI（Remote Method Invocation）を使って、リモートにあるJavaオブジェクトを呼び出すことができます。これにより、異なるマシン間でメソッドの呼び出しを行えます。</p>
-            <pre>
-<code>
+            <pre id="code5">
 import java.rmi.Naming;
 
 public class RmiClient {
@@ -106,30 +105,30 @@ public class RmiClient {
 interface Calculator extends java.rmi.Remote {
     int add(int a, int b) throws java.rmi.RemoteException;
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
             <p>このコードでは、RMIを使ってリモートオブジェクト`Calculator`の`add`メソッドを呼び出しています。</p>
 
             <!-- Section 82: 外部ライブラリの管理 -->
             <h2 id="section82">82. 外部ライブラリの管理</h2>
             <p>MavenやGradleを使用することで、外部ライブラリの依存関係を簡単に管理できます。これにより、ライブラリのバージョン管理やプロジェクトの構成が容易になります。</p>
-            <pre>
-<code>
+            <pre id="code6">
 <!-- Mavenでの依存関係の設定例 -->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
-    <version>2.5.4</version>
-</dependency>
-</code>
+&lt;dependency&gt;
+    &lt;groupId&lt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&lt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;version&lt;2.5.4&lt;/version&gt;
+&lt;/dependency&gt;
             </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
             <p>この例では、Spring BootのWebスターターライブラリをプロジェクトに追加しています。</p>
 
             <!-- Section 83: キューイングシステムの実装 -->
             <h2 id="section83">83. キューイングシステムの実装</h2>
             <p>Javaでは、メッセージングシステムとして、JMS（Java Message Service）を利用することができます。これにより、非同期でメッセージの送受信を行えます。</p>
-            <pre>
-<code>
+            <pre id="code7">
 import javax.jms.*;
 
 public class MessageQueueExample {
@@ -143,15 +142,15 @@ public class MessageQueueExample {
         }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
             <p>この例では、ActiveMQを使ってJMSメッセージキューにメッセージを送信し、受信する基本的な流れを示しています。</p>
 
             <!-- Section 84: オブジェクト指向設計原則（SOLID） -->
             <h2 id="section84">84. オブジェクト指向設計原則（SOLID）</h2>
             <p>SOLIDは、ソフトウェア設計の5つの基本原則を指します。これらの原則に従うことで、保守性や拡張性の高い設計を実現できます。</p>
-            <pre>
-<code>
+            <pre id="code8">
 // 単一責任原則（SRP）の例
 public class UserService {
     private UserRepository userRepository;
@@ -164,15 +163,15 @@ public class UserService {
         // ユーザーへの通知処理
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
             <p>このコードでは、`UserService`クラスが複数の責任を持っていますが、SOLIDの原則に従うことで、このような処理を分割するべきです。</p>
 
             <!-- Section 85: リリース管理とデプロイの自動化 -->
             <h2 id="section85">85. リリース管理とデプロイの自動化</h2>
             <p>CI/CDツール（例えばJenkinsやGitLab CI）を使って、コードのビルド、テスト、デプロイを自動化します。これにより、開発プロセスがスムーズになり、エラーのリスクを減らします。</p>
-            <pre>
-<code>
+            <pre id="code9">
 pipeline {
     agent any
     stages {
@@ -188,15 +187,16 @@ pipeline {
         }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code9', 'alert9', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert9"></span>
+
             <p>このJenkinsのパイプラインでは、Mavenを使ってビルドを行い、完成した`app.war`をサーバーにデプロイします。</p>
 
             <!-- Section 86: ファンクショナルプログラミングの要素 -->
             <h2 id="section86">86. ファンクショナルプログラミングの要素</h2>
             <p>Java 8以降、関数型プログラミングの要素（ラムダ式、ストリームAPI）をサポートしています。これにより、より簡潔で可読性の高いコードを書くことができます。</p>
-            <pre>
-<code>
+            <pre id="code10">
 import java.util.Arrays;
 import java.util.List;
 
@@ -209,8 +209,9 @@ public class FunctionalProgrammingExample {
              .forEach(System.out::println);
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code10', 'alert10', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert10"></span>
             <p>この例では、`stream()`メソッドとラムダ式を使って、名前のリストから「A」で始まる名前をフィルタリングして表示します。</p>
 
         </main>

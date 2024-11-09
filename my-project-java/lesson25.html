@@ -19,8 +19,7 @@
             <!-- Section 66: バイナリデータの処理 -->
             <h2 id="section66">66. バイナリデータの処理</h2>
             <p>Javaでは、バイナリファイルを読み書きするために`InputStream`や`OutputStream`を使用します。これらのクラスはバイト単位でデータを処理するため、大きなファイルや画像、音声ファイルなどの扱いに適しています。</p>
-            <pre>
-<code>
+            <pre id="code1">
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,15 +38,15 @@ public class BinaryFileExample {
         }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
             <p>この例では、バイナリファイル`input.bin`を読み取り、別のファイル`output.bin`にコピーしています。バイナリデータはバイト単位で処理されるため、`FileInputStream`と`FileOutputStream`を使用します。</p>
 
             <!-- Section 67: 非同期プログラミング -->
             <h2 id="section67">67. 非同期プログラミング</h2>
             <p>Javaでは、`CompletableFuture`を使用して非同期処理を実装できます。非同期処理は、特にI/O操作やネットワーク通信などの待機時間が長い処理に役立ちます。</p>
-            <pre>
-<code>
+            <pre id="code2">
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncExample {
@@ -59,15 +58,15 @@ public class AsyncExample {
         });
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
             <p>このコードは非同期で"非同期処理"という文字列を取得し、その結果を受け取って表示する例です。`CompletableFuture`は非同期処理の結果を簡単に扱うためのAPIです。</p>
 
             <!-- Section 68: スプリングブートの基礎 -->
             <h2 id="section68">68. スプリングブートの基礎</h2>
             <p>Spring Bootは、JavaでWebアプリケーションを簡単に作成するためのフレームワークです。最小限の設定で起動でき、開発の効率を大幅に向上させます。</p>
-            <pre>
-<code>
+            <pre id="code3">
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -77,15 +76,15 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
             <p>このコードは、Spring Bootの最小構成でWebアプリケーションを起動する例です。`@SpringBootApplication`アノテーションを使用することで、必要な設定が自動的に行われます。</p>
 
             <!-- Section 69: セッション管理とクッキー -->
             <h2 id="section69">69. セッション管理とクッキー</h2>
             <p>Webアプリケーションでユーザーの状態を保持するために、セッションやクッキーを使用します。セッションはサーバー側でデータを保持し、クッキーはクライアント側で保持します。</p>
-            <pre>
-<code>
+            <pre id="code4">
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -109,15 +108,15 @@ public class CookieExample {
         return null;
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
             <p>このコードは、ユーザー名をクッキーとして保存し、次回アクセス時にその値を取得する例です。`HttpServletRequest`と`HttpServletResponse`を使ってセッションやクッキーを管理します。</p>
 
             <!-- Section 70: JavaFXのイベント処理 -->
             <h2 id="section70">70. JavaFXのイベント処理</h2>
             <p>JavaFXは、Javaでデスクトップアプリケーションを作成するためのフレームワークです。イベント駆動型のプログラムを書くためには、UI要素にイベントリスナーを追加します。</p>
-            <pre>
-<code>
+            <pre id="code5">
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -143,15 +142,15 @@ public class JavaFXExample extends Application {
         primaryStage.show();
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
             <p>このコードでは、JavaFXを使用してボタンを作成し、ボタンがクリックされた時にメッセージを表示するシンプルな例を示しています。</p>
 
             <!-- Section 71: XMLとJSONの変換 -->
             <h2 id="section71">71. XMLとJSONの変換</h2>
             <p>Javaでは、XMLとJSONのデータ形式を相互に変換するためのライブラリが提供されています。例えば、`JAXB`でXMLを、`Jackson`でJSONを操作できます。</p>
-            <pre>
-<code>
+            <pre id="code6">
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonExample {
@@ -173,47 +172,48 @@ public class JsonExample {
         public void setAge(int age) { this.age = age; }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
             <p>このコードでは、JSON文字列を`Jackson`ライブラリを使ってJavaオブジェクトに変換しています。</p>
 
             <!-- Section 72: マルチモジュールプロジェクトの構築 -->
             <h2 id="section72">72. マルチモジュールプロジェクトの構築</h2>
             <p>複数のモジュールを持つJavaプロジェクトは、依存関係を管理しやすく、再利用性が高まります。`Maven`や`Gradle`を使ってモジュールを管理します。</p>
-            <pre>
-<code>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+            <pre id="code7">
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modules>
-        <module>module1</module>
-        <module>module2</module>
-    </modules>
-</project>
-</code>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+    &lt;modules&gt;
+        &lt;module&gt;module1&lt;/module&gt;
+        &lt;module&gt;module2&lt;/module&gt;
+    &lt;/modules&gt;
+&lt;/project&gt;
+&lt;/code&gt;
             </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
             <p>この例では、Mavenを使って2つのモジュール`module1`と`module2`を定義しています。</p>
 
             <!-- Section 73: Webアプリケーションセキュリティの基礎 -->
             <h2 id="section73">73. Webアプリケーションセキュリティの基礎</h2>
             <p>Webアプリケーションのセキュリティには、SQLインジェクションやクロスサイトスクリプティング（XSS）などの脅威があります。OWASP Top Tenは、これらの脆弱性に対する対策を提供します。</p>
-            <pre>
-<code>
+            <pre id="code8">
 // SQLインジェクションの防止
 String query = "SELECT * FROM users WHERE username = ? AND password = ?";
 PreparedStatement stmt = connection.prepareStatement(query);
 stmt.setString(1, username);
 stmt.setString(2, password);
 ResultSet rs = stmt.executeQuery();
-</code>
             </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
             <p>この例では、SQLインジェクションを防ぐためにプレースホルダーを使ってSQLクエリを実行しています。</p>
 
             <!-- Section 74: データベーストランザクション -->
             <h2 id="section74">74. データベーストランザクション</h2>
             <p>トランザクションは、複数の操作を一つの単位としてまとめて処理するための機能です。ACID特性（Atomicity, Consistency, Isolation, Durability）を保持することで、データの一貫性と信頼性を確保できます。</p>
-            <pre>
-<code>
+            <pre id="code9">
 connection.setAutoCommit(false);  // 自動コミットを無効にする
 try {
     statement.executeUpdate("UPDATE accounts SET balance = balance - 100 WHERE user_id = 1");
@@ -222,30 +222,30 @@ try {
 } catch (SQLException e) {
     connection.rollback();  // エラーが発生した場合はロールバック
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code9', 'alert9', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert9"></span>
             <p>このコードは、2つの銀行口座の残高を更新するトランザクションの例です。途中でエラーが発生した場合はロールバックして、データの整合性を保ちます。</p>
 
             <!-- Section 75: RESTfulサービスのセキュリティ -->
             <h2 id="section75">75. RESTfulサービスのセキュリティ</h2>
             <p>RESTfulサービスでは、認証と認可が重要です。JWT（JSON Web Token）やOAuth2を使用して、ユーザー認証を行います。</p>
-            <pre>
-<code>
+            <pre id="code10">
 // JWTトークンを使った認証の例（簡易版）
 public class JwtUtil {
     public static String createToken(String username) {
         return "token-for-" + username;
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code10', 'alert10', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert10"></span>
             <p>このコードは、JWTトークンを生成する簡単な例です。実際には、トークンの署名や検証が行われます。</p>
 
             <!-- Section 76: クリーンアーキテクチャの概念 -->
             <h2 id="section76">76. クリーンアーキテクチャの概念</h2>
             <p>クリーンアーキテクチャは、ソフトウェアの設計において、依存関係の方向をコントロールし、コードの保守性と拡張性を高めるためのアーキテクチャです。ビジネスロジックとインフラストラクチャを分離します。</p>
-            <pre>
-<code>
+           <pre id="code11">
 // ビジネスロジック（ユースケース）
 public class UserService {
     private UserRepository userRepository;
@@ -258,8 +258,9 @@ public class UserService {
         return userRepository.findById(id);
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code11', 'alert11', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert11"></span>
             <p>このコードでは、ビジネスロジック層（`UserService`）とデータアクセス層（`UserRepository`）を分けています。クリーンアーキテクチャでは、依存関係が内向きに保たれ、外部の詳細（データベースやWebフレームワーク）に依存しません。</p>
 
         </main>

@@ -19,21 +19,21 @@
             <!-- Section 44: Java 9以降の新機能 -->
             <h2 id="section44">44. Java 9以降の新機能</h2>
             <p>Java 9以降では、モジュールシステムが導入され、アプリケーションの構造化と依存関係の管理が大幅に改善されました。また、Java 9以降で追加された他の機能も紹介します。</p>
-            <pre>
-<code>
+            <pre id="code1">
 module com.example.myapp {
     requires java.base;
     exports com.example.myapp;
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+            
             <p>上記は、Java 9のモジュールシステムを利用したモジュール定義の例です。この例では、`com.example.myapp`というモジュールが`java.base`を依存関係として指定しています。</p>
 
             <!-- Section 45: オブジェクトのシリアライズ -->
             <h2 id="section45">45. オブジェクトのシリアライズ</h2>
             <p>シリアライズは、オブジェクトをバイトストリームに変換し、ファイルやネットワーク経由で保存・送信するための方法です。デシリアライズは、その逆のプロセスです。</p>
-            <pre>
-<code>
+            <pre id="code2">
 import java.io.*;
 
 class Person implements Serializable {
@@ -66,15 +66,16 @@ public class SerializationExample {
         }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
             <p>このコードでは、`Person`オブジェクトをシリアライズしてファイルに保存し、その後デシリアライズして内容を表示しています。</p>
 
             <!-- Section 46: グラフィカルユーザーインターフェース（GUI）の基本 -->
             <h2 id="section46">46. グラフィカルユーザーインターフェース（GUI）の基本</h2>
             <p>Javaでは、SwingやJavaFXを使ってGUIアプリケーションを開発することができます。以下は、Swingを使用した簡単なGUIアプリケーションの例です。</p>
-            <pre>
-<code>
+            <pre id="code3">
 import javax.swing.*;
 
 public class GuiExample {
@@ -90,15 +91,16 @@ public class GuiExample {
         frame.setVisible(true);
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
             <p>このコードでは、ボタンをクリックするとメッセージが表示されるシンプルなSwingアプリケーションを作成しています。</p>
 
             <!-- Section 47: アプリケーションの国際化（i18n） -->
             <h2 id="section47">47. アプリケーションの国際化（i18n）</h2>
             <p>Javaでの国際化（i18n）は、`ResourceBundle`クラスを使用して異なる言語のリソースを管理する方法です。</p>
-            <pre>
-<code>
+            <pre id="code4">
 import java.util.*;
 
 public class I18nExample {
@@ -109,15 +111,16 @@ public class I18nExample {
         System.out.println(bundle.getString("greeting"));
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
             <p>上記のコードは、日本語のリソースファイル（`MessagesBundle_ja_JP.properties`）からメッセージを読み込む例です。</p>
 
             <!-- Section 48: メモリ管理とガーベジコレクション -->
             <h2 id="section48">48. メモリ管理とガーベジコレクション</h2>
             <p>Javaのメモリ管理は自動化されており、ガーベジコレクション（GC）が不要なオブジェクトをメモリから解放します。GCは、アプリケーションのパフォーマンスに影響を与えることがありますが、開発者はGCを明示的に操作することはできません。</p>
-            <pre>
-<code>
+            <pre id="code5">
 public class GarbageCollectionExample {
     public static void main(String[] args) {
         String str = new String("Hello, GC!");
@@ -127,8 +130,10 @@ public class GarbageCollectionExample {
         System.gc();
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
             <p>上記のコードでは、`str`を`null`に設定した後、`System.gc()`でガーベジコレクションを呼び出しています。</p>
 
             <!-- Section 49: ソフトウェア開発プロセス -->
@@ -150,8 +155,7 @@ public class GarbageCollectionExample {
             <!-- Section 51: アプリケーションのテスト戦略 -->
             <h2 id="section51">51. アプリケーションのテスト戦略</h2>
             <p>テスト駆動開発（TDD）は、コードを書く前にテストケースを作成するアプローチです。これにより、バグの早期発見と高品質なコードを実現します。</p>
-            <pre>
-<code>
+            <pre id="code6">
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -168,8 +172,10 @@ class Calculator {
         return a + b;
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
             <p>このコードは、TDDの原則に従って、`Calculator`クラスのテストを先に書いた後に実装を行う例です。</p>
 
             <!-- Section 52: オープンソースライブラリの活用 -->
@@ -183,8 +189,7 @@ class Calculator {
             <!-- Section 54: 状態パターンの実装 -->
             <h2 id="section54">54. 状態パターンの実装</h2>
             <p>状態パターンは、オブジェクトが内部状態に基づいて振る舞いを変更することを許可するデザインパターンです。状態ごとの異なる振る舞いをクラスに分けて管理します。</p>
-            <pre>
-<code>
+            <pre id="code7">
 public class StatePatternExample {
     interface State {
         void handleRequest();
@@ -211,8 +216,10 @@ public class StatePatternExample {
         stateB.handleRequest();
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
+
             <p>このコードでは、状態ごとに異なる処理を行う`ConcreteStateA`と`ConcreteStateB`クラスを使用しています。</p>
         </main>
 

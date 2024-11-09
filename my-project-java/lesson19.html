@@ -28,38 +28,37 @@
             <p>Javaの開発環境を整えるには、まずJava Development Kit（JDK）をインストールします。これにより、コンパイラやライブラリ、JVMなどが使用可能になります。</p>
             <p>IDE（統合開発環境）を使うと、コード補完やデバッグ機能が提供され、開発が効率化されます。代表的なIDEには、IntelliJ IDEAやEclipseがあります。</p>
             <pre>
-<code>
 # JDKのインストール
 公式サイトからJDKをダウンロードし、インストールします。
 
 # Eclipseのインストール
 Eclipseをインストールし、プロジェクトを作成して、Javaプログラムを作成します。
-</code>
             </pre>
 
             <h2 id="section3">3. 基本的な文法</h2>
             <p>Javaプログラムはクラスを定義してから実行します。クラスの中にメソッドを定義し、そのメソッドが実行されることになります。</p>
-            <pre>
-<code>
+            <pre id="code1">
 public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
             <p>上記のコードでは、「Hello, World!」という文字列をコンソールに出力するプログラムです。</p>
 
             <h2 id="section4">4. データ型と変数</h2>
             <p>Javaでは、データの型を厳密に定義します。主に使われるデータ型は、整数型（int）、浮動小数点型（double）、文字型（char）、文字列型（String）、論理型（boolean）です。</p>
-            <pre>
-<code>
+            <pre id="code2">
 int age = 30;
 double height = 175.5;
 char initial = 'A';
 boolean isJavaFun = true;
-</code>
             </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
 
             <h2 id="section5">5. 演算子</h2>
             <p>演算子は、数値の演算や比較、論理演算に使用されます。以下のような演算子があります。</p>
@@ -68,13 +67,13 @@ boolean isJavaFun = true;
                 <li><strong>比較演算子</strong>: `==`, `!=`, `<`, `>`, `<=`, `>=`</li>
                 <li><strong>論理演算子</strong>: `&&`, `||`, `!`</li>
             </ul>
-            <pre>
-<code>
+            <pre id="code3">
 int a = 5;
 int b = 10;
 boolean result = (a < b) && (b > 5);  // true
-</code>
             </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
 
             <h2 id="section6">6. 制御フロー</h2>
             <p>条件分岐や繰り返し処理を制御フローを使って実現します。</p>
@@ -83,40 +82,40 @@ boolean result = (a < b) && (b > 5);  // true
                 <li><strong>switch文</strong>: 複数の条件に基づいて処理を分岐します。</li>
                 <li><strong>ループ</strong>: 繰り返し処理を実行します。代表的なものに`for`, `while`, `do-while`があります。</li>
             </ul>
-            <pre>
-<code>
+            <pre id="code4">
+
 if (a > b) {
     System.out.println("aはbより大きい");
 } else {
     System.out.println("aはbより小さい");
 }
-</code>
             </pre>
-
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
             <h2 id="section7">7. 配列</h2>
             <p>配列は同じ型のデータを複数格納するための構造です。配列は固定サイズで、一度宣言したサイズを変更することはできません。</p>
-            <pre>
-<code>
+            <pre id="code5">
 int[] numbers = {1, 2, 3, 4, 5};
 System.out.println(numbers[0]); // 1番目の要素を出力
-</code>
             </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
 
             <h2 id="section8">8. メソッド</h2>
             <p>メソッドは、特定の処理を実行するために定義された関数のようなものです。メソッドには引数や戻り値があります。</p>
-            <pre>
-<code>
+            <pre id="code6">
 public static int add(int a, int b) {
     return a + b;
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
             <p>上記の`add`メソッドは、2つの整数を受け取ってその合計を返します。</p>
 
             <h2 id="section9">9. オブジェクト指向プログラミング</h2>
             <p>Javaはオブジェクト指向プログラミング（OOP）を採用しており、データとその処理をまとめてクラスとして設計します。クラスから作成された実体をオブジェクトと呼びます。</p>
-            <pre>
-<code>
+            <pre id="code7">
 class Person {
     String name;
     int age;
@@ -134,13 +133,13 @@ public class Main {
         p.greet();  // "こんにちは、太郎です。"と出力
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
 
             <h2 id="section10">10. 継承とポリモーフィズム</h2>
             <p>継承を使うことで、既存のクラスを基に新しいクラスを作ることができます。ポリモーフィズムにより、同じメソッド名でも異なる動作をすることが可能です。</p>
-            <pre>
-<code>
+            <pre id="code8">
 class Animal {
     public void speak() {
         System.out.println("動物が鳴きます");
@@ -159,13 +158,13 @@ public class Main {
         myDog.speak();  // "犬が鳴きます" と出力
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
 
             <h2 id="section11">11. インターフェース</h2>
             <p>インターフェースは、クラスが実装すべきメソッドのシグネチャを定義したものです。インターフェースを使うことで、異なるクラス間で同じメソッド名を統一することができます。</p>
-            <pre>
-<code>
+            <pre id="code9">
 interface Animal {
     void speak();
 }
@@ -182,8 +181,10 @@ public class Main {
         myDog.speak();  // "犬が鳴きます" と出力
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code9', 'alert9', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert9"></span>
+
             <p>インターフェースを使用することで、複数の異なるクラスが同じメソッドを持つことが保証され、コードの柔軟性と拡張性が向上します。</p>
 
             <h2 id="section12">まとめ</h2>

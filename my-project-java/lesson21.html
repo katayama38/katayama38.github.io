@@ -19,8 +19,7 @@
             <!-- Section 23: データベースとの連携 -->
             <h2 id="section23">23. データベースとの連携</h2>
             <p>Javaでデータベースと連携するには、JDBC（Java Database Connectivity）を使います。これにより、SQLデータベースとの通信を行うことができます。</p>
-            <pre>
-<code>
+            <pre id="code1">
 import java.sql.*;
 
 public class DatabaseExample {
@@ -37,15 +36,16 @@ public class DatabaseExample {
         }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+            
             <p>上記のコードでは、MySQLデータベースに接続してユーザー情報を取得しています。</p>
-
+            
             <!-- Section 24: JavaFXによるGUI開発 -->
             <h2 id="section24">24. JavaFXによるGUI開発</h2>
             <p>JavaFXは、デスクトップアプリケーション用のGUIフレームワークです。豊富なUIコンポーネントを使って、インタラクティブなアプリケーションを作成できます。</p>
-            <pre>
-<code>
+            <pre  id="code2">
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -55,7 +55,7 @@ public class SimpleApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    
     @Override
     public void start(Stage primaryStage) {
         Button btn = new Button("クリックしてください");
@@ -67,15 +67,15 @@ public class SimpleApp extends Application {
         primaryStage.show();
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
             <p>このコードでは、シンプルなボタンを作成し、クリック時にメッセージを表示します。</p>
 
             <!-- Section 25: RESTful APIの構築 -->
             <h2 id="section25">25. RESTful APIの構築</h2>
             <p>Javaでは、Spring Frameworkを使用してRESTfulなWebサービスを構築することができます。Spring Bootを使えば、手軽にAPIを作成できます。</p>
-            <pre>
-<code>
+            <pre id="code3">
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.web.bind.annotation.*;
@@ -93,15 +93,15 @@ public class ApiApplication {
         SpringApplication.run(ApiApplication.class, args);
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
             <p>このコードでは、Spring Bootを使ってシンプルなRESTful APIを作成し、`/hello`エンドポイントにアクセスすると"Hello, World!"が返されます。</p>
 
             <!-- Section 26: セキュリティの基本 -->
             <h2 id="section26">26. セキュリティの基本</h2>
             <p>Javaアプリケーションのセキュリティ対策として、認証や暗号化を行うことが重要です。Javaでは、`javax.crypto`パッケージを使って暗号化を行うことができます。</p>
-            <pre>
-<code>
+            <pre id="code4">
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -120,15 +120,15 @@ public class EncryptionExample {
         System.out.println("暗号化されたテキスト: " + new String(encryptedText));
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
             <p>このコードでは、AESアルゴリズムを使用してテキストを暗号化しています。</p>
 
             <!-- Section 27: バージョン管理とGitの活用 -->
             <h2 id="section27">27. バージョン管理とGitの活用</h2>
             <p>Gitは、ソースコードの管理に使われる分散型バージョン管理ツールです。Gitを使うことで、ソースコードの変更履歴を管理し、チームで効率的に開発ができます。</p>
-            <pre>
-<code>
+            <pre  id="code5">
 # 新しいリポジトリの作成
 git init
 
@@ -140,26 +140,26 @@ git commit -m "初回コミット"
 
 # リモートリポジトリにプッシュ
 git push origin main
-</code>
             </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
             <p>上記のコマンドは、Gitでリポジトリを作成し、変更をコミットしてリモートにプッシュする基本的な流れを示しています。</p>
 
             <!-- Section 28: アプリケーションのデプロイ -->
             <h2 id="section28">28. アプリケーションのデプロイ</h2>
             <p>Javaアプリケーションのデプロイは、アプリケーションを実際のサーバーやクラウド環境に配置して運用することを意味します。デプロイ手法として、JARファイルやWARファイルを使用する方法があります。</p>
-            <pre>
-<code>
+            <pre id="code6">
 # JARファイルを実行
 java -jar myapplication.jar
-</code>
             </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
             <p>このコマンドは、JARファイルを実行するためのものです。Javaアプリケーションのデプロイ後、サーバーで実行できます。</p>
 
             <!-- Section 29: パフォーマンスの最適化 -->
             <h2 id="section29">29. パフォーマンスの最適化</h2>
             <p>Javaアプリケーションのパフォーマンスを最適化するためには、メモリ管理、データ構造の選択、アルゴリズムの最適化などに注意を払う必要があります。</p>
-            <pre>
-<code>
+            <pre id="code7">
 public class PerformanceExample {
     public static void main(String[] args) {
         long start = System.nanoTime();
@@ -172,51 +172,51 @@ public class PerformanceExample {
         System.out.println("処理時間: " + (end - start) + " ナノ秒");
     }
 }
-</code>
-            </pre>
-            <p>上記のコードは、処理時間を計測するためのサンプルコードです。パフォーマンス改善には、適切な計測と最適化が重要です。</p>
+        </pre>
+        <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+        <span class="copy-alert" id="alert7"></span>
+        <p>上記のコードは、処理時間を計測するためのサンプルコードです。パフォーマンス改善には、適切な計測と最適化が重要です。</p>
 
-            <!-- Section 30: Javaとマイクロサービス -->
-            <h2 id="section30">30. Javaとマイクロサービス</h2>
-            <p>マイクロサービスアーキテクチャは、アプリケーションを小さな独立したサービスに分割して開発・運用する手法です。Javaでは、Spring Bootを使ってマイクロサービスを実装することができます。</p>
-            <pre>
-<code>
+        <!-- Section 30: Javaとマイクロサービス -->
+        <h2 id="section30">30. Javaとマイクロサービス</h2>
+        <p>マイクロサービスアーキテクチャは、アプリケーションを小さな独立したサービスに分割して開発・運用する手法です。Javaでは、Spring Bootを使ってマイクロサービスを実装することができます。</p>
+            <pre id="code8">
 @SpringBootApplication
 public class MicroserviceExample {
     public static void main(String[] args) {
         SpringApplication.run(MicroserviceExample.class, args);
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
             <p>Spring Bootを使用して、簡単にマイクロサービスを構築することができます。</p>
 
             <!-- Section 31: リフレクションの理解 -->
             <h2 id="section31">31. リフレクションの理解</h2>
             <p>リフレクションを使うと、実行時にクラスのメタデータを操作したり、オブジェクトのプロパティを動的に取得したりすることができます。</p>
-            <pre>
-<code>
-import java.lang.reflect.Method;
-
-public class ReflectionExample {
+            <pre id="code9">
+                import java.lang.reflect.Method;
+                
+                public class ReflectionExample {
     public static void main(String[] args) throws Exception {
         Class<?> clazz = Class.forName("java.util.ArrayList");
         Method method = clazz.getMethod("add", Object.class);
         System.out.println("メソッド名: " + method.getName());
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code9', 'alert9', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert9"></span>
             <p>リフレクションを使うと、クラスの情報やメソッドを動的に取得できます。</p>
 
             <!-- Section 32: アノテーションの利用 -->
             <h2 id="section32">32. アノテーションの利用</h2>
             <p>アノテーションは、コードにメタデータを付加するための手段です。アノテーションは、特定の処理を行うフレームワークやツールに情報を提供します。</p>
-            <pre>
-<code>
-import java.lang.annotation.*;
-
-@Retention(RetentionPolicy.RUNTIME)
+            <pre id="code10">
+                import java.lang.annotation.*;
+                
+                @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface MyAnnotation {
     String value() default "デフォルト値";
@@ -226,15 +226,15 @@ public class AnnotationExample {
     @MyAnnotation(value = "カスタム値")
     public void myMethod() {}
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code10', 'alert10', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert10"></span>
             <p>このコードでは、カスタムアノテーションを作成し、メソッドに付加しています。</p>
 
             <!-- Section 33: データ構造の理解 -->
             <h2 id="section33">33. データ構造の理解</h2>
             <p>スタックやキュー、リンクリストなどの基本的なデータ構造は、効率的なデータ処理を行うために重要です。これらの構造はアルゴリズムの設計においてよく使用されます。</p>
-            <pre>
-<code>
+            <pre id="code11">
 // スタックの例
 import java.util.Stack;
 
@@ -250,8 +250,9 @@ public class StackExample {
         }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code11', 'alert11', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert11"></span>
             <p>このコードでは、スタックを使って要素を管理し、取り出す際にはLIFO（後入れ先出し）の順序で処理します。</p>
 
         </main>

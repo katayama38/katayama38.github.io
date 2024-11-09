@@ -19,8 +19,7 @@
             <!-- Section 55: デバッグのテクニック -->
             <h2 id="section55">55. デバッグのテクニック</h2>
             <p>デバッグはプログラムの問題を特定し修正する重要な技術です。効率的なデバッグのためには、IDEのデバッガーやログ出力、ユニットテストを駆使することが有効です。</p>
-            <pre>
-<code>
+            <pre id="code1">
 // デバッガーでブレークポイントを設定し、ステップ実行で問題箇所を確認
 public class DebugExample {
     public static void main(String[] args) {
@@ -32,15 +31,15 @@ public class DebugExample {
         return a + b;
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
             <p>IDE（例えば、IntelliJ IDEAやEclipse）のデバッガー機能を使って、実行時に変数の値や処理の流れをステップ実行で確認することができます。</p>
 
             <!-- Section 56: コンストラクタとファイナライザ -->
             <h2 id="section56">56. コンストラクタとファイナライザ</h2>
             <p>Javaでは、オブジェクトの初期化にコンストラクタ、クリーンアップにファイナライザ（`finalize`メソッド）を使用しますが、`finalize`メソッドは非推奨とされています。</p>
-            <pre>
-<code>
+            <pre id="code2">
 public class ConstructorExample {
     private String name;
 
@@ -65,20 +64,20 @@ public class ConstructorExample {
         System.out.println("名前: " + example.getName());
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
             <p>この例では、コンストラクタでオブジェクトを初期化し、`finalize`メソッドを使ってオブジェクトが破棄されるときにメッセージを表示します。</p>
 
             <!-- Section 57: API設計の原則 -->
             <h2 id="section57">57. API設計の原則</h2>
             <p>RESTful APIの設計では、リソース指向でURL設計を行い、HTTPメソッド（GET, POST, PUT, DELETE）を適切に使用します。</p>
-            <pre>
-<code>
+            <pre id="code3">
 import java.util.HashMap;
 import java.util.Map;
 
 public class ApiDesignExample {
-    private static Map<Integer, String> users = new HashMap<>();
+    private static Map&lt;Integer, String&gt; users = new HashMap<>();
 
     // GETメソッド: ユーザー情報の取得
     public String getUser(int id) {
@@ -97,15 +96,16 @@ public class ApiDesignExample {
         System.out.println(api.getUser(1));
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
             <p>このコードでは、シンプルなREST APIのGETとPOSTメソッドを模倣し、ユーザー情報を管理しています。</p>
 
             <!-- Section 58: パラメータのバリデーション -->
             <h2 id="section58">58. パラメータのバリデーション</h2>
             <p>入力データが正しいかを検証するバリデーションは、アプリケーションのセキュリティや信頼性を保つために不可欠です。</p>
-            <pre>
-<code>
+            <pre id="code4">
 public class ValidationExample {
     public static void main(String[] args) {
         String email = "user@example.com";
@@ -121,15 +121,15 @@ public class ValidationExample {
         return email != null && email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
             <p>この例では、メールアドレスのバリデーションを行っています。`matches`メソッドで正規表現を使って、形式を確認しています。</p>
 
             <!-- Section 59: 依存性注入の理解 -->
             <h2 id="section59">59. 依存性注入の理解</h2>
             <p>依存性注入（DI）は、オブジェクト間の依存関係を外部から提供することで、クラス間の結合度を減らす設計パターンです。Spring Frameworkで広く使われています。</p>
-            <pre>
-<code>
+            <pre id="code5">
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -161,15 +161,15 @@ public class DIExample {
         car.start();
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
             <p>このコードでは、Springの依存性注入を使用して、`Car`クラスが`Engine`クラスを外部から注入される形になっています。</p>
 
             <!-- Section 60: モバイルアプリ開発の基礎 -->
             <h2 id="section60">60. モバイルアプリ開発の基礎</h2>
             <p>Javaを使ったモバイルアプリ開発の主なプラットフォームはAndroidです。Android Studioを使って、UIの作成やイベント処理を行います。</p>
-            <pre>
-<code>
+            <pre id="code6">
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -187,15 +187,16 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
             <p>このコードは、Androidアプリでボタンをクリックしたときにトーストメッセージを表示するシンプルな例です。</p>
 
             <!-- Section 61: クローンとシャロークローン・ディープクローン -->
             <h2 id="section61">61. クローンとシャロークローン・ディープクローン</h2>
             <p>Javaでは、オブジェクトをコピーするためにクローンを作成できます。シャロークローンはオブジェクトの参照をコピーしますが、ディープクローンはオブジェクト自体をコピーします。</p>
-            <pre>
-<code>
+            <pre id="code7">
 public class CloneExample implements Cloneable {
     private String name;
 
@@ -214,15 +215,15 @@ public class CloneExample implements Cloneable {
         System.out.println("オリジナル: " + original.name + ", クローン: " + clone.name);
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
             <p>このコードでは、シャロークローンの例を示しています。オブジェクトをコピーする際に、シャロークローンは参照型のデータをそのままコピーします。</p>
 
             <!-- Section 62: JavaとデータベースのORM -->
             <h2 id="section62">62. JavaとデータベースのORM</h2>
             <p>ORM（Object-Relational Mapping）は、Javaのオブジェクトとデータベースのレコードを簡単にマッピングする技術です。HibernateやJPAを使うことで、データベース操作を簡単に行えます。</p>
-            <pre>
-<code>
+            <pre id="code8">
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -238,21 +239,21 @@ public class User {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
             <p>このコードは、JPAを使用したエンティティクラスの例です。データベースのテーブルとJavaオブジェクトをマッピングします。</p>
 
             <!-- Section 63: ストリームAPIの活用 -->
             <h2 id="section63">63. ストリームAPIの活用</h2>
             <p>Java 8以降、ストリームAPIを使ってコレクションのデータを宣言的に処理できます。フィルタリングやマッピングなどが簡単に行えます。</p>
-            <pre>
-<code>
+            <pre id="code9">
 import java.util.Arrays;
 import java.util.List;
 
 public class StreamExample {
     public static void main(String[] args) {
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5);
         
         // 偶数だけをフィルタリングして合計
         int sum = numbers.stream()
@@ -263,38 +264,39 @@ public class StreamExample {
         System.out.println("偶数の合計: " + sum);
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code9', 'alert9', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert9"></span>
             <p>このコードでは、ストリームAPIを使用してリストから偶数の合計を計算しています。</p>
 
             <!-- Section 64: コンパイルと実行の流れ -->
             <h2 id="section64">64. コンパイルと実行の流れ</h2>
             <p>Javaプログラムのコンパイルと実行は、`javac`でソースコードをコンパイルし、`java`コマンドで実行します。</p>
-            <pre>
-<code>
+            <pre id="code10">
 javac HelloWorld.java  // ソースコードのコンパイル
 java HelloWorld        // プログラムの実行
-</code>
             </pre>
+            <button onclick="copyToClipboard('code10', 'alert10', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert10"></span>
             <p>`javac`コマンドで`.java`ファイルをコンパイルし、`java`コマンドで実行します。</p>
 
             <!-- Section 65: アプリケーションのパフォーマンス分析 -->
             <h2 id="section65">65. アプリケーションのパフォーマンス分析</h2>
             <p>Javaアプリケーションのパフォーマンスを分析するには、`JProfiler`や`VisualVM`などのツールを使用してメモリ使用量やCPU負荷を監視できます。</p>
-            <pre>
-<code>
+            <pre id="code11">
 // VisualVMやJProfilerを使用してメモリやCPUの使用状況を監視
 public class PerformanceExample {
     public static void main(String[] args) {
         // メモリリークをテストするためのコード例
-        List<String> list = new ArrayList<>();
+        List&lt;String&gt; list = new ArrayList<>();
         while (true) {
             list.add("大量データ");
         }
     }
 }
-</code>
             </pre>
+            <button onclick="copyToClipboard('code11', 'alert11', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert11"></span>
             <p>このコードでは、メモリリークのテストとして無限ループでメモリを消費し、ツールで監視することができます。</p>
         </main>
 
