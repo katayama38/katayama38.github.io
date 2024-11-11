@@ -1,143 +1,146 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>katayama38 息抜き検索</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0px auto;
-            text-align: center;
-            background-color: #ddd;
-        }
-        #searchContainer {
-            position: relative;
-            width: 80%;
-            margin: 0 auto;
-        }
-        #searchBar {
-            padding: 0 0 0 29px;
-            border: none; /* ボーダーを消す */
-            border-radius: 30px;
-            width: 79%;
-            height: 39px; /* 初期の高さ */
-            outline: none;
-            margin: 0;
-            box-sizing: border-box;
-            transition: height 0.3s ease; /* 高さのアニメーション */
-            z-index: 1;
-        }
-        #searchBar.expanded {
-            height: 50px; /* フォーカス時の高さ */
-        }
-        #results {
-            display: none; /* 初期状態で非表示 */
-            background-color: #fff;
-            max-height: 200px;
-            overflow-y: auto;
-            width: 100%;
-            max-width: 60%; /* 最大幅 */
-            z-index: 1000;
-            position: absolute;
-            top: calc(100% + 20px); /* 検索バーの下に20pxの隙間を追加 */
-            left: 50%; /* 左端を中央に設定 */
-            transform: translateX(-50%); /* 要素を自身の幅の半分だけ左にずらす */
-            border-radius: 10px; /* 下部の角を丸くする */
-        }
-        .item {
-            padding: 10px;
-            cursor: pointer;
-        }
-        .item:hover {
-            background-color: #f0f0f0; /* ホバー時の背景色 */
-        }
-        .item a {
-            text-decoration: none;
-            color: #ff00cc;
-        }
-        @media (max-width: 798px) {
-            body {
-                font-size: 16px;
-            }
-            #searchBar {
-                font: normal;
-                padding: 0 0 0 20px;
-            }
-        }
-    </style>
+    <meta name="description" content="このサイトは、就職活動を通し自身の制作意欲、意識改善を元に制作致しました。プロとしての制作工夫、もっとこうした方がいいなど皆様からご意見いただけると幸いです。">
+    <meta name="keywords" content="SEO, HTML, JavaScript">
+    <title>katayama38 portfolio</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="container" id="top">
+    <nav>
+        <div id="hamburger" class="hamburger">☰</div>
+        <ul id="menu" class="menu">
+            <li><a href="#top">Top</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><button id="close-menu" aria-label="Close Menu">×</button></li>
+        </ul>
+    </nav>    
+        <div class="warp">
+            <div class="image_kt">
+                    <img src="images/tsuyo02.png" alt="自身のイメージイラストです。">
+            </div>
 
-    <h1>katayama38 portfolio検索</h1>
-    <div id="searchContainer">
-        <input type="text" placeholder="お好きなワードを入力してください。" id="searchBar">
-        <div id="results"></div>
+            <div class="text">
+                <h2>katayama38</h2>
+                <p>自身の自己紹介と現在の制作品を展示しております。<br><br>
+                    名前: 片山 剛 <br>
+                    住所: 宇都宮市<br>
+                    生年月日: 1986年 2月 13日<br>
+                    特技: 何事も楽しめる事<br>
+                </p>
+            </div>
+        </div>
     </div>
-    <script>
-        const items = [
-            {title: "基礎クイズ", link: "https://katayama38.github.io/my-project-portfolio/quiz.html"},
-            {title: "飲食店総合", link: "#"},
-            {title: "トラック運送総合", link: "#"},
-            {title: "美容室総合", link: "#"},
-            {title: "工場総合", link: "#"}
-        ];
-    
-        const searchBar = document.getElementById('searchBar');
-        const resultsDiv = document.getElementById('results');
-    
-        // フォーカス時に検索バーを拡大し、結果を表示
-        searchBar.addEventListener('focus', function() {
-            searchBar.classList.add('expanded');
-            updateResults(); // 結果を更新
-            resultsDiv.style.display = 'block'; // 結果リストを表示
-        });
-    
-        // 検索バーに文字を入力した際に結果を更新
-        searchBar.addEventListener('input', function() {
-            updateResults(); // 結果を更新
-        });
-    
-        // 検索バー外をクリックした際に閉じる処理
-        document.addEventListener('click', function(event) {
-            if (!searchBar.contains(event.target) && !resultsDiv.contains(event.target)) {
-                searchBar.classList.remove('expanded'); // 検索バーを元に戻す
-                resultsDiv.style.display = 'none'; // 結果リストを非表示
-            }
-        });
-    
-        // 検索結果を更新する関数
-        function updateResults() {
-            const query = searchBar.value.toLowerCase(); // 検索クエリを小文字に変換
-            resultsDiv.innerHTML = ''; // 前回の結果をリセット
-    
-            const filteredItems = items.filter(item => 
-                item.title.toLowerCase().includes(query) // 検索結果をフィルタリング
-            );
-    
-            // 結果をリストに追加
-            filteredItems.forEach(item => {                
-                const div = document.createElement('div');
-                div.className = 'item'; // アイテムのクラス名を設定
-                const link = document.createElement('a');
-                link.href = item.link;
-                link.textContent = item.title;
-                link.target = "_parent"; // 親ページでリンクを開く
-    
-                // リンクをクリックしたときの処理
-                div.appendChild(link);
-                div.addEventListener('click', function() {
-                    searchBar.value = item.title; // 検索バーにタイトルを設定
-                    searchBar.classList.remove('expanded'); // 検索バーを元に戻す
-                    resultsDiv.style.display = 'none'; // 結果リストを非表示
-                });
-                resultsDiv.appendChild(div); // リストに追加
-            });
-    
-            // 結果があればリストを表示、なければ非表示
-            resultsDiv.style.display = filteredItems.length > 0 ? 'block' : 'none';
-        }
-    </script>
-    
+
+  <div class="wrapper">
+    <main>
+        <div class="about" id="about">
+            <section>
+                <div class="text_ab1">
+                    <h2>私について</h2>
+                    <p>16歳で社会へ飛び込み仕事を通して人と社会の関わり方を多く学びました。自身の性格と過去の経験値を存分に発揮できる環境が、Webだと思いました。エラーしか表示されない時や自身のイメージ通りになった時。問題解決やエラー解決の模索などが楽しく、自分が好きな事なので学びを続けております。</p>
+                </div>
+                <div class="text_ab2">
+                    <h2>私とWeb</h2>
+                    <p>私自身、過去の職場でパソコンに触れる事はありました。Excel、Word、動画編集、曲編集など。ですが、Web業は未経験なので年齢を気にせず、フランクに厳しく接していただけると幸いです。出来る事の増加と進化の発展速度の速い業界なので、とにかく学び続けます。楽しいので。</p>
+                </div>
+
+                <div class="image_program">
+                    <ul>
+                        <li>
+                            <a href="https://katayama38.github.io/my-project-programming/HTML/index.html" class="card">
+                                <img src="images/5/html.png" alt="HTML基礎構築">
+                                <p>基礎度★★★</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://katayama38.github.io/my-project-programming/CSS/index.html" class="card">
+                                <img src="images/5/css.png" alt="CSS基礎構築">
+                                <p>基礎度★★★</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://katayama38.github.io/my-project-programming/JavaScript/index.html" class="card">
+                                <img src="images/5/js.png" alt="JavaScript基礎構築">
+                                <p>基礎度★★★</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://katayama38.github.io/my-project-programming/MySQL-DB/index.html" class="card">
+                                <img src="images/5/db.png" alt="DataBase基礎構築">
+                                <p>基礎度★★</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://katayama38.github.io/my-project-programming/Java/index.html" class="card">
+                                <img src="images/5/java.png" alt="Java基礎構築">
+                                <p>基礎度★★</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://katayama38.github.io/my-project-programming/JSP:Servlet/index.html" class="card">
+                                <img src="images/5/jsp_serv.png" alt="JSP/Servlet基礎構築">
+                                <p>基礎度★★</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://katayama38.github.io/my-project-programming/JQuery/index.html" class="card">
+                                <img src="images/5/JQ.png" alt="JQuery基礎構築">
+                                <p>基礎度★★</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://katayama38.github.io/my-project-programming/Vue/index.html" class="card">
+                                <img src="images/5/vue.png" alt="Vue.js基礎構築">
+                                <p>基礎度★★</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <div class="portfolio" id="portfolio">
+            <section>
+                <div class="text_pf">
+                    <h2>制作品</h2>
+                    <p>自身の過去体験を元に、想像しホームページを制作致しました。</p>
+                </div>
+                <iframe src="https://katayama38.github.io/my-project-portfolio/top.html" width="100%" height="100%" frameborder="0"></iframe>
+            </section>
+        </div>
+
+        <div class="contact" id="contact">
+            <section>
+                <div class="text_contact">
+                    <h2>ご観覧頂き、誠にありがとうございます。
+                        よろしかったらご意見ください。
+                    </h2>
+                    <a class="top" href="#top">トップへ戻る</a>
+                </div>
+                <div class="image_contact">
+                    <a href="contact.html">
+                        <img src="images/note_24.png" alt="お問い合わせ/contact">
+                        <p>お問い合わせ</p>
+                    </a>
+                </div>
+            </section>
+        </div>        
+    </main>
+  </div>
+    <footer>
+        <p>&copy; 2024 katayama</p>
+    </footer>
+    <script src="index.js"></script>
 </body>
 </html>
