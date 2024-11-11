@@ -76,58 +76,68 @@
     </div>
     <script>
         const items = [
-            {title: "基礎クイズ", link: "https://katayama38.github.io/my-project-portforio/quiz.html"},
+            {title: "基礎クイズ", link: "https://katayama38.github.io/my-project-portfolio/quiz.html"},
             {title: "飲食店総合", link: "#"},
             {title: "トラック運送総合", link: "#"},
             {title: "美容室総合", link: "#"},
             {title: "工場総合", link: "#"}
         ];
-        
+    
         const searchBar = document.getElementById('searchBar');
         const resultsDiv = document.getElementById('results');
-
+    
+        // フォーカス時に検索バーを拡大し、結果を表示
         searchBar.addEventListener('focus', function() {
-            searchBar.classList.add('expanded'); // 検索バーを拡大
-            updateResults(); // フォーカス時に結果を更新
-            resultsDiv.style.display = 'block'; // リストを表示
+            searchBar.classList.add('expanded');
+            updateResults(); // 結果を更新
+            resultsDiv.style.display = 'block'; // 結果リストを表示
         });
-
+    
+        // 検索バーに文字を入力した際に結果を更新
         searchBar.addEventListener('input', function() {
-            updateResults(); // 入力に基づいて結果を更新
+            updateResults(); // 結果を更新
         });
-
+    
+        // 検索バー外をクリックした際に閉じる処理
         document.addEventListener('click', function(event) {
             if (!searchBar.contains(event.target) && !resultsDiv.contains(event.target)) {
                 searchBar.classList.remove('expanded'); // 検索バーを元に戻す
-                resultsDiv.style.display = 'none'; // クリックが外れたら非表示
+                resultsDiv.style.display = 'none'; // 結果リストを非表示
             }
         });
-
+    
+        // 検索結果を更新する関数
         function updateResults() {
-            const query = searchBar.value.toLowerCase();
-            resultsDiv.innerHTML = '';
-
+            const query = searchBar.value.toLowerCase(); // 検索クエリを小文字に変換
+            resultsDiv.innerHTML = ''; // 前回の結果をリセット
+    
             const filteredItems = items.filter(item => 
-                item.title.toLowerCase().includes(query)
+                item.title.toLowerCase().includes(query) // 検索結果をフィルタリング
             );
-
+    
+            // 結果をリストに追加
             filteredItems.forEach(item => {                
                 const div = document.createElement('div');
-                div.className = 'item';
+                div.className = 'item'; // アイテムのクラス名を設定
                 const link = document.createElement('a');
                 link.href = item.link;
                 link.textContent = item.title;
+                link.target = "_parent"; // 親ページでリンクを開く
+    
+                // リンクをクリックしたときの処理
                 div.appendChild(link);
                 div.addEventListener('click', function() {
-                    searchBar.value = item.title; // 検索バーにタイトルを入力
+                    searchBar.value = item.title; // 検索バーにタイトルを設定
                     searchBar.classList.remove('expanded'); // 検索バーを元に戻す
-                    resultsDiv.style.display = 'none'; // 結果を非表示
+                    resultsDiv.style.display = 'none'; // 結果リストを非表示
                 });
-                resultsDiv.appendChild(div);
+                resultsDiv.appendChild(div); // リストに追加
             });
-            
-            resultsDiv.style.display = filteredItems.length > 0 ? 'block' : 'none'; // 結果がある場合に表示
+    
+            // 結果があればリストを表示、なければ非表示
+            resultsDiv.style.display = filteredItems.length > 0 ? 'block' : 'none';
         }
     </script>
+    
 </body>
 </html>
