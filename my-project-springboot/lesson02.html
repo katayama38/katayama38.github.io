@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spring Bootの開発環境構築について説明します。">
+    <meta name="keywords" content="Spring Boot, 開発環境, インストール, IntelliJ IDEA, Eclipse, Maven, Gradle">
+    <title>Spring Bootの開発環境構築</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Spring Bootの開発環境構築</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">Spring Bootのインストールとセットアップ</h2>
+            <p>Spring Bootを使用するには、まずJDK（Java Development Kit）をインストールする必要があります。Spring BootはJava 8以降が必要です。</p>
+            <ol>
+                <li>JDKを公式サイトからインストールします。<a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html" target="_blank">JDKダウンロードページ</a></li>
+                <li>インストール後、Javaが正常にインストールされたか確認するために、コマンドラインで以下のコマンドを実行します：</li>
+                <pre>java -version</pre>
+                <p>Spring BootはJava 8以上のバージョンをサポートしていますので、適切なバージョンがインストールされていることを確認してください。</p>
+                <li>次に、Spring Bootの公式サイトから最新のSpring Bootバージョンをダウンロードしますが、通常はIDE（統合開発環境）を使用することで、Spring Bootを簡単に利用できます。</li>
+            </ol>
+
+            <h2 id="section2">IDEの設定（IntelliJ IDEA、Eclipseなど）</h2>
+            <p>Spring Bootの開発には、IntelliJ IDEAやEclipseといったIDE（統合開発環境）を使用することをおすすめします。以下は、各IDEの設定方法です。</p>
+            
+            <h3>IntelliJ IDEAの設定</h3>
+            <p>IntelliJ IDEAを使用する場合、Spring Bootプラグインが必要です。基本的に最新バージョンのIntelliJ IDEAでは、Spring Bootプラグインが最初からインストールされていることが多いですが、手動でインストールすることもできます。</p>
+            <ol>
+                <li>IntelliJ IDEAを起動し、「File」→「Settings」→「Plugins」からSpringプラグインを検索してインストールします。</li>
+                <li>インストール後、新しいSpring Bootプロジェクトを作成するために、「New Project」→「Spring Initializr」を選択します。</li>
+            </ol>
+            
+            <h3>Eclipseの設定</h3>
+            <p>Eclipseの場合、Spring Tools 4プラグインをインストールすることで、Spring Bootプロジェクトの作成が簡単に行えます。</p>
+            <ol>
+                <li>Eclipseを起動し、「Help」→「Eclipse Marketplace」から「Spring Tools 4」を検索してインストールします。</li>
+                <li>インストール後、新しいSpring Bootプロジェクトを作成するには、「File」→「New」→「Spring Starter Project」を選択します。</li>
+            </ol>
+
+            <h2 id="section3">Spring Initializrを使ったプロジェクトの作成</h2>
+            <p>Spring Bootのプロジェクトを作成するために、Spring Initializrを使用すると非常に便利です。Spring Initializrは、Webベースでプロジェクトの初期設定を行い、必要な依存関係を追加した状態のプロジェクトを生成してくれるツールです。</p>
+            
+            <h3>Spring Initializrの使用方法</h3>
+            <ol>
+                <li>まず、ブラウザで <a href="https://start.spring.io" target="_blank">Spring Initializr</a> にアクセスします。</li>
+                <li>プロジェクトのメタデータを設定します。<br>例えば、以下の設定を行います：
+                    <ul>
+                        <li><strong>Project:</strong> Maven Project（またはGradle Project）</li>
+                        <li><strong>Language:</strong> Java</li>
+                        <li><strong>Spring Boot Version:</strong> 最新バージョンを選択</li>
+                        <li><strong>Group:</strong> com.example</li>
+                        <li><strong>Artifact:</strong> demo</li>
+                    </ul>
+                </li>
+                <li>次に、「Dependencies」セクションで、使用したいSpring Bootのモジュール（例：Web、JPA、Thymeleafなど）を選択します。</li>
+                <li>「Generate」ボタンをクリックすると、プロジェクトがZIPファイルとしてダウンロードされます。</li>
+                <li>ダウンロードしたZIPファイルを解凍し、IDEでプロジェクトを開きます。</li>
+            </ol>
+
+            <h2 id="section4">プロジェクトの依存関係管理（Maven / Gradle）</h2>
+            <p>Spring Bootのプロジェクトでは、依存関係をMavenまたはGradleを使って管理します。</p>
+            
+            <h3>Mavenを使用した依存関係管理</h3>
+            <p>Mavenは、依存関係の管理を簡素化し、プロジェクトのビルドと管理を効率化します。Spring Bootのプロジェクトでは、<code>pom.xml</code>ファイルを使用して依存関係を管理します。</p>
+            <pre id="code1">
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h3>Gradleを使用した依存関係管理</h3>
+            <p>Gradleは、より柔軟で効率的なビルドツールです。Spring BootのプロジェクトでGradleを使用する場合、<code>build.gradle</code>ファイルで依存関係を管理します。</p>
+            <pre id="code2">
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <p>どちらのツールもSpring Bootのプロジェクトには適していますが、Mavenは特に広く使用されています。</p>
+
+            <h2 id="section5">まとめ</h2>
+            <p>Spring Bootの開発環境のセットアップは、非常にシンプルで迅速です。Spring Initializrを使用することで、最小限の設定で新しいプロジェクトを簡単に作成でき、IDEの設定や依存関係管理も簡単に行うことができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">Spring Bootのインストールとセットアップ</a></li>
+                    <li><a href="#section2">IDEの設定（IntelliJ IDEA、Eclipseなど）</a></li>
+                    <li><a href="#section3">Spring Initializrを使ったプロジェクトの作成</a></li>
+                    <li><a href="#section4">プロジェクトの依存関係管理（Maven / Gradle）</a></li>
+                    <li><a href="#section5">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson03.html">次のページへ</a></li>
+                    <li><a href="lesson01.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/SpringBoot/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

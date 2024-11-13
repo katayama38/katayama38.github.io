@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spring Bootを使ったセキュリティの基本について説明します。">
+    <meta name="keywords" content="Spring Boot, Spring Security, 認証, 認可, JWT, セッション管理, ロールベースアクセス制御, RBAC">
+    <title>セキュリティの基本（Spring Security）</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>セキュリティの基本（Spring Security）</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">Spring Securityの導入と基本設定</h2>
+            <p>Spring Bootアプリケーションにセキュリティ機能を追加するには、`Spring Security`を導入する必要があります。Spring Securityは、認証や認可のための強力なフレームワークを提供し、WebアプリケーションやREST APIのセキュリティを簡単に実装できます。</p>
+
+            <h3>依存関係の追加</h3>
+            <p>Spring BootにSpring Securityを追加するには、`pom.xml`ファイルに依存関係を追加します。</p>
+            <pre id="code1">
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+&lt;/dependency&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h3>基本設定</h3>
+            <p>Spring Securityを導入すると、デフォルトでセキュリティが有効になります。例えば、すべてのURLが認証を必要とし、ログインページが表示されます。このデフォルト設定をカスタマイズすることができます。</p>
+
+            <h4>例: 基本的な設定</h4>
+            <pre id="code2">
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .authorizeRequests()
+                .antMatchers("/", "/home").permitAll()  // 特定のURLは認証なしでアクセス可能
+                .anyRequest().authenticated()  // 他のURLは認証が必要
+            .and()
+            .formLogin()
+                .loginPage("/login")  // ログインページのURL
+                .permitAll()  // ログインページは誰でもアクセス可能
+            .and()
+            .logout()
+                .permitAll();  // ログアウトは誰でも実行可能
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <p>上記の設定により、特定のURLにアクセスする際に認証が要求されます。ログインページをカスタマイズしたり、セッション管理やログアウトの設定を行うことができます。</p>
+
+            <h2 id="section2">認証と認可の仕組み</h2>
+            <p>認証（Authentication）と認可（Authorization）はセキュリティの2つの重要な要素です。Spring Securityはこれらを効率的に実現します。</p>
+
+            <h3>認証（Authentication）</h3>
+            <p>認証は、ユーザーが誰であるかを確認するプロセスです。Spring Securityでは、ユーザー名とパスワードを使って認証を行うことができます。</p>
+
+            <h4>例: メモリ内認証設定</h4>
+            <pre id="code3">
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+            .withUser("user").password("{noop}password").roles("USER")
+            .and()
+            .withUser("admin").password("{noop}admin").roles("ADMIN");
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasRole("USER")
+                .anyRequest().authenticated()
+            .and()
+            .formLogin();
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <p>上記の例では、ユーザー名とパスワードをメモリ内にハードコーディングし、ユーザーごとに異なる役割を割り当てています。</p>
+
+            <h3>認可（Authorization）</h3>
+            <p>認可は、認証されたユーザーが特定のリソースにアクセスできるかどうかを決定するプロセスです。Spring Securityでは、ユーザーの役割（ロール）に基づいてアクセス制御を行います。</p>
+
+            <h2 id="section3">ユーザーのログイン機能の実装（JWT認証、セッション管理）</h2>
+            <p>Spring Bootでは、JWT認証やセッション管理を使ったログイン機能の実装が可能です。ここでは、JWTを使用した認証機能の実装方法を紹介します。</p>
+
+            <h3>JWT認証</h3>
+            <p>JWT（JSON Web Token）は、ユーザー認証後にトークンを生成して、リクエストごとに送信される仕組みです。これにより、サーバー側でセッションを管理せずに認証を行うことができます。</p>
+
+            <h4>例: JWTトークン生成と検証</h4>
+            <pre id="code4">
+// JWTの生成と検証用のサービスを実装
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+public class JwtUtil {
+
+    private String secretKey = "mySecretKey";
+
+    public String generateToken(String username) {
+        return Jwts.builder()
+            .setSubject(username)
+            .signWith(SignatureAlgorithm.HS256, secretKey)
+            .compact();
+    }
+
+    public String extractUsername(String token) {
+        return Jwts.parser()
+            .setSigningKey(secretKey)
+            .parseClaimsJws(token)
+            .getBody()
+            .getSubject();
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <p>JWTトークンを利用して、リクエストヘッダにトークンを含めることで、セキュリティを強化できます。</p>
+
+            <h3>セッション管理</h3>
+            <p>セッション管理は、ユーザーのログイン状態をサーバー側で保持するために使用されます。Spring Securityはセッションの管理をサポートしており、セッションのタイムアウトや並行ログインの制限ができます。</p>
+
+            <h4>例: セッション管理の設定</h4>
+            <pre id="code5">
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .sessionManagement()
+                .maximumSessions(1)  // 最大同時セッション数
+                .expiredUrl("/login?expired=true")  // セッションが切れた際のリダイレクト先
+            .and()
+            .authorizeRequests()
+                .anyRequest().authenticated()
+            .and()
+            .formLogin();
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section4">ロールベースのアクセス制御（RBAC）</h2>
+            <p>Spring Securityでは、ロールベースのアクセス制御（RBAC）を使用して、ユーザーに特定の権限を付与することができます。これにより、特定のリソースにアクセスできるユーザーを制御できます。</p>
+
+            <h3>ロールごとのアクセス制御</h3>
+            <p>ロールベースアクセス制御（RBAC）を利用すると、URLごとにアクセス権限を指定できます。</p>
+
+            <h4>例: ロールごとのアクセス制御</h4>
+            <pre id="code6">
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN")  // 管理者のみ
+                .antMatchers("/user/**").hasRole("USER")  // ユーザーのみ
+                .anyRequest().authenticated()
+            .and()
+            .formLogin();
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h2 id="section5">まとめ</h2>
+            <p>Spring Securityを使うことで、アプリケーションに強力な認証・認可機能を追加することができます。JWTを使った認証や、セッション管理を通じてセキュリティを強化し、ロールベースのアクセス制御（RBAC）により細かなアクセス権限を設定できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">Spring Securityの導入と基本設定</a></li>
+                    <li><a href="#section2">認証と認可の仕組み</a></li>
+                    <li><a href="#section3">ユーザーのログイン機能の実装</a></li>
+                    <li><a href="#section4">ロールベースのアクセス制御（RBAC）</a></li>
+                    <li><a href="#section5">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson08.html">次のページへ</a></li>
+                    <li><a href="lesson06.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/SpringBoot/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

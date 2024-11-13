@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spring Bootを使ったデータベース接続とJPAの設定方法について説明します。">
+    <meta name="keywords" content="Spring Boot, データベース接続, JPA, H2, MySQL, PostgreSQL, Spring Data JPA, エンティティ, リポジトリ, クエリメソッド">
+    <title>データベース接続とJPA</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>データベース接続とJPA</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">Spring Bootとデータベースの接続設定</h2>
+            <p>Spring Bootを使って、簡単にデータベースと接続できます。サポートされているデータベースには、H2、MySQL、PostgreSQLなどがあります。以下は、MySQLとH2の接続設定方法の例です。</p>
+
+            <h3>H2データベース接続設定</h3>
+            <pre id="code1">
+# application.properties
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.h2.console.enabled=true
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <p>H2はインメモリ型のデータベースで、開発時に便利です。上記の設定で、Spring BootがH2に接続します。</p>
+
+            <h3>MySQLデータベース接続設定</h3>
+            <pre id="code2">
+# application.properties
+spring.datasource.url=jdbc:mysql://localhost:3306/mydb
+spring.datasource.username=root
+spring.datasource.password=rootpassword
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+            <p>MySQLに接続するための設定です。`spring.datasource.url`にはMySQLのホスト名やポート番号、データベース名を指定します。</p>
+
+            <h3>PostgreSQLデータベース接続設定</h3>
+            <pre id="code3">
+# application.properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/mydb
+spring.datasource.username=postgres
+spring.datasource.password=postgrespassword
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <p>PostgreSQLに接続するための設定です。必要に応じてデータベース名や認証情報を変更してください。</p>
+
+            <h2 id="section2">Spring Data JPAの導入</h2>
+            <p>Spring Data JPAを使用すると、リポジトリインターフェースを簡単に作成でき、JPAエンティティをデータベース操作にマッピングできます。Spring Bootでは、`spring-boot-starter-data-jpa`を依存関係として追加することで、JPAを利用できます。</p>
+
+            <h3>依存関係の追加</h3>
+            <pre id="code4">
+# build.gradleの場合
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2'  <!-- H2の場合 -->
+    implementation 'mysql:mysql-connector-java'  <!-- MySQLの場合 -->
+    implementation 'org.postgresql:postgresql'  <!-- PostgreSQLの場合 -->
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <p>上記のように、`spring-boot-starter-data-jpa`と使用するデータベースに応じたJDBCドライバーを追加します。</p>
+
+            <h2 id="section3">エンティティクラスの作成とリポジトリの使用</h2>
+            <p>JPAエンティティクラスは、データベースのテーブルに対応するJavaクラスです。Spring Data JPAでは、エンティティクラスとリポジトリインターフェースを作成することで、簡単にデータベース操作を行えます。</p>
+
+            <h3>エンティティクラスの例</h3>
+            <pre id="code5">
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Item {
+
+    @Id
+    private Long id;
+    private String name;
+    private Double price;
+
+    // Getters and Setters
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <p>上記の`Item`クラスは、データベースの`item`テーブルに対応するエンティティクラスです。`@Entity`アノテーションを使って、JPAエンティティであることを示します。</p>
+
+            <h3>リポジトリインターフェースの作成</h3>
+            <pre id="code6">
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ItemRepository extends JpaRepository<Item, Long> {
+    // 追加のカスタムメソッドを定義することも可能
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <p>`ItemRepository`は、`JpaRepository`を継承することで、`Item`エンティティに対する基本的なCRUD操作が自動的に提供されます。</p>
+
+            <h2 id="section4">クエリメソッドとカスタムクエリの作成</h2>
+            <p>Spring Data JPAでは、メソッド名に基づいて自動的にクエリを生成することができます。また、`@Query`アノテーションを使ってカスタムクエリを作成することもできます。</p>
+
+            <h3>クエリメソッドの例</h3>
+            <pre id="code7">
+public interface ItemRepository extends JpaRepository<Item, Long> {
+    List<Item> findByName(String name);  // 名前でアイテムを検索
+}
+            </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
+
+            <p>上記の`findByName`メソッドは、`name`フィールドに基づいてアイテムを検索するクエリを自動的に生成します。</p>
+
+            <h3>カスタムクエリの作成</h3>
+            <pre id="code8">
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+public interface ItemRepository extends JpaRepository<Item, Long> {
+
+    @Query("SELECT i FROM Item i WHERE i.price > :price")
+    List<Item> findItemsExpensiveThan(Double price);
+}
+            </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
+
+            <p>上記の`findItemsExpensiveThan`メソッドは、`@Query`アノテーションを使ってカスタムJPQLクエリを定義しています。価格が指定された値よりも高いアイテムを検索します。</p>
+
+            <h2 id="section5">まとめ</h2>
+            <p>Spring Bootを使ってデータベース接続とJPAを活用することで、リポジトリを通じて効率的にデータベース操作が行えます。JPAエンティティを作成し、Spring Data JPAのリポジトリインターフェースを使用することで、簡単にデータベース操作を実装できます。また、クエリメソッドやカスタムクエリを使うことで、柔軟にデータ取得が可能になります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">Spring Bootとデータベースの接続設定</a></li>
+                    <li><a href="#section2">Spring Data JPAの導入</a></li>
+                    <li><a href="#section3">エンティティクラスの作成とリポジトリの使用</a></li>
+                    <li><a href="#section4">クエリメソッドとカスタムクエリの作成</a></li>
+                    <li><a href="#section5">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson06.html">次のページへ</a></li>
+                    <li><a href="lesson04.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/SpringBoot/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spring Bootとフロントエンドの統合方法、Thymeleafを使ったテンプレートエンジン、AngularやReactとの連携、REST APIとの統合について紹介します。">
+    <meta name="keywords" content="Spring Boot, フロントエンド, Thymeleaf, Angular, React, REST API, バックエンド統合">
+    <title>Spring Bootとフロントエンドの統合</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Spring Bootとフロントエンドの統合</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">Thymeleafを使ったテンプレートエンジン</h2>
+            <p>Spring Bootでは、Thymeleafというテンプレートエンジンを使用して、バックエンドから動的にHTMLページを生成することができます。これにより、サーバーサイドレンダリングを活用し、動的なコンテンツを効率よく提供できます。</p>
+
+            <h3>Thymeleafの設定</h3>
+            <p>Spring BootプロジェクトにThymeleafを追加するには、`pom.xml`に依存関係を追加します。</p>
+            <pre id="code1">
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+&lt;/dependency&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <p>次に、コントローラでThymeleafテンプレートを返すメソッドを作成します。</p>
+            <pre id="code2">
+@Controller
+public class MyController {
+
+    @GetMapping("/home")
+    public String home(Model model) {
+        model.addAttribute("message", "Hello, Spring Boot!");
+        return "home"; // home.htmlテンプレートを返す
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <p>上記の例では、`home.html`というテンプレートをレンダリングし、`message`属性を表示することができます。</p>
+
+            <h3>Thymeleafテンプレートの例</h3>
+            <p>次に、`home.html`の基本的な例を示します。</p>
+            <pre id="code3">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Home&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;${message}&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section2">AngularやReactとの連携</h2>
+            <p>Spring Bootは、AngularやReactなどのフロントエンドフレームワークとも連携することができます。これらのフレームワークを使用して、モダンなSPA（シングルページアプリケーション）を構築し、Spring BootをバックエンドAPIとして使用することが一般的です。</p>
+
+            <h3>Angularとの連携</h3>
+            <p>Angularアプリケーションは、Spring BootのREST APIを消費することができます。Spring BootのコントローラでREST APIを提供し、AngularでそのAPIを呼び出してデータを取得します。</p>
+
+            <h3>Reactとの連携</h3>
+            <p>Reactも同様に、Spring BootのREST APIを利用するフロントエンドアプリケーションを作成できます。ReactからSpring BootのAPIにHTTPリクエストを送り、必要なデータを取得します。</p>
+
+            <h2 id="section3">Spring Bootでフロントエンドとバックエンドの統合</h2>
+            <p>Spring Bootでフロントエンドとバックエンドを統合する場合、通常はREST APIを利用して、フロントエンドからのリクエストに応じてデータを返す形にします。これにより、フロントエンドとバックエンドの分離を維持し、よりモジュール化されたシステムを構築できます。</p>
+
+            <h3>REST APIの作成</h3>
+            <p>Spring BootでREST APIを作成するためには、`@RestController`を使用して、HTTPリクエストを処理します。</p>
+            <pre id="code4">
+@RestController
+@RequestMapping("/api")
+public class MyRestController {
+
+    @GetMapping("/message")
+    public ResponseEntity<String> getMessage() {
+        return ResponseEntity.ok("Hello, from Spring Boot REST API!");
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <p>上記の例では、`/api/message`エンドポイントでメッセージを返します。フロントエンドからこのエンドポイントを呼び出すことで、データを取得できます。</p>
+
+            <h2 id="section4">REST APIとフロントエンドの連携方法</h2>
+            <p>フロントエンド（AngularやReactなど）は、Spring Bootで作成したREST APIと連携してデータを取得することができます。以下は、REST APIを呼び出してデータを取得する基本的な方法です。</p>
+
+            <h3>AngularでREST APIを呼び出す方法</h3>
+            <p>Angularでは、`HttpClient`を使ってREST APIを呼び出します。以下はその例です。</p>
+            <pre id="code5">
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-message',
+  templateUrl: './message.component.html'
+})
+export class MessageComponent implements OnInit {
+
+  message: string;
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.http.get&lt;string&gt;('/api/message')
+      .subscribe(data =&gt; {
+        this.message = data;
+      });
+  }
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <p>上記のコードでは、`/api/message`エンドポイントからデータを取得し、その結果をコンポーネント内の`message`プロパティに格納しています。</p>
+
+            <h3>ReactでREST APIを呼び出す方法</h3>
+            <p>Reactでも、`fetch` APIや`axios`ライブラリを使用してREST APIを呼び出します。以下はその例です。</p>
+            <pre id="code6">
+import React, { useEffect, useState } from 'react';
+
+const MessageComponent = () => {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    fetch('/api/message')
+      .then(response => response.text())
+      .then(data => setMessage(data));
+  }, []);
+
+  return &lt;h1&gt;{message}&lt;/h1&gt;
+};
+
+export default MessageComponent;
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <p>Reactのコードでは、`fetch`を使ってSpring BootのAPIからデータを取得し、`useState`フックでそのデータを状態として管理します。</p>
+
+            <h2 id="section5">まとめ</h2>
+            <p>Spring Bootとフロントエンドの統合は、Thymeleafを使ったサーバーサイドレンダリングや、AngularやReactとの連携によって効率的に行うことができます。REST APIを活用することで、フロントエンドとバックエンドを分離し、よりスケーラブルでモジュール化されたシステムを構築することができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">Thymeleafを使ったテンプレートエンジン</a></li>
+                    <li><a href="#section2">AngularやReactとの連携</a></li>
+                    <li><a href="#section3">Spring Bootでフロントエンドとバックエンドの統合</a></li>
+                    <li><a href="#section4">REST APIとフロントエンドの連携方法</a></li>
+                    <li><a href="#section5">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson01.html">次のページへ</a></li>
+                    <li><a href="lesson12.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/SpringBoot/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

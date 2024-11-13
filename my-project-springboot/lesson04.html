@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spring Bootを使ったRESTful APIの作成方法について説明します。">
+    <meta name="keywords" content="Spring Boot, RESTful API, @RestController, @RequestMapping, HTTPメソッド, GET, POST, PUT, DELETE, JSON">
+    <title>RESTful APIの作成と実装</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>RESTful APIの作成と実装</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">@RestController と @RequestMapping の使い方</h2>
+            <p>Spring Bootでは、RESTful APIを作成するために`@RestController`アノテーションを使用します。このアノテーションは、クラスがRESTfulなWebサービスを提供することを示します。</p>
+            <p>`@RestController`は、`@Controller`と`@ResponseBody`を組み合わせたものです。これにより、返却するオブジェクトが自動的にJSON形式でレスポンスとして返されます。</p>
+
+            <h3>基本的な使用例</h3>
+            <pre id="code1">
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class MyRestController {
+
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "こんにちは、Spring Boot!";
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <p>上記の例では、`@RestController`を使って`/hello`エンドポイントを提供し、文字列を返しています。クライアントはこのエンドポイントを呼び出すと、"こんにちは、Spring Boot!"というメッセージがJSON形式で返されます。</p>
+
+            <h2 id="section2">HTTPメソッド（GET, POST, PUT, DELETE）の実装</h2>
+            <p>RESTful APIでは、さまざまなHTTPメソッドを使用してリソースに対する操作を行います。Spring Bootでは、以下のようにそれぞれのメソッドを簡単に実装できます。</p>
+
+            <h3>GETメソッド</h3>
+            <pre id="code2">
+@GetMapping("/items/{id}")
+public Item getItem(@PathVariable Long id) {
+    return itemService.findById(id);
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <p>`@GetMapping`を使用して、指定したリソース（例：`/items/{id}`）に対するGETリクエストを処理します。`@PathVariable`を使うことで、URLのパスパラメータをメソッドの引数として受け取ることができます。</p>
+
+            <h3>POSTメソッド</h3>
+            <pre id="code3">
+@PostMapping("/items")
+public Item createItem(@RequestBody Item item) {
+    return itemService.save(item);
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <p>`@PostMapping`を使用して、リソースを作成するためのPOSTリクエストを処理します。`@RequestBody`を使うことで、リクエストボディに含まれるJSONデータを自動的にJavaオブジェクトにマッピングします。</p>
+
+            <h3>PUTメソッド</h3>
+            <pre id="code4">
+@PutMapping("/items/{id}")
+public Item updateItem(@PathVariable Long id, @RequestBody Item item) {
+    return itemService.update(id, item);
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <p>`@PutMapping`を使用して、リソースを更新するためのPUTリクエストを処理します。`@PathVariable`でリソースIDを受け取り、`@RequestBody`で更新内容を受け取ります。</p>
+
+            <h3>DELETEメソッド</h3>
+            <pre id="code5">
+@DeleteMapping("/items/{id}")
+public void deleteItem(@PathVariable Long id) {
+    itemService.delete(id);
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <p>`@DeleteMapping`を使用して、指定したリソースを削除するためのDELETEリクエストを処理します。`@PathVariable`でリソースIDを受け取ります。</p>
+
+            <h2 id="section3">リクエストとレスポンスのマッピング</h2>
+            <p>Spring Bootでは、リクエストデータをメソッドの引数としてマッピングし、レスポンスをクライアントに返します。主に以下の2つの方法を使います：</p>
+            <ul>
+                <li><strong>@RequestBody</strong>: リクエストのJSONデータをJavaオブジェクトにマッピングします。</li>
+                <li><strong>@ResponseBody</strong>: メソッドの戻り値をJSON形式でクライアントに返します（`@RestController`がこれを自動的に処理します）。</li>
+            </ul>
+
+            <h3>リクエストボディとレスポンスボディの例</h3>
+            <pre id="code6">
+@PostMapping("/items")
+public Item createItem(@RequestBody Item item) {
+    // リクエストボディから受け取ったデータを使って処理を行い、アイテムを作成します
+    return itemService.save(item);  // レスポンスとして作成したアイテムを返します
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <p>この例では、リクエストボディとして渡されたJSONデータが`Item`オブジェクトにマッピングされ、作成したアイテムがレスポンスとしてJSON形式で返されます。</p>
+
+            <h2 id="section4">JSONデータの処理と返却</h2>
+            <p>Spring Bootでは、JSONデータの処理と返却が非常に簡単です。デフォルトで、`@RestController`が返却するオブジェクトは自動的にJSONにシリアライズされます。以下のようなクラスを使ってJSONデータを処理することができます：</p>
+
+            <h3>Itemクラスの例</h3>
+            <pre id="code7">
+public class Item {
+
+    private Long id;
+    private String name;
+    private Double price;
+
+    // Getters and Setters
+}
+            </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
+
+            <p>上記の`Item`クラスを使って、以下のようなJSONデータがやり取りされます：</p>
+            <pre id="code8">
+{
+    "id": 1,
+    "name": "商品名",
+    "price": 1000.0
+}
+            </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
+
+            <p>このJSONデータは、Spring Bootが自動的にシリアライズ（Javaオブジェクト→JSON）およびデシリアライズ（JSON→Javaオブジェクト）を行います。</p>
+
+            <h2 id="section5">まとめ</h2>
+            <p>Spring Bootを使ったRESTful APIの作成では、`@RestController`や`@RequestMapping`を活用して、HTTPメソッド（GET, POST, PUT, DELETE）に対応するエンドポイントを実装します。リクエストとレスポンスのマッピングを簡単に行い、JSONデータのやり取りもスムーズに処理できます。このアプローチにより、効率的でわかりやすいRESTful APIを構築できます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">@RestController と @RequestMapping の使い方</a></li>
+                    <li><a href="#section2">HTTPメソッド（GET, POST, PUT, DELETE）の実装</a></li>
+                    <li><a href="#section3">リクエストとレスポンスのマッピング</a></li>
+                    <li><a href="#section4">JSONデータの処理と返却</a></li>
+                    <li><a href="#section5">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson05.html">次のページへ</a></li>
+                    <li><a href="lesson03.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/SpringBoot/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

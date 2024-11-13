@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spring Bootを使った非同期処理とバックグラウンドタスクの実装方法について説明します。">
+    <meta name="keywords" content="Spring Boot, 非同期処理, バックグラウンドタスク, @Async, @Scheduled, RabbitMQ, Kafka">
+    <title>非同期処理とバックグラウンドタスク</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>非同期処理とバックグラウンドタスク（Spring Boot）</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">Spring Bootで非同期処理を実装する方法</h2>
+            <p>Spring Bootでは、`@Async`アノテーションを使って非同期処理を簡単に実装できます。非同期処理を使うことで、長時間かかる処理を別スレッドで実行し、メインスレッドのパフォーマンスを向上させることができます。</p>
+
+            <h3>非同期処理の基本設定</h3>
+            <p>非同期処理を利用するには、まず`@EnableAsync`アノテーションを追加して非同期処理を有効にする必要があります。</p>
+            <pre id="code1">
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
+
+@SpringBootApplication
+@EnableAsync
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <h3>@Asyncアノテーションを使った非同期処理</h3>
+            <p>`@Async`アノテーションをメソッドに付けることで、そのメソッドを非同期に実行することができます。</p>
+            <pre id="code2">
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AsyncService {
+
+    @Async
+    public void performAsyncTask() {
+        try {
+            Thread.sleep(5000);  // 5秒間の処理
+            System.out.println("非同期タスク完了");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <p>上記の例では、`performAsyncTask`メソッドが非同期に実行されます。非同期メソッドは、呼び出し元をブロックすることなく並列で実行されます。</p>
+
+            <h2 id="section2">@Scheduled を使った定期的なタスク実行</h2>
+            <p>`@Scheduled`アノテーションを使うことで、定期的に実行されるタスクを設定できます。これを使えば、毎秒や毎分、または特定の時間間隔で自動的に処理を実行できます。</p>
+
+            <h3>定期的なタスクの設定</h3>
+            <pre id="code3">
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ScheduledService {
+
+    @Scheduled(fixedRate = 5000)  // 5秒ごとに実行
+    public void executeTask() {
+        System.out.println("定期的に実行されるタスク");
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <p>上記の例では、`executeTask`メソッドが5秒ごとに実行されます。`@Scheduled`アノテーションには、`fixedRate`や`fixedDelay`、`cron`などの属性を使ってタスクの実行頻度を制御できます。</p>
+
+            <h3>cron式を使ったタスクの実行</h3>
+            <pre id="code4">
+@Scheduled(cron = "0 0 12 * * ?")  // 毎日12時に実行
+public void runEveryDayAtNoon() {
+    System.out.println("毎日12時に実行されるタスク");
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <p>上記の例では、cron式を使用して毎日12時にタスクが実行されます。`cron`の表現を変更することで、柔軟にスケジュールを設定できます。</p>
+
+            <h2 id="section3">メッセージキュー（RabbitMQ、Kafka）との統合</h2>
+            <p>非同期処理の他の方法として、メッセージキュー（例えばRabbitMQやKafka）を使用することができます。これにより、分散システムでのメッセージの非同期処理を簡単に実装できます。</p>
+
+            <h3>RabbitMQとの統合</h3>
+            <p>RabbitMQを使って非同期メッセージの送受信を行うには、まず`spring-boot-starter-amqp`を依存関係として追加します。</p>
+            <pre id="code5">
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-amqp&lt;/artifactId&gt;
+&lt;/dependency&gt;
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <p>次に、RabbitMQのメッセージ送受信を設定します。</p>
+            <pre id="code6">
+import org.springframework.amqp.core.Queue;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class RabbitConfig {
+
+    @Bean
+    public Queue queue() {
+        return new Queue("taskQueue", false);
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <p>メッセージを送信するサービスの例:</p>
+            <pre id="code7">
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MessageSender {
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    public void sendMessage(String message) {
+        rabbitTemplate.convertAndSend("taskQueue", message);
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code7', 'alert7', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert7"></span>
+
+            <h3>Kafkaとの統合</h3>
+            <p>Kafkaを使ったメッセージングもSpring Bootでは簡単に実装できます。Kafkaを使用するには、`spring-kafka`を依存関係に追加します。</p>
+            <pre id="code8">
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.kafka&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-kafka&lt;/artifactId&gt;
+&lt;/dependency&gt;
+            </pre>
+            <button onclick="copyToClipboard('code8', 'alert8', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert8"></span>
+
+            <p>KafkaのProducerとConsumerを設定する例:</p>
+            <pre id="code9">
+import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.listener.MessageListener;
+import org.springframework.kafka.listener.MessageListenerContainer;
+import org.springframework.kafka.listener.config.MessageListenerContainerConfigurer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@EnableKafka
+public class KafkaConfig {
+
+    @Bean
+    public KafkaTemplate<String, String> kafkaTemplate() {
+        return new KafkaTemplate<>(producerFactory());
+    }
+
+    @Bean
+    public MessageListener<String, String> messageListener() {
+        return new MessageListener<String, String>() {
+            @Override
+            public void onMessage(String message) {
+                System.out.println("Kafkaで受信したメッセージ: " + message);
+            }
+        };
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code9', 'alert9', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert9"></span>
+
+            <p>KafkaのProducerはメッセージを送信し、Consumerはメッセージを受信して処理します。</p>
+
+            <h2 id="section4">まとめ</h2>
+            <p>Spring Bootでは、非同期処理や定期的なタスク実行を簡単に実装することができます。`@Async`や`@Scheduled`を使って並列処理やタイマー処理を行い、RabbitMQやKafkaを使って非同期メッセージングを統合することで、効率的なバックグラウンドタスクの管理が可能になります。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">Spring Bootで非同期処理を実装する方法</a></li>
+                    <li><a href="#section2">@Scheduled を使った定期的なタスク実行</a></li>
+                    <li><a href="#section3">メッセージキュー（RabbitMQ、Kafka）との統合</a></li>
+                    <li><a href="#section4">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson09.html">次のページへ</a></li>
+                    <li><a href="lesson07.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/SpringBoot/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

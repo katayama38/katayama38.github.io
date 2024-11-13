@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spring Bootを使ったバリデーションとエラーハンドリングの方法について説明します。">
+    <meta name="keywords" content="Spring Boot, バリデーション, エラーハンドリング, @Valid, @NotNull, @Size, @ControllerAdvice, エラーメッセージ">
+    <title>バリデーションとエラーハンドリング</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>バリデーションとエラーハンドリング</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">Spring Bootにおけるバリデーション</h2>
+            <p>Spring Bootでは、入力データのバリデーションを簡単に行うことができます。バリデーションを適用するためには、Java Bean Validationを使う方法が一般的です。これにより、データの整合性を確保し、エラーを発生させることなく処理できます。</p>
+
+            <h3>@Valid と @NotNull, @Size などのバリデーションアノテーション</h3>
+            <p>Spring Bootでは、`@Valid`アノテーションを使って、フォームデータやリクエストボディのバリデーションを実行できます。また、`@NotNull`や`@Size`などのアノテーションを使って、特定の制約を設けることができます。</p>
+
+            <h4>例: エンティティクラスでのバリデーション</h4>
+            <pre id="code1">
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
+public class User {
+
+    @Id
+    private Long id;
+
+    @NotNull(message = "名前は必須です")
+    @Size(min = 2, max = 50, message = "名前は2文字以上50文字以下で入力してください")
+    private String name;
+
+    // Getters and Setters
+}
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <p>上記の`User`クラスでは、`name`フィールドに対して`@NotNull`と`@Size`アノテーションを使ってバリデーションを設定しています。これにより、`name`が`null`でないこと、そして文字数が2文字以上50文字以下であることを保証します。</p>
+
+            <h3>バリデーションの適用方法</h3>
+            <p>コントローラーでバリデーションを適用するには、`@Valid`アノテーションを使用します。</p>
+
+            <h4>例: コントローラーでのバリデーション</h4>
+            <pre id="code2">
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    @PostMapping
+    public String createUser(@Valid @RequestBody User user) {
+        return "ユーザーが正常に作成されました: " + user.getName();
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <p>上記の例では、`@Valid`アノテーションを使って、`User`オブジェクトのバリデーションを行っています。リクエストボディとして渡されたデータが有効でない場合、Springは自動的にエラーレスポンスを返します。</p>
+
+            <h2 id="section2">エラーハンドリング</h2>
+            <p>バリデーションエラーが発生した場合、Spring Bootはデフォルトで`400 Bad Request`エラーとともにエラーメッセージを返します。しかし、エラーハンドリングをカスタマイズすることもできます。</p>
+
+            <h3>グローバルエラーハンドラーの設定</h3>
+            <p>グローバルにエラーをキャッチして処理するためには、`@ControllerAdvice`を使用します。これにより、すべてのコントローラーに対して共通のエラーハンドリングが可能になります。</p>
+
+            <h4>例: グローバルエラーハンドラー</h4>
+            <pre id="code3">
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.validation.BindingResult;
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleValidationException(Exception ex, BindingResult result) {
+        StringBuilder errorMessage = new StringBuilder("エラーが発生しました: ");
+        
+        for (FieldError fieldError : result.getFieldErrors()) {
+            errorMessage.append("[").append(fieldError.getField()).append(": ").append(fieldError.getDefaultMessage()).append("] ");
+        }
+        
+        return new ResponseEntity<>(errorMessage.toString(), HttpStatus.BAD_REQUEST);
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <p>上記の`GlobalExceptionHandler`クラスでは、`@ExceptionHandler`アノテーションを使用して、例外が発生した際にバリデーションエラーをキャッチし、エラーメッセージをまとめて返す処理を実装しています。</p>
+
+            <h2 id="section3">エラーメッセージのカスタマイズ</h2>
+            <p>`@ControllerAdvice`を使用してエラーメッセージをカスタマイズすることもできます。例えば、エラーメッセージを多言語対応させるために、`messages.properties`ファイルを使用することができます。</p>
+
+            <h3>例: エラーメッセージのカスタマイズ</h3>
+            <pre id="code4">
+# messages.properties
+name.notnull=名前は必須です
+name.size=名前は2文字以上50文字以下で入力してください
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <p>これにより、バリデーションエラーが発生した際に、設定したメッセージが自動的に使用されます。</p>
+
+            <h2 id="section4">まとめ</h2>
+            <p>Spring Bootでは、`@Valid`アノテーションを使って入力データのバリデーションを行い、`@ControllerAdvice`を使用してエラーハンドリングを行うことができます。これにより、エラーメッセージをカスタマイズし、ユーザーにわかりやすいエラーレスポンスを提供できます。また、エラーハンドリングをグローバルに設定することで、コードの重複を避け、より簡潔でメンテナンスしやすいアプリケーションを作成することができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">Spring Bootにおけるバリデーション</a></li>
+                    <li><a href="#section2">エラーハンドリング</a></li>
+                    <li><a href="#section3">エラーメッセージのカスタマイズ</a></li>
+                    <li><a href="#section4">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson07.html">次のページへ</a></li>
+                    <li><a href="lesson05.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/SpringBoot/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spring Bootアプリケーションのパフォーマンス最適化方法、起動時間の短縮、メモリ使用量の削減、キャッシュの利用、スケーラビリティ向上戦略について紹介します。">
+    <meta name="keywords" content="Spring Boot, パフォーマンス最適化, 起動時間, メモリ使用量, キャッシュ, @Cacheable, スケーラビリティ">
+    <title>Spring Bootのパフォーマンス最適化</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Spring Bootのパフォーマンス最適化</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">起動時間の短縮方法</h2>
+            <p>Spring Bootアプリケーションの起動時間が長くなると、開発効率や本番環境でのスケーラビリティに悪影響を与えることがあります。起動時間を短縮するためには、以下の方法を試すことが有効です。</p>
+
+            <h3>起動時の不要な処理を削減</h3>
+            <p>アプリケーションの起動時に不要な処理を減らすことで、起動時間を短縮できます。特に、Spring Bootは自動設定機能が豊富ですが、すべてを有効にする必要はありません。不要な自動設定を無効化することで、起動時間を短縮できます。</p>
+            <pre id="code1">
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <p>この設定で、データベース関連の自動設定を除外することができます。</p>
+
+            <h3>Lazy Initializationの活用</h3>
+            <p>Spring Bootでは、Beanの初期化を遅延させることができます。これにより、アプリケーション起動時にすべてのBeanを即座にロードするのではなく、必要なタイミングで初期化することができ、起動時間を短縮できます。</p>
+            <pre id="code2">
+spring.main.lazy-initialization=true
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <h2 id="section2">メモリ使用量の削減</h2>
+            <p>Spring Bootアプリケーションが使用するメモリを削減するためには、いくつかの方法があります。</p>
+
+            <h3>不要な依存関係の削除</h3>
+            <p>不要な依存関係を`pom.xml`から削除することで、アプリケーションのメモリ消費を抑えることができます。特に、使っていないライブラリやフレームワークを除外することが重要です。</p>
+
+            <h3>プロファイルごとの設定</h3>
+            <p>Spring Bootでは、異なる環境やプロファイルに応じてメモリ使用量を調整することができます。例えば、開発環境ではデバッグ情報を有効にし、運用環境では無効にすることができます。</p>
+            <pre id="code3">
+spring.profiles.active=prod
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <h2 id="section3">キャッシュの利用（@Cacheable）</h2>
+            <p>アプリケーションのパフォーマンスを向上させるためには、キャッシュを活用することが効果的です。Spring Bootでは、`@Cacheable`アノテーションを使用してメソッドの結果をキャッシュすることができます。</p>
+
+            <h3>@Cacheableの使用方法</h3>
+            <p>以下のコード例では、メソッドの結果をキャッシュする方法を示しています。</p>
+            <pre id="code4">
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyService {
+
+    @Cacheable("items")
+    public String getItemFromDatabase(Long id) {
+        // 高価な処理
+        return "Item " + id;
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <p>この例では、`getItemFromDatabase`メソッドが呼び出されるたびに結果がキャッシュされ、次回同じ引数で呼び出された際にはキャッシュから結果が返されます。</p>
+
+            <h3>キャッシュの設定</h3>
+            <p>キャッシュを有効にするためには、`@EnableCaching`アノテーションを使ってキャッシュのサポートを有効化する必要があります。</p>
+            <pre id="code5">
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@EnableCaching
+public class CacheConfig {
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <h2 id="section4">アプリケーションのスケーラビリティを向上させるための戦略</h2>
+            <p>Spring Bootアプリケーションをスケールさせるためには、いくつかの戦略があります。これにより、高負荷時でも安定したパフォーマンスを維持することができます。</p>
+
+            <h3>マイクロサービスアーキテクチャの採用</h3>
+            <p>マイクロサービスアーキテクチャを採用することで、アプリケーションを小さなサービスに分割し、それぞれをスケーラブルに管理することができます。これにより、特定のサービスに負荷が集中しても、他のサービスに影響を与えることなくスケールアップやスケールダウンが可能になります。</p>
+
+            <h3>非同期処理の活用</h3>
+            <p>非同期処理を活用することで、リクエストの待機時間を短縮し、システム全体のスループットを向上させることができます。`@Async`アノテーションを使用して、非同期メソッドを定義することができます。</p>
+            <pre id="code6">
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyService {
+
+    @Async
+    public void performTask() {
+        // 非同期で実行される処理
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <h3>負荷分散の活用</h3>
+            <p>複数のインスタンスで負荷分散を行うことで、リクエストの負荷を均等に分散させることができます。クラウド環境やKubernetesを使用することで、負荷分散を容易に実現できます。</p>
+
+            <h2 id="section5">まとめ</h2>
+            <p>Spring Bootアプリケーションのパフォーマンス最適化には、起動時間の短縮やメモリ使用量の削減、キャッシュの利用など、いくつかのアプローチがあります。また、アプリケーションのスケーラビリティを向上させるためには、マイクロサービスアーキテクチャや非同期処理、負荷分散を活用することが重要です。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">起動時間の短縮方法</a></li>
+                    <li><a href="#section2">メモリ使用量の削減</a></li>
+                    <li><a href="#section3">キャッシュの利用（@Cacheable）</a></li>
+                    <li><a href="#section4">アプリケーションのスケーラビリティを向上させるための戦略</a></li>
+                    <li><a href="#section5">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson13.html">次のページへ</a></li>
+                    <li><a href="lesson11.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/SpringBoot/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

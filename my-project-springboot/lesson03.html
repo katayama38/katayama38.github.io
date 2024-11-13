@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spring Bootの基本的な構成要素について説明します。">
+    <meta name="keywords" content="Spring Boot, 構成要素, @SpringBootApplication, 起動クラス, application.properties, スタートアップ処理">
+    <title>Spring Bootの基本的な構成要素</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Spring Bootの基本的な構成要素</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">@SpringBootApplication アノテーション</h2>
+            <p>Spring Bootでは、`@SpringBootApplication`アノテーションが非常に重要な役割を果たします。このアノテーションは、Spring Bootアプリケーションのエントリーポイントを示すものです。</p>
+            <p>`@SpringBootApplication`は、以下の3つのアノテーションを組み合わせたものです：</p>
+            <ul>
+                <li><strong>@Configuration</strong>: Springの設定クラスとして機能します。</li>
+                <li><strong>@EnableAutoConfiguration</strong>: Spring Bootが自動的に設定を行うようにします。</li>
+                <li><strong>@ComponentScan</strong>: Springコンポーネント（@Component, @Service, @Repositoryなど）を自動でスキャンします。</li>
+            </ul>
+            <p>これにより、`@SpringBootApplication`アノテーションが付けられたクラスは、設定、依存関係の自動設定、コンポーネントスキャンなど、アプリケーション全体の設定を簡素化する役割を担います。</p>
+
+            <h2 id="section2">application.properties または application.yml 設定ファイル</h2>
+            <p>Spring Bootアプリケーションの設定は、`application.properties`または`application.yml`ファイルに記述されます。これらのファイルは、アプリケーションの動作に関する設定（データベース接続、サーバーポート、ログ設定など）を管理します。</p>
+
+            <h3>application.propertiesの例</h3>
+            <pre id="code1">
+# サーバーポートの設定
+server.port=8080
+
+# データベース接続設定
+spring.datasource.url=jdbc:mysql://localhost:3306/mydb
+spring.datasource.username=root
+spring.datasource.password=root
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <p>Spring Bootは、`application.properties`ファイルをデフォルトで読み込むため、設定内容は非常にシンプルで直感的です。</p>
+
+            <h3>application.ymlの例</h3>
+            <pre id="code2">
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mydb
+    username: root
+    password: root
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <p>YAML形式（`application.yml`）でも同様の設定ができます。YAMLはインデントで階層構造を表現するため、設定が視覚的にわかりやすいという特徴があります。</p>
+
+            <h2 id="section3">起動クラスとエントリーポイントの役割</h2>
+            <p>Spring Bootアプリケーションは、1つの起動クラス（エントリーポイント）から開始されます。このクラスには、通常`@SpringBootApplication`アノテーションが付けられ、アプリケーションの起動処理が行われます。</p>
+            
+            <h3>起動クラスの基本構造</h3>
+            <pre id="code3">
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DemoApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <p>上記の例では、`DemoApplication`クラスがSpring Bootアプリケーションのエントリーポイントとなります。`SpringApplication.run()`メソッドを呼び出すことで、Spring Bootアプリケーションが起動します。</p>
+
+            <h2 id="section4">Spring Bootのスタートアップ処理の流れ</h2>
+            <p>Spring Bootアプリケーションが起動する際には、いくつかの処理が順番に実行されます。以下は、その主要な流れです。</p>
+            <ol>
+                <li><strong>Spring Bootアプリケーションの起動</strong>：`main`メソッドが実行され、`SpringApplication.run()`が呼ばれます。</li>
+                <li><strong>コンポーネントスキャン</strong>：`@ComponentScan`アノテーションにより、指定したパッケージ内のコンポーネント（@Component, @Service, @Repositoryなど）がスキャンされ、Springのコンテナに登録されます。</li>
+                <li><strong>自動設定</strong>：`@EnableAutoConfiguration`アノテーションに基づき、Spring Bootが自動的に設定を行います。例えば、データベース接続の設定や、Webアプリケーションの設定が自動で行われます。</li>
+                <li><strong>ApplicationContextの初期化</strong>：Springの`ApplicationContext`（アプリケーションの設定情報やコンポーネントを管理するコンテナ）が初期化されます。</li>
+                <li><strong>アプリケーションの実行</strong>：設定が完了すると、Spring Bootアプリケーションが実行され、リクエストを受け付けられるようになります。</li>
+            </ol>
+
+            <p>これにより、Spring Bootアプリケーションは迅速に立ち上がり、開発者がアプリケーションのビジネスロジックに集中できるようになります。</p>
+
+            <h2 id="section5">まとめ</h2>
+            <p>Spring Bootの基本的な構成要素には、`@SpringBootApplication`アノテーション、設定ファイル（`application.properties`または`application.yml`）、起動クラス、そしてスタートアップ処理の流れがあります。これらの要素がうまく組み合わさることで、Spring Bootは迅速で効率的なアプリケーション開発をサポートします。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">@SpringBootApplication アノテーション</a></li>
+                    <li><a href="#section2">application.properties または application.yml 設定ファイル</a></li>
+                    <li><a href="#section3">起動クラスとエントリーポイントの役割</a></li>
+                    <li><a href="#section4">Spring Bootのスタートアップ処理の流れ</a></li>
+                    <li><a href="#section5">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson04.html">次のページへ</a></li>
+                    <li><a href="lesson02.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/SpringBoot/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 10 29 katayama38. All rights reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

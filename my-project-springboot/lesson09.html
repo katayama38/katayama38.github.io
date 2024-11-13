@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spring Bootを使ったテスト方法について、単体テスト、統合テスト、MockMvcによるREST APIテストなどを紹介します。">
+    <meta name="keywords" content="Spring Boot, テスト, 単体テスト, 統合テスト, @SpringBootTest, @WebMvcTest, MockMvc, JUnit5, Mockito, テストカバレッジ">
+    <title>Spring Bootのテスト</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Spring Bootのテスト（JUnit5, Mockito, MockMvc）</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2 id="section1">Spring Bootの単体テストと統合テスト</h2>
+            <p>Spring Bootでは、JUnit5とMockitoを使って簡単に単体テストと統合テストを行うことができます。テストを自動化することで、コードの品質を保ち、エラーを早期に発見できます。</p>
+
+            <h3>JUnit5による単体テスト</h3>
+            <p>JUnit5は、テストケースを簡単に記述できるフレームワークです。Spring BootアプリケーションでJUnit5を使用するためには、`spring-boot-starter-test`を依存関係に追加します。</p>
+            <pre id="code1">
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+            </pre>
+            <button onclick="copyToClipboard('code1', 'alert1', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert1"></span>
+
+            <p>単体テストの例として、`Service`クラスのメソッドをテストします。Mockitoを使って外部依存をモックすることで、ユニットテストを行うことができます。</p>
+            <pre id="code2">
+import static org.mockito.Mockito.*;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class MyServiceTest {
+
+    @Mock
+    private MyRepository myRepository;
+
+    @InjectMocks
+    private MyService myService;
+
+    @Test
+    void testFindById() {
+        when(myRepository.findById(1L)).thenReturn(Optional.of(new MyEntity(1L, "Test")));
+
+        MyEntity entity = myService.findById(1L);
+
+        assertNotNull(entity);
+        assertEquals(1L, entity.getId());
+        assertEquals("Test", entity.getName());
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code2', 'alert2', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert2"></span>
+
+            <p>上記の例では、`MyService`クラスの`findById`メソッドをテストしています。`@Mock`アノテーションでリポジトリをモックし、`@InjectMocks`でテスト対象のクラスにモックを注入しています。</p>
+
+            <h2 id="section2">@SpringBootTest と @WebMvcTest の使い分け</h2>
+            <p>Spring Bootでは、テストの種類に応じて`@SpringBootTest`と`@WebMvcTest`を使い分けることができます。</p>
+
+            <h3>@SpringBootTestによる統合テスト</h3>
+            <p>`@SpringBootTest`を使用すると、アプリケーションコンテキスト全体を起動して統合テストを実施できます。これにより、Springコンテナが提供する依存関係をすべて使用したテストが可能になります。</p>
+            <pre id="code3">
+import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
+
+@SpringBootTest
+public class ApplicationTests {
+
+    @Test
+    void contextLoads() {
+        // Spring Bootアプリケーションのコンテキストが正常にロードされるかをテスト
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code3', 'alert3', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert3"></span>
+
+            <p>`@SpringBootTest`は、アプリケーション全体の動作をテストするためのもので、通常は統合テストに使用します。</p>
+
+            <h3>@WebMvcTestによるWeb層のテスト</h3>
+            <p>`@WebMvcTest`は、Web層（ControllerやREST API）のテストに特化したアノテーションです。これにより、Spring MVCコンポーネントをテストすることができます。</p>
+            <pre id="code4">
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.web.servlet.MockMvc;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@WebMvcTest(MyController.class)
+public class MyControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    void testGetEndpoint() throws Exception {
+        mockMvc.perform(get("/api/my-endpoint"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Test"));
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code4', 'alert4', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert4"></span>
+
+            <p>`@WebMvcTest`を使用すると、Web層だけをテスト対象に絞ることができ、テストの実行が軽量になります。コントローラの動作をテストする際に有効です。</p>
+
+            <h2 id="section3">REST APIのテスト（MockMvc）</h2>
+            <p>Spring Bootでは、MockMvcを使ってREST APIをテストすることができます。MockMvcは、サーバーを起動せずにHTTPリクエストを模倣し、レスポンスを検証するためのツールです。</p>
+
+            <h3>MockMvcを使ったAPIテスト</h3>
+            <pre id="code5">
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.junit.jupiter.api.Test;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest
+public class MyApiTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    void testGetApi() throws Exception {
+        mockMvc.perform(get("/api/my-resource"))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$.message").value("Success"));
+    }
+
+    @Test
+    void testPostApi() throws Exception {
+        mockMvc.perform(post("/api/my-resource")
+                .contentType("application/json")
+                .content("{\"name\":\"Test\"}"))
+                .andExpect(status().isCreated());
+    }
+}
+            </pre>
+            <button onclick="copyToClipboard('code5', 'alert5', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert5"></span>
+
+            <p>上記の例では、`MockMvc`を使用して、GETおよびPOSTリクエストをテストしています。レスポンスのステータスコードやJSONの内容を検証することができます。</p>
+
+            <h2 id="section4">テストカバレッジとコードカバレッジツールの導入</h2>
+            <p>テストカバレッジを把握することで、アプリケーションのテストがどれだけ網羅的に行われているかを確認できます。Spring Bootでは、Jacocoなどのツールを使ってカバレッジを確認することができます。</p>
+
+            <h3>Jacocoを使ったテストカバレッジの取得</h3>
+            <p>Jacocoは、コードカバレッジを計測するためのツールです。MavenやGradleを使ってJacocoを設定できます。</p>
+            <pre id="code6">
+&lt;plugin&gt;
+    &lt;groupId&gt;org.jacoco&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-jacoco-plugin&lt;/artifactId&gt;
+    &lt;version&gt;0.8.7&lt;/version&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;prepare-agent&lt;/goal&gt;
+                &lt;goal&gt;report&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+            </pre>
+            <button onclick="copyToClipboard('code6', 'alert6', 'コピーしました！')">コードをコピー</button>
+            <span class="copy-alert" id="alert6"></span>
+
+            <p>Jacocoを使用することで、テストの実行後にカバレッジレポートが生成され、どの部分のコードがテストされていないかを可視化できます。</p>
+
+            <h2 id="section5">まとめ</h2>
+            <p>Spring Bootのテスト機能を使うことで、単体テスト、統合テスト、REST APIのテストを効率的に行えます。JUnit5やMockito、MockMvcを活用することで、堅牢なテストを実現し、Jacocoなどのカバレッジツールを使ってコードの品質を向上させることができます。</p>
+        </main>
+
+        <aside>
+            <h2>ページ目次</h2>
+            <nav>
+                <ul id="breadcrumbs">
+                    <li><a href="#section1">Spring Bootの単体テストと統合テスト</a></li>
+                    <li><a href="#section2">@SpringBootTest と @WebMvcTest の使い分け</a></li>
+                    <li><a href="#section3">REST APIのテスト（MockMvc）</a></li>
+                    <li><a href="#section4">テストカバレッジとコードカバレッジツールの導入</a></li>
+                    <li><a href="#section5">まとめ</a></li>
+                    <li><a href="#">上へ戻る</a></li>
+                    <li><p>移動menu</p></li>
+                    <li><a href="lesson10.html">次のページへ</a></li>
+                    <li><a href="lesson08.html">前のページへ</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-github/index.html#top">ホーム</a></li>
+                    <li><a href="https://katayama38.github.io/my-project-programming/SpringBoot/index.html">カテゴリ</a></li>
+                    <li>現在のページ</li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>©️ 2024 katayama38. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
