@@ -90,6 +90,23 @@ body {
     background-color: #f4f4f4;
 }
 
+/* 中止ボタンのスタイル */
+#cancel {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f44336; /* 赤色 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#cancel:hover {
+    background-color: #d32f2f; /* ホバー時に少し濃く */
+}
+
+
 /* 結果表示 */
 #quiz-result {
     display: none;
