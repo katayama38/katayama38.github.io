@@ -22,6 +22,7 @@
         <button class="category-button" data-category="mysql">MySQL</button>
         <button class="category-button" data-category="jquery">JQuery</button>
         <button class="category-button" data-category="vue">Vue.js</button>
+        <button class="category-button" data-category="springboot">SpringBoot</button>
         <!-- 他のカテゴリボタンも追加できます -->
     </div>
 
@@ -53,6 +54,7 @@
         import { jqueryQuizQuestions } from './assets/js/jquery.js';  
         import { jspservletQuizQuestions } from './assets/js/jspservlet.js';  
         import { vueQuizQuestions } from './assets/js/vue.js';  
+        import { springbootQuizQuestions } from './assets/js/springboot';  
         // 必要なカテゴリのクイズデータをインポート
 
         const quizCategories = {
@@ -63,7 +65,8 @@
             mysql: mysqlQuizQuestions,
             jquery: jqueryQuizQuestions,
             jspservlet: jspservletQuizQuestions,
-            vue: vueQuizQuestions
+            vue: vueQuizQuestions,
+            springboot: springbootQuizQuestions
             // 他のカテゴリを追加する場合はここに追加
         };
 
